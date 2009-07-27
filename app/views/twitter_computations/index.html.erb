@@ -1,0 +1,26 @@
+<h1>Listing twitter_computations</h1>
+
+<table>
+  <tr>
+    <th>Twitter trend</th>
+    <th>Rate</th>
+    <th>Population</th>
+    <th>Threat</th>
+  </tr>
+
+<% @twitter_computations.each do |twitter_computation| %>
+  <tr>
+    <td><%=h twitter_computation.twitter_trend_id %></td>
+    <td><%=h twitter_computation.rate %></td>
+    <td><%=h twitter_computation.population %></td>
+    <td><%=h twitter_computation.threat %></td>
+    <td><%= link_to 'Show', twitter_computation %></td>
+    <td><%= link_to 'Edit', edit_twitter_computation_path(twitter_computation) %></td>
+    <td><%= link_to 'Destroy', twitter_computation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New twitter_computation', new_twitter_computation_path %>

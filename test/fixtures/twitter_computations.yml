@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  twitter_trend_id: 1
+  rate: 1.5
+  population: 1
+  threat: 1
+
+two:
+  twitter_trend_id: 1
+  rate: 1.5
+  population: 1
+  threat: 1

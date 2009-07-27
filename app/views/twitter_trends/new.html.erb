@@ -1,0 +1,68 @@
+<!-- start header -->
+<div id="logo">
+	<h1><%= link_to 'Zombie Strategies', homes_path %></h1>
+	<h2> »&nbsp;&nbsp; A civil defense system against the living dead</h2>
+</div>
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li class="current_page_item"><%= link_to 'Home', homes_path %></li>
+			<li><%= link_to 'Alert System', twitter_trends_path %></li>
+			<li><%= link_to 'Disaster Plans', homes_path %></li>
+			<li><%= link_to 'About', homes_path %></li>
+			<li class="last"><%= link_to 'Contact', homes_path %></li>
+		</ul>
+	</div>
+</div>
+<!-- end header -->
+<div id="wrapper">
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<div class="post">
+			<h1 class="title">New Zombie Twitter Trend Watch</h1>
+			<div class="entry">
+				<% form_for(@twitter_trend) do |f| %>
+				  <%= f.error_messages %>
+
+				  <p>
+				    <%= f.label :name %><br />
+				    <%= f.text_field :name %>
+				  </p>
+				  <p>
+				    <%= f.label :search %><br />
+				    <%= f.text_field :search %>
+				  </p>
+				  <p>
+				    <%= f.label :threshold %><br />
+				    <%= f.text_field :threshold %>
+				  </p>
+				  <p>
+				    <%= f.label :resolution %><br />
+				    <%= f.text_field :resolution %>
+				  </p>
+				  <p>
+				    <%= f.label :scheduled_update %><br />
+				    <%= f.datetime_select :scheduled_update %>
+				  </p>
+				  <p>
+				    <%= f.submit 'Create' %>
+				  </p>
+				<% end %>
+
+				<%= link_to 'Cancel', twitter_trends_path %>
+			</div>
+		</div>
+		
+	</div>
+	<!-- end content -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+<!-- start footer -->
+<div id="footer">
+	<p id="legal">ZombieStratagies ( c ) 2009. All Rights Reserved. Template by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
+<!-- end footer -->

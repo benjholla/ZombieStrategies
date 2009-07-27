@@ -1,0 +1,66 @@
+<!-- start header -->
+<div id="logo">
+	<h1><%= link_to 'Zombie Strategies', homes_path %></h1>
+	<h2> »&nbsp;&nbsp; A civil defense system against the living dead</h2>
+</div>
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li class="current_page_item"><%= link_to 'Home', homes_path %></li>
+			<li><%= link_to 'Alert System', twitter_trends_path %></li>
+			<li><%= link_to 'Disaster Plans', homes_path %></li>
+			<li><%= link_to 'About', homes_path %></li>
+			<li class="last"><%= link_to 'Contact', homes_path %></li>
+		</ul>
+	</div>
+</div>
+<!-- end header -->
+<div id="wrapper">
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<div class="post">
+			<h1 class="title">Showing Twitter Trend Searches</h1>
+			<div class="entry">
+				<table border="1">
+				  <tr>
+				    <th>Name</th>
+				    <th>Search</th>
+				    <th>Threshold</th>
+				    <th>Resolution</th>
+				    <th>Scheduled Update</th>
+					<th></th>
+					<th></th>
+				  </tr>
+
+				<% @twitter_trends.each do |twitter_trend| %>
+				  <tr>
+				    <td><%=h twitter_trend.name %></td>
+				    <td><%=h twitter_trend.search %></td>
+				    <td><%=h twitter_trend.threshold %></td>
+				    <td><%=h twitter_trend.resolution %></td>
+				    <td><%=h twitter_trend.scheduled_update %></td>
+				    <td><%= link_to 'Show', twitter_trend %></td>
+				    <td><%= link_to 'Destroy', twitter_trend, :confirm => 'Are you sure?', :method => :delete %></td>
+				  </tr>
+				<% end %>
+				</table>
+
+				<br />
+
+				<%= link_to 'Create New Twitter Trend Watch', new_twitter_trend_path %>
+			</div>
+		</div>
+		
+	</div>
+	<!-- end content -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+<!-- start footer -->
+<div id="footer">
+	<p id="legal">ZombieStratagies ( c ) 2009. All Rights Reserved. Template by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
+<!-- end footer -->

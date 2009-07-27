@@ -1,0 +1,111 @@
+<!-- start header -->
+<div id="logo">
+	<h1><%= link_to 'Zombie Strategies', homes_path %></h1>
+	<h2> »&nbsp;&nbsp; A civil defense system against the living dead</h2>
+</div>
+<div id="header">
+	<div id="menu">
+		<ul>
+			<li class="current_page_item"><%= link_to 'Home', homes_path %></li>
+			<li><%= link_to 'Alert System', twitter_trends_path %></li>
+			<li><%= link_to 'Disaster Plans', homes_path %></li>
+			<li><%= link_to 'About', homes_path %></li>
+			<li class="last"><%= link_to 'Contact', homes_path %></li>
+		</ul>
+	</div>
+</div>
+<!-- end header -->
+<div id="wrapper">
+<!-- start page -->
+<div id="page">
+	<!-- start content -->
+	<div id="content">
+		<div class="post">
+			<h1 class="title">Twitter Trend: <%=h @twitter_trend.name %></h1>
+			<div class="entry">
+				<b>Search:</b>
+				<%=h @twitter_trend.search %>
+				<br />
+				<b>Threshold:</b>
+				<%=h @twitter_trend.threshold %>
+				<br />
+				<b>Resolution:</b>
+				<%=h @twitter_trend.resolution %>
+				<br />
+				<b>Scheduled Update:</b>
+				<%=h @twitter_trend.scheduled_update %>
+			    <br />
+				<b><%= link_to 'Back', twitter_trends_path %></b> |
+				<b><%= link_to 'Edit', edit_twitter_trend_path(@twitter_trend) %></b>
+				<br />
+				<br />
+				<i>
+				 <% if @twitter_trend.twitter_computations.last %>
+				   Last update was <%= time_ago_in_words(@twitter_trend.twitter_computations.last.created_at) %> ago.
+				 <% else %>
+				   <strong>No Data Collected!</strong>
+				 <% end %>
+				</i>
+
+				<% if @twitter_trend.twitter_computations.last %>
+				<br />
+				<img src="<%= Gchart.line(:title => "Results for '" + @twitter_trend.search + "' at " + @twitter_trend.twitter_computations.last.created_at.to_s , :data => [@twitter_trend.twitter_computations.all(:order => 'created_at ASC', :limit => 24).map {|p| p = p.rate}], :line_colors => '76A4FB', :background => 'EEEEEE', :chart_background => 'CCCCCC', :max_value => 100, :axis_with_labels => 'x,y', :axis_labels => [@twitter_trend.twitter_computations.all(:order => 'created_at ASC', :limit => 24).map {|p| p = p.created_at.hour.to_s}, '0|20|40|60|80|100'], :size => '650x350') %>">
+				<br />
+				<br />
+				<br />
+				<% end %>
+
+				<table border="1">
+				  <tr>
+				    <th>Twitter trend</th>
+				    <th>Rate</th>
+				    <th>Population</th>
+				    <th>Threat</th>
+					<th>Date</th>
+					<th>Edit</th>
+					<th>Destroy</th>
+				  </tr>
+
+				<% @twitter_trend.twitter_computations.each do |twitter_computation| %>
+				  <tr>
+				    <td><%=h twitter_computation.twitter_trend_id %></td>
+				    <td><%=h twitter_computation.rate %></td>
+				    <td><%=h twitter_computation.population %></td>
+				    <td><%=h twitter_computation.threat %></td>
+					<td><%=h twitter_computation.created_at %></td>
+				    <td><%= link_to 'Edit', edit_twitter_computation_path(twitter_computation) %></td>
+				    <td><%= link_to 'Destroy', twitter_computation, :confirm => 'Are you sure?', :method => :delete %></td>
+				  </tr>
+				<% end %>
+				</table>
+
+				<br />
+				<br />
+				<b>Add New Computation</b>
+				<% remote_form_for [@twitter_trend, TwitterComputation.new] do |f| %>
+				  	
+				   	<%= f.label :rate %><br />
+				   	<%= f.text_field :rate %>
+				  	<br /><br />
+				   	<%= f.label :population %><br />
+				   	<%= f.text_field :population %>
+				    <br /><br />
+				   	<%= f.label :threat %><br />
+					<%= f.text_field :threat %>
+					<br /><br />
+					<p><%= f.submit "Add Computation" %></p>
+				<% end %>
+			</div>
+		</div>
+		
+	</div>
+	<!-- end content -->
+	<div style="clear: both;">&nbsp;</div>
+</div>
+</div>
+<!-- end page -->
+<!-- start footer -->
+<div id="footer">
+	<p id="legal">ZombieStratagies ( c ) 2009. All Rights Reserved. Template by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+</div>
+<!-- end footer -->
