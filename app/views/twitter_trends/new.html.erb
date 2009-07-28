@@ -1,70 +1,18 @@
-<DIV id="wrap">
-<DIV id="header">
+<h1>Create New Zombie Trend Monitor</h1>
 
-<DIV id="topmenu">
+<% form_for(@twitter_trend) do |f| %>
+	<%= f.error_messages %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+	<%= f.label :search %>
+	<%= f.text_field :search %>
+	<%= f.label :threshold %>
+		<%= f.text_field :threshold %>
+		<%= f.label :resolution %>
+		<%= f.text_field :resolution %>
+	<%= f.label :scheduled_update %>
+		<%= f.datetime_select :scheduled_update %>
+ 		<%= f.submit 'Create' %>
+<% end %>
 
-<table border="0">
-	<tr>
-		<td>
-			<img src="../images/links.png" style="float:right; padding:0px 0px 0px 0px;" usemap="#headermap" border=0/>
-
-			<map name="headermap">
-			  <area shape="RECT" coords="7,17,60,40" href="<%= root_path %>" alt="Zombies!" />
-			  <area shape="RECT" coords="76,17,154,40" href="<%= twitter_trends_path %>" alt="Monitor" />
-			  <area shape="RECT" coords="171,17,237,40" href="<%= root_path %>" alt="Alert System" />
-			  <area shape="RECT" coords="255,17,301,40" href="<%= root_path %>stores/index" alt="Disaster Plan" />
-			  <area shape="RECT" coords="318,17,375,40" href="<%= root_path %>" alt="About Zombie Strategy" />
-			</map>
-		</td>
-
-		<td>
-			<img src="../images/zombielogo.png" style="float:right; padding:4px 0 18px 5px; " />
-		</td>
-	</tr>
-</table>
-
-</DIV>
-
-<DIV id="header2"></DIV>
-
-<DIV class="post">
-
-<DIV id="featured">
-<DIV>
-
-<H4>Create New Zombie Trend Monitor</H4>
-
-	<% form_for(@twitter_trend) do |f| %>
-		<%= f.error_messages %>
-		<%= f.label :name %>
-		<%= f.text_field :name %>
-		<%= f.label :search %>
-		<%= f.text_field :search %>
-		<%= f.label :threshold %>
- 		<%= f.text_field :threshold %>
- 		<%= f.label :resolution %>
-  		<%= f.text_field :resolution %>
-		<%= f.label :scheduled_update %>
-  		<%= f.datetime_select :scheduled_update %>
-   		<%= f.submit 'Create' %>
-	<% end %>
-
-	<br />
-	<H4><%= link_to 'Cancel', twitter_trends_path %></H4>
-
-</DIV>
-</DIV>
-<DIV id="footer2"></DIV>
-<DIV id="bottom">
-<P><A href="http://fribblesoft.com/aboutus.html" style="color: #FD5000">Copyright © 2009 Fribblesoft</A></P>
-<P><A href="<%= root_path %>" style="color: #FD5000">Home</A> | <A href="<%= twitter_trends_path %>" style="color: #FD5000">Monitor</A> | <A href="<%= root_path %>" style="color: #FD5000">Alerts</A>  | <A href="<%= root_path %>stores/index" style="color: #FD5000">Plan</A>  | <A href="<%= root_path %>" style="color: #FD5000">About</A>  </P>
-</DIV>
-</DIV>
-
-<DIV id="footer">
-</DIV>
-
-
-</DIV>
-
-<!-- Page developed by Luke Harvey and Ben Holland -->
+<h1><%= link_to 'Cancel', twitter_trends_path %></h1>

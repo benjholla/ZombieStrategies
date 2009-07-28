@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <link rel="icon" href="/favicon.ico" type="image/ico" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
+  <title><%= page_title %></title>
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <%= stylesheet_link_tag 'style' %>
+  <script type="text/javascript" src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=***REMOVED***"></script>
+  <%= javascript_include_tag 'application' %>
+</head>
+<body>
+  <div id="wraper">
+    <div id="header">
+			<img class="links" src="/images/links.png" usemap="#headermap" border="0" />
+			<map name="headermap">
+			  <area shape="RECT" coords="7,0,60,40" href="<%= root_path %>" alt="Zombies!" />
+			  <area shape="RECT" coords="76,0,154,40" href="<%= twitter_trends_path %>" alt="Monitor" />
+			  <area shape="RECT" coords="171,0,237,40" href="<%= root_path %>" alt="Alert System" />
+			  <area shape="RECT" coords="255,0,301,40" href="<%= root_path %>stores/index" alt="Disaster Plan" />
+			  <area shape="RECT" coords="318,0,375,40" href="<%= root_path %>" alt="About Zombie Strategy" />
+			</map>
+			<img class="logo" src="/images/zombielogo.png" />
+    </div>
+    
+    <div id="content">
+      <% if flash[:notice] %><p style="color: green"><%= flash[:notice] %></p><% end %>
+      <%= yield %>
+    </div>
+    
+    <div id="footer">
+      <p><a href="http://fribblesoft.com/aboutus.html">Copyright © 2009 Fribblesoft</a></p>
+      <p>
+        <%= link_to "Home", root_url %> |
+        <%= link_to "Monitor", twitter_trends_url %> |
+        <%= link_to "Alerts", root_url %> |
+        <%= link_to "Plan", root_url + 'stores' %> |
+        <%= link_to "About", root_url %>
+      </p>
+    </div>
+      
+  </div>
+</body>
+</html>

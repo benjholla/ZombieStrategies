@@ -1,128 +1,82 @@
-<DIV id="wrap">
-<DIV id="header">
+<h1>Viewing Trend</h1>
 
-<DIV id="topmenu">
+<p>
+  <b>Search:</b>
+  <%=h @twitter_trend.search %>
+</p>
 
-<table border="0">
-	<tr>
-		<td>
-			<img src="../images/links.png" style="float:right; padding:0px 0px 0px 0px;" usemap="#headermap" border=0/>
+<p>
+  <b>Threshold:</b>
+  <%=h @twitter_trend.threshold %>
+</p>
 
-			<map name="headermap">
-			  <area shape="RECT" coords="7,17,60,40" href="<%= root_path %>" alt="Zombies!" />
-			  <area shape="RECT" coords="76,17,154,40" href="<%= twitter_trends_path %>" alt="Monitor" />
-			  <area shape="RECT" coords="171,17,237,40" href="<%= root_path %>" alt="Alert System" />
-			  <area shape="RECT" coords="255,17,301,40" href="<%= root_path %>stores/index" alt="Disaster Plan" />
-			  <area shape="RECT" coords="318,17,375,40" href="<%= root_path %>" alt="About Zombie Strategy" />
-			</map>
-		</td>
+<p>
+  <b>Resolution:</b>
+  <%=h @twitter_trend.resolution %>
+</p>
 
-		<td>
-			<img src="../images/zombielogo.png" style="float:right; padding:4px 0 18px 5px; " />
-		</td>
-	</tr>
+<p>
+  <b>Scheduled Update:</b>
+  <%=h @twitter_trend.scheduled_update %>
+</p>
+
+<p>
+  <b><%= link_to 'Back', twitter_trends_path %></b> |
+  <b><%= link_to 'Edit', edit_twitter_trend_path(@twitter_trend) %></b>
+</p>
+
+<p>
+  <i>
+    <% if @twitter_trend.twitter_computations.last %>
+     Last update was <%= time_ago_in_words(@twitter_trend.twitter_computations.last.created_at) %> ago.
+    <% else %>
+     <strong>No Data Collected!</strong>
+    <% end %>
+  </i>
+</p>
+
+<% if @twitter_trend.twitter_computations.last %>
+<br />
+<img src="<%= Gchart.line(:title => "Results for '" + @twitter_trend.search + "' at " + @twitter_trend.twitter_computations.last.created_at.to_s , :data => [@twitter_trend.twitter_computations.all(:order => 'created_at ASC', :limit => 24).map {|p| p = p.rate}], :line_colors => '76A4FB', :background => 'EEEEEE', :chart_background => 'CCCCCC', :max_value => 100, :axis_with_labels => 'x,y', :axis_labels => [@twitter_trend.twitter_computations.all(:order => 'created_at ASC', :limit => 24).map {|p| p = p.created_at.hour.to_s}, '0|20|40|60|80|100'], :size => '650x350') %>">
+<br />
+<br />
+<br />
+<% end %>
+
+<table border="1">
+  <tr>
+    <th>Rate</th>
+    <th>Population</th>
+    <th>Threat</th>
+	<th>Date</th>
+	<th>Edit</th>
+	<th>Destroy</th>
+  </tr>
+
+<% @twitter_trend.twitter_computations.each do |twitter_computation| %>
+  <tr>
+    <td><%=h twitter_computation.rate %></td>
+    <td><%=h twitter_computation.population %></td>
+    <td><%=h twitter_computation.threat %></td>
+	<td><%=h twitter_computation.created_at %></td>
+    <td><%= link_to 'Edit', edit_twitter_computation_path(twitter_computation) %></td>
+    <td><%= link_to 'Destroy', twitter_computation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
 </table>
 
-</DIV>
+<br />
+<br />
 
-<DIV id="header2"></DIV>
-
-<DIV class="post">
-
-<DIV id="featured">
-<DIV>
-
-<H4>Viewing Trend</H4>
-
-<H5>
-
-	<br />
-	
-	<b>Search:</b>
-	<%=h @twitter_trend.search %>
-	<br />
-	<b>Threshold:</b>
-	<%=h @twitter_trend.threshold %>
-	<br />
-	<b>Resolution:</b>
-	<%=h @twitter_trend.resolution %>
-	<br />
-	<b>Scheduled Update:</b>
-	<%=h @twitter_trend.scheduled_update %>
-    <br />
-	<b><%= link_to 'Back', twitter_trends_path %></b> |
-	<b><%= link_to 'Edit', edit_twitter_trend_path(@twitter_trend) %></b>
+<b>Add New Computation</b>
+<% remote_form_for [@twitter_trend, TwitterComputation.new] do |f| %>
+   	<%= f.label :rate %>
+   	<%= f.text_field :rate %>
+   	<%= f.label :population %>
+   	<%= f.text_field :population %>
+   	<%= f.label :threat %>
+	<%= f.text_field :threat %>
 	<br />
 	<br />
-	<i>
-	 <% if @twitter_trend.twitter_computations.last %>
-	   Last update was <%= time_ago_in_words(@twitter_trend.twitter_computations.last.created_at) %> ago.
-	 <% else %>
-	   <strong>No Data Collected!</strong>
-	 <% end %>
-	</i>
-
-	<% if @twitter_trend.twitter_computations.last %>
-	<br />
-	<img src="<%= Gchart.line(:title => "Results for '" + @twitter_trend.search + "' at " + @twitter_trend.twitter_computations.last.created_at.to_s , :data => [@twitter_trend.twitter_computations.all(:order => 'created_at ASC', :limit => 24).map {|p| p = p.rate}], :line_colors => '76A4FB', :background => 'EEEEEE', :chart_background => 'CCCCCC', :max_value => 100, :axis_with_labels => 'x,y', :axis_labels => [@twitter_trend.twitter_computations.all(:order => 'created_at ASC', :limit => 24).map {|p| p = p.created_at.hour.to_s}, '0|20|40|60|80|100'], :size => '650x350') %>">
-	<br />
-	<br />
-	<br />
-	<% end %>
-
-	<table border="1">
-	  <tr>
-	    <th>Rate</th>
-	    <th>Population</th>
-	    <th>Threat</th>
-		<th>Date</th>
-		<th>Edit</th>
-		<th>Destroy</th>
-	  </tr>
-
-	<% @twitter_trend.twitter_computations.each do |twitter_computation| %>
-	  <tr>
-	    <td><%=h twitter_computation.rate %></td>
-	    <td><%=h twitter_computation.population %></td>
-	    <td><%=h twitter_computation.threat %></td>
-		<td><%=h twitter_computation.created_at %></td>
-	    <td><%= link_to 'Edit', edit_twitter_computation_path(twitter_computation) %></td>
-	    <td><%= link_to 'Destroy', twitter_computation, :confirm => 'Are you sure?', :method => :delete %></td>
-	  </tr>
-	<% end %>
-	</table>
-
-	<br />
-	<br />
-	
-	<b>Add New Computation</b>
-	<% remote_form_for [@twitter_trend, TwitterComputation.new] do |f| %>
-	   	<%= f.label :rate %>
-	   	<%= f.text_field :rate %>
-	   	<%= f.label :population %>
-	   	<%= f.text_field :population %>
-	   	<%= f.label :threat %>
-		<%= f.text_field :threat %>
-		<br />
-		<br />
-		<%= f.submit "Add Computation" %>
-	<% end %>
-	
-</H5>
-
-</DIV>
-</DIV>
-<DIV id="footer2"></DIV>
-<DIV id="bottom">
-<P><A href="http://fribblesoft.com/aboutus.html" style="color: #FD5000">Copyright © 2009 Fribblesoft</A></P>
-<P><A href="<%= root_path %>" style="color: #FD5000">Home</A> | <A href="<%= twitter_trends_path %>" style="color: #FD5000">Monitor</A> | <A href="<%= root_path %>" style="color: #FD5000">Alerts</A>  | <A href="<%= root_path %>stores/index" style="color: #FD5000">Plan</A>  | <A href="<%= root_path %>" style="color: #FD5000">About</A>  </P>
-</DIV>
-</DIV>
-
-<DIV id="footer">
-</DIV>
-
-
-</DIV>
-
-<!-- Page developed by Luke Harvey and Ben Holland -->
+	<%= f.submit "Add Computation" %>
+<% end %>
