@@ -8,9 +8,9 @@ function init() {
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map"));
     map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
-	//map.addControl(new GLargeMapControl());
-	//map.addControl(new GScaleControl());
-	//map.addControl(new GMapTypeControl());
+	map.addControl(new GLargeMapControl());
+	map.addControl(new GScaleControl());
+	map.addControl(new GMapTypeControl());
 	map.enableScrollWheelZoom();
     listMarkers();
 
