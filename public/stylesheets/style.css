@@ -6,13 +6,14 @@ a {
 	color: #0EA2CC;
 	text-decoration: none;
 }
-h1, h2, h3, h4 {font-family:"Trebuchet MS", Verdana, sans-serif;}
+h1, h2, h3, h4, h5 {font-family:"Trebuchet MS", Verdana, sans-serif;}
 h1 {font-size:26px;}
 h2 {color:#D06000; font-size:18px;}
 h3 {font-size:16px;}
 h4 {color:#E3F7FD; font-size:18px;}
+h5 {color:#000000; font-size:14px;}
 body {
-	background:url(../images/background_tile.jpg) fixed center top; 
+	background:url(/images/background_tile.jpg) fixed center top; 
 	background-color:#ccc; font:12px Verdana, Arial, Helvetica, sans-serif;
 	link: #FF0000
 }
@@ -23,15 +24,15 @@ body {
     margin-top:30px;
 }
 #header2 {
-    background: url(../images/header.png) center no-repeat;
+    background: url(/images/header.png) center no-repeat;
     height: 8px;
 }
 #footer2 {
-    background: url(../images/header.png) center no-repeat;
+    background: url(/images/header.png) center no-repeat;
     height: 8px;
     background-color:#C0C0C0;
 }
-#content {background:url(../images/pagebg.png) repeat-y; padding:0 0px 0 0px;}
+#content {background:url(/images/pagebg.png) repeat-y; padding:0 0px 0 0px;}
 #right { float:right; width:610px;}
 #right p {line-height:20px; margin-bottom:20px;}
 #right a {border-bottom: solid 1px #0ea2cc;}
@@ -39,14 +40,14 @@ body {
 #right a:hover {color:#000; border-bottom:solid 1px #000;}
 h1 a, h2 a, h3 a, h4 a {text-decoration:none; border:none!important;}
 .clear {clear:both;}
-#sidebar {float:left; width:250px; background:url(../images/sb2.jpg) left repeat-y;}
-#sidebartop {background: url(../images/sb1.jpg) left top no-repeat; height:10px;}
-#sidebarbtm {background:url(../images/sb3.jpg) left top no-repeat; height:9px;}
+#sidebar {float:left; width:250px; background:url(/images/sb2.jpg) left repeat-y;}
+#sidebartop {background: url(/images/sb1.jpg) left top no-repeat; height:10px;}
+#sidebarbtm {background:url(/images/sb3.jpg) left top no-repeat; height:9px;}
 #sidebar ul {list-style:none; font:bold 14px "Trebuchet MS", Verdana, sans-serif; margin-bottom:15px;}
 #sidebar li {display:block; height:36px; margin-bottom:2px;}
 #sidebar a, #sidebar a:visited {
 	display:block;
-	background:url(../images/menu1.jpg) right top no-repeat;
+	background:url(/images/menu1.jpg) right top no-repeat;
 	padding: 10px 10px 0 40px;
 	height: 26px;
 	color:#999;
@@ -56,17 +57,17 @@ h1 a, h2 a, h3 a, h4 a {text-decoration:none; border:none!important;}
 }
 #right h2 a {color:#014782}
 #right h2 a:hover {color:#000; background:#ffffee; border:none;}
-#sidebar a:hover {background:url(../images/menu2.jpg) right top no-repeat; color:#333;}
-#sidebar .active a{background:url(../images/menu3.jpg) right top no-repeat; color:#000;}
+#sidebar a:hover {background:url(/images/menu2.jpg) right top no-repeat; color:#333;}
+#sidebar .active a{background:url(/images/menu3.jpg) right top no-repeat; color:#000;}
 #sidebar h2 {
 	display:block;
-	background:url(../images/sidebarh2.jpg) no-repeat;
+	background:url(/images/sidebarh2.jpg) no-repeat;
 	height:40px;
 	padding:14px 10px 0 40px;
 	color: #186185;
 	text-transform:uppercase;
 }
-#footer {background:url(../images/footerbg.png) no-repeat; height:62px; text-align:center;}
+#footer {background:url(/images/footerbg.png) no-repeat; height:62px; text-align:center;}
 
 #sitename {
 	display:block;
@@ -100,39 +101,39 @@ h1 a, h2 a, h3 a, h4 a {text-decoration:none; border:none!important;}
 #topmenu a, #topmenu a:visited {display:block; text-align:center; padding:35px 18px 0 18px; height:25px; color:#999999;}
 #topmenu .active a {color:#FFF;}
 #topmenu .active a:hover {color:#FFF;}
-#topmenu a:hover {background:url(../images/nav3.png) repeat-x; color:#fff;}
+#topmenu a:hover {background:url(/images/nav3.png) repeat-x; color:#fff;}
 
 #featured {
 	background-color: #C0C0C0;
-	height:285px;
+	height:100%;
 	color:#00CCFF;
 	margin-bottom:0px;
 }
 #featured div {
 	padding:25px 10px 0 25px;
-	height: 90px;
+	height: 100%;
 	font:normal 16px "Palatino Linotype", "Book Antiqua", Palatino, serif;
 
 }
-.ftd_btm {display:block; height:20px; padding:15px 5px 0 35px; background:url(../images/ftrdlink.png)8px 12px no-repeat}
+.ftd_btm {display:block; height:20px; padding:15px 5px 0 35px; background:url(/images/ftrdlink.png)8px 12px no-repeat}
 #featured a {color:#fff; border-bottom:none;}
 #featured a:visited, #featured a:active{color:#E3F7FD;}
 #featured a:hover { text-decoration:underline; color:#fff!important;}
-.postbottom {background:url(../images/postbttm.png) no-repeat; height:26px; margin-bottom:20px;}
+.postbottom {background:url(/images/postbttm.png) no-repeat; height:26px; margin-bottom:20px;}
 .postbottom ul {list-style:none;}
 .postbottom li {display:inline; margin:0!important; padding:0!important;}
 .postbottom a, .postbottom a:visited, .postbottom a:active{color:#fff; border:none!important; display:block; float:left; height:20px; padding:6px 5px 0 30px;}
 .postbottom a:hover {color:#000;}
-.permalink a, .permalink a:visited, .permalink a:active {background:url(../images/ico_more.png)5px 5px no-repeat;}
-.cats a{background:url(../images/ico_cat.png)5px 5px no-repeat;}
-.auth a{background:url(../images/ico_usr.png)5px 5px no-repeat;}
-.date a{background:url(../images/ico_date.png) 5px 5px no-repeat;}
-.comnts a{background:url(../images/comment.png)5px 5px no-repeat;}
+.permalink a, .permalink a:visited, .permalink a:active {background:url(/images/ico_more.png)5px 5px no-repeat;}
+.cats a{background:url(/images/ico_cat.png)5px 5px no-repeat;}
+.auth a{background:url(/images/ico_usr.png)5px 5px no-repeat;}
+.date a{background:url(/images/ico_date.png) 5px 5px no-repeat;}
+.comnts a{background:url(/images/comment.png)5px 5px no-repeat;}
 
 .post h2 {display:block; margin-bottom:0px;}
 .post .description {display:block; font-size:12px; color:#999;}
 
-.post blockquote {background:#eee url(../images/quote.png) 5px 5px no-repeat; padding:8px 8px 0 35px; font:normal 14px "Palatino Linotype", "Book Antiqua", Palatino, serif; display:block; border: solid 1px #ddd; }
+.post blockquote {background:#eee url(/images/quote.png) 5px 5px no-repeat; padding:8px 8px 0 35px; font:normal 14px "Palatino Linotype", "Book Antiqua", Palatino, serif; display:block; border: solid 1px #ddd; }
 
 .post .extract { float:left; margin-right:10px; width:250px;}
 
