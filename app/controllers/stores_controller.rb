@@ -86,7 +86,7 @@ class StoresController < ApplicationController
   def save   
     @store = Store.new(params[:m])
     if @store.save
-      res={:success=>true,:content=>"<div><strong>found </strong></div>"}
+      res={:success=>true,:content=>"<div><strong>Store </strong></div>"}
     else
       res={:success=>false,:content=>"Could not save the store"}
     end
