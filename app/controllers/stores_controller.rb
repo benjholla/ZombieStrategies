@@ -49,7 +49,7 @@ class StoresController < ApplicationController
           format.html { redirect_to(@store) }
           format.xml { render :xml => @store, :status => :created, :location => @store }
           format.js {
-            render :json => {:success=>true,:content=>"<div><strong>Store: " + @store.store.to_str  + " </strong></div>"}
+            render :json => {:success=>true,:content=>"<div><strong>Store: </strong>" + @store.store.to_str  + "</div>"}
           }
         else
           format.html { render :action => "new" }

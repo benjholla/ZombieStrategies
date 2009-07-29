@@ -117,7 +117,7 @@ function listMarkers() {
         //on parseFloat of a null value
         if (lat && lng) {
         var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
-        var html = '<div><b>Store</b> ' + marker.store + '</div>';
+        var html = '<div><strong>Store: </strong> ' + marker.store + '</div>';
         var marker = createMarker(latlng, html);
         map.addOverlay(marker);
         } // end of if lat and lng

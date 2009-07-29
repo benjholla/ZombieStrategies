@@ -21,7 +21,7 @@
 			  <area shape="RECT" coords="7,0,60,40" href="<%= root_path %>" alt="Zombies!" />
 			  <area shape="RECT" coords="76,0,154,40" href="<%= twitter_trends_path %>" alt="Monitor" />
 			  <area shape="RECT" coords="171,0,237,40" href="<%= root_path %>" alt="Alert System" />
-			  <area shape="RECT" coords="255,0,301,40" href="<%= root_path %>stores/index" alt="Disaster Plan" />
+			  <area shape="RECT" coords="255,0,301,40" href="<%= store_path %>" alt="Disaster Plan" />
 			  <area shape="RECT" coords="318,0,375,40" href="<%= root_path %>" alt="About Zombie Strategy" />
 			</map>
 			<img class="logo" src="/images/zombielogo.png" />
@@ -38,7 +38,7 @@
         <%= link_to "Home", root_url %> |
         <%= link_to "Monitor", twitter_trends_url %> |
         <%= link_to "Alerts", root_url %> |
-        <%= link_to "Plan", root_url + 'stores' %> |
+        <%= link_to "Plan", store_url %> |
         <%= link_to "About", root_url %>
       </p>
     </div>
