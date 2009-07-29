@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-  #map.resources :stores
+  map.resources :stores
   map.resources :homes, :has_many => :posts
   map.resources :posts
   map.resources :twitter_trends, :has_many => :twitter_computations
