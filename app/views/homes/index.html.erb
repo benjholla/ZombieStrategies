@@ -1,12 +1,19 @@
-<div class="post">
-  <h1 style="margin-top:0;margin-bottom:0;">Welcome...</h1>
-  <p style="text-indent:40px;margin:0;padding:0;color:#999"><b>to the prototype page for Zombie Strategy.</b></p>
-        
-	<h2>Content coming soon....</h2>
+<div class="post">        
+  <h1>ZombieStrategies coming soon....</h1>
 
-  <h1>Announcements</h1>
-  <ul>
-    <li>Absolute linking with CSS</li>
-    <li> General font changes</li>
-  </ul>
+  <h2>Announcements</h2>
+
+	<h3>
+  		<ul>
+		<% Post.all(:order => 'created_at DESC', :limit => 3).each do |post| %>
+	    	<li>
+				<% if post.body.size <= 300 %>
+			    	<%= link_to post.title, post %> - <%=h post.body %>
+			    <% else %>
+			    	<%= link_to post.title, post %> - <%=h post.body.slice!(0..300) %>...
+			    <% end %>
+			</li>
+			<% end %>
+  		</ul>
+	</h3>
 </div>
