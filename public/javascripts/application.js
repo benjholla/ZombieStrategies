@@ -54,7 +54,7 @@ function storeMarker(){
     var request = GXmlHttp.create();
 
     //call the store_marker action back on the server
-    request.open('GET', 'save' + getVars, true);
+    request.open('GET', 'stores/create.js' + getVars, true);
     request.onreadystatechange = function() {
         if (request.readyState == 4) {
             //the request is complete
@@ -98,7 +98,7 @@ function createMarker(latlng, html) {
 function listMarkers() {
   var request = GXmlHttp.create();
   //tell the request where to retrieve data from.
-  request.open('GET', 'list', true);
+  request.open('GET', 'stores', true);
   //tell the request what to do when the state changes.
   request.onreadystatechange = function() {
     if (request.readyState == 4) {
@@ -117,7 +117,7 @@ function listMarkers() {
         //on parseFloat of a null value
         if (lat && lng) {
         var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
-        var html = '<div><b>store</b> ' + marker.store + '</div>';
+        var html = '<div><b>Store</b> ' + marker.store + '</div>';
         var marker = createMarker(latlng, html);
         map.addOverlay(marker);
         } // end of if lat and lng

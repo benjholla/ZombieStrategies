@@ -40,19 +40,25 @@ class StoresController < ApplicationController
   # POST /stores
   # POST /stores.xml
   def create
-    @store = Store.new(params[:store])
+      @store = Store.new(params[:store])
 
-    respond_to do |format|
-      if @store.save
-        flash[:notice] = 'Store was successfully created.'
-        format.html { redirect_to(@store) }
-        format.xml  { render :xml => @store, :status => :created, :location => @store }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @store.errors, :status => :unprocessable_entity }
+      respond_to do |format|
+        if @store.save
+          flash[:notice] = 'Store was successfully created.'
+          format.html { redirect_to(@store) }
+          format.xml { render :xml => @store, :status => :created, :location => @store }
+          format.js {
+            render :json => {:success=>true,:content=>"<div><strong>found </strong></div>"}
+          }
+        else
+          format.html { render :action => "new" }
+          format.xml { render :xml => @store.errors, :status => :unprocessable_entity }
+          format.js do
+            render :json => {:success=>false,:content=>"Could not save the store"}
+          end
+        end
       end
     end
-  end
 
   # PUT /stores/1
   # PUT /stores/1.xml
