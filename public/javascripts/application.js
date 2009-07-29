@@ -47,9 +47,9 @@ function storeMarker(){
     var lng = document.getElementById("longitude").value;
     var lat = document.getElementById("latitude").value;
 
-    var getVars =  "?m[store]=" + document.getElementById("store").value
-        + "&m[lng]=" + lng
-        + "&m[lat]=" + lat ;
+    var getVars =  "?store[store]=" + document.getElementById("store").value
+        + "&store[lng]=" + lng
+        + "&store[lat]=" + lat ;
 
     var request = GXmlHttp.create();
 
