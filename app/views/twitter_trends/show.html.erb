@@ -70,13 +70,20 @@
 
 <b>Add New Computation</b>
 <% remote_form_for [@twitter_trend, TwitterComputation.new] do |f| %>
-   	<%= f.label :rate %>
-   	<%= f.text_field :rate %>
-   	<%= f.label :population %>
-   	<%= f.text_field :population %>
-   	<%= f.label :threat %>
-	<%= f.text_field :threat %>
-	<br />
-	<br />
-	<%= f.submit "Add Computation" %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :rate %><br />
+    <%= f.text_field :rate %>
+  </p>
+  <p>
+    <%= f.label :population %><br />
+    <%= f.text_field :population %>
+  </p>
+  <p>
+    <%= f.label :threat %><br />
+    <%= f.text_field :threat %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
 <% end %>

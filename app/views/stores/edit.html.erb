@@ -1,4 +1,4 @@
-<h1>Editing store</h1>
+<h1>Editing Store</h1>
 
 <% form_for(@store) do |f| %>
   <%= f.error_messages %>
@@ -20,5 +20,7 @@
   </p>
 <% end %>
 
-<%= link_to 'Show', @store %> |
-<%= link_to 'Back', stores_path %>
+<h4>
+	<%= link_to 'Show', @store %> |
+	<%= link_to 'Back', stores_path %>
+</h4>

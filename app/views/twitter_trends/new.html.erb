@@ -1,18 +1,30 @@
 <h1>Create New Zombie Trend Monitor</h1>
 
 <% form_for(@twitter_trend) do |f| %>
-	<%= f.error_messages %>
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-	<%= f.label :search %>
-	<%= f.text_field :search %>
-	<%= f.label :threshold %>
-		<%= f.text_field :threshold %>
+	<p>
+		<%= f.error_messages %><br />
+		<%= f.label :name %>
+	</p>
+	<p>
+		<%= f.text_field :name %><br />
+		<%= f.label :search %>
+	</p>
+	<p>
+		<%= f.text_field :search %><br />
+		<%= f.label :threshold %>
+	</p>
+	<p>
+		<%= f.text_field :threshold %><br />
 		<%= f.label :resolution %>
-		<%= f.text_field :resolution %>
-	<%= f.label :scheduled_update %>
+	</p>
+	<p>	
+		<%= f.text_field :resolution %><br />
+		<%= f.label :scheduled_update %>
+	</p>
+	<p>
 		<%= f.datetime_select :scheduled_update %>
  		<%= f.submit 'Create' %>
+	</p>
 <% end %>
 
-<h1><%= link_to 'Cancel', twitter_trends_path %></h1>
+<h4><%= link_to 'Cancel', twitter_trends_path %></h4>

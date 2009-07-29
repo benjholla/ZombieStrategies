@@ -1,13 +1,3 @@
-<p>
-  <b>Title:</b>
-  <%=h @post.title %>
-</p>
-
-<p>
-  <b>Body:</b>
-  <%=h @post.body %>
-</p>
-
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<h1><i><%=h @post.title %></i></h1>
+<h3><%=h @post.body %></h3>
+<h5>Posted: <%= time_ago_in_words(@post.created_at) %> ago...</h5>
