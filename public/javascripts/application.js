@@ -98,7 +98,7 @@ function createMarker(latlng, html) {
 function listMarkers() {
   var request = GXmlHttp.create();
   //tell the request where to retrieve data from.
-  request.open('GET', 'stores', true);
+  request.open('GET', 'stores.js', true);
   //tell the request what to do when the state changes.
   request.onreadystatechange = function() {
     if (request.readyState == 4) {

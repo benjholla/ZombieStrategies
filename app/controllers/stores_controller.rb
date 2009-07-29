@@ -49,7 +49,7 @@ class StoresController < ApplicationController
           format.html { redirect_to(@store) }
           format.xml { render :xml => @store, :status => :created, :location => @store }
           format.js {
-            render :json => {:success=>true,:content=>"<div><strong>found </strong></div>"}
+            render :json => {:success=>true,:content=>"<div><strong>Store </strong></div>"}
           }
         else
           format.html { render :action => "new" }
@@ -88,20 +88,6 @@ class StoresController < ApplicationController
       format.html { redirect_to(stores_url) }
       format.xml  { head :ok }
     end
-  end
-  
-  def save   
-    @store = Store.new(params[:m])
-    if @store.save
-      res={:success=>true,:content=>"<div><strong>Store </strong></div>"}
-    else
-      res={:success=>false,:content=>"Could not save the store"}
-    end
-    render :text=>res.to_json
-  end
-  
-  def list
-    render :text=>(Store.find :all).to_json
   end
   
 end
