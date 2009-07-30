@@ -1,0 +1,71 @@
+<h1>Register For Zombie Alerts</h1>
+
+<% form_for(@account) do |f| %>
+  <%= f.error_messages %>
+
+  <h4>Account Login</h4>
+  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
+
+	
+  <p>
+    <%= f.label :password %><br />
+    <%= f.text_field :password %>
+  </p>
+  <p>
+    <%= f.label :confirm_password %><br />
+    <%= f.text_field :confirm_password %>
+  </p>
+
+
+  <h4>Personal Information</h4>
+  <p>
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </p>
+  <p>
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </p>
+
+
+  <h4>Emergency Contact Information</h4>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+
+
+  <p>
+    <%= f.label :phone %> (optional)<br />
+    <%= f.text_field :phone %>
+  </p>
+
+
+  <p>
+    <%= f.label :twitter %> (optional)<br />
+    <%= f.text_field :twitter %>
+  </p>
+
+
+  <h4>Home Information</h4>
+  <p>
+    <%= f.label :latitude %><br />
+    <%= f.text_field :lat %>
+  </p>
+  <p>
+    <%= f.label :longitude %><br />
+    <%= f.text_field :lng %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<br />
+
+<h3>
+<%= link_to 'Cancel', root_path %>
+</h3>

@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :accounts
   map.resources :stores, :collection => {:create => :get}
   map.resources :homes, :has_many => :posts
   map.resources :posts

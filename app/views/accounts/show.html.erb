@@ -1,0 +1,53 @@
+<p>
+  <b>Username:</b>
+  <%=h @account.username %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%=h @account.password %>
+</p>
+
+<p>
+  <b>Confirm password:</b>
+  <%=h @account.confirm_password %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%=h @account.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%=h @account.last_name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @account.email %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%=h @account.phone %>
+</p>
+
+<p>
+  <b>Twitter:</b>
+  <%=h @account.twitter %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%=h @account.lat %>
+</p>
+
+<p>
+  <b>Lng:</b>
+  <%=h @account.lng %>
+</p>
+
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>

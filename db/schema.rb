@@ -9,7 +9,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090726230711) do
+ActiveRecord::Schema.define(:version => 20090730025353) do
+
+  create_table "accounts", :force => true do |t|
+    t.string   "username"
+    t.string   "password"
+    t.string   "confirm_password"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "twitter"
+    t.decimal  "lat",              :precision => 15, :scale => 10
+    t.decimal  "lng",              :precision => 15, :scale => 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "homes", :force => true do |t|
     t.datetime "created_at"

@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  username: MyString
+  password: MyString
+  confirm_password: MyString
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone: MyString
+  twitter: MyString
+  lat: 1.5
+  lng: 1.5
+
+two:
+  username: MyString
+  password: MyString
+  confirm_password: MyString
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  phone: MyString
+  twitter: MyString
+  lat: 1.5
+  lng: 1.5
