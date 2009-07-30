@@ -9,17 +9,17 @@
 </p>
 
 <p>
-  <b>Confirm password:</b>
+  <b>Confirm Password:</b>
   <%=h @account.confirm_password %>
 </p>
 
 <p>
-  <b>First name:</b>
+  <b>First Name:</b>
   <%=h @account.first_name %>
 </p>
 
 <p>
-  <b>Last name:</b>
+  <b>Last Name:</b>
   <%=h @account.last_name %>
 </p>
 
@@ -39,15 +39,16 @@
 </p>
 
 <p>
-  <b>Lat:</b>
+  <b>Latitude:</b>
   <%=h @account.lat %>
 </p>
 
 <p>
-  <b>Lng:</b>
+  <b>Longitude:</b>
   <%=h @account.lng %>
 </p>
 
-
-<%= link_to 'Edit', edit_account_path(@account) %> |
-<%= link_to 'Back', accounts_path %>
+<h3>
+	<%= link_to 'Edit', edit_account_path(@account) %> |
+	<%= link_to 'Done', root_path %>
+</h3>
