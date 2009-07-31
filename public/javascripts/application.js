@@ -1,10 +1,13 @@
 var centerLatitude = 37.4419;
 var centerLongitude = -122.1419;
 var startZoom = 12;
-
 var map;
 
+var curItems;
+var curItemsHTML = '';
+
 function init() {
+  updateItems();
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map"));
     map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
@@ -15,6 +18,10 @@ function init() {
     listMarkers();
 
     GEvent.addListener(map, "click", function(overlay, latlng) {
+	  
+	  // get current list  of items and html checkboxes
+	  updateItems();
+	
       if (overlay == null) {
         //create an HTML DOM form element
         var inputForm = document.createElement("form");
@@ -31,7 +38,10 @@ function init() {
             + '<legend>New Store</legend>'
             + '<label for="store">Store</label>'
             + '<input type="text" id="store" name="store" style="width:100%;"/>'
-            + '<input type="submit" value="Save"/>'
+			+ '<br /><br />'
+			+ curItemsHTML
+			+ '<br />'
+			+ '<input type="submit" value="Save"/>'
             + '<input type="hidden" id="longitude" name="lng" value="' + lng + '"/>'
             + '<input type="hidden" id="latitude" name="lat" value="' + lat + '"/>'
             + '</span>'
@@ -95,6 +105,7 @@ function createMarker(latlng, html) {
     return marker;
 }
 
+// plots all of the markers, on the google map, that are returned from the stores.js controller
 function listMarkers() {
   var request = GXmlHttp.create();
   //tell the request where to retrieve data from.
@@ -134,6 +145,29 @@ function listMarkers() {
     } //if
   } //function
   request.send(null);
+}
+
+
+// updates the global variable curItems to contain the latest array of items returned by the items.js controller
+function updateItems(){
+	var request = GXmlHttp.create();
+	//tell the request where to retrieve data from.
+	request.open('GET', 'items.js', true);
+	//tell the request what to do when the state changes.
+ 	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+	      //parse the result to JSON,by eval-ing it.
+	      //The response is an array of items in the DB
+	      curItems = eval( "(" + request.responseText + ")" );
+		  curItemsHTML = '<label for="items">Items</label><br />';
+		  for (i=0; i<curItems.length; i++)
+		  {
+			//alert(curItems[i].item.item);
+		  	curItemsHTML += '<input type="checkbox" name="items" value="' + i + '"  /> ' + curItems[i].item.item + '<br />';
+		  }
+		}
+	}
+	request.send(null);
 }
 
 window.onload = init;
