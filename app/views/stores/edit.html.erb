@@ -1,4 +1,4 @@
-<h1>Editing Store</h1>
+<h1>Updating Store</h1>
 
 <% form_for(@store) do |f| %>
   <%= f.error_messages %>
@@ -8,19 +8,25 @@
     <%= f.text_field :store %>
   </p>
   <p>
-    <%= f.label :lat %><br />
+    <%= f.label :latitude %><br />
     <%= f.text_field :lat %>
   </p>
   <p>
-    <%= f.label :lng %><br />
+    <%= f.label :longitude %><br />
     <%= f.text_field :lng %>
   </p>
+	<%= hidden_field_tag "store[item_ids][]", "" %>
+	<% for item in Item.find(:all) %>
+		<div>
+			<%= check_box_tag "store[item_ids][]",
+			item.id, @store.items.include?(item) %>
+			<%= item.item %>
+		</div>
+	<% end %>
   <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>
 
-<h4>
-	<%= link_to 'Show', @store %> |
-	<%= link_to 'Back', stores_path %>
-</h4>
+<%= link_to 'Show', @store %> |
+<%= link_to 'Back', stores_path %>

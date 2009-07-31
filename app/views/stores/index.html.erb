@@ -1,2 +1,31 @@
 <h1 style="margin:0;">Disaster Plan</h1>
 <div id="map" style="width: 737px; height: 400px"></div>
+
+<br />
+<br />
+
+<h1>Listing Stores</h1>
+
+<table border="1">
+  <tr>
+    <th align="center">Store</th>
+    <th align="center">Latitude</th>
+    <th align="center">Longitude</th>
+	<th align="center">Update Operation</th>
+	<th align="center">Destroy Operation</th>
+  </tr>
+
+<% @stores.each do |store| %>
+  <tr>
+    <td align="center"><%= link_to  h(store.store), store %></td>
+    <td align="center"><%=h store.lat %></td>
+    <td align="center"><%=h store.lng %></td>
+    <td align="center"><%= link_to 'Update', edit_store_path(store) %></td>
+    <td align="center"><%= link_to 'Destroy', store, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Store', new_store_path %>

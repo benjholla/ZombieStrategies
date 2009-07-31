@@ -1,18 +1,18 @@
-<p>
-  <b>Store:</b>
-  <%=h @store.store %>
-</p>
+<%= render :partial => @store %>
+
+<% form_for(@store) do |f| %>
+	<%= hidden_field_tag "store[item_ids][]", "" %>
+	<ul>
+		<% for item in Item.find(:all) %>
+			<% if @store.items.include?(item) %>
+			<li><%= item.item %></li>
+			<% end %>
+		<% end %>
+	</ul>
+<% end %>
 
 <p>
-  <b>Latitude:</b>
-  <%=h @store.lat %>
+	<%= link_to 'Edit', edit_store_path(@store) %> |
+	<%= link_to 'Destroy', @store, :method => :delete, :confirm => "Are you sure?" %> |
+	<%= link_to 'See All Stores', stores_path %>
 </p>
-
-<p>
-  <b>Longitude:</b>
-  <%=h @store.lng %>
-</p>
-
-
-<%= link_to 'Edit', edit_store_path(@store) %> |
-<%= link_to 'Back', stores_path %>

@@ -1,0 +1,20 @@
+<h1>Editing item_store_membership</h1>
+
+<% form_for(@item_store_membership) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :store_id %><br />
+    <%= f.text_field :store_id %>
+  </p>
+  <p>
+    <%= f.label :item_id %><br />
+    <%= f.text_field :item_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @item_store_membership %> |
+<%= link_to 'Back', item_store_memberships_path %>
