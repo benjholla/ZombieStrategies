@@ -106,8 +106,6 @@ function listMarkers() {
       //The response is an array of markers
 
       markers=eval( "(" + request.responseText + ")" );
-
-	  alert(request.responseText)
 	
       for (var i = 0 ; i < markers.length ; i++) {
         
@@ -121,19 +119,14 @@ function listMarkers() {
         	var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
         	var html = '<div><strong>Store: </strong> ' + marker.store;
 			html += '<ul>';
-			for (j=0; j<=marker.items.length; j++)
+			for (j=0; j<marker.items.length; j++)
 			{
-				// crashes here!  seems to run through the for-loop again even though it should have stopped....
 				if(marker.items[j].item){
-					alert("adding " + marker.items[j].item)
 					html += '<li>' + marker.items[j].item + '</li>';
-					alert(html)	
 				}
 			}
-			alert("done!")
 			html += '</ul>' + '</div>';
 		
-			alert("creating marker!")
         	var marker = createMarker(latlng, html);
         	map.addOverlay(marker);
         } // end of if lat and lng
