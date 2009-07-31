@@ -24,7 +24,7 @@ body {
 	background: url(/images/header.png) #555 bottom center no-repeat;
 }
 #header img.links {
-	float:left; padding:35px 0 0 2px;
+	float:left; margin:30px 0 0px 1px;
 }
 #header img.logo {
 	float:right; padding:6px 1px 0 0; 
