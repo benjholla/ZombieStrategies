@@ -17,16 +17,32 @@
 <body>
   <div id="wraper">
     <div id="header">
-			<img class="links" src="/images/links.png" usemap="#headermap" border="0" />
-			<map name="headermap">
-			  <area shape="RECT" coords="7,0,60,40" href="<%= root_path %>" alt="Zombies!" />
-			  <area shape="RECT" coords="76,0,154,40" href="<%= twitter_trends_path %>" alt="Monitor" />
-			  <area shape="RECT" coords="171,0,237,40" href="<%= new_account_path %>" alt="Alert System" />
-			  <area shape="RECT" coords="255,0,301,40" href="<%= stores_path %>" alt="Disaster Plan" />
-			  <area shape="RECT" coords="318,0,375,40" href="<%= root_path %>" alt="About Zombie Strategy" />
-			</map>
-			<img class="logo" src="/images/zombielogo.png" />
-    </div>
+		<a href="http://zombiestrategies.com/">
+			<img class="links" src="/images/home.png" alt="Home" border=0/>	
+		</a>
+
+		<a href="http://zombiestrategies.com/twitter_trends">
+			<img class="links" src="/images/monitor.png" alt="Monitor"  border=0/>
+		</a>
+
+		<a href="http://zombiestrategies.com/accounts/new">
+			<img class="links" src="/images/alerts.png" alt="Alerts" border=0/>
+		</a>
+
+		<a href="http://zombiestrategies.com/stores">
+			<img class="links" src="/images/plan.png" alt="Plan" border=0/>
+		</a>
+
+		<a href="http://fribblesoft.com/zombiebb/index.php">
+			<img class="links" src="/images/forum.png" alt="Forum" border=0/>
+		</a>
+
+		<a href="http://zombiestrategies.com/about.html">
+			<img class="links" src="/images/about.png" alt="About" border=0/>
+	 	</a>
+
+		<img class="logo" src="/images/zombielogo.png">
+	</div>
     
     <div id="content">
       <% if flash[:notice] %><p style="color: green"><%= flash[:notice] %></p><% end %>
@@ -40,6 +56,7 @@
         <%= link_to "Monitor", twitter_trends_url %> |
         <%= link_to "Alerts", new_account_path %> |
         <%= link_to "Plan", stores_url %> |
+		<a href="http://fribblesoft.com/zombiebb/index.php">Forum</a> |
         <%= link_to "About", root_url %>
       </p>
     </div>
