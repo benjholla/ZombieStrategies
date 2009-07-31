@@ -107,6 +107,8 @@ function listMarkers() {
 
       markers=eval( "(" + request.responseText + ")" );
 	
+	  alert(request.responseText)
+	
       for (var i = 0 ; i < markers.length ; i++) {
         
 		var marker = markers[i].store ; // so get the list of attributes we want here
@@ -118,6 +120,13 @@ function listMarkers() {
         if (lat && lng) {
         var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
         var html = '<div><strong>Store: </strong> ' + marker.store + '</div>';
+		html += '<ul>'
+		for (var=startvalue;var<=endvalue;var=var+increment)
+		{
+			html += '<li>' + marker.store.item[i] + '</li>'
+		}
+		html += '</ul>'
+		
         var marker = createMarker(latlng, html);
         map.addOverlay(marker);
         } // end of if lat and lng
