@@ -118,11 +118,24 @@ function listMarkers() {
         //check for lat and lng so MSIE does not error
         //on parseFloat of a null value
         if (lat && lng) {
-        var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
-        var html = '<div><strong>Store: </strong> ' + marker.store + '</div>';
+        	var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
+        	var html = '<div><strong>Store: </strong> ' + marker.store;
+			html += '<ul>';
+			for (j=0; j<=marker.items.length; j++)
+			{
+				// crashes here!  seems to run through the for-loop again even though it should have stopped....
+				if(marker.items[j].item){
+					alert("adding " + marker.items[j].item)
+					html += '<li>' + marker.items[j].item + '</li>';
+					alert(html)	
+				}
+			}
+			alert("done!")
+			html += '</ul>' + '</div>';
 		
-        var marker = createMarker(latlng, html);
-        map.addOverlay(marker);
+			alert("creating marker!")
+        	var marker = createMarker(latlng, html);
+        	map.addOverlay(marker);
         } // end of if lat and lng
       } // end of for loop
     } //if
