@@ -61,14 +61,15 @@ function storeMarker(){
         + "&store[lng]=" + lng
         + "&store[lat]=" + lat ;
 	
-
 		var array = document.getElementById("store_items").childNodes;
 
-		for(int i=0; i<array.length; i++){
-	    	getVars += "&store[items][]=" + array[i].value;
-			//alert(getVars);
-			//alert(array[i].value);
+		for(var i=0; i<array.length; i++){
+			if(array[i].checked == 1){
+	    		getVars += "&store[items][]=" + array[i].value;
+			}
 		}
+		
+		alert(getVars);
 	 
 
     var request = GXmlHttp.create();
