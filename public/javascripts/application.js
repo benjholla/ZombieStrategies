@@ -15,6 +15,20 @@ function init() {
 	map.addControl(new GScaleControl());
 	map.addControl(new GMapTypeControl());
 	map.enableScrollWheelZoom();
+	
+	//Uncomment this code to set that max and min zoom levels for all map types
+	/*
+	var minMapScale = 5;
+	var maxMapScale = 14;
+	// get array of map types
+	var mapTypes = map.getMapTypes();
+	// overwrite the getMinimumResolution() and getMaximumResolution() methods for each map type
+	for (var i=0; i<mapTypes.length; i++) {
+		mapTypes[i].getMinimumResolution = function() {return minMapScale;}
+		mapTypes[i].getMaximumResolution = function() {return maxMapScale;}
+	}
+	*/
+	
     listMarkers();
 
     GEvent.addListener(map, "click", function(overlay, latlng) {
