@@ -20,7 +20,8 @@ function init() {
     GEvent.addListener(map, "click", function(overlay, latlng) {
 	  
 	  // get current list  of items and html checkboxes
-	  updateItems();
+	  //updateItems(); enable this if items are added regulary, if they are peridically added
+	  // its better to only load on page initialization
 	
       if (overlay == null) {
         //create an HTML DOM form element
