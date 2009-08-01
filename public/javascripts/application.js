@@ -162,8 +162,7 @@ function updateItems(){
 		  curItemsHTML = '<label for="items">Items</label><br />';
 		  for (i=0; i<curItems.length; i++)
 		  {
-			//alert(curItems[i].item.item);
-		  	curItemsHTML += '<input type="checkbox" name="items" value="' + i + '"  /> ' + curItems[i].item.item + '<br />';
+		  	curItemsHTML += '<input type="checkbox" name="items" value="' + curItems[i].item.id + '"  /> ' + curItems[i].item.item + '<br />';
 		  }
 		}
 	}
