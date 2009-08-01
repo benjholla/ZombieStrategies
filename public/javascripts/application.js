@@ -111,7 +111,7 @@ function createMarker(latlng, html, id) {
      var marker = new GMarker(latlng);
      GEvent.addListener(marker, 'click', function() {
 		  //requery items for this store, reset html
-          marker.openInfoWindowHtml(updateStore(id));
+          updateStore(id, marker);
     });
     return marker;
 }
@@ -183,12 +183,12 @@ function updateItems(){
 }
 
 // returns the latest html for a given store id
-function updateStore(id){
+function updateStore(id, marker){
 	var request = GXmlHttp.create();
 	//tell the request where to retrieve data from.
 	request.open('GET', 'stores/' + id + '.js', true);
 	//tell the request what to do when the state changes.
-	var storeHTML = 'not done...';
+	var storeHTML;
  	request.onreadystatechange = function() {
 		if (request.readyState == 4) {
 	    	//parse the result to JSON,by eval-ing it.
@@ -203,12 +203,10 @@ function updateStore(id){
 				}
 			}
 			storeHTML += '</ul>' + '</div>';
-			alert(storeHTML);
+			marker.openInfoWindowHtml(storeHTML);
 		}
 	}
 	request.send(null);
-	alert("done");
-	return storeHTML;
 }
 
 window.onload = init;
