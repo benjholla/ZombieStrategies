@@ -42,16 +42,15 @@ class StoresController < ApplicationController
   # POST /stores.xml
   def create
       @store = Store.new(params[:store])
-      @store.save
-      params[:store][:items].map! {|o| o.to_i}
-      @store.items = params[:items]
+ 
+      @store.items = params[:store][:items]
       respond_to do |format|
         if @store.save
           flash[:notice] = 'Store was successfully created.'
           format.html { redirect_to(@store) }
           format.xml { render :xml => @store, :status => :created, :location => @store }
           format.js {
-            render :json => {:success=>true,:content=>"<div><strong>Store: </strong>" + @store.store.to_str  + "</div>"}
+            render :json => {:success=>true,:content=>"<div><strong>Store: </strong>" + @store.store.to_str + "</div>"}
           }
         else
           format.html { render :action => "new" }
