@@ -60,6 +60,16 @@ function storeMarker(){
     var getVars =  "?store[store]=" + document.getElementById("store").value
         + "&store[lng]=" + lng
         + "&store[lat]=" + lat ;
+	
+
+		var array = document.getElementById("store_items").childNodes;
+
+		for(int i=0; i<array.length; i++){
+	    	getVars += "&store[items][]=" + array[i].value;
+			//alert(getVars);
+			//alert(array[i].value);
+		}
+	 
 
     var request = GXmlHttp.create();
 
@@ -160,10 +170,12 @@ function updateItems(){
 	      //The response is an array of items in the DB
 	      curItems = eval( "(" + request.responseText + ")" );
 		  curItemsHTML = '<label for="items">Items</label><br />';
+		  curItemsHTML += '<div id="store_items">';
 		  for (i=0; i<curItems.length; i++)
 		  {
 		  	curItemsHTML += '<input type="checkbox" name="items" value="' + curItems[i].item.id + '"  /> ' + curItems[i].item.item + '<br />';
 		  }
+		  curItemsHTML += '</div>';
 		}
 	}
 	request.send(null);
