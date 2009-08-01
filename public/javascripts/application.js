@@ -62,16 +62,13 @@ function storeMarker(){
         + "&store[lng]=" + lng
         + "&store[lat]=" + lat ;
 	
-		var array = document.getElementById("store_items").childNodes;
+	var array = document.getElementById("store_items").childNodes;
 
-		for(var i=0; i<array.length; i++){
-			if(array[i].checked == 1){
-	    		getVars += "&store[items][]=" + array[i].value;
-			}
+	for(var i=0; i<array.length; i++){
+		if(array[i].checked == 1){
+	   		getVars += "&store[items][]=" + array[i].value;
 		}
-		
-		alert(getVars);
-	 
+	} 
 
     var request = GXmlHttp.create();
 
@@ -83,10 +80,12 @@ function storeMarker(){
 
             var success=false;
             var content='Error contacting web service';
+			var id;
             try {
               //parse the result to JSON (simply by eval-ing it)
               res=eval( "(" + request.responseText + ")" );
               content=res.content;
+			  id = res.id;
               success=res.success;              
             }catch (e){
               success=false;
@@ -98,7 +97,7 @@ function storeMarker(){
             } else {
                 //create a new marker and add its info window
                 var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
-                var marker = createMarker(latlng, content);
+                var marker = createMarker(latlng, content, id);
                 map.addOverlay(marker);
                 map.closeInfoWindow();
             }
@@ -108,11 +107,11 @@ function storeMarker(){
     return false;
 }
 
-function createMarker(latlng, html) {
+function createMarker(latlng, html, id) {
      var marker = new GMarker(latlng);
      GEvent.addListener(marker, 'click', function() {
-          var markerHTML = html;
-          marker.openInfoWindowHtml(markerHTML);
+		  //requery items for this store, reset html
+          marker.openInfoWindowHtml(updateStore(id));
     });
     return marker;
 }
@@ -142,7 +141,7 @@ function listMarkers() {
         	var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
         	var html = '<div><strong>Store: </strong> ' + marker.store;
 			html += '<ul>';
-			for (j=0; j<marker.items.length; j++)
+			for (var j=0; j<marker.items.length; j++)
 			{
 				if(marker.items[j].item){
 					html += '<li>' + marker.items[j].item + '</li>';
@@ -150,7 +149,7 @@ function listMarkers() {
 			}
 			html += '</ul>' + '</div>';
 		
-        	var marker = createMarker(latlng, html);
+        	var marker = createMarker(latlng, html, marker.id);
         	map.addOverlay(marker);
         } // end of if lat and lng
       } // end of for loop
@@ -173,7 +172,7 @@ function updateItems(){
 	      curItems = eval( "(" + request.responseText + ")" );
 		  curItemsHTML = '<label for="items">Items</label><br />';
 		  curItemsHTML += '<div id="store_items">';
-		  for (i=0; i<curItems.length; i++)
+		  for (var i=0; i<curItems.length; i++)
 		  {
 		  	curItemsHTML += '<input type="checkbox" name="items" value="' + curItems[i].item.id + '"  /> ' + curItems[i].item.item + '<br />';
 		  }
@@ -181,6 +180,35 @@ function updateItems(){
 		}
 	}
 	request.send(null);
+}
+
+// returns the latest html for a given store id
+function updateStore(id){
+	var request = GXmlHttp.create();
+	//tell the request where to retrieve data from.
+	request.open('GET', 'stores/' + id + '.js', true);
+	//tell the request what to do when the state changes.
+	var storeHTML = 'not done...';
+ 	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+	    	//parse the result to JSON,by eval-ing it.
+	    	//The response is an array of items in the DB
+	    	storeVar = eval( "(" + request.responseText + ")" );
+			var storeHTML = '<div><strong>Store: </strong> ' + storeVar.store.store;
+			storeHTML += '<ul>';
+			for (var i=0; i<storeVar.store.items.length; i++)
+			{
+				if(storeVar.store.items[i].item){
+					storeHTML += '<li>' + storeVar.store.items[i].item + '</li>';
+				}
+			}
+			storeHTML += '</ul>' + '</div>';
+			alert(storeHTML);
+		}
+	}
+	request.send(null);
+	alert("done");
+	return storeHTML;
 }
 
 window.onload = init;

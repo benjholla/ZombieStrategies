@@ -19,6 +19,7 @@ class StoresController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @store }
+      format.js {render :json => @store.to_json(:include => {:items => {}}) } 
     end
   end
 
@@ -50,7 +51,7 @@ class StoresController < ApplicationController
           format.html { redirect_to(@store) }
           format.xml { render :xml => @store, :status => :created, :location => @store }
           format.js {
-            render :json => {:success=>true,:content=>"<div><strong>Store: </strong>" + @store.store.to_str + "</div>"}
+            render :json => {:success=>true,:content=>'<div><strong>Store: </strong>' + @store.store.to_str + '</div>',:id=>@store.id.to_s}
           }
         else
           format.html { render :action => "new" }
