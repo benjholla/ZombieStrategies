@@ -43,6 +43,7 @@ class StoresController < ApplicationController
   def create
       @store = Store.new(params[:store])
       @store.save
+      params[:store][:items].map! {|o| o.to_i}
       @store.items = params[:items]
       respond_to do |format|
         if @store.save
