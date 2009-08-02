@@ -13,11 +13,11 @@
 	
   <p>
     <%= f.label :password %><br />
-    <%= f.text_field :password %>
+    <%= f.password_field :password %>
   </p>
   <p>
     <%= f.label :confirm_password %><br />
-    <%= f.text_field :confirm_password %>
+    <%= f.password_field :confirm_password %>
   </p>
 
 
@@ -40,14 +40,16 @@
 
 
   <p>
-    <%= f.label :phone %> (optional, currently limited to the United States only.)<br />
+    <%= f.label :phone %><br />
     <%= f.text_field :phone %>
+	(optional, currently limited to the United States only.)
   </p>
 
 
   <p>
-    <%= f.label :twitter %> (optional, requires that you are following the <a href="http://twitter.com/ZombieStrategy">ZombieStrategies Twitter</a>)<br />
-    <%= f.text_field :twitter %>
+    <%= f.label :twitter %><br />
+    <i>http://twitter.com/</i><%= f.text_field :twitter, "size" => 13 %>
+	(optional, requires that you are following the <a href="http://twitter.com/ZombieStrategy">ZombieStrategies Twitter</a>)
   </p>
 
 
