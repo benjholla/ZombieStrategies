@@ -17,7 +17,7 @@ class TwitterTrendsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @twitter_trend }
+      format.xml  { render :xml => @twitter_trend.twitter_computations }
     end
   end
 
