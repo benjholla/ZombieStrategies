@@ -37,7 +37,7 @@
 
 <% if @twitter_trend.twitter_computations.last %>
 <br />
-<img src="<%= Gchart.line(:title => "Results for '" + @twitter_trend.search + "' at " + @twitter_trend.twitter_computations.last.created_at.to_s , :data => [@twitter_trend.twitter_computations.all(:order => 'created_at ASC', :limit => 24).map {|p| p = p.rate}], :line_colors => '76A4FB', :background => 'EEEEEE', :chart_background => 'CCCCCC', :max_value => 100, :axis_with_labels => 'x,y', :axis_labels => [@twitter_trend.twitter_computations.all(:order => 'created_at ASC', :limit => 24).map {|p| p = p.created_at.hour.to_s}, '0|20|40|60|80|100'], :size => '650x350') %>">
+<img src="<%= Gchart.line(:title => "Results for '" + @twitter_trend.search + "' at " + @twitter_trend.twitter_computations.last.created_at.to_s , :data => [@twitter_trend.twitter_computations.all(:order => 'created_at ASC', :limit => 24).map {|p| p = p.rate}], :line_colors => '76A4FB', :background => 'EEEEEE', :chart_background => 'CCCCCC', :max_value => 100, :axis_with_labels => 'x,y', :axis_labels => [@twitter_trend.twitter_computations.all(:order => 'created_at ASC', :limit => 24).map {|p| p = p.created_at.hour.to_s + ':' + p.created_at.min.to_s}, '0|20|40|60|80|100'], :size => '650x350') %>">
 <br />
 <br />
 <br />
