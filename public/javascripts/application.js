@@ -1,5 +1,6 @@
-var centerLatitude = 37.4419;
-var centerLongitude = -122.1419;
+// set home base for ames,ia (42.022864, -93.626792)
+var centerLatitude = 42.022864;
+var centerLongitude = -93.626792;
 var startZoom = 12;
 var map;
 
