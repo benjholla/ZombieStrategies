@@ -40,7 +40,7 @@
 <br />
 <% end %>
 
-<h4>Last 5 Updates</h4>
+<h4>Last 10 Updates</h4>
 <table border="1">
   <tr>
     <th>Rate</th>
@@ -52,7 +52,7 @@
 	<!--<th>Destroy</th>-->
   </tr>
 
-<% @twitter_trend.twitter_computations.all(:order => 'created_at DESC', :limit => 5).each do |twitter_computation| %>
+<% @twitter_trend.twitter_computations.all(:order => 'created_at DESC', :limit => 10).each do |twitter_computation| %>
   <tr>
     <td><%=h twitter_computation.rate %></td>
     <td><%=h twitter_computation.population %></td>
