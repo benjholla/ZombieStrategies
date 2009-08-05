@@ -49,16 +49,18 @@
     <th>Population</th>
     <th>Threat</th>
 	<th>Date</th>
+	<th>Time Ago</th>
 	<!--<th>Edit</th>-->
 	<!--<th>Destroy</th>-->
   </tr>
 
-<% @twitter_trend.twitter_computations.all(:order => 'created_at DESC', :limit => 24).each do |twitter_computation| %>
+<% @twitter_trend.twitter_computations.all(:order => 'created_at DESC', :limit => 5).each do |twitter_computation| %>
   <tr>
     <td><%=h twitter_computation.rate %></td>
     <td><%=h twitter_computation.population %></td>
     <td><%=h twitter_computation.threat %></td>
 	<td><%=h twitter_computation.created_at %></td>
+	<td><%= time_ago_in_words(twitter_computation.created_at) %> ago</td>
     <!--<td><%= link_to 'Edit', edit_twitter_computation_path(twitter_computation) %></td>-->
     <!--<td><%= link_to 'Destroy', twitter_computation, :confirm => 'Are you sure?', :method => :delete %></td>-->
   </tr>
