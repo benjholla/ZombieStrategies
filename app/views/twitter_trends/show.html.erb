@@ -53,7 +53,7 @@
 	<!--<th>Destroy</th>-->
   </tr>
 
-<% @twitter_trend.twitter_computations.all(:order => 'created_at DESC', :limit => 24) do |twitter_computation| %>
+<% @twitter_trend.twitter_computations.all(:order => 'created_at DESC', :limit => 24).each do |twitter_computation| %>
   <tr>
     <td><%=h twitter_computation.rate %></td>
     <td><%=h twitter_computation.population %></td>
