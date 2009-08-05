@@ -209,7 +209,7 @@ function updateStore(id, marker){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	storeVar = eval( "(" + request.responseText + ")" );
-			var storeHTML = '<div><strong>Store: </strong> ' + storeVar.store.store;
+			var storeHTML = '<div><strong>Store: </strong> <a href="http://zombiestrategies.com/stores/' + storeVar.store.id + '">' + storeVar.store.store + '</a> ';
 			storeHTML += '<ul>';
 			for (var i=0; i<storeVar.store.items.length; i++)
 			{
