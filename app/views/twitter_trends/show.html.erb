@@ -40,6 +40,8 @@
 <br />
 <% end %>
 
+<%= @twitter_trend.twitter_computations.all(:order => 'rate ASC', :limit => 20).last.rate %>
+
 <h4>Last 10 Updates</h4>
 <table border="1">
   <tr>
