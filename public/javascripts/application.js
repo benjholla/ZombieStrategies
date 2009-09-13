@@ -34,7 +34,7 @@ function init() {
 		map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
 	}
 	
-	alert("Location = " + location);
+	document.getElementById("location").innerHTML = location;
 
     
 	map.addControl(new GLargeMapControl());
