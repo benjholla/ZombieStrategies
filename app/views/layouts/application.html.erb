@@ -25,12 +25,12 @@
 			<img class="links" src="/images/monitor.png" alt="Monitor"  border=0/>
 		</a>
 
-		<a href="<%= new_account_path %>">
-			<img class="links" src="/images/alerts.png" alt="Alerts" border=0/>
-		</a>
-
 		<a href="<%= stores_path %>">
 			<img class="links" src="/images/plan.png" alt="Plan" border=0/>
+		</a>
+		
+		<a href="/store.html">
+			<img class="links" src="/images/store.png" alt="Store" border=0/>
 		</a>
 
 		<a href="http://forum.zombiestrategies.com/">
@@ -54,8 +54,8 @@
       <p>
         <%= link_to "Home", root_url %> |
         <%= link_to "Monitor", twitter_trends_url %> |
-        <%= link_to "Alerts", new_account_path %> |
         <%= link_to "Plan", stores_url %> |
+        <%= link_to "Store", "/store.html" %> |
 		<a href="http://forum.zombiestrategies.com/">Forum</a> |
         <%= link_to "About", "/about.html" %>
       </p>
