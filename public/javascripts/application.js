@@ -26,13 +26,13 @@ function init() {
 	var location = "Showing default location for map.";
     // If ClientLocation was filled in by the loader, use that info instead
     if (google.loader.ClientLocation) {
-    	zoom = 13;
+    	zoom = 12;
     	centerLatitude = google.loader.ClientLocation.latitude;
 		centerLongitude = google.loader.ClientLocation.longitude;
     	location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
-    }else{
-		map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
-	}
+    }
+	
+	map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
 	
 	document.getElementById("location").innerHTML = location;
 
