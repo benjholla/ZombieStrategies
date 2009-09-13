@@ -7,15 +7,49 @@ var map;
 var curItems;
 var curItemsHTML = '';
 
+function getFormattedLocation() {
+  if (google.loader.ClientLocation.address.country_code == "US" &&
+    google.loader.ClientLocation.address.region) {
+    return google.loader.ClientLocation.address.city + ", " 
+        + google.loader.ClientLocation.address.region.toUpperCase();
+  } else {
+    return  google.loader.ClientLocation.address.city + ", "
+        + google.loader.ClientLocation.address.country_code;
+  }
+}
+
 function init() {
   updateItems();
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map"));
-    map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
+
+	var location = "Showing default location for map.";
+    // If ClientLocation was filled in by the loader, use that info instead
+    if (google.loader.ClientLocation) {
+    	zoom = 13;
+    	centerLatitude = google.loader.ClientLocation.latitude;
+		centerLongitude = google.loader.ClientLocation.longitude;
+    	location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
+    }else{
+		map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
+	}
+	
+	alert("Location = " + location);
+
+    
 	map.addControl(new GLargeMapControl());
 	map.addControl(new GScaleControl());
 	map.addControl(new GMapTypeControl());
 	map.enableScrollWheelZoom();
+	
+	//<div id="searchcontrol">Loading...</div>  (add this to the html)
+	//var searchControl = new google.search.SearchControl();
+	//searchControl.draw(document.getElementById("searchcontrol"));
+	
+	alert("done");
+	
+	
+	//map.enableGoogleBar();  //should either enable this or the scale (they like to overlap)
 	
 	//Uncomment this code to set that max and min zoom levels for all map types
 	/*
@@ -224,5 +258,7 @@ function updateStore(id, marker){
 	request.send(null);
 }
 
-window.onload = init;
+alert("start");
+google.load("maps", "2", {callback: init});
+//window.onload = init;
 window.onunload = GUnload;
