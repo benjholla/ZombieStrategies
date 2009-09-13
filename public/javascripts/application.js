@@ -46,8 +46,6 @@ function init() {
 	//var searchControl = new google.search.SearchControl();
 	//searchControl.draw(document.getElementById("searchcontrol"));
 	
-	alert("done");
-	
 	
 	//map.enableGoogleBar();  //should either enable this or the scale (they like to overlap)
 	
@@ -258,7 +256,6 @@ function updateStore(id, marker){
 	request.send(null);
 }
 
-alert("start");
 google.load("maps", "2", {callback: init});
 //window.onload = init;
 window.onunload = GUnload;
