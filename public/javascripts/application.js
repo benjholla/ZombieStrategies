@@ -1,7 +1,7 @@
-// set home base for ames,ia (42.022864, -93.626792)
-var centerLatitude = 42.022864;
-var centerLongitude = -93.626792;
-var startZoom = 12;
+// set default position, center of U.S.
+var centerLatitude = 37.0625;
+var centerLongitude = -95.677068;
+var startZoom = 4;
 var map;
 
 var curItems;
@@ -26,7 +26,7 @@ function init() {
 	var location = "Showing default location for map.";
     // If ClientLocation was filled in by the loader, use that info instead
     if (google.loader.ClientLocation) {
-    	zoom = 12;
+    	zoom = 13;
     	centerLatitude = google.loader.ClientLocation.latitude;
 		centerLongitude = google.loader.ClientLocation.longitude;
     	location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
