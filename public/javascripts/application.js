@@ -20,6 +20,8 @@ reasons[G_GEO_BAD_KEY]            = "Bad Key: The API key is either invalid or d
 reasons[G_GEO_TOO_MANY_QUERIES]   = "Too Many Queries: The daily geocoding quota for this site has been exceeded.";
 reasons[G_GEO_SERVER_ERROR]       = "Server error: The geocoding request could not be successfully processed.";
 
+var trafficInfo;
+var toggleState = 0; // 0 = start traffic disabled, 1 = start traffic enabled
 
 function getFormattedLocation() {
   if (google.loader.ClientLocation.address.country_code == "US" &&
@@ -65,6 +67,18 @@ function getFormattedLocation() {
     );
   }
 
+  function toggleTraffic() {
+    if (toggleState == 1) {
+      map.removeOverlay(trafficInfo);
+      toggleState = 0;
+	  document.getElementById("traffic_button").value="Hide Traffic";
+    } else {
+      map.addOverlay(trafficInfo);
+      toggleState = 1;
+	  document.getElementById("traffic_button").value="Show Traffic";
+    }
+  }
+
 
 function init() {
   updateItems();
@@ -88,6 +102,11 @@ function init() {
 	map.addControl(new GLargeMapControl());
 	map.addControl(new GScaleControl());
 	map.addControl(new GMapTypeControl());
+	
+	var trafficOptions = {incidents:false}; // change to true to add traffic incidents
+	trafficInfo = new GTrafficOverlay(trafficOptions);
+	map.addOverlay(trafficInfo);
+	
 	map.enableScrollWheelZoom();
 	
 	//map.addControl(new google.maps.LocalSearch(), new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(10, 20)));
