@@ -71,11 +71,11 @@ function getFormattedLocation() {
     if (toggleState == 1) {
       map.removeOverlay(trafficInfo);
       toggleState = 0;
-	  document.getElementById("traffic_button").value="Hide Traffic";
+	  document.getElementById("traffic_button").value="Show Traffic";
     } else {
       map.addOverlay(trafficInfo);
       toggleState = 1;
-	  document.getElementById("traffic_button").value="Show Traffic";
+	  document.getElementById("traffic_button").value="Hide Traffic";
     }
   }
 
