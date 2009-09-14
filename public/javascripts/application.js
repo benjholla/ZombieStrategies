@@ -108,13 +108,10 @@ function init() {
 
 	map.addMapType(G_PHYSICAL_MAP);
 	
+	// zoom controls
+	//map.enableDoubleClickZoom(); 
+	map.enableContinuousZoom();
 	map.enableScrollWheelZoom();
-	
-	//map.addControl(new google.maps.LocalSearch(), new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(10, 20)));
-	
-	//<div id="searchcontrol">Loading...</div>  (add this to the html)
-	//var searchControl = new google.search.SearchControl();
-	//searchControl.draw(document.getElementById("searchcontrol"));
 	
 	
 	//map.enableGoogleBar();  //should either enable this or the scale (they like to overlap)
