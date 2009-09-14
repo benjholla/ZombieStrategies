@@ -106,6 +106,8 @@ function init() {
 	var trafficOptions = {incidents:false}; // change to true to add traffic incidents
 	trafficInfo = new GTrafficOverlay(trafficOptions);
 	map.addOverlay(trafficInfo);
+
+	map.addMapType(G_PHYSICAL_MAP);
 	
 	map.enableScrollWheelZoom();
 	
