@@ -1,79 +1,22 @@
 <h1 style="margin:0;">Disaster Plan</h1>
 
-<div id="location">Loading...</div>
+<noscript><b>JavaScript must be enabled in order for you to use Google Maps.</b> 
+   However, it seems JavaScript is either disabled or not supported by your browser. 
+   To view Google Maps, enable JavaScript by changing your browser options, and then 
+   try again.
+ </noscript>
 
-<div id="map" style="width: 770px; height: 400px">Loading...</div>
+<br />
 
+Search: <form onsubmit="showAddress(); return false" action="#">
+	<input id="search" size="50" type="text" value="" />
+	<input type="submit" value="Go!" />
+</form>
 
-<script language='Javascript' type='text/javascript'>
-/*
-//skip this in a browser that doesn't support JavaScritp
-//<![CDATA[
+<br />
 
-alert("1");
-//load map module version 2
-google.load("maps", "2");
-
-alert("3");
-
-//create the main function
-function OnLoad() {
-	alert("2");
-        
-   //checks if user's browser is supports AJAX 
-   if ((GBrowserIsCompatible())) {   
-           
-   //set initial values for latitude, longitude and zoom
-   var lon = 0;
-   var lat = 0;
-   var zoom = 0;
-
-   //if google.loader is able to discover user information...
-   if(google.loader.ClientLocation!=null){
-
-      //read user's informations to following variables
-      var country = google.loader.ClientLocation.address.country;
-      var region = google.loader.ClientLocation.address.region;
-      var city = google.loader.ClientLocation.address.city;
-      lat = google.loader.ClientLocation.latitude;
-      lon = google.loader.ClientLocation.longitude;
-      zoom = 5;
-
-      var locationString = country + ", " + region+ ", " + city;    
-      //and now we can insert that information into element with
-      //id="location"
-      document.getElementById("location").innerHTML = locationString;
-   }
-   //otherwise print information in location div
-   else{
-      document.getElementById("location").innerHTML = "not supported";
-   }
-          
-   //create a map object in element with id="map"
-   var map = new GMap2(document.getElementById("map"));
-   //center map to client's geographic coordination 
-   //(it they exists, otherwise use initial values)
-   //the last number let u customize your zoom value
-   //the grater the number, the more detailed map you will have        
-   map.setCenter(new GLatLng(lat, lon), zoom);           
-   //add market at visitor's location
-   map.addOverlay(new GMarker(new GLatLng(lat, lon)));
-  
-   //customize the map
-   map.setMapType(G_SATELLITE_MAP);
-   map.GMap2.disableGoogleBar(); 
-   }
-else{ 
-   //insert information into element with id="location"
-   document.getElementById("location").innerHTML = "AJAX not supported";
- }
-}
-
-//pass OnLoad() function to call back function
-alert("4");
-google.setOnLoadCallback(OnLoad);
-*/
-//]]>
-</script>
+<div id="map" style="width: 820px; height: 400px"><center><br /><br /><br /><h3>Loading Map...</h3><br /><img src="/images/ajax-loader.gif" /></center></div>
+<br />
+<div id="location"></div>
 
 <br />

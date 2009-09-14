@@ -7,6 +7,20 @@ var map;
 var curItems;
 var curItemsHTML = '';
 
+// ====== Create a Client Geocoder ======
+var geo = new GClientGeocoder(); 
+
+// ====== Array for decoding the failure codes ======
+var reasons=[];
+reasons[G_GEO_SUCCESS]            = "Success";
+reasons[G_GEO_MISSING_ADDRESS]    = "Missing Address: The address was either missing or had no value.";
+reasons[G_GEO_UNKNOWN_ADDRESS]    = "Unknown Address:  No corresponding geographic location could be found for the specified address.";
+reasons[G_GEO_UNAVAILABLE_ADDRESS]= "Unavailable Address:  The geocode for the given address cannot be returned due to legal or contractual reasons.";
+reasons[G_GEO_BAD_KEY]            = "Bad Key: The API key is either invalid or does not match the domain for which it was given";
+reasons[G_GEO_TOO_MANY_QUERIES]   = "Too Many Queries: The daily geocoding quota for this site has been exceeded.";
+reasons[G_GEO_SERVER_ERROR]       = "Server error: The geocoding request could not be successfully processed.";
+
+
 function getFormattedLocation() {
   if (google.loader.ClientLocation.address.country_code == "US" &&
     google.loader.ClientLocation.address.region) {
@@ -18,12 +32,46 @@ function getFormattedLocation() {
   }
 }
 
+  function showAddress() {
+    var search = document.getElementById("search").value;
+    // ====== Perform the Geocoding ======        
+    geo.getLocations(search, function (result)
+      { 
+        // If that was successful
+        if (result.Status.code == G_GEO_SUCCESS) {
+          // centre the map on the first result
+          var p = result.Placemark[0].Point.coordinates;
+          // ===== Look for the bounding box of the first result =====
+          var N = result.Placemark[0].ExtendedData.LatLonBox.north;
+          var S = result.Placemark[0].ExtendedData.LatLonBox.south;
+          var E = result.Placemark[0].ExtendedData.LatLonBox.east;
+          var W = result.Placemark[0].ExtendedData.LatLonBox.west;
+          var bounds = new GLatLngBounds(new GLatLng(S,W), new GLatLng(N,E));
+          // Choose a zoom level that fits
+          var zoom = map.getBoundsZoomLevel(bounds);
+
+          map.setCenter(bounds.getCenter(),zoom);
+
+        }
+        // ====== Decode the error status ======
+        else {
+          var reason="Code "+result.Status.code;
+          if (reasons[result.Status.code]) {
+            reason = reasons[result.Status.code]
+          } 
+          alert('Could not find "'+search+ '" ' + reason);
+        }
+      }
+    );
+  }
+
+
 function init() {
   updateItems();
   if (GBrowserIsCompatible()) {
     map = new GMap2(document.getElementById("map"));
 
-	var location = "Showing default location for map.";
+	var location = "";
     // If ClientLocation was filled in by the loader, use that info instead
     if (google.loader.ClientLocation) {
     	startZoom = 13;
@@ -41,6 +89,8 @@ function init() {
 	map.addControl(new GScaleControl());
 	map.addControl(new GMapTypeControl());
 	map.enableScrollWheelZoom();
+	
+	//map.addControl(new google.maps.LocalSearch(), new GControlPosition(G_ANCHOR_BOTTOM_RIGHT, new GSize(10, 20)));
 	
 	//<div id="searchcontrol">Loading...</div>  (add this to the html)
 	//var searchControl = new google.search.SearchControl();
