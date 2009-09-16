@@ -102,12 +102,6 @@ function handleAddButtonMouseDown()
 
 function handleAddButtonMouseUp()
 {
-	if(addButtonState == 0){
-		setAddButtonUnselected();
-	}
-	else{
-		setAddButtonSelected();
-	}
 	return true;
 }
 
@@ -135,12 +129,6 @@ function handleModifyButtonMouseDown()
 
 function handleModifyButtonMouseUp()
 {
-	if(modifyButtonState == 0){
-		setModifyButtonUnselected();
-	}
-	else{
-		setModifyButtonSelected();
-	}
 	return true;
 }
 
@@ -168,12 +156,6 @@ function handleRemoveButtonMouseDown()
 
 function handleRemoveButtonMouseUp()
 {
-	if(removeButtonState == 0){
-		setRemoveButtonUnselected();
-	}
-	else{
-		setRemoveButtonSelected();
-	}
 	return true;
 }
 
@@ -193,19 +175,15 @@ function handleTrafficButtonMouseDown()
 {
 	if(trafficButtonState == 0){
 		setTrafficButtonSelected();
+		enableTraffic();
 	}else{
 		setTrafficButtonUnselected();
+		disableTraffic();
 	}
 	return true;
 }
 
 function handleTrafficButtonMouseUp()
 {
-	if(trafficButtonState == 0){
-		setTrafficButtonUnselected();
-	}
-	else{
-		setTrafficButtonSelected();
-	}
 	return true;
 }

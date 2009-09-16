@@ -8,7 +8,6 @@ var curItems;
 var curItemsHTML = '';
 
 var trafficInfo;
-var toggleState = 0; // 0 = start traffic disabled, 1 = start traffic enabled
 
 // ====== Create a Client Geocoder ======
 var geo = new GClientGeocoder(); 
@@ -151,16 +150,12 @@ function showExactAddress(address) {
     );
   }
 
-  function toggleTraffic() {
-    if (toggleState == 1) {
+  function disableTraffic() {
       map.removeOverlay(trafficInfo);
-      toggleState = 0;
-	  document.getElementById("traffic_button").value="Show Traffic";
-    } else {
+  } 
+
+  function enableTraffic() {
       map.addOverlay(trafficInfo);
-      toggleState = 1;
-	  document.getElementById("traffic_button").value="Hide Traffic";
-    }
   }
 
 
