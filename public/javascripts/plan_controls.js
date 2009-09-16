@@ -77,7 +77,7 @@ function setTrafficButtonUnselected()
 }
 
 
-// HANDLERS
+// ----- HANDLERS  -----
 
 // Add button handers
 function handleAddButtonMouseOver()
