@@ -2,6 +2,7 @@
 var addButtonState = 0;
 var modifyButtonState = 0;
 var removeButtonState = 0;
+var trafficButtonState = 0;
 
 // image setters for Add button
 function setAddButtonSelected()
@@ -10,6 +11,7 @@ function setAddButtonSelected()
 	addButtonState = 1;
 	setModifyButtonUnselected();
 	setRemoveButtonUnselected();
+	setTrafficButtonUnselected();
 	return true;
 }
 
@@ -27,6 +29,7 @@ function setModifyButtonSelected()
 	modifyButtonState = 1;
 	setAddButtonUnselected();
 	setRemoveButtonUnselected();
+	setTrafficButtonUnselected();
 	return true;
 }
 
@@ -44,6 +47,7 @@ function setRemoveButtonSelected()
 	removeButtonState = 1;
 	setAddButtonUnselected();
 	setModifyButtonUnselected();
+	setTrafficButtonUnselected();
 	return true;
 }
 
@@ -53,6 +57,25 @@ function setRemoveButtonUnselected()
 	removeButtonState = 0;
 	return true;
 }
+
+// image setters for Traffic button
+function setTrafficButtonSelected()
+{
+	document.images["trafficButton"].src= "/images/traffic_selected_button.png";
+	trafficButtonState = 1;
+	setAddButtonUnselected();
+	setModifyButtonUnselected();
+	setRemoveButtonUnselected();
+	return true;
+}
+
+function setTrafficButtonUnselected()
+{
+	document.images["trafficButton"].src = "/images/traffic_unselected_button.png";
+	trafficButtonState = 0;
+	return true;
+}
+
 
 // HANDLERS
 
@@ -150,6 +173,39 @@ function handleRemoveButtonMouseUp()
 	}
 	else{
 		setRemoveButtonSelected();
+	}
+	return true;
+}
+
+
+// Traffic button handers
+function handleTrafficButtonMouseOver()
+{
+	return true;
+}
+
+function handleTrafficButtonMouseOut()
+{
+	return true;
+}
+
+function handleTrafficButtonMouseDown()
+{
+	if(trafficButtonState == 0){
+		setTrafficButtonSelected();
+	}else{
+		setTrafficButtonUnselected();
+	}
+	return true;
+}
+
+function handleTrafficButtonMouseUp()
+{
+	if(trafficButtonState == 0){
+		setTrafficButtonUnselected();
+	}
+	else{
+		setTrafficButtonSelected();
 	}
 	return true;
 }
