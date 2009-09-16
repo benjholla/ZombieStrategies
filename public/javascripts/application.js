@@ -92,10 +92,11 @@ function getFormattedLocation() {
   }
 }
 
-function zoomTo(lat,lng) {
+function zoomTo(lat,lng, address) {
   var point = new GLatLng(lat,lng);
   map.setCenter(point,14); 
   document.getElementById("message").innerHTML = "";
+  document.getElementById("search").value = address;
 }
 
   // ====== Geocoding ======
@@ -112,7 +113,7 @@ function zoomTo(lat,lng) {
 				// Loop through the results
 				for (var i=0; i<result.Placemark.length; i++) {
 			   		var p = result.Placemark[i].Point.coordinates;
-			   		document.getElementById("message").innerHTML += "<br>"+(i+1)+": <a href='javascript:zoomTo(" +p[1]+","+p[0]+")'>"+ result.Placemark[i].address+"<\/a>";
+			   		document.getElementById("message").innerHTML += "<br>"+(i+1)+": <a href='javascript:zoomTo(" +p[1]+","+p[0]+",\"" + result.Placemark[i].address + "\")'>" + result.Placemark[i].address + "<\/a>";
 		    	}
 		 	}
 		 	// ===== If there was a single marker, check if the returned address significantly different =====
