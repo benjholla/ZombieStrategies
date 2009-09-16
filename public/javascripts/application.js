@@ -92,11 +92,10 @@ function getFormattedLocation() {
   }
 }
 
-function zoomTo(lat,lng, address) {
-  var point = new GLatLng(lat,lng);
-  map.setCenter(point,14); 
+function showExactAddress(address) {
   document.getElementById("message").innerHTML = "";
   document.getElementById("search").value = address;
+  showAddress();
 }
 
   // ====== Geocoding ======
@@ -113,7 +112,7 @@ function zoomTo(lat,lng, address) {
 				// Loop through the results
 				for (var i=0; i<result.Placemark.length; i++) {
 			   		var p = result.Placemark[i].Point.coordinates;
-			   		document.getElementById("message").innerHTML += "<br>"+(i+1)+": <a href='javascript:zoomTo(" +p[1]+","+p[0]+",\"" + result.Placemark[i].address + "\")'>" + result.Placemark[i].address + "<\/a>";
+			   		document.getElementById("message").innerHTML += "<br>"+(i+1)+": <a href='javascript:showExactAddress(\"" + result.Placemark[i].address + "\")'>" + result.Placemark[i].address + "<\/a>";
 		    	}
 		 	}
 		 	// ===== If there was a single marker, check if the returned address significantly different =====
@@ -123,7 +122,7 @@ function zoomTo(lat,lng, address) {
 				if (different(search, result.Placemark[0].address)) {
 					document.getElementById("message").innerHTML = "Did you mean: ";
 			    	var p = result.Placemark[0].Point.coordinates;
-			    	document.getElementById("message").innerHTML += "<a href='javascript:zoomTo(" +p[1]+","+p[0]+")'>"+ result.Placemark[0].address+"<\/a>";
+			    	document.getElementById("message").innerHTML += "<a href='javascript:showExactAddress(\"" + result.Placemark[0].address +"\")'>"+ result.Placemark[0].address+"<\/a>";
 				}
 			 	else
 			 	{
