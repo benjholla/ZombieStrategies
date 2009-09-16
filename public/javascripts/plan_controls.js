@@ -11,7 +11,6 @@ function setAddButtonSelected()
 	addButtonState = 1;
 	setModifyButtonUnselected();
 	setRemoveButtonUnselected();
-	setTrafficButtonUnselected();
 	return true;
 }
 
@@ -29,7 +28,6 @@ function setModifyButtonSelected()
 	modifyButtonState = 1;
 	setAddButtonUnselected();
 	setRemoveButtonUnselected();
-	setTrafficButtonUnselected();
 	return true;
 }
 
@@ -47,7 +45,6 @@ function setRemoveButtonSelected()
 	removeButtonState = 1;
 	setAddButtonUnselected();
 	setModifyButtonUnselected();
-	setTrafficButtonUnselected();
 	return true;
 }
 
@@ -63,9 +60,6 @@ function setTrafficButtonSelected()
 {
 	document.images["trafficButton"].src= "/images/traffic_selected_button.png";
 	trafficButtonState = 1;
-	setAddButtonUnselected();
-	setModifyButtonUnselected();
-	setRemoveButtonUnselected();
 	return true;
 }
 
