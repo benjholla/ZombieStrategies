@@ -109,6 +109,7 @@ function zoomTo(lat,lng) {
 		 	// ===== If there was more than one result, "ask did you mean" on them all =====
 		 	if (result.Placemark.length > 1) { 
 				document.getElementById("message").innerHTML = "Did you mean:";
+				alert("normal did you mean");
 				// Loop through the results
 				for (var i=0; i<result.Placemark.length; i++) {
 			   		var p = result.Placemark[i].Point.coordinates;
@@ -122,8 +123,8 @@ function zoomTo(lat,lng) {
 				if (different(search, result.Placemark[0].address)) {
 					document.getElementById("message").innerHTML = "Did you mean: ";
 			    	var p = result.Placemark[0].Point.coordinates;
-			    	document.getElementById("message").innerHTML += "<br>" + (i+1) + ": <a href='javascript:zoomTo(" +p[1]+","+p[0]+")'>"+ result.Placemark[i].address+"<\/a>";
-			 	}
+			    	document.getElementById("message").innerHTML += "<a href='javascript:zoomTo(" +p[1]+","+p[0]+")'>"+ result.Placemark[0].address+"<\/a>";
+				}
 			 	else
 			 	{
 			    	var p = result.Placemark[0].Point.coordinates;
