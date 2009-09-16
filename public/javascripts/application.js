@@ -7,6 +7,9 @@ var map;
 var curItems;
 var curItemsHTML = '';
 
+var trafficInfo;
+var toggleState = 0; // 0 = start traffic disabled, 1 = start traffic enabled
+
 // ====== Create a Client Geocoder ======
 var geo = new GClientGeocoder(); 
 
@@ -20,8 +23,63 @@ reasons[G_GEO_BAD_KEY]            = "Bad Key: The API key is either invalid or d
 reasons[G_GEO_TOO_MANY_QUERIES]   = "Too Many Queries: The daily geocoding quota for this site has been exceeded.";
 reasons[G_GEO_SERVER_ERROR]       = "Server error: The geocoding request could not be successfully processed.";
 
-var trafficInfo;
-var toggleState = 0; // 0 = start traffic disabled, 1 = start traffic enabled
+// ===== list of words to be standardized =====
+var standards = [   ["road","rd"],   
+                    ["street","st"], 
+                    ["avenue","ave"], 
+                    ["av","ave"], 
+                    ["drive","dr"],
+                    ["saint","st"], 
+                    ["north","n"],   
+                    ["south","s"],    
+                    ["east","e"], 
+                    ["west","w"],
+                    ["expressway","expy"],
+                    ["parkway","pkwy"],
+                    ["terrace","ter"],
+                    ["turnpike","tpke"],
+                    ["highway","hwy"],
+                    ["lane","ln"]
+                 ];
+
+// ===== convert words to standard versions =====
+function standardize(a) {
+  for (var i=0; i<standards.length; i++) {
+    if (a == standards[i][0])  {a = standards[i][1];}
+  }
+  return a;
+}
+
+// ===== check if two addresses are sufficiently different =====
+function different(a,b) {
+  // only interested in the bit before the first comma in the reply
+  var c = b.split(",");
+  b = c[0];
+  // convert to lower case
+  a = a.toLowerCase();
+  b = b.toLowerCase();
+  // remove apostrophies
+  a = a.replace(/'/g ,"");
+  b = b.replace(/'/g ,"");
+  // replace all other punctuation with spaces
+  a = a.replace(/\W/g," ");
+  b = b.replace(/\W/g," ");
+  // replace all multiple spaces with a single space
+  a = a.replace(/\s+/g," ");
+  b = b.replace(/\s+/g," ");
+  // split into words
+  awords = a.split(" ");
+  bwords = b.split(" ");
+  // perform the comparison
+  var reply = false;
+  for (var i=0; i<bwords.length; i++) {
+    //GLog.write (standardize(awords[i])+"  "+standardize(bwords[i]))
+    if (standardize(awords[i]) != standardize(bwords[i])) {reply = true}
+  }
+  //GLog.write(reply);
+  return (reply);
+}
+
 
 function getFormattedLocation() {
   if (google.loader.ClientLocation.address.country_code == "US" &&
@@ -34,34 +92,62 @@ function getFormattedLocation() {
   }
 }
 
+function zoomTo(lat,lng) {
+  var point = new GLatLng(lat,lng);
+  map.setCenter(point,14); 
+  document.getElementById("message").innerHTML = "";
+}
+
+  // ====== Geocoding ======
   function showAddress() {
     var search = document.getElementById("search").value;
     // ====== Perform the Geocoding ======        
     geo.getLocations(search, function (result)
-      { 
+    { 
         // If that was successful
         if (result.Status.code == G_GEO_SUCCESS) {
-          // centre the map on the first result
-          var p = result.Placemark[0].Point.coordinates;
-          // ===== Look for the bounding box of the first result =====
-          var N = result.Placemark[0].ExtendedData.LatLonBox.north;
-          var S = result.Placemark[0].ExtendedData.LatLonBox.south;
-          var E = result.Placemark[0].ExtendedData.LatLonBox.east;
-          var W = result.Placemark[0].ExtendedData.LatLonBox.west;
-          var bounds = new GLatLngBounds(new GLatLng(S,W), new GLatLng(N,E));
-          // Choose a zoom level that fits
-          var zoom = map.getBoundsZoomLevel(bounds);
-
-          map.setCenter(bounds.getCenter(),zoom);
-
+		 	// ===== If there was more than one result, "ask did you mean" on them all =====
+		 	if (result.Placemark.length > 1) { 
+				document.getElementById("message").innerHTML = "Did you mean:";
+				// Loop through the results
+				for (var i=0; i<result.Placemark.length; i++) {
+			   		var p = result.Placemark[i].Point.coordinates;
+			   		document.getElementById("message").innerHTML += "<br>"+(i+1)+": <a href='javascript:zoomTo(" +p[1]+","+p[0]+")'>"+ result.Placemark[i].address+"<\/a>";
+		    	}
+		 	}
+		 	// ===== If there was a single marker, is the returned address significantly different =====
+		 	else 
+		 	{
+		 		document.getElementById("message").innerHTML = "";
+				if (different(search, result.Placemark[0].address)) {
+					document.getElementById("message").innerHTML = "Did you mean: ";
+			    	var p = result.Placemark[0].Point.coordinates;
+			    	document.getElementById("message").innerHTML += "<br>" + (i+1) + ": <a href='javascript:zoomTo(" +p[1]+","+p[0]+")'>"+ result.Placemark[i].address+"<\/a>";
+			 	}
+			 	else
+			 	{
+			    	var p = result.Placemark[0].Point.coordinates;
+		  	 	}
+		  	}
+          	// center the map on the first result
+          	var p = result.Placemark[0].Point.coordinates;
+          	// ===== Look for the bounding box of the first result =====
+          	var N = result.Placemark[0].ExtendedData.LatLonBox.north;
+          	var S = result.Placemark[0].ExtendedData.LatLonBox.south;
+          	var E = result.Placemark[0].ExtendedData.LatLonBox.east;
+          	var W = result.Placemark[0].ExtendedData.LatLonBox.west;
+          	var bounds = new GLatLngBounds(new GLatLng(S,W), new GLatLng(N,E));
+          	// Choose a zoom level that fits
+          	var zoom = map.getBoundsZoomLevel(bounds);
+          	map.setCenter(bounds.getCenter(),zoom);
         }
         // ====== Decode the error status ======
         else {
-          var reason="Code "+result.Status.code;
-          if (reasons[result.Status.code]) {
-            reason = reasons[result.Status.code]
-          } 
-          alert('Could not find "'+search+ '" ' + reason);
+          	var reason="Code " + result.Status.code;
+          	if (reasons[result.Status.code]) {
+            	reason = reasons[result.Status.code]
+          	}
+ 			document.getElementById("message").innerHTML = 'Could not find "' + search + '"<br />' + '<font color="red">' + reason + '</font>';
         }
       }
     );
