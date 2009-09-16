@@ -96,7 +96,7 @@ function init() {
 	
 	map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
 	
-	document.getElementById("location").innerHTML = location;
+	document.getElementById("message").innerHTML = location;
 
     
 	map.addControl(new GLargeMapControl());

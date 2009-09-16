@@ -14,16 +14,7 @@
 <tbody>
 <tr>
 <td>
-	Search: <form onsubmit="showAddress(); return false" action="#">
-		<input id="search" size="50" type="text" value="" />
-		<input type="submit" value="Go!" />
-		<input type="button" value="Show Traffic" id="traffic_button" onClick="toggleTraffic();"/>
-	</form>
-
-	<br />
-
 	<div id="map" style="width: 645px; height: 400px"><center><br /><br /><br /><h3>Loading Map...</h3><br /><img src="/images/ajax-loader.gif" /></center></div>
-	
 </td>
 <td>
 <table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
@@ -59,8 +50,14 @@
 </tbody>
 </table>
 
+Search: <form onsubmit="showAddress(); return false" action="#">
+	<input id="search" size="50" type="text" value="" />
+	<input type="submit" value="Go!" />
+	<input type="button" value="Show Traffic" id="traffic_button" onClick="toggleTraffic();"/>
+</form>
 
 <br />
-<div id="location"></div>
+<div id="message"></div>
+<div id="suggestion"></div>
 
 <br />
