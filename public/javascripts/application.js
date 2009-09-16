@@ -109,7 +109,6 @@ function zoomTo(lat,lng) {
 		 	// ===== If there was more than one result, "ask did you mean" on them all =====
 		 	if (result.Placemark.length > 1) { 
 				document.getElementById("message").innerHTML = "Did you mean:";
-				alert("normal did you mean");
 				// Loop through the results
 				for (var i=0; i<result.Placemark.length; i++) {
 			   		var p = result.Placemark[i].Point.coordinates;
