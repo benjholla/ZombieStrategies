@@ -115,7 +115,7 @@ function zoomTo(lat,lng) {
 			   		document.getElementById("message").innerHTML += "<br>"+(i+1)+": <a href='javascript:zoomTo(" +p[1]+","+p[0]+")'>"+ result.Placemark[i].address+"<\/a>";
 		    	}
 		 	}
-		 	// ===== If there was a single marker, is the returned address significantly different =====
+		 	// ===== If there was a single marker, check if the returned address significantly different =====
 		 	else 
 		 	{
 		 		document.getElementById("message").innerHTML = "";
@@ -127,19 +127,17 @@ function zoomTo(lat,lng) {
 			 	else
 			 	{
 			    	var p = result.Placemark[0].Point.coordinates;
+					// ===== Look for the bounding box of the first result =====
+		          	var N = result.Placemark[0].ExtendedData.LatLonBox.north;
+		          	var S = result.Placemark[0].ExtendedData.LatLonBox.south;
+		          	var E = result.Placemark[0].ExtendedData.LatLonBox.east;
+		          	var W = result.Placemark[0].ExtendedData.LatLonBox.west;
+		          	var bounds = new GLatLngBounds(new GLatLng(S,W), new GLatLng(N,E));
+		          	// Choose a zoom level that fits
+		          	var zoom = map.getBoundsZoomLevel(bounds);
+		          	map.setCenter(bounds.getCenter(),zoom);
 		  	 	}
 		  	}
-          	// center the map on the first result
-          	var p = result.Placemark[0].Point.coordinates;
-          	// ===== Look for the bounding box of the first result =====
-          	var N = result.Placemark[0].ExtendedData.LatLonBox.north;
-          	var S = result.Placemark[0].ExtendedData.LatLonBox.south;
-          	var E = result.Placemark[0].ExtendedData.LatLonBox.east;
-          	var W = result.Placemark[0].ExtendedData.LatLonBox.west;
-          	var bounds = new GLatLngBounds(new GLatLng(S,W), new GLatLng(N,E));
-          	// Choose a zoom level that fits
-          	var zoom = map.getBoundsZoomLevel(bounds);
-          	map.setCenter(bounds.getCenter(),zoom);
         }
         // ====== Decode the error status ======
         else {
