@@ -1,3 +1,5 @@
+<script language="javascript" src="/javascripts/plan_controls.js"></script>
+
 <h1 style="margin:0;">Disaster Plan</h1>
 
 <noscript><b>JavaScript must be enabled in order for you to use Google Maps.</b> 
@@ -8,15 +10,56 @@
 
 <br />
 
-Search: <form onsubmit="showAddress(); return false" action="#">
-	<input id="search" size="50" type="text" value="" />
-	<input type="submit" value="Go!" />
-	<input type="button" value="Show Traffic" id="traffic_button" onClick="toggleTraffic();"/>
-</form>
+<table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>
+	Search: <form onsubmit="showAddress(); return false" action="#">
+		<input id="search" size="50" type="text" value="" />
+		<input type="submit" value="Go!" />
+		<input type="button" value="Show Traffic" id="traffic_button" onClick="toggleTraffic();"/>
+	</form>
 
-<br />
+	<br />
 
-<div id="map" style="width: 820px; height: 400px"><center><br /><br /><br /><h3>Loading Map...</h3><br /><img src="/images/ajax-loader.gif" /></center></div>
+	<div id="map" style="width: 645px; height: 400px"><center><br /><br /><br /><h3>Loading Map...</h3><br /><img src="/images/ajax-loader.gif" /></center></div>
+	
+</td>
+<td>
+<table style="text-align: left;" border="0" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<td>
+	<A href="#" onMouseOver="return handleAddButtonMouseOver()" onMouseOut= "return handleAddButtonMouseOut()"
+	onMouseDown="return handleAddButtonMouseDown()" onMouseUp="return handleAddButtonMouseUp()">
+	<img name="addButton" src="/images/add_unselected_button.png" width="170" height="59" border="0" alt="Add">
+	</A>
+</td>
+</tr>
+<tr>
+<td>
+	<A href="#" onMouseOver="return handleModifyButtonMouseOver()" onMouseOut= "return handleModifyButtonMouseOut()"
+	onMouseDown="return handleModifyButtonMouseDown()" onMouseUp="return handleModifyButtonMouseUp()">
+	<img name="modifyButton" src="/images/modify_unselected_button.png" width="170" height="59" border="0" alt="Add">
+	</A>
+</td>
+</tr>
+<tr>
+<td>
+	<A href="#" onMouseOver="return handleRemoveButtonMouseOver()" onMouseOut= "return handleRemoveButtonMouseOut()"
+	onMouseDown="return handleRemoveButtonMouseDown()" onMouseUp="return handleRemoveButtonMouseUp()">
+	<img name="removeButton" src="/images/remove_unselected_button.png" width="170" height="59" border="0" alt="Add">
+	</A>
+</td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+
+
 <br />
 <div id="location"></div>
 
