@@ -29,13 +29,11 @@ body {
 	float:right; padding:8px 1px 0 0; 
 }
 
-
 #content {
 	background-color:#C0C0C0;
 	min-height:300px;
 	padding:15px;
 }
-
 
 #footer {
 	background: url(/images/header.png) #555 top center no-repeat;
@@ -52,15 +50,10 @@ body {
 	color: #FD5000
 }
 
-
-
 .post h2 {display:block; margin-bottom:0px;}
 .post .description {display:block; font-size:12px; color:#999;}
-
 .post blockquote {background:#eee url(/images/quote.png) 5px 5px no-repeat; padding:8px 8px 0 35px; font:normal 14px "Palatino Linotype", "Book Antiqua", Palatino, serif; display:block; border: solid 1px #ddd; }
-
 .post .extract { float:left; margin-right:10px; width:250px;}
-
 .post ul {margin-left:25px;}
 .post ol {margin-left:25px;}
 .post li {padding:3px;}
