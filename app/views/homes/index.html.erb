@@ -1,21 +1,35 @@
 <div class="post">        
-  <h1>ZombieStrategies coming soon....</h1>
+  
+	<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+	<script>
+	new TWTR.Widget({
+	  version: 2,
+	  type: 'profile',
+	  rpp: 6,
+	  interval: 6000,
+	  width: 'auto',
+	  height: 300,
+	  theme: {
+	    shell: {
+	      background: '#333333',
+	      color: '#ffffff'
+	    },
+	    tweets: {
+	      background: '#000000',
+	      color: '#ffffff',
+	      links: '#4aed05'
+	    }
+	  },
+	  features: {
+	    scrollbar: true,
+	    loop: false,
+	    live: false,
+	    hashtags: true,
+	    timestamp: true,
+	    avatars: false,
+	    behavior: 'all'
+	  }
+	}).render().setUser('ZombieStrategy').start();
+	</script>
 
-  <h2>
-	Announcements <a href="http://zombiestrategies.com/posts.atom" target="_blank"><img src="/images/rss.png" width="18" height="18" border="0" alt="Subscribe!" /></a>
-  </h2>
-
-	<h3>
-  		<ul>
-			<% Post.all(:order => 'created_at DESC', :limit => 3).each do |post| %>
-	    	<li>
-				<% if post.body.size <= 300 %>
-			    	<%= link_to post.title, post %> - <%=h post.body %>
-			    <% else %>
-			    	<%= link_to post.title, post %> - <%=h post.body.slice!(0..300) %>...
-			    <% end %>
-			</li>
-			<% end %>
-  		</ul>
-	</h3>
 </div>
