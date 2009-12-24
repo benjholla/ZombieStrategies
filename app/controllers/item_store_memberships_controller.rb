@@ -1,4 +1,7 @@
 class ItemStoreMembershipsController < ApplicationController
+  
+  before_filter :authorize
+  
   # GET /item_store_memberships
   # GET /item_store_memberships.xml
   def index

@@ -1,4 +1,7 @@
 class TwitterComputationsController < ApplicationController
+  
+  before_filter :authorize, :except => :show
+  
   # GET /twitter_computations
   # GET /twitter_computations.xml
   def index

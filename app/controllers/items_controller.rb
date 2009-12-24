@@ -1,4 +1,7 @@
 class ItemsController < ApplicationController
+  
+  before_filter :authorize, :except => [:index, :show]
+  
   # GET /items
   # GET /items.xml
   def index

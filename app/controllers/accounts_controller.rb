@@ -1,4 +1,7 @@
 class AccountsController < ApplicationController
+  
+  before_filter :authorize, :except => [:new]
+  
   # GET /accounts
   # GET /accounts.xml
   def index
