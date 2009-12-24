@@ -59,3 +59,21 @@ body {
 .post li {padding:3px;}
 .post .leftalign {display:block; padding:5px; background:#eee; margin:8px; float:left; border:solid 1px #ddd;}
 .post .rightalign {display:block; padding:5px; background:#eee; margin:8px; float:right;border:solid 1px #ddd;}
+
+div.error
+{
+width:220px;
+padding:10px;
+border:2px solid red;
+margin:0px;
+background-color: #FFFF66;
+}
+
+div.notification
+{
+width:220px;
+padding:10px;
+border:2px solid red;
+margin:0px;
+background-color: #FFFF66;
+}
