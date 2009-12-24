@@ -8,7 +8,7 @@
     <th>Resolution</th>
     <th>Scheduled Update</th>
 	<th></th>
-	<!--<th></th>-->
+	<th></th>
   </tr>
 
 <% @twitter_trends.each do |twitter_trend| %>
@@ -19,9 +19,9 @@
     <td><%=h twitter_trend.resolution %></td>
     <td><%=h twitter_trend.scheduled_update %></td>
     <td><%= link_to 'Show', twitter_trend %></td>
-    <!--<%= link_to 'Destroy', twitter_trend, :confirm => 'Are you sure?', :method => :delete %></td>-->
+    <td><%= link_to 'Destroy', twitter_trend, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
-<!--<h4><%= link_to 'Create New Twitter Trend Watch', new_twitter_trend_path %></h4>-->
+<h4><%= link_to 'Create New Twitter Trend Watch', new_twitter_trend_path %></h4>
