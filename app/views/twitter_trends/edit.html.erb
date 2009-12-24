@@ -1,3 +1,4 @@
+<% if admin? %>
 <% form_for(@twitter_trend) do |f| %>
   <%= f.error_messages %>
 
@@ -29,3 +30,6 @@
 <h4>
 	<%= link_to 'Cancel', @twitter_trend %>
 </h4>
+<% else %>
+<h1>Unauthorized Access</h1>
+<% end %>

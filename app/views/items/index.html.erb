@@ -1,23 +1,29 @@
-<h1>Listing items</h1>
+<h1>Listing Items</h1>
 
 <table border="1">
   <tr>
     <th>Item</th>
 	<th></th>
+	<% if admin? %>
 	<th></th>
 	<th></th>
+	<% end %>
   </tr>
 
 <% @items.each do |item| %>
   <tr>
     <td><%=h item.item %></td>
     <td><%= link_to 'Show', item %></td>
+	<% if admin? %>
     <td><%= link_to 'Edit', edit_item_path(item) %></td>
     <td><%= link_to 'Destroy', item, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
+<% if admin? %>
 <%= link_to 'New item', new_item_path %>
+<% end %>

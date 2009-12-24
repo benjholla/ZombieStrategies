@@ -6,8 +6,10 @@
     <th>Rate</th>
     <th>Population</th>
     <th>Threat</th>
+	<% if admin? %>
 	<th></th>
 	<th></th>
+	<% end %>
   </tr>
 
 <% @twitter_computations.each do |twitter_computation| %>
@@ -16,8 +18,10 @@
     <td><%=h twitter_computation.rate %></td>
     <td><%=h twitter_computation.population %></td>
     <td><%=h twitter_computation.threat %></td>
+	<% if admin? %>
     <td><%= link_to 'Edit', edit_twitter_computation_path(twitter_computation) %></td>
     <td><%= link_to 'Destroy', twitter_computation, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
   </tr>
 <% end %>
 </table>

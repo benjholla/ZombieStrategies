@@ -20,8 +20,9 @@
 </p>
 
 <p>
-  <b><%= link_to 'Back', twitter_trends_path %></b>|
+  <b><%= link_to 'Back', twitter_trends_path %></b><% if admin?%> |
   <b><%= link_to 'Edit', edit_twitter_trend_path(@twitter_trend) %></b>
+  <% end %>
 </p>
 
 <p>
@@ -48,8 +49,10 @@
     <th>Threat</th>
 	<th>Date</th>
 	<th>Time Ago</th>
+	<% if admin? %>
 	<th>Edit</th>
 	<th>Destroy</th>
+	<% end %>
   </tr>
 
 <% @twitter_trend.twitter_computations.all(:order => 'created_at DESC', :limit => 20).each do |twitter_computation| %>
@@ -59,12 +62,15 @@
     <td><%=h twitter_computation.threat %></td>
 	<td><%=h twitter_computation.created_at %></td>
 	<td><%= time_ago_in_words(twitter_computation.created_at) %> ago</td>
+	<% if admin? %>
     <td><%= link_to 'Edit', edit_twitter_computation_path(twitter_computation) %></td>
     <td><%= link_to 'Destroy', twitter_computation, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
   </tr>
 <% end %>
 </table>
 
+<% if admin?%>
 <br />
 <br />
 
@@ -86,4 +92,5 @@
   <p>
     <%= f.submit 'Create' %>
   </p>
+<% end %>
 <% end %>

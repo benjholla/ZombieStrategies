@@ -1,3 +1,4 @@
+<% if admin? %>
 <h1>Editing Post</h1>
 
 <% form_for(@post) do |f| %>
@@ -18,3 +19,6 @@
 
 <%= link_to 'Show', @post %> |
 <%= link_to 'Back', posts_path %>
+<% else %>
+<h1>Unauthorized Access</h1>
+<% end %>
