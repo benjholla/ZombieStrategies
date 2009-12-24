@@ -62,18 +62,18 @@ body {
 
 div.error
 {
-width:220px;
-padding:10px;
-border:2px solid red;
-margin:0px;
-background-color: #FFFF66;
+width:50%;
+padding:2px;
+border:2px solid black;
+margin:2px;
+background-color: red;
 }
 
 div.notification
 {
-width:220px;
-padding:10px;
-border:2px solid red;
-margin:0px;
-background-color: #FFFF66;
+width:50%;
+padding:2px;
+border:2px solid black;
+margin:2px;
+background-color: green;
 }
