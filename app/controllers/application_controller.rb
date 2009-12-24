@@ -12,6 +12,14 @@ class ApplicationController < ActionController::Base
   
   protected
   
+  def authorize
+    unless admin?
+      flash[:error] = "Unauthorized Access"
+      redirect_to(root_path)
+      false
+    end
+  end
+  
   def admin?
     false
   end

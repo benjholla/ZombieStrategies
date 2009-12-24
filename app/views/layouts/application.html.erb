@@ -43,6 +43,7 @@
 	</div>
     
     <div id="content">
+	  <% if flash[:error] %><p style="color: red"><%= flash[:error] %></p><% end %>
       <% if flash[:notice] %><p style="color: green"><%= flash[:notice] %></p><% end %>
       <%= yield %>
     </div>

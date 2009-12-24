@@ -1,4 +1,7 @@
 class TwitterTrendsController < ApplicationController
+  
+  before_filter :authorize, :except => :index
+  
   # GET /twitter_trends
   # GET /twitter_trends.xml
   def index
