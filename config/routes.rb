@@ -3,7 +3,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
   map.resources :item_store_memberships
   map.resources :items
-  map.resources :accounts
   map.resources :stores, :collection => {:create => :get}
   map.resources :homes, :has_many => :posts
   map.resources :posts
