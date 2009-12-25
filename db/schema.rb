@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(:version => 20091224215842) do
 
   create_table "users", :force => true do |t|
     t.string   "login",                     :limit => 40
-    t.string   "name",                      :limit => 100, :default => ""
+    t.string   "name",                      :limit => 100,                                 :default => ""
     t.string   "email",                     :limit => 100
     t.string   "crypted_password",          :limit => 40
     t.string   "salt",                      :limit => 40
@@ -88,6 +88,12 @@ ActiveRecord::Schema.define(:version => 20091224215842) do
     t.datetime "updated_at"
     t.string   "remember_token",            :limit => 40
     t.datetime "remember_token_expires_at"
+    t.string   "first_name",                :limit => 40
+    t.string   "last_name",                 :limit => 40
+    t.string   "phone",                     :limit => 40
+    t.string   "twitter",                   :limit => 40
+    t.decimal  "lat",                                      :precision => 15, :scale => 10
+    t.decimal  "lng",                                      :precision => 15, :scale => 10
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

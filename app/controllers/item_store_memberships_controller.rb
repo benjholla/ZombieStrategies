@@ -1,6 +1,6 @@
 class ItemStoreMembershipsController < ApplicationController
   
-  before_filter :authorize
+  before_filter :login_required
   
   # GET /item_store_memberships
   # GET /item_store_memberships.xml

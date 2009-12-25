@@ -32,7 +32,14 @@ module AuthenticatedSystem
     #  end
     #
     def authorized?(action = action_name, resource = nil)
-      logged_in?
+      logged_in? && admin?
+    end
+    
+    # Check if the user is an admin
+    def admin?
+      if current_user != nil
+      current_user.login == "admin"
+      end
     end
 
     # Filter method to enforce a login requirement.

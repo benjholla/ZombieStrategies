@@ -1,6 +1,6 @@
 class TwitterComputationsController < ApplicationController
   
-  before_filter :authorize, :except => :show
+  before_filter :login_required, :except => :show
   
   # GET /twitter_computations
   # GET /twitter_computations.xml

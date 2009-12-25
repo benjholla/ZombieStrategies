@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
   
-  before_filter :authorize, :except => [:new]
+  before_filter :login_required, :except => [:new]
   
   # GET /accounts
   # GET /accounts.xml

@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   
-  before_filter :authorize, :except => [:index, :show]
+  before_filter :login_required, :except => [:index, :show]
   
   # GET /items
   # GET /items.xml
