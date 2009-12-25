@@ -4,8 +4,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :item_store_memberships
   map.resources :items
   map.resources :stores, :collection => {:create => :get}
-  map.resources :homes, :has_many => :posts
-  map.resources :posts
+  map.resources :homes
   map.resources :twitter_trends, :has_many => :twitter_computations
   map.resources :twitter_computations
 
