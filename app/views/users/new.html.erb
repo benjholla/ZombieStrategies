@@ -3,17 +3,68 @@
 
 <%= error_messages_for :user %>
 <% form_for :user, :url => users_path do |f| -%>
-<p><%= label_tag 'login' %><br/>
-<%= f.text_field :login %></p>
 
-<p><%= label_tag 'email' %><br/>
-<%= f.text_field :email %></p>
+<h2>Login Information</h2>
+	<p>
+		<%= label_tag 'login', 'Username' %><br/>
+		<%= f.text_field :login %>
+	</p>
 
-<p><%= label_tag 'password' %><br/>
-<%= f.password_field :password %></p>
+	<p>
+		<%= label_tag 'password', 'Password' %><br/>
+		<%= f.password_field :password %>
+	</p>
 
-<p><%= label_tag 'password_confirmation', 'Confirm Passyword' %><br/>
-<%= f.password_field :password_confirmation %></p>
+	<p>
+		<%= label_tag 'password_confirmation', 'Confirm Password' %><br/>
+		<%= f.password_field :password_confirmation %>
+	</p>
 
-<p><%= submit_tag 'Sign up' %></p>
+<h2>Contact Information</h2>
+  	<p>
+    	<%= label_tag 'first_name', 'First Name' %><br />
+    	<%= f.text_field :first_name %>
+  	</p>
+
+  	<p>
+    	<%= label_tag 'last_name', 'Last Name' %><br />
+		<%= f.text_field :last_name %>
+	</p>
+
+	<p>
+		<%= label_tag 'email', 'Email' %><br/>
+		<%= f.text_field :email %>
+	</p>
+
+  	<p>
+    	<%= label_tag 'phone', 'Phone' %><br />
+    	<%= f.text_field :phone %>(optional, currently limited to the United States only.)
+  	</p>
+
+
+  	<p>
+    	<%= label_tag 'twitter', 'Twitter' %><br />
+    	<i>http://twitter.com/</i><%= f.text_field :twitter, "size" => 11 %>(optional, requires that you are following the <a href="http://twitter.com/ZombieStrategy">ZombieStrategies Twitter</a>)
+  	</p>
+
+
+  	<h2>Location Information</h2> (currently not implemented, this information will be used to send you relevant information for your area.)
+  	<p>
+    	<%= label_tag 'lat', 'Latitude' %><br />
+    	<%= f.text_field :lat %>
+  	</p>
+
+  	<p>
+    	<%= label_tag 'lng', 'Longitude' %><br />
+    	<%= f.text_field :lng %>
+  	</p>
+
+	<p>
+		<%= submit_tag 'Sign up' %>
+	</p>
+	
 <% end -%>
+
+<h3>
+<%= link_to 'Cancel', root_path %>
+</h3>

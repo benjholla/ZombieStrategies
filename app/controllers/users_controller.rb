@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       redirect_back_or_default('/')
       flash[:notice] = "Thanks for signing up!"
     else
-      flash[:error]  = "We couldn't set up that account, sorry.  Please try again."
+      flash[:error]  = "This infomation is not valid, sorry.  Please try again."
       render :action => 'new'
     end
   end
