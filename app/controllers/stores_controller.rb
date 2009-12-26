@@ -2,12 +2,29 @@ class StoresController < ApplicationController
   # GET /stores
   # GET /stores.xml
   def index
-    @stores = Store.all
+    
+    #@stores = Store.all  # just returns all stores, use this to turn off server side filtering
+    
+    if(params[:ne]!=nil && params[:sw]!=nil)
+      ne = params[:ne].split(',').collect{|e|e.to_f}
+      sw = params[:sw].split(',').collect{|e|e.to_f}
+    
+      # if the NE longitude is less than the SW longitude
+      # it means we are split over the meridian
+      if ne[1] > sw[1]
+        conditions = 'lng > ? AND lng < ? AND lat <= ? AND lat >= ?'
+      else
+        conditions = '(lng >= ? OR lng < ?) AND lat <= ? AND lat >= ?'
+      end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @stores }
-      format.js {render :json => @stores.to_json(:include => {:items => {}}) } 
+      @stores = Store.find :all,
+        :conditions => [conditions,sw[1],ne[1],ne[0],sw[0]]
+    
+      respond_to do |format|
+        format.html # index.html.erb
+        format.xml  { render :xml => @stores }
+        format.js {render :json => @stores.to_json(:include => {:items => {}}) } 
+      end
     end
   end
 

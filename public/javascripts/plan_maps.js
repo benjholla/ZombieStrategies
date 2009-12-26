@@ -311,51 +311,47 @@ function createMarker(latlng, html, id) {
 
 // plots all of the markers, on the google map, that are returned from the stores.js controller
 function listMarkers() {
-	
 	// format request to perform server side filtering of location points
 	var bounds = map.getBounds();
 	var southWest = bounds.getSouthWest();
 	var northEast = bounds.getNorthEast();
 	var url = 'stores.js?ne=' + northEast.toUrlValue() + '&sw=' + southWest.toUrlValue();
-	
-  var request = GXmlHttp.create();
-  //tell the request where to retrieve data from.
-  request.open('GET', url, true);
-  //tell the request what to do when the state changes.
-  request.onreadystatechange = function() {
-    if (request.readyState == 4) {
-      //parse the result to JSON,by eval-ing it.
-      //The response is an array of markers
-
-      markers=eval( "(" + request.responseText + ")" );
-	
-      for (var i = 0 ; i < markers.length ; i++) {
-        
-		var marker = markers[i].store ; // so get the list of attributes we want here
-		
-        var lat=marker.lat;
-        var lng=marker.lng;
-        //check for lat and lng so MSIE does not error
-        //on parseFloat of a null value
-        if (lat && lng) {
-        	var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
-        	var html = '<div><strong>Store: </strong> ' + marker.store;
-			html += '<ul>';
-			for (var j=0; j<marker.items.length; j++)
-			{
-				if(marker.items[j].item){
-					html += '<li>' + marker.items[j].item + '</li>';
-				}
-			}
-			html += '</ul>' + '</div>';
-		
-        	var marker = createMarker(latlng, html, marker.id);
-        	map.addOverlay(marker);
-        } // end of if lat and lng
-      } // end of for loop
-    } //if
-  } //function
-  request.send(null);
+	// create request
+  	var request = GXmlHttp.create();
+  	//tell the request where to retrieve data from.
+	alert(url);
+  	request.open('GET', url, true);
+  	//tell the request what to do when the state changes.
+  	request.onreadystatechange = function() {
+    	if (request.readyState == 4) {
+      		//parse the result to JSON,by eval-ing it.
+      		//The response is an array of markers
+      		markers=eval( "(" + request.responseText + ")" );
+      		for (var i = 0 ; i < markers.length ; i++) {
+				var marker = markers[i].store ; // so get the list of attributes we want here
+        		var lat=marker.lat;
+        		var lng=marker.lng;
+        		//check for lat and lng so MSIE does not error
+        		//on parseFloat of a null value
+        		if (lat && lng) {
+        			var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
+        			var html = '<div><strong>Store: </strong> ' + marker.store;
+					html += '<ul>';
+					for (var j=0; j<marker.items.length; j++)
+					{
+						// add the items to the html list
+						if(marker.items[j].item){
+							html += '<li>' + marker.items[j].item + '</li>';
+						}
+					}
+					html += '</ul>' + '</div>';
+        			var marker = createMarker(latlng, html, marker.id);
+        			map.addOverlay(marker);
+        		} // end of if lat and lng
+      		} // end of for loop
+    	} //if
+	} //function
+	request.send(null);
 }
 
 
