@@ -209,16 +209,11 @@ function init() {
 	*/
 	
 	// add markers that are in view to the map
-    listMarkers();
+    listMarkers(map.getCenter());
 
-	// if the map is zoomed refresh the markers
-	GEvent.addListener(map, 'zoomend', function(){
-		listMarkers();
-	});
-	
-	// if the map is scrolled update markers
+	// if the map is scrolled update markers, this also catches 'zoomend' events
 	GEvent.addListener(map, 'moveend', function(){
-		listMarkers();
+		listMarkers(map.getCenter());
 	});
 
     GEvent.addListener(map, "click", function(overlay, latlng) {
@@ -321,13 +316,14 @@ function createMarker(latlng, html, id) {
 }
 
 // plots all of the markers, on the google map, that are returned from the stores.js controller
-function listMarkers() {
+function listMarkers(latlng) {
 	map.clearOverlays();
 	// format request to perform server side filtering of location points
 	var bounds = map.getBounds();
 	var southWest = bounds.getSouthWest();
 	var northEast = bounds.getNorthEast();
-	var url = 'stores.js?ne=' + northEast.toUrlValue() + '&sw=' + southWest.toUrlValue();
+	var url = 'stores.js?ne=' + northEast.toUrlValue() + '&sw=' + southWest.toUrlValue() + '&ll=' + latlng.toUrlValue();
+	alert(url);
 	// create request
   	var request = GXmlHttp.create();
   	//tell the request where to retrieve data from.
