@@ -252,13 +252,22 @@ function setMarker(latlng){
 		map.removeOverlay(marker);
 	}
 	// add a new marker
-	var markerOptions = {icon:houseIcon, draggable: false};
+	var markerOptions = {icon:houseIcon, draggable: true};
 	marker = new GMarker(latlng, markerOptions);
+	
+	// add dragable listener
+	GEvent.addListener(marker, "dragend", function() {
+		updateLatLngInputFields(marker.getLatLng());
+	});	
+	
 	map.addOverlay(marker);
 	// update the input form 
+	updateLatLngInputFields(latlng);
+}
+
+function updateLatLngInputFields(latlng){
 	oFormObject.elements["user_lat"].value = latlng.lat();
 	oFormObject.elements["user_lng"].value = latlng.lng();
-	return false;
 }
 
 function clearMarkers(){
