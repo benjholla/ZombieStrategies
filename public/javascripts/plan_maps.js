@@ -322,6 +322,7 @@ function createMarker(latlng, html, id) {
 
 // plots all of the markers, on the google map, that are returned from the stores.js controller
 function listMarkers() {
+	map.clearOverlays();
 	// format request to perform server side filtering of location points
 	var bounds = map.getBounds();
 	var southWest = bounds.getSouthWest();
@@ -330,7 +331,6 @@ function listMarkers() {
 	// create request
   	var request = GXmlHttp.create();
   	//tell the request where to retrieve data from.
-	alert(url);
   	request.open('GET', url, true);
   	//tell the request what to do when the state changes.
   	request.onreadystatechange = function() {
