@@ -17,7 +17,19 @@ function init() {
   	if (GBrowserIsCompatible()) {
     	map = new GMap2(document.getElementById("map"));
 	
-		// sets the map to the default position listed above
+		// used to store a resulting message from the geocoder
+		//var location = "";
+		
+	    // If ClientLocation was filled in by the loader, use that info instead
+	    if (google.loader.ClientLocation) {
+	    	startZoom = 13;
+	    	centerLatitude = google.loader.ClientLocation.latitude;
+			centerLongitude = google.loader.ClientLocation.longitude;
+			setMarker(new google.maps.LatLng(centerLatitude, centerLongitude));
+	    	//location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
+	    }
+	
+		// sets the map to the default position listed above, or the IP geocododed location if found
 		map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
 
 		// add some nice controls to the map
@@ -59,10 +71,16 @@ function init() {
 // deletes the old marker and adds a new marker at the given locations
 // also updates form lat lng input fields
 function setMarker(latlng){
+	// if the new marker is the same as the old marker, do nothing
+	if(marker && (marker == new GMarker(latlng))){
+		return false;
+	}
+	// if theres an old marker, delete it
 	if(marker)
 	{
 		map.removeOverlay(marker);
 	}
+	// add a new marker
 	marker = new GMarker(latlng);
 	map.addOverlay(marker);
 	// update the input form 
