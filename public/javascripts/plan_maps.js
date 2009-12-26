@@ -320,7 +320,7 @@ function listMarkers() {
 	
   var request = GXmlHttp.create();
   //tell the request where to retrieve data from.
-  request.open('GET', 'url', true);
+  request.open('GET', url, true);
   //tell the request what to do when the state changes.
   request.onreadystatechange = function() {
     if (request.readyState == 4) {
@@ -328,8 +328,6 @@ function listMarkers() {
       //The response is an array of markers
 
       markers=eval( "(" + request.responseText + ")" );
-
-		alert(request.responseText);
 	
       for (var i = 0 ; i < markers.length ; i++) {
         
