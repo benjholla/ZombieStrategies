@@ -328,6 +328,8 @@ function listMarkers() {
       //The response is an array of markers
 
       markers=eval( "(" + request.responseText + ")" );
+
+		alert(request.responseText);
 	
       for (var i = 0 ; i < markers.length ; i++) {
         
