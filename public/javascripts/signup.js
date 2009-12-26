@@ -252,7 +252,8 @@ function setMarker(latlng){
 		map.removeOverlay(marker);
 	}
 	// add a new marker
-	marker = new GMarker(latlng, houseIcon);
+	var markerOptions = {icon:houseIcon, draggable: false};
+	marker = new GMarker(latlng, markerOptions);
 	map.addOverlay(marker);
 	// update the input form 
 	oFormObject.elements["user_lat"].value = latlng.lat();
