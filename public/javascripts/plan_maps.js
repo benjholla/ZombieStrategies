@@ -323,7 +323,6 @@ function listMarkers(latlng) {
 	var southWest = bounds.getSouthWest();
 	var northEast = bounds.getNorthEast();
 	var url = 'stores.js?ne=' + northEast.toUrlValue() + '&sw=' + southWest.toUrlValue() + '&ll=' + latlng.toUrlValue();
-	alert(url);
 	// create request
   	var request = GXmlHttp.create();
   	//tell the request where to retrieve data from.
