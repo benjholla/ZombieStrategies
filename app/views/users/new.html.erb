@@ -38,17 +38,17 @@
 
   	<p>
     	<%= label_tag 'phone', 'Phone' %><br />
-    	<%= f.text_field :phone %>(optional, currently limited to the United States only.)
+    	<%= f.text_field :phone %> (optional, currently limited to the United States only.)
   	</p>
 
 
   	<p>
     	<%= label_tag 'twitter', 'Twitter' %><br />
-    	<i>http://twitter.com/</i><%= f.text_field :twitter, "size" => 11 %>(optional, requires that you are following the <a href="http://twitter.com/ZombieStrategy">ZombieStrategies Twitter</a>)
+    	<i>http://twitter.com/</i><%= f.text_field :twitter, "size" => 11 %> (optional, requires that you are following the <a href="http://twitter.com/ZombieStrategy">ZombieStrategies Twitter</a>)
   	</p>
 
 
-  	<h2>Location Information</h2> (optional, this information will be used to send you relevant information for your area.)
+  	<h2>Location Information</h2> <u>Home Location</u>  (optional, this information will be used to send you relevant information for your area.)
   	<p>
     	<%= label_tag 'lat', 'Latitude' %><br />
     	<%= f.text_field :lat, {:onkeypress => " return clearMarkersOnTyping(this,event);"} %>
