@@ -71,6 +71,23 @@ function setMarker(latlng){
 	return false;
 }
 
+// an alternate method to using a submit button for the search bar, adds return key search functionality
+function submitenter(myfield,e)
+{
+    var keycode;
+    if (window.event) keycode = window.event.keyCode;
+    else if (e) keycode = e.which;
+    else return true;
+
+    if (keycode == 13)
+    {
+        showAddress();
+        return false;
+    }
+    else
+        return true;
+}
+
 // initialize and cleanup google maps
 google.load("maps", "2", {callback: init});
 window.onunload = GUnload;
