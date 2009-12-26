@@ -208,7 +208,18 @@ function init() {
 	}
 	*/
 	
+	// add markers that are in view to the map
     listMarkers();
+
+	// if the map is zoomed refresh the markers
+	GEvent.addListener(map, 'zoomend', function(){
+		listMarkers();
+	});
+	
+	// if the map is scrolled update markers
+	GEvent.addListener(map, 'moveend', function(){
+		listMarkers();
+	});
 
     GEvent.addListener(map, "click", function(overlay, latlng) {
 	  
