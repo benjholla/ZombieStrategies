@@ -48,15 +48,15 @@
   	</p>
 
 
-  	<h2>Location Information</h2> (currently not implemented, this information will be used to send you relevant information for your area.)
+  	<h2>Location Information</h2> (optional, this information will be used to send you relevant information for your area.)
   	<p>
     	<%= label_tag 'lat', 'Latitude' %><br />
-    	<%= f.text_field :lat %>
+    	<%= f.text_field :lat, {:onkeypress => " return clearMarkersOnTyping(this,event);"} %>
   	</p>
 
   	<p>
     	<%= label_tag 'lng', 'Longitude' %><br />
-    	<%= f.text_field :lng %>
+    	<%= f.text_field :lng, {:onkeypress => " return clearMarkersOnTyping(this,event);"} %>
   	</p>
 
 	<script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
@@ -71,7 +71,7 @@
 
 	<div id="map" style="width: 675px; height: 400px"><center><br /><br /><br /><h3>Loading Map...</h3><br /><img src="/images/ajax-loader.gif" alt="Please wait..."/></center></div>
 	Search:
-	<input id="search" size="50" type="text" value="" onKeyPress="return submitenter(this,event)"/>
+	<input id="search" size="50" type="text" value="" onkeypress="return submitEnter(this,event)"/>
 	<input type="button" value="Go!" onclick="showAddress(); return false;"/>
 
 	<br />

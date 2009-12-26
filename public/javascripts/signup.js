@@ -89,8 +89,23 @@ function setMarker(latlng){
 	return false;
 }
 
+function clearMarkers(){
+	map.clearOverlays();
+}
+
+// clears any markers on the map if the lat/lng fields are edited manually
+function clearMarkersOnTyping(myfield,e){
+	var keycode;
+    if (window.event) keycode = window.event.keyCode;
+    else if (e) keycode = e.which;
+    else return true;
+	
+	clearMarkers();
+	return true;
+}
+
 // an alternate method to using a submit button for the search bar, adds return key search functionality
-function submitenter(myfield,e)
+function submitEnter(myfield,e)
 {
     var keycode;
     if (window.event) keycode = window.event.keyCode;
