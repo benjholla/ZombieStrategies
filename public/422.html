@@ -12,11 +12,55 @@
   <%= stylesheet_link_tag 'style' %>
 </head>
 <body>
-  <!-- This file lives in public/422.html -->
-  <div class="dialog">
-    <h1>The change you wanted was rejected.</h1>
-    <p>Maybe you tried to change something you didn't have access to, or the server may have been attacked by zombies...</p>
-	<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/7EbeqPynF2s&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/7EbeqPynF2s&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
-  </div>
+	<div id="wraper">
+	    <div id="header">
+			<a href="<%= root_path %>">
+				<img class="links" src="/images/home.png" alt="Home" border="0"/>	
+			</a>
+
+			<a href="<%= twitter_trends_path %>">
+				<img class="links" src="/images/monitor.png" alt="Monitor" border="0"/>
+			</a>
+
+			<a href="<%= stores_path %>">
+				<img class="links" src="/images/plan.png" alt="Plan" border="0"/>
+			</a>
+
+			<a href="/store">
+				<img class="links" src="/images/store.png" alt="Store" border="0"/>
+			</a>
+
+			<a href="http://forum.zombiestrategies.com/">
+				<img class="links" src="/images/forum.png" alt="Forum" border="0"/>
+			</a>
+
+			<a href="/about">
+				<img class="links" src="/images/about.png" alt="About" border="0"/>
+		 	</a>
+
+			<img class="logo" src="/images/zombielogo.png" alt="ZombieStrategies"/>
+		</div>
+
+	    <div id="content">
+		  	<!-- This file lives in public/422.html -->
+		  <div class="dialog">
+		    <h1>The change you wanted was rejected.</h1>
+		    <p>Maybe you tried to change something you didn't have access to, or the server may have been attacked by zombies...</p>
+			<object width="425" height="344"><param name="movie" value="http://www.youtube.com/v/7EbeqPynF2s&hl=en&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/7EbeqPynF2s&hl=en&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="425" height="344"></embed></object>
+		  </div>
+	    </div>
+
+	    <div id="footer">
+	      <p><a href="http://fribblesoft.com/aboutus.html">Copyright © 2009 Fribblesoft</a>  |  <% if current_user == nil %><%= link_to "Login", "/login" %><% else %><%= link_to "Logout", "/logout" %><% end %></p>
+	      <p>
+	        <%= link_to "Home", root_url %> |
+	        <%= link_to "Monitor", twitter_trends_url %> |
+	        <%= link_to "Plan", stores_url %> |
+	        <%= link_to "Store", "/store" %> |
+			<a href="http://forum.zombiestrategies.com/">Forum</a> |
+	        <%= link_to "About", "/about" %>
+	      </p>
+	    </div>
+	  </div>
 </body>
 </html>
