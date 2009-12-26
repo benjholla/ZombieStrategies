@@ -311,9 +311,16 @@ function createMarker(latlng, html, id) {
 
 // plots all of the markers, on the google map, that are returned from the stores.js controller
 function listMarkers() {
+	
+	// format request to perform server side filtering of location points
+	var bounds = map.getBounds();
+	var southWest = bounds.getSouthWest();
+	var northEast = bounds.getNorthEast();
+	var url = 'stores.js?ne=' + northEast.toUrlValue() + '&sw=' + southWest.toUrlValue();
+	
   var request = GXmlHttp.create();
   //tell the request where to retrieve data from.
-  request.open('GET', 'stores.js', true);
+  request.open('GET', 'url', true);
   //tell the request what to do when the state changes.
   request.onreadystatechange = function() {
     if (request.readyState == 4) {
