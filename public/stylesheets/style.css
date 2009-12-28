@@ -1,3 +1,6 @@
+/* CSS created by Ben Holland, Copyright Fribblesoft 2010 */
+
+/* Text Style */
 a {color: #0EA2CC; text-decoration: none; }
 h1, h2, h3, h4, h5 {font-family:"Trebuchet MS", Verdana, sans-serif;}
 h1 {color:#E3F7FD; font-size:22px;}
@@ -5,61 +8,66 @@ h2 {color:#D06000; font-size:20px;}
 h3 {font-size:18px;}
 h4 {color:#E3F7FD; font-size:16px;}
 h5 {color:#000000; font-size:14px;}
+
+/* Background */
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
 body {
-	background:url(/images/background_tile.jpg) fixed center top; 
-	background-color:#ccc; font:12px Verdana, Arial, Helvetica, sans-serif;
-}
-.clear {clear:both;}
-.hide {display:none;}
-
-#wraper {
-    width:850px;
-    margin:0 auto;
+  background: #fff url(/images/bg.gif) no-repeat left top;
+  text-align: justify;
 }
 
-#header {
-    height:59px;
-    margin:30px 0 0 0;
-	background: url(/images/header.png) #555 bottom center no-repeat;
-}
-#header img.links {
-	float:left; margin:21px 0 0px 10px;
-}
-#header img.logo {
-	float:right; padding:8px 1px 0 0; 
+/* Body Container */
+#container {
+   width: 1050px;
+   float: left;
+   margin-top:90px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:50px;
 }
 
+/* Main Content Container */
 #content {
-	background-color:#C0C0C0;
-	min-height:300px;
-	padding:15px;
+   width: 1050px;
+   float: left;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:50px;
+   margin-left:50px;
 }
 
+/* Footer Content Container */
 #footer {
-	background: url(/images/header.png) #555 top center no-repeat;
-	padding-top:18px;
-	height:47px;
-	background-color:#C0C0C0;
-	text-align:center;
-}
-#footer p {
-	margin:0;
-	padding:0;
-}
-#footer a {
-	color: #FD5000
+   width: 1000px;
+   float: left;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:0px;
 }
 
-.post h2 {display:block; margin-bottom:0px;}
-.post .description {display:block; font-size:12px; color:#999;}
-.post blockquote {background:#eee url(/images/quote.png) 5px 5px no-repeat; padding:8px 8px 0 35px; font:normal 14px "Palatino Linotype", "Book Antiqua", Palatino, serif; display:block; border: solid 1px #ddd; }
-.post .extract { float:left; margin-right:10px; width:250px;}
-.post ul {margin-left:25px;}
-.post ol {margin-left:25px;}
-.post li {padding:3px;}
-.post .leftalign {display:block; padding:5px; background:#eee; margin:8px; float:left; border:solid 1px #ddd;}
-.post .rightalign {display:block; padding:5px; background:#eee; margin:8px; float:right;border:solid 1px #ddd;}
+/* Title */
+#title {
+  float: left;
+  height: 133px;
+  width: 511px;
+  background: url(/images/title.png) no-repeat left top;
+}
 
+/* Divider */
+.divider {
+  float: left;
+  height: 7px;
+  width: 1000px;
+  margin: 30px 0 30px 0;
+  background: url(/images/divider.png) no-repeat;
+}
+
+/* Error Box */
 div.error
 {
 width:50%;
@@ -69,6 +77,7 @@ margin:2px;
 background-color: red;
 }
 
+/* Notification Box */
 div.notification
 {
 width:50%;
@@ -76,4 +85,220 @@ padding:2px;
 border:2px solid black;
 margin:2px;
 background-color: green;
+}
+
+/* Main Navigation Menu */
+.navigation-box {
+	position:absolute;
+	left:590px;
+	top:96px;
+	margin-top:50px;
+	margin-bottom:0px;
+	margin-right:0px;
+	margin-left:0px;
+}
+
+ul#navigation {	
+	width:442px;
+	list-style:none;
+	height:35px
+}
+
+ul#navigation li {
+	display:inline
+}
+
+ul#navigation li a {
+	height:35px;
+	float:left;
+	text-indent:-9999px;
+	text-decoration:none
+}
+
+ul#navigation  li a span {
+	float:left;
+	display:block
+}
+
+ul#navigation li#navigation-1 a {
+	width:73px;
+	background:url(/images/navigation.png) no-repeat 0px 0
+}
+
+ul#navigation li#navigation-1 a:active,
+ul#navigation li#navigation-1 a:hover {
+	background-position:0px -35px
+}
+ul#navigation li#navigation-1 a.current {
+	background-position:0px -70px
+}
+
+ul#navigation li#navigation-2 a {
+	width:118px;
+	background:url(/images/navigation.png) no-repeat -73px 0
+}
+
+ul#navigation li#navigation-2 a:active,
+ul#navigation li#navigation-2 a:hover {
+	background-position:-73px -35px
+}
+ul#navigation li#navigation-2 a.current {
+	background-position:-73px -70px
+}
+
+ul#navigation li#navigation-3 a {
+	width:86px;
+	background:url(/images/navigation.png) no-repeat -191px 0
+}
+
+ul#navigation li#navigation-3 a:active,
+ul#navigation li#navigation-3 a:hover {
+	background-position:-191px -35px
+}
+ul#navigation li#navigation-3 a.current {
+	background-position:-191px -70px
+}
+
+ul#navigation li#navigation-4 a {
+	width:90px;
+	background:url(/images/navigation.png) no-repeat -277px 0
+}
+
+ul#navigation li#navigation-4 a:active,
+ul#navigation li#navigation-4 a:hover {
+	background-position:-277px -35px
+}
+ul#navigation li#navigation-4 a.current {
+	background-position:-277px -70px
+}
+
+ul#navigation li#navigation-5 a {
+	width:75px;
+	background:url(/images/navigation.png) no-repeat -367px 0
+}
+
+ul#navigation li#navigation-5 a:active,
+ul#navigation li#navigation-5 a:hover {
+	background-position:-367px -35px
+}
+ul#navigation li#navigation-5 a.current {
+	background-position:-367px -70px
+}
+
+/* Unauthenticated Menu Bar */
+.unauthenticated-menu-box {
+	position:absolute;
+	left:900px;
+	top:50px;
+	margin-top:50px;
+	margin-bottom:0px;
+	margin-right:0px;
+	margin-left:0px;
+}
+
+ul#unauthenticated-menu {	
+	width:128px;
+	list-style:none;
+	height:37px
+}
+
+ul#unauthenticated-menu li {
+	display:inline
+}
+
+ul#unauthenticated-menu li a {
+	height:37px;
+	float:left;
+	text-indent:-9999px;
+	text-decoration:none
+}
+
+ul#unauthenticated-menu  li a span {
+	float:left;
+	display:block
+}
+
+ul#unauthenticated-menu li#unauthenticated-menu-1 a {
+	width:56px;
+	background:url(/images/unauthenticated-menu.png) no-repeat 0px 0
+}
+
+ul#unauthenticated-menu li#unauthenticated-menu-1 a:active,
+ul#unauthenticated-menu li#unauthenticated-menu-1 a:hover {
+	background-position:0px -37px
+}
+ul#unauthenticated-menu li#unauthenticated-menu-1 a.current {
+	background-position:0px -74px
+}
+
+ul#unauthenticated-menu li#unauthenticated-menu-2 a {
+	width:72px;
+	background:url(/images/unauthenticated-menu.png) no-repeat -56px 0
+}
+
+ul#unauthenticated-menu li#unauthenticated-menu-2 a:active,
+ul#unauthenticated-menu li#unauthenticated-menu-2 a:hover {
+	background-position:-56px -37px
+}
+ul#unauthenticated-menu li#unauthenticated-menu-2 a.current {
+	background-position:-56px -74px
+}
+
+/* Authenticated Menu Bar */
+.authenticated-menu-box {
+	position:absolute;
+	left:887px;
+	top:50px;
+	margin-top:50px;
+	margin-bottom:0px;
+	margin-right:0px;
+	margin-left:0px;
+}
+
+ul#authenticated-menu {	
+	width:133px;
+	list-style:none;
+	height:37px
+}
+
+ul#authenticated-menu li {
+	display:inline
+}
+
+ul#authenticated-menu li a {
+	height:37px;
+	float:left;
+	text-indent:-9999px;
+	text-decoration:none
+}
+
+ul#authenticated-menu  li a span {
+	float:left;
+	display:block
+}
+
+ul#authenticated-menu li#authenticated-menu-1 a {
+	width:69px;
+	background:url(/images/authenticated-menu.png) no-repeat 0px 0
+}
+
+ul#authenticated-menu li#authenticated-menu-1 a:active,
+ul#authenticated-menu li#authenticated-menu-1 a:hover {
+	background-position:0px -37px
+}
+ul#authenticated-menu li#authenticated-menu-1 a.current {
+	background-position:0px -74px
+}
+
+ul#authenticated-menu li#authenticated-menu-2 a {
+	width:64px;
+	background:url(/images/authenticated-menu.png) no-repeat -69px 0
+}
+
+ul#authenticated-menu li#authenticated-menu-2 a:active,
+ul#authenticated-menu li#authenticated-menu-2 a:hover {
+	background-position:-69px -37px
+}
+ul#authenticated-menu li#authenticated-menu-2 a.current {
+	background-position:-69px -74px
 }
