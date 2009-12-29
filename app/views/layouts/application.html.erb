@@ -52,24 +52,27 @@
 	  			<% end %>
       			<%= yield %>
     		</div>
-    		<div class="divider"></div>
     		<div id="footer">
-				<center>
-      				<p>
-						<a href="#">Copyright &#169; Fribblesoft 2010</a>
-					</p>
-      				<p>
-        				<%= link_to "Home", root_url %> |
-        				<%= link_to "Monitor", twitter_trends_url %> |
-        				<%= link_to "Plan", stores_url %> |
-        				<%= link_to "Store", "/store" %> |
-						<a href="#">Forum</a> |
-        				<%= link_to "About", "/about" %> |
-						<% if current_user == nil %><%= link_to "Login", "/login" %>
-						<% else %><%= link_to "Logout", "/logout" %><% end %>
-      				</p>
-				</center>
+				<center><a href="#">Copyright &#169; Fribblesoft 2010</a></center>
+	    		<div class="footer-divider"></div>
+				<p>
+				<img src="/images/survivors-online.png" alt="Number of suvivors visting this site" /> 
+				<!-- start whos.amung.us-->
+				<script type="text/javascript" src="http://widgets.amung.us/classic.js"></script>
+				<script type="text/javascript">WAU_classic('3x46cf9zybn0')</script>
+				<!-- end whos.amung.us-->
+				<!-- AddThis Button BEGIN -->
+				<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=zombiestrategies">
+					<img src="/images/spread-the-word.png" width="297" height="29" alt="Bookmark and Share" style="border:0" align="right"/>
+				</a>
+				<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=zombiestrategies"></script>
+				<!-- AddThis Button END -->	
+				</p>
     		</div>
-		</div> 
+		</div>
+		<!-- start tynt -->
+		<script type="text/javascript">tyntVariables = {"ap":"Read more: "};</script>
+		<script type="text/javascript" src="http://tcr.tynt.com/javascripts/Tracer.js?user=ajPKTw8_Gr3RICadbiUt4I&amp;s=32&amp;a=0&amp;lang=en"></script>
+		<!-- end tynt -->
 	</body>
 </html>
