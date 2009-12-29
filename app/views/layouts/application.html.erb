@@ -14,18 +14,21 @@
 	<body>
 		<div id="container">
 			<div id="title"></div>
-			<% if current_user == nil %>
-				<div class="unauthenticated-menu-box">
-					<ul id="unauthenticated-menu">
-						<li id="unauthenticated-menu-1"><a href="/login" title="Login"><span>Login</span></a></li>
-						<li id="unauthenticated-menu-2"><a href="/signup" title="Sign up"><span>Sign up</span></a></li>
-					</ul>
-				</div>
-			<% else %>
+			<% if logged_in? %>
 				<div class="authenticated-menu-box">
 					<ul id="authenticated-menu">
 						<li id="authenticated-menu-1"><a href="#" title="Profile"><span>Profile</span></a></li>
 						<li id="authenticated-menu-2"><a href="/logout" title="Logout"><span>Logout</span></a></li>
+					</ul>
+				</div>
+				<div class="username">
+					(Username: <%=h "#{current_user.login}" %>)
+				</div>
+			<% else %>
+				<div class="unauthenticated-menu-box">
+					<ul id="unauthenticated-menu">
+						<li id="unauthenticated-menu-1"><a href="/login" title="Login"><span>Login</span></a></li>
+						<li id="unauthenticated-menu-2"><a href="/signup" title="Sign up"><span>Sign up</span></a></li>
 					</ul>
 				</div>
 			<% end %>

@@ -58,6 +58,17 @@ body {
   background: url(/images/title.png) no-repeat left top;
 }
 
+/* Username that gets displayed near the logout button when logged in */
+.username {
+	position:absolute;
+	left:887px;
+	top:88px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-right:0px;
+	margin-left:0px;
+}
+
 /* Divider */
 .divider {
   float: left;
@@ -106,8 +117,8 @@ background-color: green;
 .navigation-box {
 	position:absolute;
 	left:590px;
-	top:96px;
-	margin-top:50px;
+	top:146px;
+	margin-top:0px;
 	margin-bottom:0px;
 	margin-right:0px;
 	margin-left:0px;
@@ -204,8 +215,8 @@ ul#navigation li#navigation-5 a.current {
 .unauthenticated-menu-box {
 	position:absolute;
 	left:900px;
-	top:50px;
-	margin-top:50px;
+	top:100px;
+	margin-top:0px;
 	margin-bottom:0px;
 	margin-right:0px;
 	margin-left:0px;
@@ -263,8 +274,8 @@ ul#unauthenticated-menu li#unauthenticated-menu-2 a.current {
 .authenticated-menu-box {
 	position:absolute;
 	left:887px;
-	top:50px;
-	margin-top:50px;
+	top:100px;
+	margin-top:0px;
 	margin-bottom:0px;
 	margin-right:0px;
 	margin-left:0px;

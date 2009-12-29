@@ -1,0 +1,39 @@
+<% if authorized? %>
+<% if @users != nil %>
+<table border="1">
+  <tr>
+    <th>Username</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+	<th>Phone</th>
+	<th>Twitter</th>
+	<th>Latitude</th>
+	<th>Longitude</th>
+	<th></th>
+	<th></th>
+	<th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%=h user.login %></td>
+    <td><%=h user.first_name %></td>
+    <td><%=h user.last_name %></td>
+    <td><%=h user.email %></td>
+    <td><%=h user.phone %></td>
+	<td><%=h user.twitter %></td>
+	<td><%=h user.lat %></td>
+	<td><%=h user.lng %></td>
+    <td><%= link_to 'Show', user %></td>
+	<td><%= link_to 'Edit', edit_user_path(user) %></td>
+    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<h4><%= link_to 'Create New User', new_user_path %></h4>
+<% else %>
+<h1>No Users Found!</h1>
+<% end %>
+<% end %>
