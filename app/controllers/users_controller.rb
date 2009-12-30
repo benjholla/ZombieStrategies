@@ -2,7 +2,12 @@ class UsersController < ApplicationController
   # Be sure to include AuthenticationSystem in Application Controller instead
   include AuthenticatedSystem
   
-  before_filter :admin_login_required, :except => [:new, :create]
+  before_filter :login_required, :except => [:new, :create]
+  before_filter :admin_login_required, :only => [:index, :destroy]
+
+  def admin_or_owner?
+    admin? || current_user.id == User.find(params[:id]).id
+  end
 
   def access_denied
     respond_to do |format|
@@ -31,6 +36,20 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/1
+  # GET /users/1.xml
+  def show
+    if admin_or_owner?
+      @user = User.find(params[:id])
+      respond_to do |format|
+        format.xml  { render :xml => @user }
+      end
+    else
+      flash[:error] = 'You may only view your own profile!'
+      redirect_to user_path(current_user)
+    end
+  end
+
   # render new.rhtml
   def new
     @user = User.new
@@ -39,6 +58,7 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
+    flash[:notice] = ''
     success = @user && @user.save
     if success && @user.errors.empty?
       # Protects against session fixation attacks, causes request forgery
@@ -47,10 +67,55 @@ class UsersController < ApplicationController
       # reset session
       self.current_user = @user # !! now logged in
       redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!"
+      flash[:notice] = "Thanks for signing up! - Inside the create method!"
     else
-      flash[:error]  = "This infomation is not valid, sorry.  Please try again."
+      flash[:error]  = "This infomation is not valid, sorry.  Please try again. - Inside the create method!"
       render :action => 'new'
     end
   end
+  
+  # GET /users/1/edit
+  def edit
+    if admin_or_owner?
+      @user = User.find(params[:id])
+    else
+      flash[:error] = 'You may only edit your own profile!'
+      redirect_to edit_user_path(current_user)
+    end
+  end
+  
+  # PUT /users/1
+  # PUT /users/1.xml
+  def update
+    if admin_or_owner?
+      @user = User.find(params[:id])
+      respond_to do |format|
+        if @user.update_attributes(params[:user])
+          flash[:notice] = 'User was successfully updated.'
+          format.html { redirect_to root_path }
+          format.xml  { head :ok }
+        else
+          format.html { render :action => "edit" }
+          format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+        end
+      end
+    else
+      flash[:error] = 'You may only edit your own profile!'
+      redirect_to edit_user_path(current_user)
+    end
+  end
+  
+  # DELETE /users/1
+  # DELETE /users/1.xml
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    respond_to do |format|
+      flash[:notice] = 'User was successfully removed.'
+      format.html { redirect_to(users_url) }
+      format.xml  { head :ok }
+    end
+  end
+  
 end

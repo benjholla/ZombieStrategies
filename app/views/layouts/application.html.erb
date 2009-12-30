@@ -17,7 +17,7 @@
 			<% if logged_in? %>
 				<div class="authenticated-menu-box">
 					<ul id="authenticated-menu">
-						<li id="authenticated-menu-1"><a href="#" title="Profile"><span>Profile</span></a></li>
+						<li id="authenticated-menu-1"><a href="<%= edit_user_path(current_user) %>" title="Profile"><span>Profile</span></a></li>
 						<li id="authenticated-menu-2"><a href="/logout" title="Logout"><span>Logout</span></a></li>
 					</ul>
 				</div>

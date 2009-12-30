@@ -1,0 +1,92 @@
+<h1>Edit User Profile</h1>
+<% @user.password = @user.password_confirmation = nil %>
+
+<%= error_messages_for :user %>
+<% form_for(@user) do |f| -%>
+
+<h2>Login Information</h2>
+	<p>
+		<%= label_tag 'login', 'Username' %><br/>
+		<%= f.text_field :login %>
+	</p>
+
+	<p>
+		<%= label_tag 'password', 'Password' %><br/>
+		<%= f.password_field :password %>
+	</p>
+
+	<p>
+		<%= label_tag 'password_confirmation', 'Confirm Password' %><br/>
+		<%= f.password_field :password_confirmation %>
+	</p>
+
+<h2>Contact Information</h2>
+  	<p>
+    	<%= label_tag 'first_name', 'First Name' %><br />
+    	<%= f.text_field :first_name %>
+  	</p>
+
+  	<p>
+    	<%= label_tag 'last_name', 'Last Name' %><br />
+		<%= f.text_field :last_name %>
+	</p>
+
+	<p>
+		<%= label_tag 'email', 'Email' %><br/>
+		<%= f.text_field :email %>
+	</p>
+
+  	<p>
+    	<%= label_tag 'phone', 'Phone' %><br />
+    	<%= f.text_field :phone %> (optional, currently limited to the United States only.)
+  	</p>
+
+
+  	<p>
+    	<%= label_tag 'twitter', 'Twitter' %><br />
+    	<i>http://twitter.com/</i><%= f.text_field :twitter, "size" => 11 %> (optional, requires that you are following the <a href="http://twitter.com/ZombieStrategy">ZombieStrategies Twitter</a>)
+  	</p>
+
+
+  	<h2>Location Information</h2> <u>Home Location</u>  (optional, this information will be used to send you relevant information for your area.)
+  	<p>
+    	<%= label_tag 'lat', 'Latitude' %><br />
+    	<%= f.text_field :lat, {:onkeypress => " return clearMarkersOnTyping(this,event);"} %>
+  	</p>
+
+  	<p>
+    	<%= label_tag 'lng', 'Longitude' %><br />
+    	<%= f.text_field :lng, {:onkeypress => " return clearMarkersOnTyping(this,event);"} %>
+  	</p>
+
+	<br />
+
+	<script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
+	</script>
+	<script type="text/javascript" src="/javascripts/signup.js"></script>
+
+	<noscript><b>JavaScript must be enabled in order for you to use Google Maps.</b> 
+	   However, it seems JavaScript is either disabled or not supported by your browser. 
+	   To view Google Maps, enable JavaScript by changing your browser options, and then 
+	   try again.
+	 </noscript>
+
+	<div id="map" style="width: 675px; height: 400px"><center><br /><br /><br /><h3>Loading Map...</h3><br /><img src="/images/ajax-loader.gif" alt="Please wait..."/></center></div>
+	Search:
+	<input id="search" size="50" type="text" value="" onkeypress="return submitEnter(this,event)"/>
+	<input type="button" value="Go!" onclick="showAddress(); return false;"/>
+
+	<br />
+	<div id="message"></div>
+
+	<br />
+	
+	<p>
+    <%= f.submit 'Update' %>
+  </p>
+	
+<% end -%>
+
+<h3>
+	<%= link_to 'Cancel', @user %>
+</h3>
