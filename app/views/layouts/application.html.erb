@@ -44,14 +44,18 @@
 			<div class="divider"></div>
     		<div id="content">
 	  			<% if flash[:error] %>
+					<div class="error-blood-1"></div>
 		  			<div class="error">
-	      				<p style="color: black"><%= flash[:error] %></p>
+	      				<h4>Error: <%= flash[:error] %></h4>
 	      			</div>
+					<br /><br /><br /><br /><br />
 		  		<% end %>
 	  			<% if flash[:notice] %>
+					<div class="error-blood-2"></div>
 	  				<div class="notification">
-      					<p style="color: black"><%= flash[:notice] %></p>
+      					<h4><%= flash[:notice] %></h4>
       				</div>
+					<br /><br /><br /><br />
 	  			<% end %>
       			<%= yield %>
     		</div>

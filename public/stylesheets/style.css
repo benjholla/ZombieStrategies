@@ -32,12 +32,32 @@ body {
 
 /* Main Content Container */
 #content {
-   width: 950px;
+   width: 1000px;
    float: left;
    margin-top:20px;
    margin-bottom:0px;
-   margin-right:100px;
-   margin-left:100px;
+   margin-right:0px;
+   margin-left:0px;
+}
+
+/* Left Side Content Container */
+#left-content {
+   width: 400px;
+   float: left;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:75px;
+}
+
+
+/* Right Side Content Container */
+#right-content {
+   width: 400px;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:525px;
 }
 
 /* Footer Content Container */
@@ -56,6 +76,7 @@ body {
   height: 133px;
   width: 511px;
   background: url(/images/title.png) no-repeat left top;
+  z-index:1;
 }
 
 /* Username that gets displayed near the logout button when logged in */
@@ -63,10 +84,6 @@ body {
 	position:absolute;
 	left:887px;
 	top:88px;
-	margin-top:0px;
-	margin-bottom:0px;
-	margin-right:0px;
-	margin-left:0px;
 }
 
 /* Divider */
@@ -93,24 +110,45 @@ body {
   background: url(/images/divider.png) no-repeat;
 }
 
-/* Error Box */
+/* Error Message */
 div.error
 {
-width:50%;
-padding:2px;
-border:2px solid black;
-margin:2px;
-background-color: red;
+  position:absolute;
+  left:160px;
+  top:295px;
+  z-index:3;
 }
 
-/* Notification Box */
+/* Notification Message */
 div.notification
 {
-width:50%;
-padding:2px;
-border:2px solid black;
-margin:2px;
-background-color: green;
+  position:absolute;
+  left:160px;
+  top:295px;
+  z-index:3;
+}
+
+/* Blood Smear Error/Notification Boxes */
+div.error-blood-1
+{
+  position:absolute;
+  left:30px;
+  top:120px;
+  height: 376px;
+  width: 536px;
+  background: url(/images/blood_smear_1.png) no-repeat;
+  z-index:2;
+}
+
+div.error-blood-2
+{
+  position:absolute;
+  left:0px;
+  top:35px;
+  height: 376px;
+  width: 563px;
+  background: url(/images/blood_smear_2.png) no-repeat;
+  z-index:2;
 }
 
 /* Main Navigation Menu */

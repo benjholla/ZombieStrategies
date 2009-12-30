@@ -10,6 +10,7 @@
 	<th></th>
 	<% if authorized? %>
 	<th></th>
+	<th></th>
 	<% end %>
   </tr>
 
@@ -22,6 +23,7 @@
     <td><%=h twitter_trend.scheduled_update %></td>
     <td><%= link_to 'Show', twitter_trend %></td>
 	<% if authorized? %>
+	<td><%= link_to 'Edit', edit_twitter_trend_path(twitter_trend) %></td>
     <td><%= link_to 'Destroy', twitter_trend, :confirm => 'Are you sure?', :method => :delete %></td>
 	<% end %>
   </tr>
