@@ -9,6 +9,10 @@ h3 {font-size:18px;}
 h4 {color:#E3F7FD; font-size:16px;}
 h5 {color:#000000; font-size:14px;}
 
+/* Forms Style */
+input { position: relative; z-index: 3; }
+
+
 /* Background */
 * {
   margin: 0px;
@@ -32,12 +36,12 @@ body {
 
 /* Main Content Container */
 #content {
-   width: 1000px;
+   width: 9025px;
    float: left;
    margin-top:20px;
    margin-bottom:0px;
    margin-right:0px;
-   margin-left:0px;
+   margin-left:75px;
 }
 
 /* Left Side Content Container */
@@ -47,7 +51,7 @@ body {
    margin-top:0px;
    margin-bottom:0px;
    margin-right:0px;
-   margin-left:75px;
+   margin-left:0px;
 }
 
 
@@ -57,7 +61,7 @@ body {
    margin-top:0px;
    margin-bottom:0px;
    margin-right:0px;
-   margin-left:525px;
+   margin-left:475px;
 }
 
 /* Footer Content Container */
