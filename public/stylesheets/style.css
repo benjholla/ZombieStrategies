@@ -10,7 +10,16 @@ h4 {color:#E3F7FD; font-size:16px;}
 h5 {color:#000000; font-size:14px;}
 
 /* Forms Style */
-input { position: relative; z-index: 3; }
+input 
+{ 
+	position: relative;
+	font-family: sans-serif;
+	font-size: 18px;
+	margin-top: 1px;
+	margin-bottom: 15px;
+    border: solid 1px black;
+	z-index: 3; 
+}
 
 
 /* Background */
@@ -47,6 +56,26 @@ body {
 /* Left Side Content Container */
 #left-content {
    width: 400px;
+   float: left;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:0px;
+}
+
+
+/* Right Side Form Container */
+#right-form {
+   width: 400px;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:350px;
+}
+
+/* Left Side Form Container */
+#left-form {
+   width: 350px;
    float: left;
    margin-top:0px;
    margin-bottom:0px;
