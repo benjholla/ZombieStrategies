@@ -101,7 +101,7 @@ class UsersController < ApplicationController
       respond_to do |format|
         if @user.update_attributes(params[:user])
           flash[:notice] = 'Your preferences have been updated.'
-          format.html { redirect_to users_path }
+          format.html { redirect_to root_path }
           format.xml  { head :ok }
         else
           format.html { render :action => "edit" }
