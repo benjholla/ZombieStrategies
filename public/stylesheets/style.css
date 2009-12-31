@@ -35,7 +35,7 @@ body {
 
 /* Body Container */
 #container {
-   width: 1050px;
+   width: 1000px;
    float: left;
    margin-top:90px;
    margin-bottom:0px;
@@ -45,7 +45,7 @@ body {
 
 /* Main Content Container */
 #content {
-   width: 9025px;
+   width: 850px;
    float: left;
    margin-top:20px;
    margin-bottom:0px;
