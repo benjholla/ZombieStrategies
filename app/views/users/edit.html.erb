@@ -74,12 +74,9 @@
 	<br />
 	<div id="message"></div>
 	<br />
-	<p>
-    	<%= f.submit 'Update' %>
-  	</p>
-	<h3>
-		<%= link_to 'Cancel', root_path %>
-	</h3>
+    <%= f.submit 'Update' %>
+	<br />
+	<input type="button" value="Cancel" onclick="window.location.href='/'"/>
 </div>
 
 <div id="right-form">

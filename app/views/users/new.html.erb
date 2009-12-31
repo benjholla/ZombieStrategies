@@ -23,6 +23,8 @@
 		<b><%= label_tag 'password_confirmation', 'Confirm Password' %></b><br />
 		<%= f.password_field :password_confirmation %>
 	</p>
+	<br />
+	<input type="checkbox" name="tos" checked="checked" /> <b>I agree to the <a href="/terms_of_use">Terms of Use</a> for this site.</b>
 	</div>
 
 <div id="right-form">
@@ -72,12 +74,9 @@
 	<br />
 	<div id="message"></div>
 	<br />
-	<p>
-		<%= submit_tag 'Sign up' %>
-	</p>
-	<h3>
-	<%= link_to 'Cancel', root_path %>
-	</h3>
+	<%= submit_tag 'Sign up', {:onclick => "return checkTermsOfUseAgreement();"} %>
+	<br />
+	<input type="button" value="Cancel" onclick="window.location.href='/'"/>
 </div>
 
 <div id="right-form">

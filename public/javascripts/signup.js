@@ -302,6 +302,14 @@ function submitEnter(myfield,e)
         return true;
 }
 
+function checkTermsOfUseAgreement(){
+	if(oFormObject.elements["tos"].checked==false){
+		alert("You must agree to the Terms of Use before you can register on this site!");
+		return false;
+	}
+	return true;
+}
+
 // initialize and cleanup google maps
 google.load("maps", "2", {callback: init});
 window.onunload = GUnload;
