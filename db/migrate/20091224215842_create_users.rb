@@ -24,7 +24,7 @@ class CreateUsers < ActiveRecord::Migration
     # reset the is_admin property for new users to false just incase someone crafts a form
     @user.is_admin = 1
     if @user && @user.save
-      puts "Success: created new admin user with default password = ***REMOVED***"
+      puts "Success: created new admin user with default password = ***REMOVED***, remember change the password!"
     else
       puts "Error: could not create default user!"
     end

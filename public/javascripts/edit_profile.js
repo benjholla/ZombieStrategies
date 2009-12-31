@@ -188,8 +188,14 @@ function init() {
 		// used to store a resulting message from the geocoder
 		var location = "";
 		
+		if(oFormObject.elements["user_lat"].value != "" && oFormObject.elements["user_lng"].value != ""){
+			centerLatitude = oFormObject.elements["user_lat"].value;
+			centerLongitude = oFormObject.elements["user_lng"].value;;
+			startZoom = 13;
+			setMarker(new google.maps.LatLng(centerLatitude, centerLongitude));
+		}
 	    // If ClientLocation was filled in by the loader, use that info instead default center of the U.S.
-	    if (google.loader.ClientLocation) {
+	    else if (google.loader.ClientLocation) {
 	    	startZoom = 13;
 	    	centerLatitude = google.loader.ClientLocation.latitude;
 			centerLongitude = google.loader.ClientLocation.longitude;
