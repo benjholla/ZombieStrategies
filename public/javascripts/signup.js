@@ -4,6 +4,11 @@ var centerLongitude = -95.677068;
 var startZoom = 4;
 var map;
 
+// used to give the user a hint for setting the home location, this is a one time only event
+var hintGiven = false;
+// used to clear the hint window box if its open, one time only event
+var hintGivenCleared = true;
+
 // custom home icon to use as the marker
 // Google Map Custom Marker Maker 2009
 // Please include the following credit in your code
@@ -234,6 +239,9 @@ function init() {
 	
 		// add click action listener
 		GEvent.addListener(map, "click", function(overlay, latlng){
+			if(hintGivenCleared == false){
+				map.closeInfoWindow();
+			}
 			setMarker(latlng);
 		});
 	}
@@ -258,7 +266,22 @@ function setMarker(latlng){
 	// add dragable listener
 	GEvent.addListener(marker, "dragend", function() {
 		updateLatLngInputFields(marker.getLatLng());
-	});	
+	});
+	
+	GEvent.addListener(marker, "dragstart", function() {
+		if(hintGivenCleared == false){
+			map.closeInfoWindow();
+		}
+	});
+	
+	GEvent.addListener(marker, "mouseover", function() {
+		if(hintGiven==false)
+		{
+			marker.openInfoWindowHtml("<p>&nbsp;&nbsp;&nbsp;Hint: you can click or drag <br />&nbsp;&nbsp;&nbsp;and drop the icon to set your <br />&nbsp;&nbsp;&nbsp;home location!</p>");
+			hintGiven = true;
+			hintGivenCleared = false;
+		}
+	});
 	
 	map.addOverlay(marker);
 	// update the input form 
