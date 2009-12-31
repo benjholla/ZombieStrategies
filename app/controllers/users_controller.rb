@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       format.html do
         store_location
         redirect_to new_session_path
-        flash[:error] = 'Restricted Access, Admins Only!'
+        flash[:error] = 'Only an Admin can access this page.'
       end
       # format.any doesn't work in rails version < http://dev.rubyonrails.org/changeset/8987
       # Add any other API formats here.  (Some browsers, notably IE6, send Accept: */* and trigger 
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
         format.xml  { render :xml => @user }
       end
     else
-      flash[:error] = 'Restricted Access!'
+      flash[:error] = 'Restricted Access'
       redirect_to user_path(current_user)
     end
   end
@@ -58,7 +58,8 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
-    flash[:notice] = ''
+    # reset the is_admin property for new users to false just incase someone crafts a form
+    @user.is_admin = 0
     success = @user && @user.save
     if success && @user.errors.empty?
       # Protects against session fixation attacks, causes request forgery
@@ -67,9 +68,9 @@ class UsersController < ApplicationController
       # reset session
       self.current_user = @user # !! now logged in
       redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up! - Inside the create method!"
+      flash[:notice] = "Thanks for signing up!"
     else
-      flash[:error]  = "This infomation is not valid, sorry.  Please try again. - Inside the create method!"
+      flash[:error]  = "This information is not valid, please try again."
       render :action => 'new'
     end
   end
@@ -79,7 +80,7 @@ class UsersController < ApplicationController
     if admin_or_owner?
       @user = User.find(params[:id])
     else
-      flash[:error] = 'You may only edit your own profile!'
+      flash[:error] = 'Restricted Access'
       redirect_to edit_user_path(current_user)
     end
   end
@@ -89,10 +90,18 @@ class UsersController < ApplicationController
   def update
     if admin_or_owner?
       @user = User.find(params[:id])
+      # check and reset the is_admin property just incase someone crafts a form
+      if !authorized?
+        if @user.is_admin == 0
+          @user.is_admin = 0
+        else
+          @user.is_admin = 1
+        end
+      end
       respond_to do |format|
         if @user.update_attributes(params[:user])
-          flash[:notice] = 'User was successfully updated.'
-          format.html { redirect_to root_path }
+          flash[:notice] = 'Your preferences have been updated.'
+          format.html { redirect_to users_path }
           format.xml  { head :ok }
         else
           format.html { render :action => "edit" }
@@ -100,7 +109,7 @@ class UsersController < ApplicationController
         end
       end
     else
-      flash[:error] = 'You may only edit your own profile!'
+      flash[:error] = 'Restricted Access'
       redirect_to edit_user_path(current_user)
     end
   end

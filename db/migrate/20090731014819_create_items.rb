@@ -2,7 +2,6 @@ class CreateItems < ActiveRecord::Migration
   def self.up
     create_table :items do |t|
       t.string :item
-
       t.timestamps
     end
   end

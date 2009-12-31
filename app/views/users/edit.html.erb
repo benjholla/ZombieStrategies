@@ -19,6 +19,13 @@
 		<%= label_tag 'password_confirmation', 'Confirm Password' %><br/>
 		<%= f.password_field :password_confirmation %>
 	</p>
+	
+	<% if authorized? %>
+		<p>
+    		<%= label_tag 'is_admin', "Administrative Priviliges" %><br />
+    		<%= f.check_box :is_admin %>
+  		</p>
+	<% end %>
 
 <h2>Contact Information</h2>
   	<p>

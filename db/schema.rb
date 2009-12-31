@@ -29,13 +29,6 @@ ActiveRecord::Schema.define(:version => 20091224215842) do
     t.datetime "updated_at"
   end
 
-  create_table "posts", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "stores", :force => true do |t|
     t.string   "store"
     t.decimal  "lat",        :precision => 15, :scale => 10
@@ -79,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20091224215842) do
     t.string   "twitter",                   :limit => 40
     t.decimal  "lat",                                      :precision => 15, :scale => 10
     t.decimal  "lng",                                      :precision => 15, :scale => 10
+    t.boolean  "is_admin",                                                                 :default => false
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true

@@ -10,6 +10,7 @@
 	<th>Twitter</th>
 	<th>Latitude</th>
 	<th>Longitude</th>
+	<th>Administrator</th>
 	<th></th>
 	<th></th>
   </tr>
@@ -24,6 +25,7 @@
 	<td><%=h user.twitter %></td>
 	<td><%=h user.lat %></td>
 	<td><%=h user.lng %></td>
+	<td><%=h user.is_admin %></td>
 	<td><%= link_to 'Edit', edit_user_path(user) %></td>
     <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
