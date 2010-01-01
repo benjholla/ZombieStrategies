@@ -277,7 +277,7 @@ function setMarker(latlng){
 	GEvent.addListener(marker, "mouseover", function() {
 		if(hintGiven==false)
 		{
-			marker.openInfoWindowHtml("<p>&nbsp;&nbsp;&nbsp;Hint: you can click or drag <br />&nbsp;&nbsp;&nbsp;and drop the icon to set your <br />&nbsp;&nbsp;&nbsp;home location!</p>");
+			marker.openInfoWindowHtml("<p>&nbsp;&nbsp;&nbsp;Hint: you can click the map <br />&nbsp;&nbsp;&nbsp;or drag and drop the icon to<br />&nbsp;&nbsp;&nbsp;set your home location!</p>");
 			hintGiven = true;
 			hintGivenCleared = false;
 		}
