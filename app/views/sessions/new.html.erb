@@ -1,14 +1,21 @@
-<h1>Log In</h1>
-<br />
-<% form_tag session_path do -%>
-<h2><%= label_tag 'Username' %><br />
-<%= text_field_tag 'login', @login %></h2>
+<div id="left-form">
+	<h1>Log In</h1><br />
+	
+	<% form_tag session_path do -%>
+	<h2><%= label_tag 'Username' %><br />
+	<%= text_field_tag 'login', @login %></h2>
 
-<h2><%= label_tag 'Password' %><br/>
-<%= password_field_tag 'password', nil %></h2>
+	<h2><%= label_tag 'Password' %><br/>
+	<%= password_field_tag 'password', nil %></h2>
 
-<p><%= label_tag 'remember_me', 'Remember me' %>
-<%= check_box_tag 'remember_me', '1', @remember_me %></p>
+	<p><%= label_tag 'remember_me', 'Remember me' %>
+	<%= check_box_tag 'remember_me', '1', @remember_me %></p>
 
-<p><%= submit_tag 'Log in' %></p>
+	<p><%= submit_tag 'Log in' %></p>
+</div>
+
+<div id="tight-right-content">
+	<center><img height="220" width="220" src="/images/zombiedefense.png" /></center>
+</div>
+
 <% end -%>
