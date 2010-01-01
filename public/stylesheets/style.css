@@ -99,6 +99,33 @@ body {
    margin-left:475px;
 }
 
+/* Twitter Content Container */
+#twitter {
+   width: 350px;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:575px;
+   text-align: left;
+}
+
+#twitter UL {
+  list-style: none;
+  padding: 0;
+}
+
+#twitter LI {
+  padding: 3px;
+  background: none;
+}
+
+#tweets {
+   margin-top:10px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:0px;
+}
+
 /* Footer Content Container */
 #footer {
    width: 1000px;
