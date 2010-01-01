@@ -6,7 +6,8 @@
 <div id="twitter">
 	<h2>Zombie Alert System&nbsp;&nbsp;<font size="2" face="Verdana"><a href="http://twitter.com/ZombieStrategy">(Follow on Twitter)</a></font></h2>
 	<div id="twitter-header"></div>
-	<div id="tweets">	
+	<div id="tweets">
+		<br />
 		<p>Loading Zombie Strategy Tweets... <img src="/images/loading-indicator.gif" /></p>
 		<br />
 		<p><a href="http://twitter.com/ZombieStrategy">Zombie Strategies Twitter Updates and Alerts</a></p>
@@ -25,6 +26,6 @@ getTwitters('tweets', {
   enableLinks: true, 
   ignoreReplies: true, 
   clearContents: true,
-  template: '<img height="24" width="16" src="/images/standalone_zombie.png" />&nbsp;&nbsp;"%text%"<a href="http://twitter.com/%user_screen_name%/statuses/%id%"><br />%time%</a>'
+  template: '<img height="24" width="16" src="/images/standalone_zombie.png" />&nbsp;&nbsp;<font size="2" face="sans-serif">"%text%"<a href="http://twitter.com/%user_screen_name%/statuses/%id%">&nbsp;&nbsp;%time%</a></font>'
 });
 </script>
