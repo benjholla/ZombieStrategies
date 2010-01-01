@@ -59,6 +59,16 @@ body {
    margin-left:75px;
 }
 
+/* Store Content Container */
+#store {
+   width: 950px;
+   float: left;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:50px;
+}
+
 /* Left Side Content Container */
 #left-content {
    width: auto;
