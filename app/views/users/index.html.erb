@@ -1,5 +1,15 @@
 <% if authorized? %>
 <% if @users != nil %>
+<h1>User Directory</h1><br />
+<% form_tag users_path, :method => 'get' do %>
+	<h2>Search Users By Username</h2>
+	<p>
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag "Search", :login => nil %>
+	</p>
+<% end %>
+
+<h2>Accounts</h2>
 <table border="1">
   <tr>
     <th>Username</th>
@@ -14,7 +24,7 @@
 	<th></th>
   </tr>
 
-<% @users.each do |user| %>
+<% for user in @users %>
   <tr>
     <td><%=h user.login %></td>
     <td><%=h user.first_name %> <%=h user.last_name %></td>
@@ -39,6 +49,9 @@
 </table>
 
 <h4><%= link_to 'Create New User', new_user_path %></h4>
+
+<%= will_paginate @users %>
+
 <% else %>
 <h1>No Users Found!</h1>
 <% end %>

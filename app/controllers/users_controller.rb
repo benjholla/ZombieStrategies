@@ -28,7 +28,9 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.all
+    @users = User.paginate :per_page => 1, :page => params[:page],
+                           :conditions => ['login like ?', "%#{params[:search]}%"],
+                           :order => 'login'
 
     respond_to do |format|
       format.html # index.html.erb
