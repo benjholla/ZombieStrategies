@@ -21,10 +21,10 @@ class CreateUsers < ActiveRecord::Migration
     end
     add_index :users, :login, :unique => true
     @user = User.create(:login=>"admin", :password=>"***REMOVED***", :password_confirmation=>"***REMOVED***", :first_name=>"Ben", :last_name=>"Holland", :email=>"***REMOVED***@gmail.com", :phone=>"***REMOVED***", :twitter=>"***REMOVED***", :lat=>"***REMOVED***", :lng=>"***REMOVED***")
-    # reset the is_admin property for new users to false just incase someone crafts a form
+    # set this user to admin
     @user.is_admin = 1
     if @user && @user.save
-      puts "Success: created new admin user with default password = ***REMOVED***, remember change the password!"
+      puts "Success: created new admin user with default password = ***REMOVED***, remember to change the password!"
     else
       puts "Error: could not create default user!"
     end

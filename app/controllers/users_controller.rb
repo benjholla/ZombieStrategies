@@ -118,12 +118,17 @@ class UsersController < ApplicationController
   # DELETE /users/1.xml
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-
+    
     respond_to do |format|
-      flash[:notice] = 'User was successfully removed.'
-      format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
+      if @user.login != "admin"
+        @user.destroy
+        flash[:notice] = 'User was successfully removed.'
+        format.html { redirect_to(users_url) }
+        format.xml  { head :ok }
+      else
+        flash[:error] = 'Default admin user cannot be removed!'
+        format.html { redirect_to(users_url) }
+      end
     end
   end
   

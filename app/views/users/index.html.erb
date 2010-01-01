@@ -3,13 +3,12 @@
 <table border="1">
   <tr>
     <th>Username</th>
-    <th>First Name</th>
-    <th>Last Name</th>
+    <th>Name</th>
     <th>Email</th>
 	<th>Phone</th>
 	<th>Twitter</th>
-	<th>Latitude</th>
-	<th>Longitude</th>
+	<th>Latitude, Longitude</th>
+	<th>Date Registered</th>
 	<th>Administrator</th>
 	<th></th>
 	<th></th>
@@ -18,16 +17,23 @@
 <% @users.each do |user| %>
   <tr>
     <td><%=h user.login %></td>
-    <td><%=h user.first_name %></td>
-    <td><%=h user.last_name %></td>
+    <td><%=h user.first_name %> <%=h user.last_name %></td>
     <td><%=h user.email %></td>
     <td><%=h user.phone %></td>
 	<td><%=h user.twitter %></td>
-	<td><%=h user.lat %></td>
-	<td><%=h user.lng %></td>
-	<td><%=h user.is_admin %></td>
+	<td><%=h user.lat %>, <%=h user.lng %></td>
+	<td><%=h user.created_at %></td>
+	<% if user.login == "admin"%>
+		<td>true</td>
+	<% else %>
+		<td><%=h user.is_admin %></td>
+	<% end %>
 	<td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% if user.login == "admin"%>
+		<td>N/A</td>
+	<% else %>
+		<td><%= link_to 'Destroy', user, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
   </tr>
 <% end %>
 </table>
