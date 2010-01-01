@@ -128,12 +128,12 @@ body {
    text-align: left;
 }
 
-#twitter UL {
+#twitter ul {
   list-style: none;
   padding: 0;
 }
 
-#twitter LI {
+#twitter li {
   padding: 0px;
   margin-top:15px;
   margin-bottom:0px;
@@ -142,11 +142,29 @@ body {
   background: none;
 }
 
+#twitter-header {
+  float: left;
+  height: 20px;
+  width: 350px;
+  margin-top:0px;
+  margin-bottom:0px;
+  margin-right:0px;
+  margin-left:0px;
+  background: url(/images/twitter_header.png) no-repeat;
+}
+
+#twitter-footer {
+  float: left;
+  height: 8px;
+  width: 350px;
+  background: url(/images/twitter_footer.png) no-repeat;
+}
+
 #tweets {
-   margin-top:0px;
-   margin-bottom:0px;
-   margin-right:0px;
-   margin-left:0px;
+   margin-top:13px;
+   padding-right:10px;
+   padding-left:10px;
+   background: url(/images/twitter_filler.png) repeat;
 }
 
 /* Footer Content Container */
