@@ -21,6 +21,12 @@ input
 	z-index: 3; 
 }
 
+/* Sortable tables */
+table.sortable thead {
+    color:#330066;
+    font-weight: bold;
+    cursor: pointer;
+}
 
 /* Background */
 * {

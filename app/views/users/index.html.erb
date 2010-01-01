@@ -1,4 +1,3 @@
-<% if authorized? %>
 <% if @users != nil %>
 <h1>User Directory</h1><br />
 <% form_tag users_path, :method => 'get' do %>
@@ -10,7 +9,8 @@
 <% end %>
 
 <h2>Accounts</h2>
-<table border="1">
+<script type="text/javascript" src="/javascripts/sorttable.js"></script>
+<table class="sortable" border="1">
   <tr>
     <th>Username</th>
     <th>Name</th>
@@ -54,5 +54,4 @@
 
 <% else %>
 <h1>No Users Found!</h1>
-<% end %>
 <% end %>
