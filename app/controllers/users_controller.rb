@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.paginate :per_page => 1, :page => params[:page],
+    @users = User.paginate :per_page => 10, :page => params[:page],
                            :conditions => ['login like ?', "%#{params[:search]}%"],
                            :order => 'login'
 
