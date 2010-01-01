@@ -146,10 +146,6 @@ body {
   float: left;
   height: 20px;
   width: 350px;
-  margin-top:0px;
-  margin-bottom:0px;
-  margin-right:0px;
-  margin-left:0px;
   background: url(/images/twitter_header.png) no-repeat;
 }
 
@@ -164,7 +160,7 @@ body {
    margin-top:13px;
    padding-right:10px;
    padding-left:10px;
-   background: url(/images/twitter_filler.png) repeat;
+   background: url(/images/filler30.png) repeat;
 }
 
 /* Footer Content Container */
