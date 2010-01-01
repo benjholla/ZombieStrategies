@@ -24,6 +24,9 @@
 				<div class="username">
 					<p>(Username:&nbsp;<%=h "#{current_user.login}" %>)</p>
 				</div>
+				<% if authorized? %>
+					<div class="admin"><h1><a href="/zs-admin" title="Admin Settings">Admin&nbsp;Settings</a></h1></div>
+				<% end %>
 			<% else %>
 				<div class="unauthenticated-menu-box">
 					<ul id="unauthenticated-menu">

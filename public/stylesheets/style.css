@@ -118,11 +118,18 @@ body {
   z-index:1;
 }
 
-/* Username that gets displayed near the logout button when logged in */
+/* Positions the username that gets displayed near the logout button when logged in */
 .username {
 	position:absolute;
 	left:887px;
 	top:88px;
+}
+
+/* Positions the admin settings link that gets displayed near the title when an admin is logged in */
+.admin {
+	position:absolute;
+	left:590px;
+	top:200px;
 }
 
 /* Divider */
