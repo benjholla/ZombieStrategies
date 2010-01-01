@@ -21,7 +21,7 @@
     <td><%=h user.email %></td>
     <td><%=h user.phone %></td>
 	<td><%=h user.twitter %></td>
-	<td><%=h user.lat %>, <%=h user.lng %></td>
+	<% if user.lat != nil && user.lng != nil %><td><%=h user.lat %>, <%=h user.lng %></td><% else %><td></td><% end %>
 	<td><%=h user.created_at %></td>
 	<% if user.login == "admin"%>
 		<td>true</td>
