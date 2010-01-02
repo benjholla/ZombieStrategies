@@ -86,7 +86,7 @@ body {
    margin-top:0px;
    margin-bottom:0px;
    margin-right:0px;
-   margin-left:350px;
+   margin-left:370px;
 }
 
 /* Left Side Form Container */
@@ -99,6 +99,9 @@ body {
    margin-left:0px;
 }
 
+#message {
+	width: 350px;
+}
 
 /* Right Side Content Container */
 #right-content {

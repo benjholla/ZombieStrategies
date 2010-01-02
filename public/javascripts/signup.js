@@ -5,9 +5,12 @@ var startZoom = 4;
 var map;
 
 // used to give the user a hint for setting the home location, this is a one time only event
-var hintGiven = false;
-// used to clear the hint window box if its open, one time only event
-var hintGivenCleared = true;
+var dragHomeHintGiven = false;
+// used to clear the hint window box for dragging and droping home location if its open, one time only event
+var dragHomeHintGivenCleared = true;
+
+// used to give the user a hint for setting the home location using search bar
+var searchHomeHintGiven = false;
 
 // custom home icon to use as the marker
 // Google Map Custom Marker Maker 2009
@@ -128,6 +131,8 @@ function showExactAddress(address) {
 
   // ====== Geocoding ======
   function showAddress() {
+	// user seems to know what thier doing, they don't need search hints
+	searchHomeHintGiven = true;
 	// clear out old markers
 	clearMarkers();
 	// get search query value
@@ -239,10 +244,17 @@ function init() {
 	
 		// add click action listener
 		GEvent.addListener(map, "click", function(overlay, latlng){
-			if(hintGivenCleared == false){
+			if(dragHomeHintGivenCleared == false){
 				map.closeInfoWindow();
 			}
 			setMarker(latlng);
+		});
+		
+		GEvent.addListener(map, "mouseover", function(overlay){
+			if(searchHomeHintGiven == false){
+				document.getElementById("message").innerHTML = "Hint: higher accuracy yields better results.  Try entering your home address in the search bar to set your home location.";
+				searchHomeHintGiven = true;
+			}
 		});
 	}
 }
@@ -266,24 +278,30 @@ function setMarker(latlng){
 	// add dragable listener
 	GEvent.addListener(marker, "dragend", function() {
 		updateLatLngInputFields(marker.getLatLng());
+		// clear messages
+		document.getElementById("message").innerHTML = "";
 	});
 	
 	GEvent.addListener(marker, "dragstart", function() {
-		if(hintGivenCleared == false){
+		if(dragHomeHintGivenCleared == false){
 			map.closeInfoWindow();
 		}
 	});
 	
 	GEvent.addListener(marker, "mouseover", function() {
-		if(hintGiven==false)
+		if(dragHomeHintGiven==false)
 		{
-			marker.openInfoWindowHtml("<p>&nbsp;&nbsp;&nbsp;Hint: you can click the map <br />&nbsp;&nbsp;&nbsp;or drag and drop the icon to<br />&nbsp;&nbsp;&nbsp;set your home location!</p>");
-			hintGiven = true;
-			hintGivenCleared = false;
+			marker.openInfoWindowHtml("<p>&nbsp;&nbsp;&nbsp;Hint: you can click the map <br />&nbsp;&nbsp;&nbsp;or drag and drop the icon to<br />&nbsp;&nbsp;&nbsp;fine tune your home location!</p>");
+			dragHomeHintGiven = true;
+			dragHomeHintGivenCleared = false;
 		}
 	});
 	
 	map.addOverlay(marker);
+	
+	// clear messages
+	document.getElementById("message").innerHTML = "";
+	
 	// update the input form 
 	updateLatLngInputFields(latlng);
 }
