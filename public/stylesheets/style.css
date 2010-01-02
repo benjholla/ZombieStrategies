@@ -69,6 +69,15 @@ body {
    margin-left:50px;
 }
 
+#feedback {
+   width: 950px;
+   float: left;
+   margin-top:20px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:50px;	
+}
+
 /* Left Side Content Container */
 #left-content {
    width: 450px;
