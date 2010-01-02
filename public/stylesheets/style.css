@@ -71,7 +71,7 @@ body {
 
 /* Left Side Content Container */
 #left-content {
-   width: auto;
+   width: 450px;
    float: left;
    margin-top:0px;
    margin-bottom:0px;
@@ -109,7 +109,7 @@ body {
    margin-left:475px;
 }
 
-/* Tight Right Side Content Container */
+/* Tight Right Side Content Container (extra space on the right side) */
 #tight-right-content {
    width: auto;
    margin-top:0px;
@@ -169,10 +169,7 @@ body {
 #footer {
    width: 1000px;
    float: left;
-   margin-top:30px;
-   margin-bottom:0px;
-   margin-right:0px;
-   margin-left:0px;
+   margin-top:50px;
 }
 
 /* Title */
