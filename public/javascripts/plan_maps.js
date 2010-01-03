@@ -317,6 +317,7 @@ function storeMarker(){
 function createMarker(latlng, html, id) {
      var marker = new GMarker(latlng);
      GEvent.addListener(marker, 'click', function() {
+		  alert("clicked!");
 		  //requery items for this store, reset html
           updateStore(id, marker);
     });
@@ -326,10 +327,9 @@ function createMarker(latlng, html, id) {
 // plots all of the markers, on the google map, that are returned from the stores.js controller
 function listMarkers(latlng) {
 	// clear screen and repopulate with new information
-	alert("clearing");
 	map.clearOverlays();
+	// if traffic maps are enabled add it back in because it just got cleared
 	if(trafficButtonState == 1){
-		alert("adding traffic");
 		enableTraffic();
 	}
 	// format request to perform server side filtering of location points
