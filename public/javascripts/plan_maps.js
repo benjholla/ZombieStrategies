@@ -413,6 +413,7 @@ function updateStore(id, marker){
 		if (request.readyState == 4) {
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
+	        alert(request.responseText);
 	    	storeVar = eval( "(" + request.responseText + ")" );
 			var storeHTML = '<div><strong>Store: </strong> <a href="/stores/' + storeVar.store.id + '">' + storeVar.store.store + '</a> ';
 			storeHTML += '<ul>';
