@@ -257,6 +257,7 @@ function init() {
             + '</span>'
             + '</fieldset>';
   
+		suppressMoveEnd = true;
         map.openInfoWindow (latlng,inputForm);
       }
     });
