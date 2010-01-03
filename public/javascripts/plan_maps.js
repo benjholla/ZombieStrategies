@@ -322,6 +322,7 @@ function createMarker(latlng, html, id) {
      GEvent.addListener(marker, 'click', function() {
 		  alert("clicked!");
 		  //requery items for this store, reset html
+		  alert("create marker -> " + id);
           updateStore(id, marker);
     });
     return marker;
@@ -368,6 +369,7 @@ function listMarkers(latlng) {
 						}
 					}
 					html += '</ul>' + '</div>';
+					alert("list marker -> " + marker.id);
         			var marker = createMarker(latlng, html, marker.id);
         			map.addOverlay(marker);
         		} // end of if lat and lng
