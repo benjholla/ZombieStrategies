@@ -106,7 +106,7 @@ class UsersController < ApplicationController
       end
       respond_to do |format|
         if @user.update_attributes(params[:user])
-          flash[:notice] = 'Your preferences have been updated.'
+          flash[:notice] = 'Updated preferences.'
           format.html { redirect_to root_path }
           format.xml  { head :ok }
         else
@@ -128,11 +128,11 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.login != "admin"
         @user.destroy
-        flash[:notice] = 'User was successfully removed.'
+        flash[:notice] = 'User was removed.'
         format.html { redirect_to(users_url) }
         format.xml  { head :ok }
       else
-        flash[:error] = 'Default admin user cannot be removed!'
+        flash[:error] = 'Default admin cannot be removed!'
         format.html { redirect_to(users_url) }
       end
     end
