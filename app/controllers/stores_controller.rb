@@ -39,7 +39,7 @@ class StoresController < ApplicationController
 
       # change the :limit => x to be the number of closest locations to return per query 
       @stores = Store.find(:all,
-            :select=>"lat, lng, #{distance_sql} as distance",
+            :select=>"store, id, lat, lng, #{distance_sql} as distance",
             :conditions=>['lng > ? AND lng < ? AND lat <= ? AND lat >= ?',sw[1],ne[1],ne[0],sw[0]],
             :order => 'distance asc',
             :limit => 20)
