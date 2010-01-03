@@ -154,7 +154,12 @@ function showExactAddress(address) {
       map.removeOverlay(trafficInfo);
   } 
 
+  // this is to combat an event (movend) that is triggered when adding a traffic overlay
+  var trafficJustAdded = false;
   function enableTraffic() {
+	  var trafficOptions = {incidents:false}; // change to true to add traffic incidents
+	  trafficInfo = new GTrafficOverlay(trafficOptions);
+	  trafficJustAdded = true;
       map.addOverlay(trafficInfo);
   }
 
@@ -182,9 +187,9 @@ function init() {
 	map.addControl(new GScaleControl());
 	map.addControl(new GMapTypeControl());
 	
-	var trafficOptions = {incidents:false}; // change to true to add traffic incidents
-	trafficInfo = new GTrafficOverlay(trafficOptions);
+	
 
+	// terrain view
 	map.addMapType(G_PHYSICAL_MAP);
 	
 	// zoom controls
@@ -213,7 +218,9 @@ function init() {
 
 	// if the map is scrolled update markers, this also catches 'zoomend' events
 	GEvent.addListener(map, 'moveend', function(){
-		listMarkers(map.getCenter());
+		if(trafficJustAdded == false){
+			listMarkers(map.getCenter());
+		}
 	});
 
     GEvent.addListener(map, "click", function(overlay, latlng) {
@@ -317,7 +324,13 @@ function createMarker(latlng, html, id) {
 
 // plots all of the markers, on the google map, that are returned from the stores.js controller
 function listMarkers(latlng) {
+	// clear screen and repopulate with new information
+	alert("clearing");
 	map.clearOverlays();
+	if(trafficButtonState == 1){
+		alert("adding traffic");
+		enableTraffic();
+	}
 	// format request to perform server side filtering of location points
 	var bounds = map.getBounds();
 	var southWest = bounds.getSouthWest();
