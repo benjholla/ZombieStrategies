@@ -12,60 +12,51 @@ h5 {color:#000000; font-size:14px;}
 /* Forms Style */
 input 
 { 
-	position: relative;
-	font-family: sans-serif;
-	font-size: 18px;
-	margin-top: 1px;
-	margin-bottom: 15px;
-    border: solid 1px black;
-	z-index: 3; 
+	position:relative;
+	font-family:sans-serif;
+	font-size:18px;
+	margin-top:1px;
+	margin-bottom:15px;
+    border:solid 1px black;
+	z-index:3; 
 }
 
 /* Background */
 * {
-  margin-left: 0px;
-  padding: 0px;
+	margin:0px;
+	padding:0px;
 }
 
 body {
-  background: #f6f6f6 url(/images/bg.gif) no-repeat left top;
-  text-align: justify;
-}
-
-/* Body Container */
-#container {
-   width: 1000px;
-   float: left;
-   margin-top:90px;
-   margin-bottom:0px;
-   margin-right:0px;
-   margin-left:50px;
+	background:#f6f6f6 url(/images/bg.gif) no-repeat left top;
+	text-align:justify;
 }
 
 /* Main Content Container */
-#content {
-   width: 850;
-   float: left;
-   margin-top:20px;
-   margin-bottom:0px;
-   margin-right:0px;
-   margin-left:75px;
+#container {
+	width:1000px;
+	float:left;
+	margin-top:98px;
+	margin-left:50px;
 }
 
-/* Footer Content Container */
-#footer {
-   width: 1000px;
-   float: left;
-   margin-top:50px;
+/* Zombie Strategies Text Logo */
+#logo {
+	float:left;
+	height:133px;
+	width:511px;
+	background: url(/images/title.png) no-repeat left top;
+	z-index:1;
 }
 
-/* Title */
-#title {
-  float: left;
-  height: 133px;
-  width: 511px;
-  background: url(/images/title.png) no-repeat left top;
-  z-index:1;
+/* Divider */
+.divider {
+	float: left;
+	height: 7px;
+	width: 1000px;
+	margin-top:25px;
+	margin-bottom:25px;
+	background: url(/images/divider.png) no-repeat;
 }
 
 /* Positions the username that gets displayed near the logout button when logged in */
@@ -79,31 +70,7 @@ body {
 .admin {
 	position:absolute;
 	left:590px;
-	top:200px;
-}
-
-/* Divider */
-.divider {
-  float: left;
-  height: 7px;
-  width: 1000px;
-  margin-top:30px;
-  margin-bottom:0px;
-  margin-right:0px;
-  margin-left:0px;
-  background: url(/images/divider.png) no-repeat;
-}
-
-/* Footer Divider */
-.footer-divider {
-  float: left;
-  height: 7px;
-  width: 1000px;
-  margin-top:5px;
-  margin-bottom:5px;
-  margin-right:0px;
-  margin-left:0px;
-  background: url(/images/divider.png) no-repeat;
+	top:209px;
 }
 
 /* Blood Smear Error Background */
@@ -112,8 +79,8 @@ div.error
   position:absolute;
   left:30px;
   top:120px;
-  height: 376px;
-  width: 536px;
+  height:376px;
+  width:536px;
   background: url(/images/blood_smear_1.png) no-repeat;
   z-index:2;
 }
@@ -123,7 +90,7 @@ div.error-message
 {
   position:absolute;
   left:135px;
-  top:275px;
+  top:295px;
   z-index:3;
 }
 
@@ -133,8 +100,8 @@ div.notification
   position:absolute;
   left:0px;
   top:35px;
-  height: 376px;
-  width: 563px;
+  height:376px;
+  width:563px;
   background: url(/images/blood_smear_2.png) no-repeat;
   z-index:2;
 }
@@ -144,17 +111,40 @@ div.notification-message
 {
   position:absolute;
   left:160px;
-  top:275px;
+  top:295px;
   z-index:3;
 }
 
+/* Body Content Container */
+#content {
+	float:left;
+	width:925px;
+	margin-left:75px;
+}
+
+/* Footer Content Container */
+#footer {
+	float:left;
+   	width:1000px;
+   	margin-top:50px;
+}
+
+/* Footer Divider */
+.footer-divider {
+	float: left;
+	height:7px;
+	width:1000px;
+	margin-top:5px;
+	margin-bottom:5px;
+	background: url(/images/divider.png) no-repeat;
+}
 
 /* Main Navigation Menu */
 .navigation-box {
 	position:absolute;
 	left:590px;
-	top:146px;
-	margin-top:0px;
+	top:103px;
+	margin-top:50px;
 	margin-bottom:0px;
 	margin-right:0px;
 	margin-left:0px;
@@ -251,8 +241,8 @@ ul#navigation li#navigation-5 a.current {
 .unauthenticated-menu-box {
 	position:absolute;
 	left:900px;
-	top:100px;
-	margin-top:0px;
+	top:50px;
+	margin-top:50px;
 	margin-bottom:0px;
 	margin-right:0px;
 	margin-left:0px;
@@ -310,8 +300,8 @@ ul#unauthenticated-menu li#unauthenticated-menu-2 a.current {
 .authenticated-menu-box {
 	position:absolute;
 	left:887px;
-	top:100px;
-	margin-top:0px;
+	top:50px;
+	margin-top:50px;
 	margin-bottom:0px;
 	margin-right:0px;
 	margin-left:0px;

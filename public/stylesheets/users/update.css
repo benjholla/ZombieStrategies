@@ -1,17 +1,15 @@
-/* Left Side Form Container */
+/* Left Side Content Container */
 #left-form {
-   	width: auto;
-	float: left;
-	margin-top: -16px;
+	width:auto;
+	float:left;
+	margin:0px;
 }
 
-/* Right Side Form Container */
+/* Right Side Content Container */
 #right-form {
-   	width: 400px;
-   	margin-top:0px;
-   	margin-bottom:0px;
-   	margin-right:0px;
-   	margin-left:380px;
+	width:400px;
+	margin-left:380px;
+	text-align:left;
 }
 
 /* Styling for the map prompts */

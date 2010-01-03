@@ -1,35 +1,38 @@
-<%= stylesheet_link_tag 'users/signup' %>
-<h1>New User Registration</h1>
-<br />
-<h3>We protect your information! Please read our <a href="/privacy_policy" title="Privacy Policy">privacy policy</a>.</h3>
-<br />
+<%= stylesheet_link_tag 'users/update' %>
+<h1>Edit User Profile</h1>
 <% @user.password = @user.password_confirmation = nil %>
 
 <%= error_messages_for :user %>
-<% form_for :user, :url => users_path do |f| -%>
-
+<% form_for(@user) do |f| -%>
 <div id="left-form">
-<br />
 <h2>Login Information</h2>
 	<p>
 		<b><%= label_tag 'login', 'Username' %></b>
-		<br />
+		<br/>
 		<%= f.text_field :login %>
 		<br />
 		<b><%= label_tag 'password', 'Password' %></b>
-		<br />
+		<br/>
 		<%= f.password_field :password %>
 		<br />
-		<b><%= label_tag 'password_confirmation', 'Confirm Password' %></b>
-		<br />
+		<b><%= label_tag 'password_confirmation', 'Confirm Password' %><br/></b>
 		<%= f.password_field :password_confirmation %>
 	</p>
-	<br />
-	<input type="checkbox" name="tos" checked="checked" /> <b>I agree to the <a href="/terms_of_use">Terms of Use</a> for this site.</b>
+	
+	<% if authorized? %>
+		<% if @user.login != "admin"%>
+			<p>
+    			<%= f.check_box :is_admin %> <b><%= label_tag 'is_admin', "Administrative Priviliges" %></b>
+  			</p>
+		<% else %>
+			<p>
+    			<b>This account is the default admin user.</b>
+  			</p>
+		<% end %>
+	<% end %>
 </div>
 
 <div id="right-form">
-<br />
 <h2>Contact Information</h2>
   	<p>
     	<b><%= label_tag 'first_name', 'First Name' %></b>
@@ -41,7 +44,7 @@
 		<%= f.text_field :last_name %>
 		<br />
 		<b><%= label_tag 'email', 'Email' %></b>
-		<br />
+		<br/>
 		<%= f.text_field :email %>
 		<br />
     	<b><%= label_tag 'phone', 'Phone' %></b> (optional, currently limited to the United States only.)
@@ -50,14 +53,14 @@
     	<b><%= label_tag 'twitter', 'Twitter' %></b> (optional, requires following <a href="http://twitter.com/ZombieStrategy">ZombieStrategies</a>)
 		<br />
     	<i>http://twitter.com/</i><%= f.text_field :twitter, "size" => 17 %>
-		<br />
   	</p>
 </div>
 
 <div id="left-form">
-  	<h2>Location Information</h2><u><b>Home Location</b></u>
+  	<h2>Location Information</h2> <u><b>Home Location</b></u>
 	<br />
 	(optional, used to send you relevant information <br />personalized to your area.)
+	<br />
   	<p>
     	<b><%= label_tag 'lat', 'Latitude' %></b>
 		<br />
@@ -69,7 +72,8 @@
   	</p>
 	<div id="message"></div>
 	<br />
-	<%= submit_tag 'Sign up', {:onclick => "return checkTermsOfUseAgreement();"} %>
+    <%= f.submit 'Update' %>
+	<br />
 	<input type="button" value="Cancel" onclick="window.location.href='/'"/>
 </div>
 
@@ -78,7 +82,7 @@
 	<br />
 	<script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
 	</script>
-	<script type="text/javascript" src="/javascripts/signup.js"></script>
+	<script type="text/javascript" src="/javascripts/edit_profile.js"></script>
 
 	<noscript><b>JavaScript must be enabled in order for you to use Google Maps.</b> 
 	   However, it seems JavaScript is either disabled or not supported by your browser. 
@@ -93,5 +97,5 @@
 	<input id="search" size="30" type="text" value="" onkeypress="return submitEnter(this,event)"/>
 	<input type="button" value="Go!" onclick="showAddress(); return false;"/>
 </div>
-
+	
 <% end -%>

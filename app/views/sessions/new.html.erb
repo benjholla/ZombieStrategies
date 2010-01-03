@@ -1,18 +1,21 @@
 <%= stylesheet_link_tag 'sessions/session' %>
+
 <div id="left-content">
 	<h1>Log In</h1>
-	
+	<br />
 	<% form_tag session_path do -%>
-	<h2><%= label_tag 'Username' %><br />
-	<%= text_field_tag 'login', @login %></h2>
-
-	<h2><%= label_tag 'Password' %><br/>
-	<%= password_field_tag 'password', nil %></h2>
-
-	<p><%= label_tag 'remember_me', 'Remember me' %>
-	<%= check_box_tag 'remember_me', '1', @remember_me %></p>
-
-	<p><%= submit_tag 'Log in' %></p>
+	<h2>
+		<%= label_tag 'Username' %>
+		<%= text_field_tag 'login', @login %>
+		<br />
+		<%= label_tag 'Password' %>
+		<br />
+		<%= password_field_tag 'password', nil %>
+	</h2>
+	<%= label_tag 'remember_me', 'Remember me' %>
+	<%= check_box_tag 'remember_me', '1', @remember_me %>
+	<br />
+	<%= submit_tag 'Log in' %>
 </div>
 
 <div id="right-content">

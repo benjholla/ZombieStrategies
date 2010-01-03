@@ -13,75 +13,76 @@
 </head>
 	<body>
 		<div id="container">
-			<div id="title"></div>
+	  		<div id="logo"></div>
 			<% if logged_in? %>
-				<div class="authenticated-menu-box">
-					<ul id="authenticated-menu">
-						<li id="authenticated-menu-1"><a href="<%= edit_user_path(current_user) %>" title="Profile"><span>Profile</span></a></li>
-						<li id="authenticated-menu-2"><a href="/logout" title="Logout"><span>Logout</span></a></li>
-					</ul>
-				</div>
-				<div class="username">
-					<p>(Username:&nbsp;<%=h "#{current_user.login}" %>)</p>
-				</div>
-				<% if authorized? %>
-					<div class="admin"><h1><a href="/zs-admin" title="Admin Settings">Admin&nbsp;Settings</a></h1></div>
-				<% end %>
-			<% else %>
-				<div class="unauthenticated-menu-box">
-					<ul id="unauthenticated-menu">
-						<li id="unauthenticated-menu-1"><a href="/login" title="Login"><span>Login</span></a></li>
-						<li id="unauthenticated-menu-2"><a href="/signup" title="Sign up"><span>Sign up</span></a></li>
-					</ul>
-				</div>
-			<% end %>
-			<div class="navigation-box">
-				<ul id="navigation">
-					<li id="navigation-1"><a href="<%= root_path %>" title="Home"><span>home</span></a></li>
-					<li id="navigation-2"><a href="<%= twitter_trends_path %>" title="Monitor"><span>monitor</span></a></li>
-					<li id="navigation-3"><a href="<%= stores_path %>" title="Plan"><span>plan</span></a></li>
-					<li id="navigation-4"><a href="/store" title="Store"><span>store</span></a></li>
-					<li id="navigation-5"><a href="/about" title="About"><span>about</span></a></li>
+	    	<div class="authenticated-menu-box">
+	    		<ul id="authenticated-menu">
+					<li id="authenticated-menu-1"><a href="/profile" title="Profile"><span>Profile</span></a></li>
+					<li id="authenticated-menu-2"><a href="/logout" title="Logout"><span>Logout</span></a></li>
 				</ul>
+	    	</div>
+			<div class="username">
+				<p>(Username:&nbsp;<%=h "#{current_user.login}" %>)</p>
 			</div>
-			<div class="divider"></div>
-    		<div id="content">
-	  			<% if flash[:error] %>
+			<% if authorized? %>
+				<div class="admin"><h1><a href="/zs-admin" title="Admin Settings">Admin&nbsp;Settings</a></h1></div>
+			<% end %>
+			<% else %>
+	    	<div class="unauthenticated-menu-box">
+	    		<ul id="unauthenticated-menu">
+					<li id="unauthenticated-menu-1"><a href="/login" title="Login"><span>Login</span></a></li>
+					<li id="unauthenticated-menu-2"><a href="/signup" title="Sign up"><span>Sign up</span></a></li>
+				</ul>
+	    	</div>
+			<% end %>
+	    	<div class="navigation-box">
+	    		<ul id="navigation">
+						<li id="navigation-1"><a href="<%= root_path %>" title="Home"><span>Home</span></a></li>
+						<li id="navigation-2"><a href="/monitor" title="Monitor"><span>Monitor</span></a></li>
+						<li id="navigation-3"><a href="/plan" title="Plan"><span>Plan</span></a></li>
+						<li id="navigation-4"><a href="/store" title="Store"><span>Store</span></a></li>
+						<li id="navigation-5"><a href="/about" title="About"><span>About</span></a></li>
+					</ul>
+	   		</div>
+	    	<div class="divider"></div>
+			<div id="content">
+				<% if flash[:error] %>
 					<div class="error-container">
 						<div class="error"></div>
-		  				<div class="error-message">
-	      					<h4>Error: <%= flash[:error] %></h4>
-	      				</div>
+					  	<div class="error-message">
+				      		<h4>Error: <%= flash[:error] %></h4>
+				      	</div>
 						<br /><br /><br /><br /><br />
 					</div>
-		  		<% end %>
-	  			<% if flash[:notice] %>
-					<div class="notification"></div>
-	  				<div class="notification-message">
-      					<h4><%= flash[:notice] %></h4>
-      				</div>
-					<br /><br /><br /><br />
-	  			<% end %>
-      			<%= yield %>
-    		</div>
-    		<div id="footer">
+				<% end %>
+				<% if flash[:notice] %>
+					<div class="error-container">
+						<div class="notification"></div>
+				  		<div class="notification-message">
+			      			<h4><%= flash[:notice] %></h4>
+			      		</div>
+						<br /><br /><br /><br />
+					</div>
+				<% end %>
+				<%= yield %>
+			</div>
+			<div id="footer">
 				<center><a href="#">&#169; Fribblesoft 2010</a> - <a href="/privacy_policy">Privacy Policy</a> / <a href="/terms_of_use">TOS</a></center>
-	    		<div class="footer-divider"></div>
+				<div class="footer-divider"></div>
 				<p>
-				<img src="/images/survivors-online.png" alt="Number of suvivors visting this site" /> 
-				<!-- start whos.amung.us-->
-				<script type="text/javascript" src="http://widgets.amung.us/classic.js"></script>
-				<script type="text/javascript">WAU_classic('3x46cf9zybn0')</script>
-				<!-- end whos.amung.us-->
-				
-				<!-- AddThis Button BEGIN -->
-				<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=zombiestrategies">
-					<img src="/images/spread-the-word.png" width="297" height="29" alt="Bookmark and Share" style="border:0" align="right"/>
-				</a>
-				<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=zombiestrategies"></script>
-				<!-- AddThis Button END -->	
+					<img src="/images/survivors-online.png" alt="Number of suvivors visting this site" /> 
+					<!-- start whos.amung.us-->
+					<script type="text/javascript" src="http://widgets.amung.us/classic.js"></script>
+					<script type="text/javascript">WAU_classic('3x46cf9zybn0')</script>
+					<!-- end whos.amung.us-->
+					<!-- AddThis Button BEGIN -->
+					<a class="addthis_button" href="http://www.addthis.com/bookmark.php?v=250&amp;username=zombiestrategies">
+						<img src="/images/spread-the-word.png" width="297" height="29" alt="Bookmark and Share" style="border:0" align="right"/>
+					</a>
+					<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=zombiestrategies"></script>
+					<!-- AddThis Button END -->	
 				</p>
-    		</div>
-		</div>
+			</div>
+	  	</div>
 	</body>
 </html>

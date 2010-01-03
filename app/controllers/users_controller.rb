@@ -87,6 +87,10 @@ class UsersController < ApplicationController
     end
   end
   
+  def profile
+    @user = current_user
+  end
+  
   # PUT /users/1
   # PUT /users/1.xml
   def update

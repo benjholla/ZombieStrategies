@@ -22,6 +22,15 @@ ActionController::Routing::Routes.draw do |map|
   
   # admin control panel
   map.admin '/zs-admin', :controller => 'admin', :action => 'index'
+  
+  # plan page
+  map.plan '/plan', :controller => 'stores', :action => 'index'
+  
+  # monitor page
+  map.monitor '/monitor', :controller => 'twitter_trends', :action => 'index'
+  
+  # profile page
+  map.profile '/profile', :controller => 'users', :action => 'profile'
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
