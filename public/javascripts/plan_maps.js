@@ -423,6 +423,7 @@ function updateStore(id, marker){
 				}
 			}
 			storeHTML += '</ul>' + '</div>';
+			suppressMoveEnd = true;
 			marker.openInfoWindowHtml(storeHTML);
 		}
 	}
