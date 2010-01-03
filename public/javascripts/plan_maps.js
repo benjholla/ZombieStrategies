@@ -320,9 +320,7 @@ function storeMarker(){
 function createMarker(latlng, html, id) {
      var marker = new GMarker(latlng);
      GEvent.addListener(marker, 'click', function() {
-		  alert("clicked!");
 		  //requery items for this store, reset html
-		  alert("create marker -> " + id);
           updateStore(id, marker);
     });
     return marker;
@@ -345,7 +343,6 @@ function listMarkers(latlng) {
   	var request = GXmlHttp.create();
   	//tell the request where to retrieve data from.
   	request.open('GET', url, true);
-	alert(url);
   	//tell the request what to do when the state changes.
   	request.onreadystatechange = function() {
     	if (request.readyState == 4) {
@@ -370,7 +367,6 @@ function listMarkers(latlng) {
 						}
 					}
 					html += '</ul>' + '</div>';
-					alert("list marker -> " + marker.id);
         			var marker = createMarker(latlng, html, marker.id);
         			map.addOverlay(marker);
         		} // end of if lat and lng
@@ -406,18 +402,15 @@ function updateItems(){
 
 // returns the latest html for a given store id
 function updateStore(id, marker){
-	alert("inside update store");
 	var request = GXmlHttp.create();
 	//tell the request where to retrieve data from.
 	request.open('GET', 'stores/' + id + '.js', true);
-	alert('stores/' + id + '.js');
 	//tell the request what to do when the state changes.
 	var storeHTML;
  	request.onreadystatechange = function() {
 		if (request.readyState == 4) {
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
-	        alert(request.responseText);
 	    	storeVar = eval( "(" + request.responseText + ")" );
 			var storeHTML = '<div><strong>Store: </strong> <a href="/stores/' + storeVar.store.id + '">' + storeVar.store.store + '</a> ';
 			storeHTML += '<ul>';
