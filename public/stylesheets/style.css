@@ -1,26 +1,3 @@
-/* Right Side Form Container */
-#right-form {
-   width: auto;
-   margin-top:0px;
-   margin-bottom:0px;
-   margin-right:0px;
-   margin-left:370px;
-}
-
-/* Left Side Form Container */
-#left-form {
-   width: auto;
-   float: left;
-   margin-top:0px;
-   margin-bottom:0px;
-   margin-right:0px;
-   margin-left:0px;
-}
-
-#message {
-	width: 350px;
-}
-
 /* Right Side Content Container */
 #right-content {
    width: auto;

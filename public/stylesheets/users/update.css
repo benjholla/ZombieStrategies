@@ -1,0 +1,20 @@
+/* Left Side Form Container */
+#left-form {
+   	width: auto;
+	float: left;
+	margin-top: -16px;
+}
+
+/* Right Side Form Container */
+#right-form {
+   	width: 400px;
+   	margin-top:0px;
+   	margin-bottom:0px;
+   	margin-right:0px;
+   	margin-left:380px;
+}
+
+/* Styling for the map prompts */
+#message {
+	width: 350px;
+}
