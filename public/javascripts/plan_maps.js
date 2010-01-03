@@ -9,6 +9,9 @@ var curItemsHTML = '';
 
 var trafficInfo;
 
+// this is to combat an event (movend) that is triggered when adding a traffic overlay or single map clicks
+var suppressMoveEnd = false;
+
 // ====== Create a Client Geocoder ======
 var geo = new GClientGeocoder(); 
 
@@ -150,18 +153,17 @@ function showExactAddress(address) {
     );
   }
 
-  function disableTraffic() {
-      map.removeOverlay(trafficInfo);
-  } 
+ function disableTraffic() {
+     map.removeOverlay(trafficInfo);
+ } 
 
-  // this is to combat an event (movend) that is triggered when adding a traffic overlay
-  var trafficJustAdded = false;
-  function enableTraffic() {
-	  var trafficOptions = {incidents:false}; // change to true to add traffic incidents
-	  trafficInfo = new GTrafficOverlay(trafficOptions);
-	  trafficJustAdded = true;
-      map.addOverlay(trafficInfo);
-  }
+
+ function enableTraffic() {
+	 var trafficOptions = {incidents:false}; // change to true to add traffic incidents
+	 trafficInfo = new GTrafficOverlay(trafficOptions);
+	 suppressMoveEnd = true;
+     map.addOverlay(trafficInfo);
+ }
 
 
 function init() {
@@ -218,10 +220,10 @@ function init() {
 
 	// if the map is scrolled update markers, this also catches 'zoomend' events
 	GEvent.addListener(map, 'moveend', function(){
-		if(trafficJustAdded == false){
+		if(suppressMoveEnd == false){
 			listMarkers(map.getCenter());
 		}
-		trafficJustAdded = false;
+		suppressMoveEnd = false;
 	});
 
     GEvent.addListener(map, "click", function(overlay, latlng) {
@@ -411,7 +413,6 @@ function updateStore(id, marker){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	storeVar = eval( "(" + request.responseText + ")" );
-			alert(storeVar);
 			var storeHTML = '<div><strong>Store: </strong> <a href="/stores/' + storeVar.store.id + '">' + storeVar.store.store + '</a> ';
 			storeHTML += '<ul>';
 			for (var i=0; i<storeVar.store.items.length; i++)
