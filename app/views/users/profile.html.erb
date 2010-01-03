@@ -1,5 +1,6 @@
 <%= stylesheet_link_tag 'users/update' %>
 <h1>Edit User Profile</h1>
+<br />
 <% @user.password = @user.password_confirmation = nil %>
 
 <%= error_messages_for :user %>
@@ -34,6 +35,7 @@
 
 <div id="right-form">
 <h2>Contact Information</h2>
+	<br />
   	<p>
     	<b><%= label_tag 'first_name', 'First Name' %></b>
 		<br />
@@ -57,6 +59,7 @@
 </div>
 
 <div id="left-form">
+	<br />
   	<h2>Location Information</h2> <u><b>Home Location</b></u>
 	<br />
 	(optional, used to send you relevant information <br />personalized to your area.)
