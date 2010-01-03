@@ -1,0 +1,56 @@
+/* Left Side Content Container */
+#left-content {
+	width: 450px;
+	float: left;
+	margin: 0px;
+}
+
+/* Positions an error message */
+div.error-container {
+	width: 563px;
+	float: left;
+	margin: 0px;
+}
+
+/* Twitter Content Container */
+#twitter {
+	width: 350px;
+	margin-left: 575px;
+	text-align: left;
+}
+
+#twitter ul {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+
+#twitter li {
+	padding: 0px;
+	margin: 0px;
+	background: none;
+}
+
+#twitter-header {
+	height: 15px;
+	width: 350px;
+	background: url(/images/twitter_header.png) no-repeat;
+}
+
+#twitter-footer {
+	height: 8px;
+	width: 350px;
+	background: url(/images/twitter_footer.png) no-repeat;
+}
+
+#tweets {
+	padding-left: 25px;
+	padding-right: 25px;
+	background: url(/images/twitter_filler.png) repeat;
+}
+
+/* Individual Tweets Styling */
+#tweet {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}

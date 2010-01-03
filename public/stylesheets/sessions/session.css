@@ -1,0 +1,12 @@
+/* Left Side Content Container */
+#left-content {
+	width: 300px;
+	float: left;
+}
+
+/* Right Side Content Container */
+#right-content {
+	width: auto;
+	margin-top: 20px;
+	margin-left:300px;
+}

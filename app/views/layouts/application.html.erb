@@ -9,7 +9,7 @@
   <title><%= page_title %></title>
   <meta name="keywords" content="zombie, zombies, living dead, defense, protection, preparation, civil defense, strategies, strategy, google map mashup" />
   <meta name="description" content="A civil defense system against the living dead." />
-  <%= stylesheet_link_tag 'style' %>
+  <%= stylesheet_link_tag 'application' %>
 </head>
 	<body>
 		<div id="container">
@@ -47,15 +47,17 @@
 			<div class="divider"></div>
     		<div id="content">
 	  			<% if flash[:error] %>
-					<div class="error-blood-1"></div>
-		  			<div class="error">
-	      				<h4>Error: <%= flash[:error] %></h4>
-	      			</div>
-					<br /><br /><br /><br /><br />
+					<div class="error-container">
+						<div class="error"></div>
+		  				<div class="error-message">
+	      					<h4>Error: <%= flash[:error] %></h4>
+	      				</div>
+						<br /><br /><br /><br /><br />
+					</div>
 		  		<% end %>
 	  			<% if flash[:notice] %>
-					<div class="error-blood-2"></div>
-	  				<div class="notification">
+					<div class="notification"></div>
+	  				<div class="notification-message">
       					<h4><%= flash[:notice] %></h4>
       				</div>
 					<br /><br /><br /><br />

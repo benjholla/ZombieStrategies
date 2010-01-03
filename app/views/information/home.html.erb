@@ -1,9 +1,10 @@
+<%= stylesheet_link_tag 'information/home' %>
 <div id="left-content">
-	<h1>What is Zombie Strategies?</h1><br />
-	<h5>Zombie Strategies is a user driven community that is working to map the locations of emergency survival supplies. Zombie Strategies is also a predictive zombie civil defense system which monitors for indications of a possible zombie apocalypse and can automatically alert users through multiple mediums.</h5><br />
-	<h5>Zombie Strategies is still in active development, but a lot of exciting features are coming soon!</h5><br />
-	<h1>Getting Started</h1><br />
-	<h5>To start helping map the locations of survival supplies in your area click the "Plan" link above in the navigation bar.  Click the "Monitor" link to check out the threat detection system.</h5><br />
+	<h1>What is Zombie Strategies?</h1>
+	<h5>Zombie Strategies is a user driven community that is working to map the locations of emergency survival supplies. Zombie Strategies is also a predictive zombie civil defense system which monitors for indications of a possible zombie apocalypse and can automatically alert users through multiple mediums.</h5>
+	<h5>Zombie Strategies is still in active development, but a lot of exciting features are coming soon!</h5>
+	<h1>Getting Started</h1>
+	<h5>To start helping map the locations of survival supplies in your area click the "Plan" link above in the navigation bar.  Click the "Monitor" link to check out the threat detection system.</h5>
 	<h5>To register your free account, click the "Sign Up" button.</h5>
 </div>
 
@@ -13,8 +14,8 @@
 	<div id="tweets">
 		<br />
 		<p>Loading Zombie Strategy Tweets... <img src="/images/loading-indicator.gif" /></p>
-		<br />
 		<p><a href="http://twitter.com/ZombieStrategy">Zombie Strategies Twitter Updates and Alerts</a></p>
+		<br />
 	</div>
 	<div id="twitter-footer"></div>
 </div>
@@ -30,6 +31,6 @@ getTwitters('tweets', {
   enableLinks: true, 
   ignoreReplies: true, 
   clearContents: true,
-  template: '<img height="24" width="16" src="/images/standalone_zombie.png" />&nbsp;&nbsp;<font size="2" face="sans-serif">"%text%"<a href="http://twitter.com/%user_screen_name%/statuses/%id%">&nbsp;&nbsp;%time%</a></font>'
+  template: '<div id="tweet"><img height="24" width="16" src="/images/standalone_zombie.png" />&nbsp;&nbsp;<font size="2" face="sans-serif">"%text%"&nbsp;&nbsp;<a href="http://twitter.com/%user_screen_name%/statuses/%id%">%time%</a></font></div>'
 });
 </script>

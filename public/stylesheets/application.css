@@ -1,0 +1,366 @@
+/* CSS created by Ben Holland, Copyright Fribblesoft 2010 */
+
+/* Text Style */
+a {color: #330066; text-decoration: none; }
+h1, h2, h3, h4, h5 {font-family:"Trebuchet MS", Verdana, sans-serif;}
+h1 {color:#E3F7FD; font-size:22px;}
+h2 {color:#D06000; font-size:20px;}
+h3 {font-size:18px;}
+h4 {color:#E3F7FD; font-size:16px;}
+h5 {color:#000000; font-size:14px;}
+
+/* Forms Style */
+input 
+{ 
+	position: relative;
+	font-family: sans-serif;
+	font-size: 18px;
+	margin-top: 1px;
+	margin-bottom: 15px;
+    border: solid 1px black;
+	z-index: 3; 
+}
+
+/* Background */
+* {
+  margin-left: 0px;
+  padding: 0px;
+}
+
+body {
+  background: #f6f6f6 url(/images/bg.gif) no-repeat left top;
+  text-align: justify;
+}
+
+/* Body Container */
+#container {
+   width: 1000px;
+   float: left;
+   margin-top:90px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:50px;
+}
+
+/* Main Content Container */
+#content {
+   width: 850;
+   float: left;
+   margin-top:20px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:75px;
+}
+
+/* Footer Content Container */
+#footer {
+   width: 1000px;
+   float: left;
+   margin-top:50px;
+}
+
+/* Title */
+#title {
+  float: left;
+  height: 133px;
+  width: 511px;
+  background: url(/images/title.png) no-repeat left top;
+  z-index:1;
+}
+
+/* Positions the username that gets displayed near the logout button when logged in */
+.username {
+	position:absolute;
+	left:887px;
+	top:88px;
+}
+
+/* Positions the admin settings link that gets displayed near the title when an admin is logged in */
+.admin {
+	position:absolute;
+	left:590px;
+	top:200px;
+}
+
+/* Divider */
+.divider {
+  float: left;
+  height: 7px;
+  width: 1000px;
+  margin-top:30px;
+  margin-bottom:0px;
+  margin-right:0px;
+  margin-left:0px;
+  background: url(/images/divider.png) no-repeat;
+}
+
+/* Footer Divider */
+.footer-divider {
+  float: left;
+  height: 7px;
+  width: 1000px;
+  margin-top:5px;
+  margin-bottom:5px;
+  margin-right:0px;
+  margin-left:0px;
+  background: url(/images/divider.png) no-repeat;
+}
+
+/* Blood Smear Error Background */
+div.error
+{
+  position:absolute;
+  left:30px;
+  top:120px;
+  height: 376px;
+  width: 536px;
+  background: url(/images/blood_smear_1.png) no-repeat;
+  z-index:2;
+}
+
+/* Error Message */
+div.error-message
+{
+  position:absolute;
+  left:135px;
+  top:275px;
+  z-index:3;
+}
+
+/* Blood Smear Notification Background */
+div.notification
+{
+  position:absolute;
+  left:0px;
+  top:35px;
+  height: 376px;
+  width: 563px;
+  background: url(/images/blood_smear_2.png) no-repeat;
+  z-index:2;
+}
+
+/* Notification Message */
+div.notification-message
+{
+  position:absolute;
+  left:160px;
+  top:275px;
+  z-index:3;
+}
+
+
+/* Main Navigation Menu */
+.navigation-box {
+	position:absolute;
+	left:590px;
+	top:146px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-right:0px;
+	margin-left:0px;
+}
+
+ul#navigation {	
+	width:442px;
+	list-style:none;
+	height:35px
+}
+
+ul#navigation li {
+	display:inline
+}
+
+ul#navigation li a {
+	height:35px;
+	float:left;
+	text-indent:-9999px;
+	text-decoration:none
+}
+
+ul#navigation  li a span {
+	float:left;
+	display:block
+}
+
+ul#navigation li#navigation-1 a {
+	width:73px;
+	background:url(/images/navigation.png) no-repeat 0px 0
+}
+
+ul#navigation li#navigation-1 a:active,
+ul#navigation li#navigation-1 a:hover {
+	background-position:0px -35px
+}
+ul#navigation li#navigation-1 a.current {
+	background-position:0px -70px
+}
+
+ul#navigation li#navigation-2 a {
+	width:118px;
+	background:url(/images/navigation.png) no-repeat -73px 0
+}
+
+ul#navigation li#navigation-2 a:active,
+ul#navigation li#navigation-2 a:hover {
+	background-position:-73px -35px
+}
+ul#navigation li#navigation-2 a.current {
+	background-position:-73px -70px
+}
+
+ul#navigation li#navigation-3 a {
+	width:86px;
+	background:url(/images/navigation.png) no-repeat -191px 0
+}
+
+ul#navigation li#navigation-3 a:active,
+ul#navigation li#navigation-3 a:hover {
+	background-position:-191px -35px
+}
+ul#navigation li#navigation-3 a.current {
+	background-position:-191px -70px
+}
+
+ul#navigation li#navigation-4 a {
+	width:90px;
+	background:url(/images/navigation.png) no-repeat -277px 0
+}
+
+ul#navigation li#navigation-4 a:active,
+ul#navigation li#navigation-4 a:hover {
+	background-position:-277px -35px
+}
+ul#navigation li#navigation-4 a.current {
+	background-position:-277px -70px
+}
+
+ul#navigation li#navigation-5 a {
+	width:75px;
+	background:url(/images/navigation.png) no-repeat -367px 0
+}
+
+ul#navigation li#navigation-5 a:active,
+ul#navigation li#navigation-5 a:hover {
+	background-position:-367px -35px
+}
+ul#navigation li#navigation-5 a.current {
+	background-position:-367px -70px
+}
+
+/* Unauthenticated Menu Bar */
+.unauthenticated-menu-box {
+	position:absolute;
+	left:900px;
+	top:100px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-right:0px;
+	margin-left:0px;
+}
+
+ul#unauthenticated-menu {	
+	width:128px;
+	list-style:none;
+	height:37px
+}
+
+ul#unauthenticated-menu li {
+	display:inline
+}
+
+ul#unauthenticated-menu li a {
+	height:37px;
+	float:left;
+	text-indent:-9999px;
+	text-decoration:none
+}
+
+ul#unauthenticated-menu  li a span {
+	float:left;
+	display:block
+}
+
+ul#unauthenticated-menu li#unauthenticated-menu-1 a {
+	width:56px;
+	background:url(/images/unauthenticated-menu.png) no-repeat 0px 0
+}
+
+ul#unauthenticated-menu li#unauthenticated-menu-1 a:active,
+ul#unauthenticated-menu li#unauthenticated-menu-1 a:hover {
+	background-position:0px -37px
+}
+ul#unauthenticated-menu li#unauthenticated-menu-1 a.current {
+	background-position:0px -74px
+}
+
+ul#unauthenticated-menu li#unauthenticated-menu-2 a {
+	width:72px;
+	background:url(/images/unauthenticated-menu.png) no-repeat -56px 0
+}
+
+ul#unauthenticated-menu li#unauthenticated-menu-2 a:active,
+ul#unauthenticated-menu li#unauthenticated-menu-2 a:hover {
+	background-position:-56px -37px
+}
+ul#unauthenticated-menu li#unauthenticated-menu-2 a.current {
+	background-position:-56px -74px
+}
+
+/* Authenticated Menu Bar */
+.authenticated-menu-box {
+	position:absolute;
+	left:887px;
+	top:100px;
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-right:0px;
+	margin-left:0px;
+}
+
+ul#authenticated-menu {	
+	width:133px;
+	list-style:none;
+	height:37px
+}
+
+ul#authenticated-menu li {
+	display:inline
+}
+
+ul#authenticated-menu li a {
+	height:37px;
+	float:left;
+	text-indent:-9999px;
+	text-decoration:none
+}
+
+ul#authenticated-menu  li a span {
+	float:left;
+	display:block
+}
+
+ul#authenticated-menu li#authenticated-menu-1 a {
+	width:69px;
+	background:url(/images/authenticated-menu.png) no-repeat 0px 0
+}
+
+ul#authenticated-menu li#authenticated-menu-1 a:active,
+ul#authenticated-menu li#authenticated-menu-1 a:hover {
+	background-position:0px -37px
+}
+ul#authenticated-menu li#authenticated-menu-1 a.current {
+	background-position:0px -74px
+}
+
+ul#authenticated-menu li#authenticated-menu-2 a {
+	width:64px;
+	background:url(/images/authenticated-menu.png) no-repeat -69px 0
+}
+
+ul#authenticated-menu li#authenticated-menu-2 a:active,
+ul#authenticated-menu li#authenticated-menu-2 a:hover {
+	background-position:-69px -37px
+}
+ul#authenticated-menu li#authenticated-menu-2 a.current {
+	background-position:-69px -74px
+}
