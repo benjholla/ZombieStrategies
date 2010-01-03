@@ -221,7 +221,7 @@ function init() {
 		if(trafficJustAdded == false){
 			listMarkers(map.getCenter());
 		}
-		trafficJustAdded == false;
+		trafficJustAdded = false;
 	});
 
     GEvent.addListener(map, "click", function(overlay, latlng) {
