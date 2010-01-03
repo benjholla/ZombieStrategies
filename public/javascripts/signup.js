@@ -252,8 +252,9 @@ function init() {
 		
 		GEvent.addListener(map, "mouseover", function(overlay){
 			if(searchHomeHintGiven == false){
-				document.getElementById("message").innerHTML = "Hint: higher accuracy yields better results.  Try entering your home address in the search bar to set your home location.";
+				document.getElementById("message").innerHTML = "<b>Hint: higher accuracy yields better results.  Try entering your home address in the search bar to set your home location.</b>";
 				searchHomeHintGiven = true;
+				redFadeIn("message");
 			}
 		});
 	}
@@ -349,6 +350,20 @@ function checkTermsOfUseAgreement(){
 		return false;
 	}
 	return true;
+}
+
+// special effects
+function redFadeIn(elemID) {
+  element = document.getElementById(elemID);
+  var b = 0;
+  function f() {
+    element.style.color = 'rgb('+b+',0,0)';
+    if (b < 255) {
+	  b+=5;
+      setTimeout(f, 20);
+    }
+  };
+  f();
 }
 
 // initialize and cleanup google maps
