@@ -252,7 +252,7 @@ function init() {
 		
 		GEvent.addListener(map, "mouseover", function(overlay){
 			if(searchHomeHintGiven == false){
-				document.getElementById("message").innerHTML = "<b>Hint: higher accuracy yields better results.  Try entering your home address in the search bar to set your home location.</b>";
+				document.getElementById("message").innerHTML = "<b>Hint: higher accuracy yields better results.<br .>Try entering your home address in the search<br />bar to set your home location.</b>";
 				searchHomeHintGiven = true;
 				redFadeIn("message");
 			}
