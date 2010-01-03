@@ -400,6 +400,7 @@ function updateItems(){
 
 // returns the latest html for a given store id
 function updateStore(id, marker){
+	alert("inside update store");
 	var request = GXmlHttp.create();
 	//tell the request where to retrieve data from.
 	request.open('GET', 'stores/' + id + '.js', true);
@@ -410,6 +411,7 @@ function updateStore(id, marker){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	storeVar = eval( "(" + request.responseText + ")" );
+			alert(storeVar);
 			var storeHTML = '<div><strong>Store: </strong> <a href="/stores/' + storeVar.store.id + '">' + storeVar.store.store + '</a> ';
 			storeHTML += '<ul>';
 			for (var i=0; i<storeVar.store.items.length; i++)
