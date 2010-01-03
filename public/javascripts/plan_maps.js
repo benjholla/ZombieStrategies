@@ -345,6 +345,7 @@ function listMarkers(latlng) {
   	var request = GXmlHttp.create();
   	//tell the request where to retrieve data from.
   	request.open('GET', url, true);
+	alert(url);
   	//tell the request what to do when the state changes.
   	request.onreadystatechange = function() {
     	if (request.readyState == 4) {
