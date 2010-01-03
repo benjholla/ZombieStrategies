@@ -407,6 +407,7 @@ function updateStore(id, marker){
 	var request = GXmlHttp.create();
 	//tell the request where to retrieve data from.
 	request.open('GET', 'stores/' + id + '.js', true);
+	alert('stores/' + id + '.js');
 	//tell the request what to do when the state changes.
 	var storeHTML;
  	request.onreadystatechange = function() {
