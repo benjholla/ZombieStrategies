@@ -8,7 +8,7 @@
 		<%= f.text_field :name %>
 		<br />
 		<h2><%= label_tag 'category_name', 'Category: ' %></h2>
-		<h5><%= text_field_with_auto_complete :product, :category_name, {:size => 30}, {:skip_style => true, :url => formatted_categories_path(:js), :method => :get, :with => "'search=' + element.value"} %></h5>
+		<h5><%= text_field_with_auto_complete :product, :category_name, {:size => 30}, {:skip_style => true, :url => formatted_categories_path(:js), :method => :get, :param_name => 'search' } %></h5>
 	</div>
 	<div id="right-content">
 		<p>
