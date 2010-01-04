@@ -1,0 +1,17 @@
+<h1>Editing <%=h @location_profile.name %> Profile</h1>
+<br />
+<% form_for(@location_profile) do |f| %>
+  <%= f.error_messages %>
+
+  <h2>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </h2>
+  <h2>
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </h2>
+  <p>
+    <%= f.submit 'Update' %> <input type="button" value="Cancel" onclick="window.location.href='<%= location_profiles_path %>'"/>
+  </p>
+<% end %>

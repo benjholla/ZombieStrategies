@@ -122,6 +122,13 @@ div.notification-message
 	margin-left:75px;
 }
 
+/* Sortable Tables Style*/
+table.sortable thead {
+    color:#330066;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 /* Footer Content Container */
 #footer {
 	float:left;
