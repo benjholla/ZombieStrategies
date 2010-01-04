@@ -9,7 +9,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :items
   map.resources :stores, :collection => {:create => :get}
   map.resources :location_profiles
-  map.resources :homes
+  map.resources :categories, :has_many => :products
+  map.resources :products
   map.resources :twitter_trends, :has_many => :twitter_computations
   map.resources :twitter_computations
 

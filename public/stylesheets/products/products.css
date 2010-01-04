@@ -1,0 +1,43 @@
+/* Left Side Content Container */
+#left-content {
+	width:auto;
+	float:left;
+	margin:0px;
+}
+
+/* Right Side Content Container */
+#right-content {
+	width:450px;
+	margin-top:67px;
+	margin-left:380px;
+	text-align:left;
+}
+
+/* Autocomplete Popup Styling */
+div.auto_complete {
+	width: 350px;
+	background: #fff;
+}
+
+div.auto_complete ul {
+	border:1px solid #888;
+	margin:0;
+	padding:0;
+	width:100%;
+	list-style-type:none;
+}
+
+div.auto_complete ul li {
+	margin:0;
+	padding:3px;
+}
+
+div.auto_complete ul li.selected {
+	background-color: #990404;
+}
+
+div.auto_complete ul strong.highlight {
+	color: #800; 
+	margin:0;
+	padding:0;
+}
