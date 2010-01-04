@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     logout_keeping_session!
     @user = User.new(params[:user])
     # reset the is_admin property for new users to false just incase someone crafts a form
-    @user.is_admin = 0
+    @user.is_admin = false
     success = @user && @user.save
     if success && @user.errors.empty?
       # Protects against session fixation attacks, causes request forgery
@@ -99,10 +99,10 @@ class UsersController < ApplicationController
       @user = User.find_by_login(params[:id])
       # check and reset the is_admin property just incase someone crafts a form
       if !authorized?
-        if @user.is_admin == 0
-          @user.is_admin = 0
+        if @user.is_admin == false
+          @user.is_admin = false
         else
-          @user.is_admin = 1
+          @user.is_admin = true
         end
       end
       respond_to do |format|
