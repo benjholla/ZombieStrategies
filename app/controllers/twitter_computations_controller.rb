@@ -49,8 +49,8 @@ class TwitterComputationsController < ApplicationController
 
     respond_to do |format|
       if @twitter_computation.save
-        flash[:notice] = 'TwitterComputation was successfully created.'
-        format.html { redirect_to(TwitterTrend.find(params[:twitter_trend_id])) }
+        flash[:notice] = 'Created Twitter Computation.'
+        format.html { redirect_to(twitter_trends_url + "/" + @twitter_computation.twitter_trend_id.to_s) }
         format.xml  { render :xml => @twitter_computation, :status => :created, :location => @twitter_computation }
       else
         format.html { render :action => "new" }
@@ -68,7 +68,7 @@ class TwitterComputationsController < ApplicationController
 
     respond_to do |format|
       if @twitter_computation.update_attributes(params[:twitter_computation])
-        flash[:notice] = 'TwitterComputation was successfully updated.'
+        flash[:notice] = 'Updated Twitter Computation.'
         format.html { redirect_to(twitter_trends_url + "/" + @twitter_computation.twitter_trend_id.to_s) }
         format.xml  { head :ok }
       else
