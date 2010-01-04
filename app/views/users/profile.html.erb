@@ -22,11 +22,7 @@
 	</p>
 	
 	<% if authorized? %>
-		<% if @user.login != "admin"%>
-			<p>
-    			<%= f.check_box :is_admin %> <b><%= label_tag 'is_admin', "Administrative Priviliges" %></b>
-  			</p>
-		<% else %>
+		<% if @user.login == "admin"%>
 			<p>
     			<b>This account is the default admin user.</b>
   			</p>

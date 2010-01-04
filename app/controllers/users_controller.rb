@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   before_filter :admin_login_required, :only => [:index, :destroy]
 
   def admin_or_owner?
-    admin? || current_user.id == User.find(params[:id]).id
+    admin? || current_user.id == User.find_by_login(params[:id]).id
   end
 
   def access_denied
@@ -42,9 +42,10 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     if admin_or_owner?
-      @user = User.find(params[:id])
+      @user = User.find_by_login(params[:id])
       respond_to do |format|
         format.xml  { render :xml => @user }
+        format.js  { render :json => @user }
       end
     else
       flash[:error] = 'Restricted Access'
@@ -80,7 +81,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     if admin_or_owner?
-      @user = User.find(params[:id])
+      @user = User.find_by_login(params[:id])
     else
       flash[:error] = 'Restricted Access'
       redirect_to edit_user_path(current_user)
@@ -95,7 +96,7 @@ class UsersController < ApplicationController
   # PUT /users/1.xml
   def update
     if admin_or_owner?
-      @user = User.find(params[:id])
+      @user = User.find_by_login(params[:id])
       # check and reset the is_admin property just incase someone crafts a form
       if !authorized?
         if @user.is_admin == 0
@@ -123,7 +124,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.xml
   def destroy
-    @user = User.find(params[:id])
+    @user = User.find_by_login(params[:id])
     
     respond_to do |format|
       if @user.login != "admin"
