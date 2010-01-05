@@ -1,0 +1,24 @@
+<h1>Listing category_location_profile_memberships</h1>
+
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Location profile</th>
+    <th>Created at</th>
+  </tr>
+
+<% @category_location_profile_memberships.each do |category_location_profile_membership| %>
+  <tr>
+    <td><%=h category_location_profile_membership.category_id %></td>
+    <td><%=h category_location_profile_membership.location_profile_id %></td>
+    <td><%=h category_location_profile_membership.created_at %></td>
+    <td><%= link_to 'Show', category_location_profile_membership %></td>
+    <td><%= link_to 'Edit', edit_category_location_profile_membership_path(category_location_profile_membership) %></td>
+    <td><%= link_to 'Destroy', category_location_profile_membership, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New category_location_profile_membership', new_category_location_profile_membership_path %>

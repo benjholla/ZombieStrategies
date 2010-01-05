@@ -1,12 +1,40 @@
 <h1>New location_profile</h1>
 
 <% form_for(@location_profile) do |f| %>
-  <%= f.error_messages %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
+	<%= f.error_messages %>
+	<br />
+	<h2>
+		<%= f.label :name %><br />
+		<%= f.text_field :name %>
+	</h2>
+	<br />
+	<p>
+		<%= hidden_field_tag "category[location_profile_ids][]", "" %>
+		<%= hidden_field_tag "product[location_profile_ids][]", "" %>
+		<table border="1">
+			<tr>
+				<th><b>Categories</b></th>
+				<th><b>Products</b></th>
+			</tr>
+			<% for category in Category.all %>
+				<tr>
+					<td><%= check_box_tag "category[location_profile_ids][]", @location_profile.id, category.location_profiles.include?(@location_profile) %> <b><%=h category.name %></b></td>
+					<td>
+						<table>
+							<tr>
+								<th></th>
+							</tr>
+							<% for product in category.products %>
+							<tr>
+								<td><%= check_box_tag "product[location_profile_ids][]", @location_profile.id, product.location_profiles.include?(@location_profile) %> <b><%=h product.name %></b></td>
+							</tr>
+							<% end %>
+						</table>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</p>
   <p>
     <%= f.submit 'Create' %>
   </p>

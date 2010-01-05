@@ -40,6 +40,8 @@ class LocationProfilesController < ApplicationController
   # POST /location_profiles
   # POST /location_profiles.xml
   def create
+    params[:location_profile][:category_ids] ||= []
+    params[:location_profile][:product_ids] ||= []
     @location_profile = LocationProfile.new(params[:location_profile])
 
     respond_to do |format|
@@ -58,7 +60,7 @@ class LocationProfilesController < ApplicationController
   # PUT /location_profiles/1.xml
   def update
     @location_profile = LocationProfile.find(params[:id])
-
+    
     respond_to do |format|
       if @location_profile.update_attributes(params[:location_profile])
         flash[:notice] = @location_profile.name + ' profile updated.'

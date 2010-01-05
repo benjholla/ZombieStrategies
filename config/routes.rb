@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :category_location_profile_memberships
+
+  map.resources :product_location_profile_memberships
+
   
   # See how all your routes lay out with "rake routes"
   
@@ -8,7 +12,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :item_store_memberships
   map.resources :items
   map.resources :stores, :collection => {:create => :get}
-  map.resources :location_profiles
+  map.resources :location_profiles, :has_many => :categories
   map.resources :categories, :has_many => :products
   map.resources :products
   map.resources :twitter_trends, :has_many => :twitter_computations

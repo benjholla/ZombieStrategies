@@ -1,0 +1,2 @@
+module CategoryLocationProfileMembershipsHelper
+end

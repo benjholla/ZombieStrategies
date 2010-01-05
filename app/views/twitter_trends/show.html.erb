@@ -90,7 +90,7 @@
     <%= f.text_field :threat %>
   </p>
   <p>
-    <%= f.submit 'Create', {:onclick => "window.location.href='/monitor'"} %>
+    <%= f.submit 'Create', {:onclick => "setTimeout(\"location.reload(true);\",500);"} %>
   </p>
 <% end %>
 <% end %>

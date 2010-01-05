@@ -1,7 +1,35 @@
-<p>
-  <b>Name:</b>
-  <%=h @location_profile.name %>
-</p>
+<h1>
+  Profile for <%=h @location_profile.name %>
+</h1>
+<br />
+<h2>Supplies</h2>
+<table border="1">
+  <tr>
+    <th>Category Name</th>
+	<th>Products</th>
+  </tr>
+<br />
+<% @location_profile.categories.each do |category| %>
+  <tr>
+    <td><%=h category.name %></td>
+	<td>
+		<% if category.products.last %>			
+			<table>
+		  	<tr>
+		    	<th></th>
+		  	</tr>
+			<% @location_profile.products.each do |product| %>
+		  	<tr>
+		    	<td><%=h product.name %></td>
+		  	</tr>
+			<% end %>
+			</table>
+		<% end %>
+	</td>
+  </tr>
+<% end %>
+</table>
 
-<%= link_to 'Edit', edit_location_profile_path(@location_profile) %> |
-<%= link_to 'Back', location_profiles_path %>
+<br />
+<input type="button" value="Edit" onclick="window.location.href='<%= edit_location_profile_path(@location_profile) %>'"/> 
+<input type="button" value="Back" onclick="window.location.href='<%= location_profiles_path %>'"/>
