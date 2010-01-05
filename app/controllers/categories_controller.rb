@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   def index
     # this will return all if no search param is passed, 
     # so also acts like a normal index method
-    @categories = Category.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    @categories = Category.find(:all, :conditions => ['name ILIKE ?', "%#{params[:search]}%"])
   
     respond_to do |format|
       format.html # index.html.erb
