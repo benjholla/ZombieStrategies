@@ -4,7 +4,17 @@ class LocationProfilesController < ApplicationController
   def index
     # this will return all if no search param is passed, 
     # so also acts like a normal index method
-    @location_profiles = LocationProfile.find(:all, :conditions => ['name ILIKE ?', "%#{params[:search]}%"])
+    
+    case ActiveRecord::Base.connection.adapter_name
+    when 'SQLite'
+      @location_profiles = LocationProfile.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    when 'MySQL'
+      @location_profiles = LocationProfile.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    when 'PostgreSQL'
+      @location_profiles = LocationProfile.find(:all, :conditions => ['name ILIKE ?', "%#{params[:search]}%"])
+    else
+      raise 'Unsupported DB adapter'
+    end   
 
     respond_to do |format|
       format.html # index.html.erb

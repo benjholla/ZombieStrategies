@@ -5,8 +5,18 @@ class CategoriesController < ApplicationController
   def index
     # this will return all if no search param is passed, 
     # so also acts like a normal index method
-    @categories = Category.find(:all, :conditions => ['name ILIKE ?', "%#{params[:search]}%"])
-  
+    
+    case ActiveRecord::Base.connection.adapter_name
+    when 'SQLite'
+      @categories = Category.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    when 'MySQL'
+      @categories = Category.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+    when 'PostgreSQL'
+      @categories = Category.find(:all, :conditions => ['name ILIKE ?', "%#{params[:search]}%"])
+    else
+      raise 'Unsupported DB adapter'
+    end
+   
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categories }
