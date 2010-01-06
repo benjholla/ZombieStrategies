@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100105165409) do
+ActiveRecord::Schema.define(:version => 20100106030952) do
 
   create_table "categories", :force => true do |t|
     t.integer  "location_profile_id"
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(:version => 20100105165409) do
 
   create_table "location_profiles", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.integer  "location_profile_id"
+    t.decimal  "lat",                 :precision => 15, :scale => 10
+    t.decimal  "lng",                 :precision => 15, :scale => 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end

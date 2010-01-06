@@ -1,0 +1,11 @@
+<p>
+	<b>(Latitude, Longitude)</b><br />
+	(<%=h @location.lat %>,<%=h @location.lng %>)
+</p>
+<p>
+	<b>Location Profile</b><br />
+	<%=h @location.location_profile.name %> | <%= link_to 'Show Profile', edit_location_profile_path(@location.location_profile) %>
+</p>
+<br />
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>

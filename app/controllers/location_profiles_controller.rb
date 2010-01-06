@@ -2,11 +2,14 @@ class LocationProfilesController < ApplicationController
   # GET /location_profiles
   # GET /location_profiles.xml
   def index
-    @location_profiles = LocationProfile.all
+    # this will return all if no search param is passed, 
+    # so also acts like a normal index method
+    @location_profiles = LocationProfile.find(:all, :conditions => ['name ILIKE ?', "%#{params[:search]}%"])
 
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @location_profiles }
+      format.js # index.js.erb
     end
   end
 

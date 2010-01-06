@@ -1,34 +1,37 @@
 <h1>Profile for <%=h @location_profile.name %></h1>
 <br />
-<h2>Supplies</h2>
-<table border="1">
-	<tr>
-		<th>Category Name</th>
-		<th>Products</th>
-	</tr>
-	<br />
-	<% @location_profile.categories.each do |category| %>
-	<tr>
-		<td><%=h category.name %></td>
-		<td>
-			<% if @location_profile.products.last %>			
-				<table>
-					<tr>
-						<th></th>
-					</tr>
-					<% for product in category.products %>
-						<% if category.products.include?(product) %>
+<p>
+	<table border="1">
+		<tr>
+			<th><b>Categories</b></th>
+			<th><b>Products</b></th>
+		</tr>
+		<% for category in Category.all %>
+			<tr>
+				<td>
+					<%= check_box_tag "location_profile[category_ids][]", category.id,
+					 category.location_profiles.include?(@location_profile), :disabled => "disabled" %> 
+					<b><%=h category.name %></b></td>
+				<td>
+					<table>
+						<tr>
+							<th></th>
+						</tr>
+						<% for product in category.products %>
 							<tr>
-								<td><%=h product.name %></td>
+								<td><%= check_box_tag "location_profile[product_ids][]", product.id,
+								 product.location_profiles.include?(@location_profile), :disabled => "disabled" %> 
+								<b><%=h product.name %></b></td>
 							</tr>
 						<% end %>
-					<% end %>
-				</table>
-			<% end %>
-		</td>
-	</tr>
-	<% end %>
-</table>
+					</table>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+</p>
 <br />
-<input type="button" value="Edit" onclick="window.location.href='<%= edit_location_profile_path(@location_profile) %>'"/> 
-<input type="button" value="Back" onclick="window.location.href='<%= location_profiles_path %>'"/>
+<p>
+	<input type="button" value="Edit" onclick="window.location.href='<%= edit_location_profile_path(@location_profile) %>'"/> 
+	<input type="button" value="Back" onclick="window.location.href='<%= location_profiles_path %>'"/>
+</p>

@@ -5,4 +5,6 @@ class LocationProfile < ActiveRecord::Base
   has_many :product_location_profile_memberships
   has_many :products, :through => :product_location_profile_memberships
   
+  has_many :locations
+  
 end

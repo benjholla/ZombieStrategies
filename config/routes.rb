@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :locations
+
   map.resources :category_location_profile_memberships
 
   map.resources :product_location_profile_memberships

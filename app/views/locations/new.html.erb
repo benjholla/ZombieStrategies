@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag 'products/products' %>
+<div id="left-content">
+	<h1>New location</h1>
+	<br />
+	<% form_for(@location) do |f| %>
+  		<%= f.error_messages %>
+		<p>
+  			<%= label_tag 'lat', 'Latitude' %><br />
+  			<%= f.text_field :lat %>
+			<br />
+  			<%= label_tag 'lng', 'Longitude' %><br />
+  			<%= f.text_field :lng %>
+			<br />
+			<%= label_tag 'location_profile_name', 'Profile: ' %><br />
+			<%= text_field_with_auto_complete :location, :location_profile_name, {:size => 30}, {:skip_style => true, :url => formatted_location_profiles_path(:js), :method => :get, :param_name => 'search' } %>
+		</p>
+</div>
+<div id="right-content">
+	<p>
+		<%= f.submit 'Create' %>
+		<br />
+		<input type="button" value="Cancel" onclick="window.location.href='<%= locations_path %>'"/>
+	</p>
+</div>
+<% end %>
