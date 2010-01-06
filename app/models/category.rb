@@ -4,6 +4,9 @@ class Category < ActiveRecord::Base
   has_many :category_location_profile_memberships
   has_many :location_profiles, :through => :category_location_profile_memberships
   
+  has_many :category_location_memberships
+  has_many :locations, :through => :category_location_memberships
+  
   def category_ids=(category_ids)
     categories.each do |category|
       category.destroy unless category_ids.include? category.category_id

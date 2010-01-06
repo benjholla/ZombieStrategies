@@ -1,0 +1,18 @@
+<p>
+  <b>Category:</b>
+  <%=h @category_location_membership.category_id %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @category_location_membership.location_id %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%=h @category_location_membership.created_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_category_location_membership_path(@category_location_membership) %> |
+<%= link_to 'Back', category_location_memberships_path %>

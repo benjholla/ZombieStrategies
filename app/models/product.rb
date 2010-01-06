@@ -4,6 +4,9 @@ class Product < ActiveRecord::Base
   has_many :product_location_profile_memberships
   has_many :location_profiles, :through => :product_location_profile_memberships
   
+  has_many :product_location_memberships
+  has_many :locations, :through => :product_location_memberships
+  
   # virtual attribute, more info in railscast #16
   def category_name
     category.name if category

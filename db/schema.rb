@@ -9,11 +9,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100106030952) do
+ActiveRecord::Schema.define(:version => 20100106042943) do
 
   create_table "categories", :force => true do |t|
     t.integer  "location_profile_id"
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "category_location_memberships", :force => true do |t|
+    t.integer  "category_id"
+    t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -48,6 +55,13 @@ ActiveRecord::Schema.define(:version => 20100106030952) do
     t.integer  "location_profile_id"
     t.decimal  "lat",                 :precision => 15, :scale => 10
     t.decimal  "lng",                 :precision => 15, :scale => 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "product_location_memberships", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

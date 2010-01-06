@@ -1,11 +1,37 @@
+<h1>Record for <%=h @location.location_profile.name %> at (<%=h @location.lat %>,<%=h @location.lng %>)</h1>
+<br />
+<input type="button" value="Edit This <%=h @location.location_profile.name %>" onclick="window.location.href='<%= edit_location_path(@location) %>'"/> <br />
+<input type="button" value="Edit Profile for all <%=h @location.location_profile.name %>'s" onclick="window.location.href='<%= edit_location_profile_path(@location.location_profile) %>'"/><br />
+<input type="button" value="Go Back To Map" onclick="window.location.href='<%= locations_path %>'"/><br />
+<br />
 <p>
-	<b>(Latitude, Longitude)</b><br />
-	(<%=h @location.lat %>,<%=h @location.lng %>)
-</p>
-<p>
-	<b>Location Profile</b><br />
-	<%=h @location.location_profile.name %> | <%= link_to 'Show Profile', edit_location_profile_path(@location.location_profile) %>
+	<table border="1">
+		<tr>
+			<th><b>Categories</b></th>
+			<th><b>Products</b></th>
+		</tr>
+		<% for category in Category.all %>
+			<tr>
+				<td>
+					<%= check_box_tag "location[category_ids][]", category.id,
+					 category.locations.include?(@location), :disabled => "disabled" %> 
+					<b><%=h category.name %></b></td>
+				<td>
+					<table>
+						<tr>
+							<th></th>
+						</tr>
+						<% for product in category.products %>
+							<tr>
+								<td><%= check_box_tag "location[product_ids][]", product.id,
+								 product.locations.include?(@location), :disabled => "disabled" %> 
+								<b><%=h product.name %></b></td>
+							</tr>
+						<% end %>
+					</table>
+				</td>
+			</tr>
+		<% end %>
+	</table>
 </p>
 <br />
-<%= link_to 'Edit', edit_location_path(@location) %> |
-<%= link_to 'Back', locations_path %>
