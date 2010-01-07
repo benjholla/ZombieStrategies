@@ -199,7 +199,7 @@ function init() {
 			//alert("3");
 	    }
 		//alert("4");
-		setTimeout('addControls()', 100);
+		setTimeout('addControls()', 500);
 	}
 }
 
