@@ -24,15 +24,12 @@
 			<p>
 			<%= f.submit '  Create  ' %>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="  Cancel  " onclick="window.location.href='<%= locations_path %>'"/>
 		</p>
-		<%= f.error_messages %>
 		<p>
 			<b><%= label_tag 'lat', 'Latitude:' %></b><br />
-			<%= f.text_field :lat, "size" => 20, :disabled => "disabled" %>
-			<%= hidden_field "location", "lat" %>
+			<%= f.text_field :lat, {:onkeypress => " return clearMarkersOnTyping(this,event);", "size" => 20} %>
 			<br />
 			<b><%= label_tag 'lng', 'Longitude:' %></b><br />
-			<%= f.text_field :lng, "size" => 20, :disabled => "disabled" %>
-			<%= hidden_field "location", "lng" %>
+			<%= f.text_field :lng, {:onkeypress => " return clearMarkersOnTyping(this,event);", "size" => 20} %>
 			<br />
 			<br />
 			<br />
@@ -43,10 +40,9 @@
 			{:skip_style => true, :url => location_profiles_path(:text), :method => :get, :param_name => 'search' } %>
 			<br />
 		</p>
-		<br />
-		<br />
 	</div>
 </div>
+	<%= f.error_messages %>
 	<div id="message"></div>
 	<p>
 	<%= hidden_field_tag "location[category_ids][]", "" %>
