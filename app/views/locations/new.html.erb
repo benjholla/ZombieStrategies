@@ -1,5 +1,7 @@
 <%= stylesheet_link_tag 'locations/locations' %>
 <% form_for(@location) do |f| %>
+<%= f.error_messages %>
+<br />
 <div id="top-panel">
 	<div id="left-panel">
 		<h1>New Location</h1>
@@ -42,7 +44,6 @@
 		</p>
 	</div>
 </div>
-	<%= f.error_messages %>
 	<div id="message"></div>
 	<p>
 	<%= hidden_field_tag "location[category_ids][]", "" %>
