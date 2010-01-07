@@ -194,6 +194,7 @@ function init() {
 			centerLongitude = google.loader.ClientLocation.longitude;
 			setMarker(new google.maps.LatLng(centerLatitude, centerLongitude));
 	    	location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
+			document.getElementById("message").innerHTML = location;
 	    }
 		// wierd bug maybe here, this sleep is to combat when controls don't get added for soem reason, guessing it
 		// has to do with the time it takes to pull the lat lng from the form
@@ -204,9 +205,6 @@ function init() {
 function addControls(){
 	// sets the map to the default position listed above, or the IP geocododed location if found
 	map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
-	
-	// update the location div element
-	document.getElementById("message").innerHTML = location;
 
 	// add some nice controls to the map
 	map.addControl(new GLargeMapControl());
