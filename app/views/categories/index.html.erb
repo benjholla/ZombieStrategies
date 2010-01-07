@@ -6,7 +6,6 @@
 	<th>Products</th>
 	<th></th>
 	<th></th>
-	<th></th>
   </tr>
 
 <% @categories.each do |category| %>
@@ -30,7 +29,6 @@
 			</table>
 		<% end %>
 	</td>
-    <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>

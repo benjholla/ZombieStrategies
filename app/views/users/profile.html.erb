@@ -69,11 +69,11 @@
   	<p>
     	<b><%= label_tag 'lat', 'Latitude' %></b>
 		<br />
-    	<%= f.text_field :lat, {:onkeypress => " return clearMarkersOnTyping(this,event);"} %>
+    	<%= f.text_field :lat, :disabled => "disabled" %>
 		<br />
     	<b><%= label_tag 'lng', 'Longitude' %></b>
 		<br />
-    	<%= f.text_field :lng, {:onkeypress => " return clearMarkersOnTyping(this,event);"} %>
+    	<%= f.text_field :lng, :disabled => "disabled" %>
   	</p>
 	<div id="message"></div>
 	<br />

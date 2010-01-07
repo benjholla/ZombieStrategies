@@ -20,7 +20,15 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @categories }
-      format.js # index.js.erb
+      format.js { render :json => @categories.to_json() }
+      format.text # index.text.erb
+    end
+  end
+  
+  def list_all
+    @categories = Category.all
+    respond_to do |format|
+      format.js { render :json => @location_profile.to_json() }
     end
   end
 

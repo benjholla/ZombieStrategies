@@ -19,18 +19,20 @@ class LocationProfilesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @location_profiles }
-      format.js # index.js.erb
+      format.text # index.text.erb
+      format.js { render :json => @location_profiles.to_json() }
     end
   end
 
   # GET /location_profiles/1
   # GET /location_profiles/1.xml
   def show
-    @location_profile = LocationProfile.find(params[:id])
+    @location_profile = LocationProfile.find_by_name(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @location_profile }
+      format.xml { render :xml => @location_profile }
+      format.js { render :json => @location_profile.to_json(:include => {:categories => {}, :products => {}}) }
     end
   end
 
@@ -47,7 +49,7 @@ class LocationProfilesController < ApplicationController
 
   # GET /location_profiles/1/edit
   def edit
-    @location_profile = LocationProfile.find(params[:id])
+    @location_profile = LocationProfile.find_by_name(params[:id])
   end
 
   # POST /location_profiles
@@ -72,7 +74,7 @@ class LocationProfilesController < ApplicationController
   # PUT /location_profiles/1
   # PUT /location_profiles/1.xml
   def update
-    @location_profile = LocationProfile.find(params[:id])
+    @location_profile = LocationProfile.find_by_name(params[:id])
     
     respond_to do |format|
       if @location_profile.update_attributes(params[:location_profile])
@@ -89,7 +91,7 @@ class LocationProfilesController < ApplicationController
   # DELETE /location_profiles/1
   # DELETE /location_profiles/1.xml
   def destroy
-    @location_profile = LocationProfile.find(params[:id])
+    @location_profile = LocationProfile.find_by_name(params[:id])
     @location_profile.destroy
 
     respond_to do |format|

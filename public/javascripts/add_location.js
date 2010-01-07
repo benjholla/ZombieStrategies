@@ -24,13 +24,6 @@ houseIcon.imageMap = [23,0,24,1,25,2,27,3,28,4,29,5,31,6,32,7,33,8,34,9,36,10,37
 
 var marker; // stores the single marker that is maninpulated in this map
 
-// gets the array of elements in the forms for form 0 (the first form)
-oFormObject = document.forms[0];
-
-// this grabs the current value in the form for lat/lng
-//latFormElement = oFormObject.elements["user_lat"];
-//lngFormElement = oFormObject.elements["user_lng"];
-
 // ******************************* START GEOCODER HELPER FUNCTIONS *******************************
 
 // ====== Create a Client Geocoder ======
@@ -188,9 +181,9 @@ function init() {
 		// used to store a resulting message from the geocoder
 		var location = "";
 		
-		if(oFormObject.elements["user_lat"].value != "" && oFormObject.elements["user_lng"].value != ""){
-			centerLatitude = oFormObject.elements["user_lat"].value;
-			centerLongitude = oFormObject.elements["user_lng"].value;
+		if(document.getElementById("location_lat").value != "" && document.getElementById("location_lng").value != ""){
+			centerLatitude = document.getElementById("location_lat").value;
+			centerLongitude = document.getElementById("location_lng").value;
 			startZoom = 13;
 			setMarker(new google.maps.LatLng(centerLatitude, centerLongitude));
 		}
@@ -272,8 +265,8 @@ function setMarker(latlng){
 }
 
 function updateLatLngInputFields(latlng){
-	oFormObject.elements["user_lat"].value = latlng.lat();
-	oFormObject.elements["user_lng"].value = latlng.lng();
+	document.getElementById("location_lat").value = latlng.lat();
+	document.getElementById("location_lng").value = latlng.lng();
 }
 
 function clearMarkers(){

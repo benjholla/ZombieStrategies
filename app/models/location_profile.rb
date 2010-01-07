@@ -7,4 +7,12 @@ class LocationProfile < ActiveRecord::Base
   
   has_many :locations
   
+  validates_uniqueness_of   :name,    :message => ": There is already a location profile with this name." 
+  
+  # overrice the to_param method so that we can change the way we access location_profiles
+  # example /location_profiles/id -> /location_profiles/name
+  def to_param
+    name
+  end
+
 end

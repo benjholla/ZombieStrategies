@@ -25,6 +25,11 @@ class LocationsController < ApplicationController
   # GET /locations/new.xml
   def new
     @location = Location.new
+    
+    if(params[:lat]!=nil && params[:lng]!=nil)
+      @location.lat = params[:lat].collect{|e|e.to_f}
+      @location.lng = params[:lng].collect{|e|e.to_f}
+    end
 
     respond_to do |format|
       format.html # new.html.erb
