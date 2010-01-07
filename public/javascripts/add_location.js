@@ -198,7 +198,7 @@ function init() {
 	    }
 		// wierd bug maybe here, this sleep is to combat when controls don't get added for soem reason, guessing it
 		// has to do with the time it takes to pull the lat lng from the form
-		setTimeout('addControls()', 500);
+		setTimeout('addControls()', 250);
 	}
 }
 
