@@ -28,10 +28,24 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
-    @users = User.paginate :per_page => 10, :page => params[:page],
-                           :conditions => ['login like ?', "%#{params[:search]}%"],
-                           :order => 'login'
-
+    
+    case ActiveRecord::Base.connection.adapter_name
+    when 'SQLite'
+      @users = User.paginate :per_page => 10, :page => params[:page],
+                             :conditions => ['login LIKE ?', "%#{params[:search]}%"],
+                             :order => 'login'
+    when 'MySQL'
+      @users = User.paginate :per_page => 10, :page => params[:page],
+                             :conditions => ['login LIKE ?', "%#{params[:search]}%"],
+                             :order => 'login'
+    when 'PostgreSQL'
+      @users = User.paginate :per_page => 10, :page => params[:page],
+                             :conditions => ['login ILIKE ?', "%#{params[:search]}%"],
+                             :order => 'login'
+    else
+      raise 'Unsupported DB adapter'
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }

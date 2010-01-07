@@ -7,11 +7,14 @@ class LocationProfilesController < ApplicationController
     
     case ActiveRecord::Base.connection.adapter_name
     when 'SQLite'
-      @location_profiles = LocationProfile.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+      @location_profiles = LocationProfile.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"]).paginate :per_page => 10, 
+      :page => params[:page], :conditions => ['name LIKE ?', "%#{params[:search]}%"], :order => 'name'
     when 'MySQL'
-      @location_profiles = LocationProfile.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"])
+      @location_profiles = LocationProfile.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"]).paginate :per_page => 10, 
+      :page => params[:page], :conditions => ['name LIKE ?', "%#{params[:search]}%"], :order => 'name'
     when 'PostgreSQL'
-      @location_profiles = LocationProfile.find(:all, :conditions => ['name ILIKE ?', "%#{params[:search]}%"])
+      @location_profiles = LocationProfile.find(:all, :conditions => ['name ILIKE ?', "%#{params[:search]}%"]).paginate :per_page => 10, 
+      :page => params[:page], :conditions => ['name ILIKE ?', "%#{params[:search]}%"], :order => 'name'
     else
       raise 'Unsupported DB adapter'
     end   

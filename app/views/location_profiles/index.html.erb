@@ -1,9 +1,20 @@
 <h1>Listing Location Profiles</h1>
 <br />
+<% form_tag location_profiles_path, :method => 'get' do %>
+	<h2>Search Profiles By Name</h2>
+	<p>
+		<%= text_field_tag :search, params[:search] %>
+		<%= submit_tag "Search", :name => nil %>
+	</p>
+<% end %>
+<br />
 <script type="text/javascript" src="/javascripts/sorttable.js"></script>
 <table class="sortable" border="1">
   <tr>
     <th>Name</th>
+	<th>Date Created</th>
+	<th># Categories</th>
+	<th># Products</th>
 	<th></th>
 	<th></th>
 	<th></th>
@@ -12,13 +23,16 @@
 <% @location_profiles.each do |location_profile| %>
   <tr>
     <td><%=h location_profile.name %></td>
+	<td><%=h location_profile.created_at %></td>
+	<td><center><%=h location_profile.categories.count %></center></td>
+	<td><center><%=h location_profile.products.count %></center></td>
     <td><%= link_to 'Show', location_profile %></td>
     <td><%= link_to 'Edit', edit_location_profile_path(location_profile) %></td>
     <td><%= link_to 'Destroy', location_profile, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
-
 <br />
-
+<b><%= will_paginate @location_profiles %></b>
+<br />
 <input type="button" value="Create New Location Profile" onclick="window.location.href='<%= new_location_profile_path %>'"/>
