@@ -14,7 +14,7 @@
 			<br />
 			<%= label_tag 'location_profile_name', 'Profile: ' %><br />
 			<%= text_field_with_auto_complete :location, :location_profile_name, {:size => 30}, 
-			{:skip_style => true, :url => formatted_location_profiles_path(:js), :method => :get, :param_name => 'search' } %>
+			{:skip_style => true, :url => formatted_location_profiles_path(:text), :method => :get, :param_name => 'search' } %>
 		</h2>
 		<br />
 </div>
