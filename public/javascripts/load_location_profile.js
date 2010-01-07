@@ -16,7 +16,12 @@ function loadProfile(){
 		alert("Could not contact webserver!");
 		return false;
 	}
-    var url = '/location_profiles/' + document.getElementById("location_location_profile_name").value + '.js';
+	// give it a half sec to finish clearing checkboxes
+    setTimeout('setCheckboxes()', 500);
+}
+
+function setCheckboxes(){
+	var url = '/location_profiles/' + document.getElementById("location_location_profile_name").value + '.js';
 	// create request
   	var request = GXmlHttp.create();
   	//tell the request where to retrieve data from.
