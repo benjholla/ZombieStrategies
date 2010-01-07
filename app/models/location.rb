@@ -7,6 +7,10 @@ class Location < ActiveRecord::Base
   has_many :product_location_memberships
   has_many :products, :through => :product_location_memberships
   
+  validates_presence_of     :lat
+  validates_presence_of     :lng
+  validates_presence_of     :location_profile
+  
   # virtual attribute, more info in railscast #16
   def location_profile_name
     location_profile.name if location_profile

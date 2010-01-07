@@ -1,3 +1,12 @@
+/*****
+
+Should update this file, to first make the requests and and store the result, then clear and then set using the preretrieved results
+
+this would solve the json delay issues and take away the need for the 500 ms delay...
+
+*/
+
+
 function promptLoad(){
 	if(document.getElementById("location_location_profile_name").value == ""){
 		alert("You must enter the name of a profile in the \"Location Type\" field to load a location profile!");

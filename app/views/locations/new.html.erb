@@ -28,9 +28,11 @@
 		<p>
 			<b><%= label_tag 'lat', 'Latitude:' %></b><br />
 			<%= f.text_field :lat, "size" => 20, :disabled => "disabled" %>
+			<%= hidden_field "location", "lat" %>
 			<br />
 			<b><%= label_tag 'lng', 'Longitude:' %></b><br />
 			<%= f.text_field :lng, "size" => 20, :disabled => "disabled" %>
+			<%= hidden_field "location", "lng" %>
 			<br />
 			<br />
 			<br />
