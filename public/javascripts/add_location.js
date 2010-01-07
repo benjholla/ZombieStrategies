@@ -178,28 +178,35 @@ function init() {
   	if (GBrowserIsCompatible()) {
     	map = new GMap2(document.getElementById("map"));
 	
-		// used to store a resulting message from the geocoder
-		var location = "";
-		
 		if(document.getElementById("location_lat").value != "" && document.getElementById("location_lng").value != ""){
 			centerLatitude = document.getElementById("location_lat").value;
 			centerLongitude = document.getElementById("location_lng").value;
 			startZoom = 13;
 			setMarker(new google.maps.LatLng(centerLatitude, centerLongitude));
+			// wierd bug maybe here, this sleep is to combat when controls don't get added for soem reason, guessing it
+			// has to do with the time it takes to pull the lat lng from the form
+			setTimeout('addControls()', 250);
 		}
 	    // If ClientLocation was filled in by the loader, use that info instead default center of the U.S.
 	    else if (google.loader.ClientLocation) {
-	    	startZoom = 13;
-	    	centerLatitude = google.loader.ClientLocation.latitude;
-			centerLongitude = google.loader.ClientLocation.longitude;
-			setMarker(new google.maps.LatLng(centerLatitude, centerLongitude));
-	    	location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
-			document.getElementById("message").innerHTML = location;
-	    }
-		// wierd bug maybe here, this sleep is to combat when controls don't get added for soem reason, guessing it
-		// has to do with the time it takes to pull the lat lng from the form
-		setTimeout('addControls()', 250);
+			// wierd bug maybe here, this sleep is to combat when controls don't get added for soem reason, guessing it
+			// has to do with the time it takes to pull the lat lng from the form
+			setTimeout('geocodeCenter()', 250);
+			setTimeout('addControls()', 250);
+	    }else{
+			addControls();
+		}
 	}
+}
+
+function geocodeCenter(){
+	startZoom = 13;
+	centerLatitude = google.loader.ClientLocation.latitude;
+	centerLongitude = google.loader.ClientLocation.longitude;
+	setMarker(new google.maps.LatLng(centerLatitude, centerLongitude));
+	// used to store a resulting message from the geocoder
+	var location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
+	document.getElementById("message").innerHTML = location;
 }
 
 function addControls(){
