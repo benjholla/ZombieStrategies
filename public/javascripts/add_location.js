@@ -181,13 +181,11 @@ function init() {
 		// used to store a resulting message from the geocoder
 		var location = "";
 		
-		//alert("1");
 		if(document.getElementById("location_lat").value != "" && document.getElementById("location_lng").value != ""){
 			centerLatitude = document.getElementById("location_lat").value;
 			centerLongitude = document.getElementById("location_lng").value;
 			startZoom = 13;
 			setMarker(new google.maps.LatLng(centerLatitude, centerLongitude));
-			//alert("2");
 		}
 	    // If ClientLocation was filled in by the loader, use that info instead default center of the U.S.
 	    else if (google.loader.ClientLocation) {
@@ -196,9 +194,9 @@ function init() {
 			centerLongitude = google.loader.ClientLocation.longitude;
 			setMarker(new google.maps.LatLng(centerLatitude, centerLongitude));
 	    	location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
-			//alert("3");
 	    }
-		//alert("4");
+		// wierd bug maybe here, this sleep is to combat when controls don't get added for soem reason, guessing it
+		// has to do with the time it takes to pull the lat lng from the form
 		setTimeout('addControls()', 500);
 	}
 }
