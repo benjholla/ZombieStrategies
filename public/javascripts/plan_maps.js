@@ -191,7 +191,7 @@ function init() {
 	map.addMapType(G_PHYSICAL_MAP);
 	
 	// zoom controls
-	//map.enableDoubleClickZoom(); 
+	map.enableDoubleClickZoom(); 
 	map.enableContinuousZoom();
 	map.enableScrollWheelZoom();
 	
