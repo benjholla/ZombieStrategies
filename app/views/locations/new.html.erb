@@ -45,6 +45,7 @@
 	</div>
 </div>
 	<div id="message"></div>
+	<br />
 	<p>
 	<%= hidden_field_tag "location[category_ids][]", "" %>
 	<%= hidden_field_tag "location[product_ids][]", "" %>
@@ -75,6 +76,11 @@
 			</tr>
 		<% end %>
 	</table>
+	<br />
+	<br />
+	<h3><%= label_tag 'info', 'Additional Information:' %></h3>
+	<%= f.text_area :info, {"rows" => 5, "cols" => 60} %>
+	
 </p>
 
 <% end %>

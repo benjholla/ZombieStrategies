@@ -33,5 +33,22 @@
 			</tr>
 		<% end %>
 	</table>
+	<br />
+	<br />
+	<h3>Additional Information:</h3>
+	<style type="text/css">
+		#info {
+			width:500px;
+			float:left;
+			margin:0px;
+			padding:5px;
+			border-style:solid;
+			border-width:1px;
+			background-color:white;
+		}
+	</style>
+	<div id="info">
+		<%= simple_format h(@location.info) %>
+	</div>
 </p>
 <br />

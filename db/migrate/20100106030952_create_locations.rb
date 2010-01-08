@@ -1,9 +1,10 @@
 class CreateLocations < ActiveRecord::Migration
   def self.up
     create_table :locations do |t|
-      t.integer :location_profile_id
-      t.column :lat, :decimal, :precision => 15, :scale => 10
-      t.column :lng, :decimal, :precision => 15, :scale => 10
+      t.integer  :location_profile_id
+      t.column   :lat, :decimal, :precision => 15, :scale => 10
+      t.column   :lng, :decimal, :precision => 15, :scale => 10
+      t.text     :info
       t.timestamps
     end
   end

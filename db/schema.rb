@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20100106042943) do
     t.integer  "location_profile_id"
     t.decimal  "lat",                 :precision => 15, :scale => 10
     t.decimal  "lng",                 :precision => 15, :scale => 10
+    t.text     "info"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
