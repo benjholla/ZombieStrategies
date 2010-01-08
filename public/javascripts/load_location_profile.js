@@ -42,7 +42,7 @@ function setCheckboxes(){
       		//The response is an array of two arrays [[categories][products]]
       		resource=eval( "(" + request.responseText + ")" );
 			if(resource == null){
-				alert("Profile does not exist!");
+				alert("Profile does not exist! If you create a new location with this profile name, a new profile will be created for you automatically.");
 				return false;
 			}
       		for (var i = 0 ; i < resource.location_profile.categories.length ; i++) {

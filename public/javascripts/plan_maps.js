@@ -4,8 +4,25 @@ var centerLongitude = -95.677068;
 var startZoom = 4;
 var map;
 
-var curItems;
-var curItemsHTML = '';
+// custom home icon to use as the marker
+// Google Map Custom Marker Maker 2009
+// Please include the following credit in your code
+// Sample custom marker code created with Google Map Custom Marker Maker
+// http://www.powerhut.co.uk/googlemaps/custom_markers.php
+var houseIcon = new GIcon();
+houseIcon.image = '/images/house_icon_marker/image.png';
+houseIcon.shadow = '/images/house_icon_marker/shadow.png';
+houseIcon.iconSize = new GSize(43,44);
+houseIcon.shadowSize = new GSize(65,44);
+houseIcon.iconAnchor = new GPoint(22,44);
+houseIcon.infoWindowAnchor = new GPoint(22,0);
+houseIcon.printImage = '/images/house_icon_marker/printImage.gif';
+houseIcon.mozPrintImage = '/images/house_icon_marker/mozPrintImage.gif';
+houseIcon.printShadow = '/images/house_icon_marker/printShadow.gif';
+houseIcon.transparent = '/images/house_icon_marker/transparent.png';
+houseIcon.imageMap = [23,0,24,1,25,2,27,3,28,4,29,5,31,6,32,7,33,8,34,9,36,10,37,11,38,12,40,13,41,14,41,15,41,16,41,17,41,18,41,19,41,20,41,21,41,22,41,23,41,24,41,25,41,26,41,27,41,28,41,29,41,30,39,31,38,32,36,33,34,34,33,35,31,36,30,37,28,38,26,39,25,40,23,41,21,42,20,43,17,43,16,42,15,41,14,40,13,39,11,38,10,37,8,36,7,35,6,34,4,33,3,32,2,31,2,30,2,29,2,28,2,27,2,26,2,25,2,24,2,23,2,22,2,21,2,20,2,19,2,18,2,17,2,16,1,15,0,14,0,13,0,12,1,11,2,10,3,9,3,8,4,7,5,6,6,5,7,4,7,3,8,2,9,1,10,0];
+
+var addLocationMarker;
 
 var trafficInfo;
 
@@ -236,6 +253,37 @@ function init() {
   }
 }
 
+// deletes the old marker and adds a new marker at the given locations
+// also updates form lat lng input fields
+function setAddLocationMarker(latlng){
+	// if the new marker is the same as the old marker, do nothing
+	if(addLocationMarker && (addLocationMarker == new GMarker(latlng))){
+		return false;
+	}
+	// if theres an old marker, delete it
+	if(addLocationMarker)
+	{
+		map.removeOverlay(addLocationMarker);
+	}
+	// add a new marker
+	var markerOptions = {icon:houseIcon, draggable: true};
+	addLocationMarker = new GMarker(latlng, markerOptions);
+	
+	// add dragable listener
+	GEvent.addListener(addLocationMarker, "dragend", function() {
+		updateLatLngInputFields(addLocationMarker.getLatLng());
+	});	
+	
+	map.addOverlay(addLocationMarker);
+	// update the input form 
+	updateLatLngInputFields(latlng);
+}
+
+function updateLatLngInputFields(latlng){
+	document.getElementById("location_lat").value = latlng.lat();
+	document.getElementById("location_lng").value = latlng.lng();
+}
+
 function hideNewLocationForm() {
 	if (document.getElementById) { // DOM3 = IE5, NS6
 		document.getElementById('new-location').style.display = 'none';
@@ -262,25 +310,12 @@ function checkAddInput(){
 }
 
 function addLocation(overlay, latlng){
-	if (overlay == null) {
-        //create an HTML DOM form element
-        var inputForm = document.createElement("form");
-        inputForm.setAttribute("action","");
-        inputForm.id='location-input'
-        inputForm.onsubmit = function() {redirectToNewLocations(); return false;};
-        
-        //retrieve the longitude and lattitude of the click point
-        var lng = latlng.lng();
-        var lat = latlng.lat();
-
-		//update the hidden location form
-		document.getElementById("location_lat").value = lat;
-		document.getElementById("location_lng").value = lng;
-		
-		// show hidden form for new location
-		showNewLocationForm();
-		window.location.href='#new';
-      }
+	//update the hidden location form
+	setAddLocationMarker(latlng);
+	
+	// show hidden form for new location
+	showNewLocationForm();
+	window.location.href='#new';
 }
 
 function createLocation(){
@@ -306,12 +341,32 @@ function createLocation(){
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
 			if(resource.success == true){
+				
 				// success, add a new map marker
 				// close window and return to normal map state
-				alert("success");
-			}else{
-				// create failed, alert user
-				alert("Error could not contact the webserver, your new location has not been created!");
+				suppressMoveEnd = true;
+				hideNewLocationForm();
+				setAddButtonUnselected();
+					
+				var mapMarker = new GMarker(addLocationMarker.getPoint());
+				GEvent.addListener(mapMarker, 'click', function() {
+					if(modifyButtonState == 1){
+						// user is modifying a location
+						modifyLocation(resource.id, mapMarker);
+					}else if(removeButtonState == 1){
+						// user is deleting a location
+						deleteLocation(resource.id, mapMarker);
+					}else{
+						// no action selected, just open it for viewing
+						viewLocation(resource.id, mapMarker);
+					}
+			    });
+				map.removeOverlay(addLocationMarker);
+				map.addOverlay(mapMarker);
+				var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>Added Location</legend>'
+	            + '<br /><center><strong>Successfully added location!</strong></center><br />'
+				+ '</fieldset>';
+				mapMarker.openInfoWindowHtml(locationHTML);
 			}
 		}
 	}
@@ -393,7 +448,7 @@ function redirectToNewLocations(){
     return false;
 }
 
-function createMarker(latlng, html, id) {
+function createMarker(latlng, id) {
 	var marker = new GMarker(latlng);
 	GEvent.addListener(marker, 'click', function() {
 		if(modifyButtonState == 1){
@@ -441,9 +496,8 @@ function listMarkers(latlng) {
         		//on parseFloat of a null value
         		if (lat && lng) {
         			var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
-        			var html = 'test';
-        			var marker = createMarker(latlng, html, marker.id);
-        			map.addOverlay(marker);
+        			var mapMarker = createMarker(latlng, marker.id);
+        			map.addOverlay(mapMarker);
         		} // end of if lat and lng
       		} // end of for loop
     	} //if

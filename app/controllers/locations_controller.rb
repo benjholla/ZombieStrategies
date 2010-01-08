@@ -41,7 +41,7 @@ class LocationsController < ApplicationController
             :select=>"id, lat, lng, #{distance_sql} as distance",
             :conditions=>['lng > ? AND lng < ? AND lat <= ? AND lat >= ?',sw[1],ne[1],ne[0],sw[0]],
             :order => 'distance asc',
-            :limit => 20)
+            :limit => 35)
     
       respond_to do |format|
         format.html # index.html.erb
