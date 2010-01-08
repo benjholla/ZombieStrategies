@@ -177,7 +177,6 @@ function init() {
 		centerLongitude = google.loader.ClientLocation.longitude;
     	location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
     }
-	
 	map.setCenter(new GLatLng(centerLatitude, centerLongitude), startZoom);
 	
 	document.getElementById("message").innerHTML = location;
@@ -224,8 +223,16 @@ function init() {
 	});
 
     GEvent.addListener(map, "click", function(overlay, latlng) {
-	  
-      if (overlay == null) {
+		if(addButtonState == 1){
+			// user is adding a location
+			addLocation(overlay, latlng);
+		}
+    });
+  }
+}
+
+function addLocation(overlay, latlng){
+	if (overlay == null) {
         //create an HTML DOM form element
         var inputForm = document.createElement("form");
         inputForm.setAttribute("action","");
@@ -252,8 +259,66 @@ function init() {
 		suppressMoveEnd = true;
         map.openInfoWindow (latlng,inputForm);
       }
-    });
-  }
+}
+
+function viewLocation(id, marker){
+	var request = GXmlHttp.create();
+	//tell the request where to retrieve data from.
+	request.open('GET', 'locations/' + id + '.js', true);
+	//tell the request what to do when the state changes.
+	var locationHTML;
+ 	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+	    	//parse the result to JSON,by eval-ing it.
+	    	//The response is an array of items in the DB
+	    	resource = eval( "(" + request.responseText + ")" );
+			var locationHTML = '<center><strong>Location Type:&nbsp;&nbsp;' + resource.location.location_profile.name + '</strong><br /><br />'
+			+ '<input type="button" value="    View Location    " onclick="window.location.href=\'/locations/' + resource.location.location_profile.id  + '\'"/></center>';
+			suppressMoveEnd = true;
+			marker.openInfoWindowHtml(locationHTML);
+		}
+	}
+	request.send(null);
+}
+
+function modifyLocation(id, marker){
+	var request = GXmlHttp.create();
+	//tell the request where to retrieve data from.
+	request.open('GET', 'locations/' + id + '.js', true);
+	//tell the request what to do when the state changes.
+	var locationHTML;
+ 	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+	    	//parse the result to JSON,by eval-ing it.
+	    	//The response is an array of items in the DB
+	    	resource = eval( "(" + request.responseText + ")" );
+			var locationHTML = '<center><strong>Location Type:&nbsp;&nbsp;' + resource.location.location_profile.name + '</strong><br /><br />'
+			+ '<input type="button" value="    Edit Location    " onclick="window.location.href=\'/locations/' + resource.location.location_profile.id  + '\'"/></center>';
+			suppressMoveEnd = true;
+			marker.openInfoWindowHtml(locationHTML);
+		}
+	}
+	request.send(null);
+}
+
+function deleteLocation(id, marker){
+	var request = GXmlHttp.create();
+	//tell the request where to retrieve data from.
+	request.open('GET', 'locations/' + id + '.js', true);
+	//tell the request what to do when the state changes.
+	var locationHTML;
+ 	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+	    	//parse the result to JSON,by eval-ing it.
+	    	//The response is an array of items in the DB
+	    	resource = eval( "(" + request.responseText + ")" );
+			var locationHTML = '<center><strong>Location Type:&nbsp;&nbsp;' + resource.location.location_profile.name + '</strong><br /><br />'
+			+ '<input type="button" value="    Delete Location    " onclick="window.location.href=\'/locations/' + "destroy/" + + resource.location.location_profile.id + '\'"/></center>';
+			suppressMoveEnd = true;
+			marker.openInfoWindowHtml(locationHTML);
+		}
+	}
+	request.send(null);
 }
 
 function redirectToNewLocations(){
@@ -265,66 +330,19 @@ function redirectToNewLocations(){
     return false;
 }
 
-/*
-function storeMarker(){
-    var lng = document.getElementById("longitude").value;
-    var lat = document.getElementById("latitude").value;
-
-    var getVars =  "?store[store]=" + document.getElementById("store").value
-        + "&store[lng]=" + lng
-        + "&store[lat]=" + lat;
-	
-	var array = document.getElementById("store_items").childNodes;
-
-	for(var i=0; i<array.length; i++){
-		if(array[i].checked == 1){
-	   		getVars += "&store[items][]=" + array[i].value;
-		}
-	} 
-
-    var request = GXmlHttp.create();
-
-    //call the store_marker action back on the server
-    request.open('GET', 'stores/create.js' + getVars, true);
-    request.onreadystatechange = function() {
-        if (request.readyState == 4) {
-            //the request is complete
-
-            var success=false;
-            var content='Error contacting web service';
-			var id;
-            try {
-              //parse the result to JSON (simply by eval-ing it)
-              res=eval( "(" + request.responseText + ")" );
-              content=res.content;
-			  id = res.id;
-              success=res.success;              
-            }catch (e){
-              success=false;
-            }
-
-            //check to see if it was an error or success
-            if(!success) {
-                alert(content);
-            } else {
-                //create a new marker and add its info window
-                var latlng = new GLatLng(parseFloat(lat),parseFloat(lng));
-                var marker = createMarker(latlng, content, id);
-                map.addOverlay(marker);
-                map.closeInfoWindow();
-            }
-        }
-    }
-    request.send(null);
-    return false;
-}
-*/
-
 function createMarker(latlng, html, id) {
-     var marker = new GMarker(latlng);
-     GEvent.addListener(marker, 'click', function() {
-		  //query info for this location, reset html
-          updateLocation(id, marker);
+	var marker = new GMarker(latlng);
+	GEvent.addListener(marker, 'click', function() {
+		if(modifyButtonState == 1){
+			// user is modifying a location
+			modifyLocation(id, marker);
+		}else if(removeButtonState == 1){
+			// user is deleting a location
+			deleteLocation(id, marker);
+		}else{
+			// no action selected, just open it for viewing
+			viewLocation(id, marker);
+		}
     });
     return marker;
 }
@@ -367,27 +385,6 @@ function listMarkers(latlng) {
       		} // end of for loop
     	} //if
 	} //function
-	request.send(null);
-}
-
-// returns the latest html for a given store id
-function updateLocation(id, marker){
-	var request = GXmlHttp.create();
-	//tell the request where to retrieve data from.
-	request.open('GET', 'locations/' + id + '.js', true);
-	//tell the request what to do when the state changes.
-	var locationHTML;
- 	request.onreadystatechange = function() {
-		if (request.readyState == 4) {
-	    	//parse the result to JSON,by eval-ing it.
-	    	//The response is an array of items in the DB
-	    	resource = eval( "(" + request.responseText + ")" );
-			var locationHTML = '<center><strong>Location Type:&nbsp;&nbsp;' + resource.location.location_profile.name + '</strong><br /><br />'
-			+ '<input type="button" value="    View Location    " onclick="window.location.href=\'/locations/' + resource.location.location_profile.id  + '\'"/></center>';
-			suppressMoveEnd = true;
-			marker.openInfoWindowHtml(locationHTML);
-		}
-	}
 	request.send(null);
 }
 
