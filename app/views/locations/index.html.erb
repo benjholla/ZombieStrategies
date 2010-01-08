@@ -2,8 +2,8 @@
 <br />
 <script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
 </script>
-<script type="text/javascript" src="/javascripts/plan_maps_2.js"></script>
-<script type="text/javascript" src="/javascripts/plan_controls_2.js"></script>
+<script type="text/javascript" src="/javascripts/plan_maps.js"></script>
+<script type="text/javascript" src="/javascripts/plan_controls.js"></script>
 
 <h2 style="margin:0;">Disaster Plan</h2>
 
@@ -63,24 +63,3 @@ Search: <form onsubmit="showAddress(); return false" action="#">
 </form>
 
 <div id="message"></div>
-
-<br />
-<table border="1">
-  <tr>
-	<th>Location Name</th>
-    <th>Latitude, Longitude</th>
-	<th></th>
-	<th></th>
-	<th></th>
-  </tr>
-
-<% @locations.each do |location| %>
-  <tr>
-	<td><%=h location.location_profile.name %></td>
-    <td><%=h location.lat %>, <%=h location.lng %></td>
-    <td><%= link_to 'Show', location %></td>
-    <td><%= link_to 'Edit', edit_location_path(location) %></td>
-    <td><%= link_to 'Destroy', location, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>

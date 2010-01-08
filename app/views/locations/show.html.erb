@@ -1,8 +1,7 @@
 <h1>Record for <%=h @location.location_profile.name %> at (<%=h @location.lat %>,<%=h @location.lng %>)</h1>
 <br />
-<input type="button" value="Edit This <%=h @location.location_profile.name %>" onclick="window.location.href='<%= edit_location_path(@location) %>'"/> <br />
-<input type="button" value="Edit Profile for all <%=h @location.location_profile.name %>'s" onclick="window.location.href='<%= edit_location_profile_path(@location.location_profile) %>'"/><br />
-<input type="button" value="Go Back To Map" onclick="window.location.href='<%= locations_path %>'"/><br />
+<input type="button" value="Edit This <%=h @location.location_profile.name %> Location" onclick="window.location.href='<%= edit_location_path(@location) %>'"/>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Edit Profile for all <%=h @location.location_profile.name %>'s" onclick="window.location.href='<%= edit_location_profile_path(@location.location_profile) %>'"/><br />
+<input type="button" value="Go To Map" onclick="window.location.href='<%= locations_path %>'"/><br />
 <br />
 <p>
 	<table border="1">
@@ -48,7 +47,11 @@
 		}
 	</style>
 	<div id="info">
-		<%= simple_format h(@location.info) %>
+		<% if @location.info != "" %>
+			<%= simple_format h(@location.info) %>
+		<% else %>
+			This location does not have any additional information.
+		<% end %>
 	</div>
 </p>
 <br />

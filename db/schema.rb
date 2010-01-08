@@ -32,19 +32,6 @@ ActiveRecord::Schema.define(:version => 20100106042943) do
     t.datetime "updated_at"
   end
 
-  create_table "item_store_memberships", :force => true do |t|
-    t.integer  "store_id"
-    t.integer  "item_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "items", :force => true do |t|
-    t.string   "item"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "location_profiles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -77,14 +64,6 @@ ActiveRecord::Schema.define(:version => 20100106042943) do
   create_table "products", :force => true do |t|
     t.integer  "category_id"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "stores", :force => true do |t|
-    t.string   "store"
-    t.decimal  "lat",        :precision => 15, :scale => 10
-    t.decimal  "lng",        :precision => 15, :scale => 10
     t.datetime "created_at"
     t.datetime "updated_at"
   end
