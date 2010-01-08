@@ -63,14 +63,38 @@
 					<table>
 						<tr>
 							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
 						</tr>
-						<% for product in category.products %>
 						<tr>
-							<td><%= check_box_tag "location[product_ids][]", 
-							product.id, product.locations.include?(@location), { :id => "product_ids_"+ product.id.to_s} %> 
-							<b><%=h product.name %></b></td>
-						</tr>
+						<% counter = 0 %>
+						<% for product in category.products %>
+							<% if counter < 4 %>
+								<td>
+									&nbsp;&nbsp;
+									<%= check_box_tag "location[product_ids][]", 
+									product.id, product.locations.include?(@location), 
+									{ :id => "product_ids_"+ product.id.to_s} %> 
+									<b><%=h product.name %></b>
+									&nbsp;&nbsp;
+								</td>
+							<% else %>
+								<% counter = 0 %>
+								</tr>
+								<tr>
+									<td>
+										&nbsp;&nbsp;
+										<%= check_box_tag "location[product_ids][]", 
+										product.id, product.locations.include?(@location), 
+										{ :id => "product_ids_"+ product.id.to_s} %> 
+										<b><%=h product.name %></b>
+										&nbsp;&nbsp;
+									</td>
+							<% end %>
+						<% counter = counter + 1 %>
 						<% end %>
+						</tr>
 					</table>
 				</td>
 			</tr>

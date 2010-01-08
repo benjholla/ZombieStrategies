@@ -1,12 +1,19 @@
 <%= stylesheet_link_tag 'locations/maps' %>
-<h1>Currently Tracking <%= Location.count %> Supply Locations and <%= LocationProfile.count %> Location Profiles</h1>
+<a name="top"><h1>Disaster Plan</h1></a>
 <br />
+<h2>Currently Tracking <%= Location.count %> Supply Locations and <%= LocationProfile.count %> Location Profiles</h2>
+<br />
+<h3>Search: Address / City / Zip / Etc.</h3><form onsubmit="showAddress(); return false" action="#">
+	<input id="search" size="50" type="text" value="" />
+	<input type="submit" value="Go!" />
+</form>
+
+<div id="message"></div>
+
 <script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
 </script>
 <script type="text/javascript" src="/javascripts/plan_maps.js"></script>
 <script type="text/javascript" src="/javascripts/plan_controls.js"></script>
-
-<h2 style="margin:0;">Disaster Plan</h2>
 
 <br />
 
@@ -58,9 +65,96 @@
 </tbody>
 </table>
 
-Search: <form onsubmit="showAddress(); return false" action="#">
-	<input id="search" size="50" type="text" value="" />
-	<input type="submit" value="Go!" />
-</form>
 
-<div id="message"></div>
+
+<div id="new-location">
+	<div id="top-panel">
+		<div id="left-panel">
+			<br />
+			<a name="new"><h1>New Location Form</h1></a>
+			<br />
+			<%= hidden_field_tag "location[category_ids][]", "" %>
+			<%= hidden_field_tag "location[product_ids][]", "" %>
+			<table border="1">
+				<tr>
+					<th><h2>Categories</h2></th>
+					<th><h2>Products</h2></th>
+				</tr>
+				<% for category in Category.all %>
+					<tr>
+						<td>
+							&nbsp;&nbsp;
+							<%= check_box_tag "location[category_ids][]", category.id,
+							category.locations.include?(@location), { :id => "category_ids_"+ category.id.to_s} %> 
+							<b><%=h category.name %></b>
+							&nbsp;&nbsp;
+						</td>
+						<td>
+							<table>
+								<tr>
+									<th></th>
+									<th></th>
+									<th></th>
+									<th></th>
+								</tr>
+								<tr>
+								<% counter = 0 %>
+								<% for product in category.products %>
+									<% if counter < 4 %>
+										<td>
+											&nbsp;&nbsp;
+											<%= check_box_tag "location[product_ids][]", 
+											product.id, product.locations.include?(@location), 
+											{ :id => "product_ids_"+ product.id.to_s} %> 
+											<b><%=h product.name %></b>
+											&nbsp;&nbsp;
+										</td>
+									<% else %>
+										<% counter = 0 %>
+										</tr>
+										<tr>
+											<td>
+												&nbsp;&nbsp;
+												<%= check_box_tag "location[product_ids][]", 
+												product.id, product.locations.include?(@location), 
+												{ :id => "product_ids_"+ product.id.to_s} %> 
+												<b><%=h product.name %></b>
+												&nbsp;&nbsp;
+											</td>
+									<% end %>
+								<% counter = counter + 1 %>
+								<% end %>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				<% end %>
+			</table>
+			<br />
+			<br />
+			<h3><label for="info">Additional Location Information:</label></h3>
+			<textarea cols="60" id="location_info" name="location[info]" rows="5"></textarea>
+			<br />
+			<br />
+			<p>
+				<input type="button" value="  Cancel  " onclick="window.location.href='<%= locations_path %>'"/>
+				<br />
+				<input type="button" value="  Submit  " onclick="createLocation(); return false;"/>
+			</p>
+			<input id="location_lat" name="location[lat]" type="hidden" />
+			<input id="location_lng" name="location[lng]" type="hidden" />
+		</div>
+		<div id="right-panel">
+			<br />
+			<br />
+			<script type="text/javascript" src="/javascripts/load_location_profile.js"></script>
+			<input type="button" value="  Load Location Profile  " onclick="promptLoad(); return false;"/>
+			<br />
+			<b><%= label_tag 'location_profile_name', 'Location Type: ' %></b><br />
+			<%= text_field_with_auto_complete :location, :location_profile_name, {:size => 20}, 
+			{:skip_style => true, :url => location_profiles_path(:text), :method => :get, :param_name => 'search' } %>
+			<br />
+		</div>
+	</div>
+</div>
+

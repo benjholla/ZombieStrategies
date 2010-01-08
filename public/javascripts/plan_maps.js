@@ -167,6 +167,10 @@ function showExactAddress(address) {
 
 function init() {
   if (GBrowserIsCompatible()) {
+	
+	// first things first, lets hide some stuff
+	hideNewLocationForm();
+	
     map = new GMap2(document.getElementById("map"));
 
 	var location = "";
@@ -232,6 +236,31 @@ function init() {
   }
 }
 
+function hideNewLocationForm() {
+	if (document.getElementById) { // DOM3 = IE5, NS6
+		document.getElementById('new-location').style.display = 'none';
+	}
+}
+
+function showNewLocationForm() {
+	if (document.getElementById) { // DOM3 = IE5, NS6
+		document.getElementById('new-location').style.display = 'inline';
+	}
+}
+
+function checkAddInput(){
+	if(document.getElementById("location_lat").value == "" || document.getElementById("location_lng").value == ""){
+		alert("Please set the new location's position on the map!");
+		return false;
+	}
+	if(document.getElementById("location_location_profile_name").value == ""){
+		alert("Please enter a location profile.  If a location profile does not exist for your new location, "
+		+ "you may enter the name of a new location profile which will be created for you automatically.");
+		return false;
+	}
+	return true;
+}
+
 function addLocation(overlay, latlng){
 	if (overlay == null) {
         //create an HTML DOM form element
@@ -243,23 +272,50 @@ function addLocation(overlay, latlng){
         //retrieve the longitude and lattitude of the click point
         var lng = latlng.lng();
         var lat = latlng.lat();
-  
-        inputForm.innerHTML = '<fieldset style="width:230px;">'
-            + '<span style="color:"black">'
-            + '<legend>New Location</legend>'	
-			+ '<br />'
-			+ '<p>Latitude = ' + lat + '</p>'
-			+ '<p>Longitude = ' + lng + '</p>'
-			+ '<br />'
-			+ '<center><input type="submit" value="   Add New Entry Here   "/></center>'
-            + '<input type="hidden" id="longitude" name="lng" value="' + lng + '"/>'
-            + '<input type="hidden" id="latitude" name="lat" value="' + lat + '"/>'
-            + '</span>'
-            + '</fieldset>';
-  
-		suppressMoveEnd = true;
-        map.openInfoWindow (latlng,inputForm);
+
+		//update the hidden location form
+		document.getElementById("location_lat").value = lat;
+		document.getElementById("location_lng").value = lng;
+		
+		// show hidden form for new location
+		showNewLocationForm();
+		window.location.href='#new';
       }
+}
+
+function createLocation(){
+	// check the input fields, in it fails quit this operation
+	if(!checkAddInput()){
+		return false;
+	}
+	
+	var params = "?location[lat]=" + document.getElementById("location_lat").value
+        + "&location[lng]=" + document.getElementById("location_lng").value
+        + "&location[location_profile_name]=" + document.getElementById("location_location_profile_name").value
+		+ "&location[info]=" + document.getElementById("location_info").value;
+
+	var url = 'locations/create.js' + params;
+	
+	var request = GXmlHttp.create();
+	//tell the request where to retrieve data from.
+	request.open('GET', url, true);
+	//tell the request what to do when the state changes.
+ 	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+	    	//parse the result to JSON,by eval-ing it.
+	    	//The response is an array of items in the DB
+	    	resource = eval( "(" + request.responseText + ")" );
+			if(resource.success == true){
+				// success, add a new map marker
+				// close window and return to normal map state
+				alert("success");
+			}else{
+				// create failed, alert user
+				alert("Error could not contact the webserver, your new location has not been created!");
+			}
+		}
+	}
+	request.send(null);
 }
 
 function viewLocation(id, marker){

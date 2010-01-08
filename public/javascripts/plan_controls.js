@@ -12,6 +12,10 @@ function setAddButtonSelected()
 	setModifyButtonUnselected();
 	setRemoveButtonUnselected();
 	document.getElementById("map").className = "edit";
+	//update the hidden location form
+	document.getElementById("location_lat").value = "";
+	document.getElementById("location_lng").value = "";
+	// hide other forms
 	return true;
 }
 
@@ -20,6 +24,12 @@ function setAddButtonUnselected()
 	document.images["addButton"].src = "/images/location_map_controls/add_unselected_button.png";
 	addButtonState = 0;
 	document.getElementById("map").className = "view";
+	//update the hidden location form
+	document.getElementById("location_lat").value = "";
+	document.getElementById("location_lng").value = "";
+	// hide other forms
+	hideNewLocationForm();
+	window.location.href='#top';
 	return true;
 }
 

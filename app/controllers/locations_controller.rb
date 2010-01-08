@@ -94,9 +94,15 @@ class LocationsController < ApplicationController
         flash[:notice] = 'Location was successfully created.'
         format.html { redirect_to(@location) }
         format.xml  { render :xml => @location, :status => :created, :location => @location }
+        format.js {
+          render :json => {:success=>true,:id=>@location.id.to_s}
+        }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
+        format.js do
+          render :json => {:success=>false}
+        end
       end
     end
   end

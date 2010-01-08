@@ -13,20 +13,45 @@
 			<tr>
 				<td>
 					<%= check_box_tag "location[category_ids][]", category.id,
-					 category.locations.include?(@location), :disabled => "disabled" %> 
+					 category.locations.include?(@location),
+					 { :id => "category_ids_"+ category.id.to_s, :disabled => "disabled"}%> 
 					<b><%=h category.name %></b></td>
 				<td>
 					<table>
 						<tr>
 							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
 						</tr>
+						<tr>
+						<% counter = 0 %>
 						<% for product in category.products %>
-							<tr>
-								<td><%= check_box_tag "location[product_ids][]", product.id,
-								 product.locations.include?(@location), :disabled => "disabled" %> 
-								<b><%=h product.name %></b></td>
-							</tr>
+							<% if counter < 4 %>
+								<td>
+									&nbsp;&nbsp;
+									<%= check_box_tag "location[product_ids][]", 
+									product.id, product.locations.include?(@location),
+									{ :id => "product_ids_"+ product.id.to_s, :disabled => "disabled"} %> 
+									<b><%=h product.name %></b>
+									&nbsp;&nbsp;
+								</td>
+							<% else %>
+								<% counter = 0 %>
+								</tr>
+								<tr>
+									<td>
+										&nbsp;&nbsp;
+										<%= check_box_tag "location[product_ids][]", 
+										product.id, product.locations.include?(@location),
+										{ :id => "product_ids_"+ product.id.to_s, :disabled => "disabled"} %> 
+										<b><%=h product.name %></b>
+										&nbsp;&nbsp;
+									</td>
+							<% end %>
+						<% counter = counter + 1 %>
 						<% end %>
+						</tr>
 					</table>
 				</td>
 			</tr>
