@@ -5,7 +5,6 @@
     <th>Category Name</th>
 	<th>Products</th>
 	<th></th>
-	<th></th>
   </tr>
 
 <% @categories.each do |category| %>
@@ -16,7 +15,6 @@
 			<table>
 		  	<tr>
 		    	<th></th>
-				<th></th>
 				<th></th>
 		  	</tr>
 			<% category.products.each do |product| %>
@@ -30,15 +28,15 @@
 		<% end %>
 	</td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
-    <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
+<% if authorized? %>
 <input type="button" value="New Category" onclick="window.location.href='<%= new_category_path %>'"/>
 <br />
 <input type="button" value="New Product" onclick="window.location.href='<%= new_product_path %>'"/>
 <br />
+<% end %>
 <input type="button" value="Location Map" onclick="window.location.href='<%= locations_path %>'"/>

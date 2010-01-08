@@ -1,4 +1,7 @@
 class ProductsController < ApplicationController
+  
+  before_filter :admin_login_required, :except => [:index, :show]
+  
   # GET /products
   # GET /products.xml
   def index

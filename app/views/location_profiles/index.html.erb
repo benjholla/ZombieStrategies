@@ -17,7 +17,6 @@
 	<th># Products</th>
 	<th></th>
 	<th></th>
-	<th></th>
   </tr>
 
 <% @location_profiles.each do |location_profile| %>
@@ -28,7 +27,6 @@
 	<td><center><%=h location_profile.products.count %></center></td>
     <td><%= link_to 'Show', location_profile %></td>
     <td><%= link_to 'Edit', edit_location_profile_path(location_profile) %></td>
-    <td><%= link_to 'Destroy', location_profile, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>

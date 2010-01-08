@@ -39,8 +39,9 @@
 			<% end %>
 		</table>
 	</p>
+	<br />
+	<br />
 	<p>
-		<%= f.submit 'Create' %>
+		<%= f.submit 'Create New Location Profile' %>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="Cancel" onclick="window.location.href='<%= location_profiles_path %>'"/>
 	</p>
 <% end %>
-<input type="button" value="Cancel" onclick="window.location.href='<%= location_profiles_path %>'"/>

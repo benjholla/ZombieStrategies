@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
 
+  before_filter :admin_login_required, :except => [:index, :show]
+
   # GET /categories
   # GET /categories.xml
   def index
@@ -22,13 +24,6 @@ class CategoriesController < ApplicationController
       format.xml  { render :xml => @categories }
       format.js { render :json => @categories.to_json() }
       format.text # index.text.erb
-    end
-  end
-  
-  def list_all
-    @categories = Category.all
-    respond_to do |format|
-      format.js { render :json => @location_profile.to_json() }
     end
   end
 

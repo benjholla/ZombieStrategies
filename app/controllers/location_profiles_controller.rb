@@ -1,4 +1,7 @@
 class LocationProfilesController < ApplicationController
+  
+  before_filter :admin_login_required, :only => :destroy
+  
   # GET /location_profiles
   # GET /location_profiles.xml
   def index
