@@ -1,0 +1,47 @@
+/* Left Side Content Container */
+#left-form {
+	width:auto;
+	float:left;
+	margin:0px;
+}
+
+/* Right Side Content Container */
+#right-form {
+	width:450px;
+	margin-left:380px;
+	text-align:left;
+}
+
+/* Styling for the map prompts */
+#message {
+	width: 350px;
+}
+
+/* Autocomplete Popup Styling */
+div.auto_complete {
+	width: 350px;
+	background: #fff;
+}
+
+div.auto_complete ul {
+	border:1px solid #888;
+	margin:0;
+	padding:0;
+	width:100%;
+	list-style-type:none;
+}
+
+div.auto_complete ul li {
+	margin:0;
+	padding:3px;
+}
+
+div.auto_complete ul li.selected {
+	background-color: #990404;
+}
+
+div.auto_complete ul strong.highlight {
+	color: #800; 
+	margin:0;
+	padding:0;
+}
