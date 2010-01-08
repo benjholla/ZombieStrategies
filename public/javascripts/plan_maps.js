@@ -228,6 +228,7 @@ function init() {
 			addLocation(overlay, latlng);
 		}
     });
+
   }
 }
 

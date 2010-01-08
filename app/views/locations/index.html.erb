@@ -1,3 +1,4 @@
+<%= stylesheet_link_tag 'locations/maps' %>
 <h1>Currently Tracking <%= Location.count %> Supply Locations and <%= LocationProfile.count %> Location Profiles</h1>
 <br />
 <script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
@@ -13,7 +14,7 @@
 <tbody>
 <tr>
 <td>
-	<div id="map" style="width: 675px; height: 400px"><center><br /><br /><br /><h3>Loading Map...</h3><br /><img src="/images/ajax-loader.gif" alt="Please wait..."/></center></div>
+	<div id="map" class="view" style="width: 675px; height: 400px"><center><br /><br /><br /><h3>Loading Map...</h3><br /><img src="/images/ajax-loader.gif" alt="Please wait..."/></center></div>
 </td>
 <td>
 <table style="text-align: left;" cellpadding="2" cellspacing="2">
@@ -22,7 +23,7 @@
 <td>
 	<a onmouseover="return handleAddButtonMouseOver()" onmouseout= "return handleAddButtonMouseOut()"
 	onmousedown="return handleAddButtonMouseDown()" onmouseup="return handleAddButtonMouseUp()">
-	<img name="addButton" src="/images/add_unselected_button.png" width="136" height="37" alt="Add Button"/>
+	<img name="addButton" src="/images/location_map_controls/add_unselected_button.png" width="136" height="37" alt="Add Button"/>
 	</a>
 </td>
 </tr>
@@ -30,7 +31,7 @@
 <td>
 	<a onmouseover="return handleModifyButtonMouseOver()" onmouseout= "return handleModifyButtonMouseOut()"
 	onmousedown="return handleModifyButtonMouseDown()" onmouseup="return handleModifyButtonMouseUp()">
-	<img name="modifyButton" src="/images/modify_unselected_button.png" width="136" height="37" alt="Modify Button"/>
+	<img name="modifyButton" src="/images/location_map_controls/modify_unselected_button.png" width="136" height="37" alt="Modify Button"/>
 	</a>
 </td>
 </tr>
@@ -38,7 +39,7 @@
 <td>
 	<a onmouseover="return handleRemoveButtonMouseOver()" onmouseout= "return handleRemoveButtonMouseOut()"
 	onmousedown="return handleRemoveButtonMouseDown()" onmouseup="return handleRemoveButtonMouseUp()">
-	<img name="removeButton" src="/images/remove_unselected_button.png" width="136" height="37" alt="Remove Button"/>
+	<img name="removeButton" src="/images/location_map_controls/remove_unselected_button.png" width="136" height="37" alt="Remove Button"/>
 	</a>
 </td>
 </tr>
@@ -46,7 +47,7 @@
 <td>
 	<a onmouseover="return handleTrafficButtonMouseOver()" onmouseout= "return handleTrafficButtonMouseOut()"
 	onmousedown="return handleTrafficButtonMouseDown()" onmouseup="return handleTrafficButtonMouseUp()">
-	<img name="trafficButton" src="/images/traffic_unselected_button.png" width="136" height="37" alt="Traffic Button"/>
+	<img name="trafficButton" src="/images/location_map_controls/traffic_unselected_button.png" width="136" height="37" alt="Traffic Button"/>
 	</a>
 </td>
 </tr>

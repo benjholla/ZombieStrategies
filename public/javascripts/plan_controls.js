@@ -7,24 +7,26 @@ var trafficButtonState = 0;
 // image setters for Add button
 function setAddButtonSelected()
 {
-	document.images["addButton"].src= "/images/add_selected_button.png";
+	document.images["addButton"].src= "/images/location_map_controls/add_selected_button.png";
 	addButtonState = 1;
 	setModifyButtonUnselected();
 	setRemoveButtonUnselected();
+	document.getElementById("map").className = "edit";
 	return true;
 }
 
 function setAddButtonUnselected()
 {
-	document.images["addButton"].src = "/images/add_unselected_button.png";
+	document.images["addButton"].src = "/images/location_map_controls/add_unselected_button.png";
 	addButtonState = 0;
+	document.getElementById("map").className = "view";
 	return true;
 }
 
 // image setters for Modify button
 function setModifyButtonSelected()
 {
-	document.images["modifyButton"].src= "/images/modify_selected_button.png";
+	document.images["modifyButton"].src= "/images/location_map_controls/modify_selected_button.png";
 	modifyButtonState = 1;
 	setAddButtonUnselected();
 	setRemoveButtonUnselected();
@@ -33,7 +35,7 @@ function setModifyButtonSelected()
 
 function setModifyButtonUnselected()
 {
-	document.images["modifyButton"].src = "/images/modify_unselected_button.png";
+	document.images["modifyButton"].src = "/images/location_map_controls/modify_unselected_button.png";
 	modifyButtonState = 0;
 	return true;
 }
@@ -41,7 +43,7 @@ function setModifyButtonUnselected()
 // image setters for Remove button
 function setRemoveButtonSelected()
 {
-	document.images["removeButton"].src= "/images/remove_selected_button.png";
+	document.images["removeButton"].src= "/images/location_map_controls/remove_selected_button.png";
 	removeButtonState = 1;
 	setAddButtonUnselected();
 	setModifyButtonUnselected();
@@ -50,7 +52,7 @@ function setRemoveButtonSelected()
 
 function setRemoveButtonUnselected()
 {
-	document.images["removeButton"].src = "/images/remove_unselected_button.png";
+	document.images["removeButton"].src = "/images/location_map_controls/remove_unselected_button.png";
 	removeButtonState = 0;
 	return true;
 }
@@ -58,14 +60,14 @@ function setRemoveButtonUnselected()
 // image setters for Traffic button
 function setTrafficButtonSelected()
 {
-	document.images["trafficButton"].src= "/images/traffic_selected_button.png";
+	document.images["trafficButton"].src= "/images/location_map_controls/traffic_selected_button.png";
 	trafficButtonState = 1;
 	return true;
 }
 
 function setTrafficButtonUnselected()
 {
-	document.images["trafficButton"].src = "/images/traffic_unselected_button.png";
+	document.images["trafficButton"].src = "/images/location_map_controls/traffic_unselected_button.png";
 	trafficButtonState = 0;
 	return true;
 }

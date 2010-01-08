@@ -1,0 +1,57 @@
+/* Holds the two panels together on the top and makes room for the product table below */
+#top-panel {
+	width:auto;
+	margin:0px;
+}
+
+/* Left Side Content Container */
+#left-panel {
+	width:auto;
+	float:left;
+	margin:0px;
+}
+
+/* Right Side Content Container */
+#right-panel {
+	width:auto;
+	margin-left:500px;
+	margin-bottom:25px;
+	text-align:left;
+}
+
+/* Right Side Content Container */
+#message {
+	width:auto;
+	text-align:left;
+	margin-top:0px;
+	margin-bottom:10px;
+}
+
+/* Autocomplete Popup Styling */
+div.auto_complete {
+	width: 350px;
+	background: #fff;
+}
+
+div.auto_complete ul {
+	border:1px solid #888;
+	margin:0;
+	padding:0;
+	width:100%;
+	list-style-type:none;
+}
+
+div.auto_complete ul li {
+	margin:0;
+	padding:3px;
+}
+
+div.auto_complete ul li.selected {
+	background-color: #990404;
+}
+
+div.auto_complete ul strong.highlight {
+	color: #800; 
+	margin:0;
+	padding:0;
+}
