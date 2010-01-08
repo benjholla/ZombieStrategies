@@ -273,8 +273,10 @@ function viewLocation(id, marker){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
-			var locationHTML = '<center><strong>Location Type:&nbsp;&nbsp;' + resource.location.location_profile.name + '</strong><br /><br />'
-			+ '<input type="button" value="    View Location    " onclick="window.location.href=\'/locations/' + resource.location.id  + '\'"/></center>';
+			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>View Location</legend>'
+            + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br /><br />'
+			+ '<center><input type="button" value="    View Location    " onclick="window.location.href=\'/locations/' + resource.location.id  + '\'"/></center>'
+			+ '</fieldset>';
 			suppressMoveEnd = true;
 			marker.openInfoWindowHtml(locationHTML);
 		}
@@ -293,8 +295,10 @@ function modifyLocation(id, marker){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
-			var locationHTML = '<center><strong>Location Type:&nbsp;&nbsp;' + resource.location.location_profile.name + '</strong><br /><br />'
-			+ '<input type="button" value="    Edit Location    " onclick="window.location.href=\'/locations/' + resource.location.id  + '\'"/></center>';
+			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>View Location</legend>'
+            + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br /><br />'
+			+ '<center><input type="button" value="    Modify Location    " onclick="window.location.href=\'/locations/' + resource.location.id + "/edit" + '\'"/></center>'
+			+ '</fieldset>';
 			suppressMoveEnd = true;
 			marker.openInfoWindowHtml(locationHTML);
 		}
@@ -313,8 +317,10 @@ function deleteLocation(id, marker){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
-			var locationHTML = '<center><strong>Location Type:&nbsp;&nbsp;' + resource.location.location_profile.name + '</strong><br /><br />'
-			+ '<input type="button" value="    Delete Location    " onclick="window.location.href=\'/locations/' + "destroy/" + + resource.location.id + '\'"/></center>';
+			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>View Location</legend>'
+            + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br /><br />'
+			+ '<center><input type="button" value="    Delete Location    " onclick="window.location.href=\'/locations/' + "destroy/" + + resource.location.id + '\'"/></center>'
+			+ '</fieldset>';
 			suppressMoveEnd = true;
 			marker.openInfoWindowHtml(locationHTML);
 		}
