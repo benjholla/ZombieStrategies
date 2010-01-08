@@ -295,7 +295,7 @@ function modifyLocation(id, marker){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
-			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>View Location</legend>'
+			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>Modify Location</legend>'
             + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br /><br />'
 			+ '<center><input type="button" value="    Modify Location    " onclick="window.location.href=\'/locations/' + resource.location.id + "/edit" + '\'"/></center>'
 			+ '</fieldset>';
@@ -317,7 +317,7 @@ function deleteLocation(id, marker){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
-			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>View Location</legend>'
+			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>Delete Location</legend>'
             + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br /><br />'
 			+ '<center><input type="button" value="    Delete Location    " onclick="window.location.href=\'/locations/' + "destroy/" + + resource.location.id + '\'"/></center>'
 			+ '</fieldset>';
