@@ -16,13 +16,21 @@
 /* Right Side Content Container */
 #right-panel {
 	width:auto;
-	margin-left:690px;
+	margin-left:702px;
 	margin-bottom:25px;
 	text-align:left;
 }
 
+#controls {
+	margin-left:20px;
+}
+
 #filler {
 	background:url(/images/location_map_controls/filler.png) repeat;
+}
+
+#new-location {
+	display: none;
 }
 
 /* Search Results */

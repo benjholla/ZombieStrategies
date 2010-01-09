@@ -15,7 +15,9 @@
 		<br />
 		<br />
 		<br />
-		<input type="button" value="  Load Location Profile  " onclick="promptLoad(); return false;"/>
+		<a onclick="promptLoad(); return false;">
+			<img name="load_profile_button" src="/images/location_map_controls/load_profile_unselected_button.png" width="136" height="37" alt="Load Location Profile"/>
+		</a>
 		<br />
 		<script type="text/javascript" src="/javascripts/load_location_profile.js"></script>
 		<%= label_tag 'location_profile_name', 'Profile: ' %><br />
@@ -26,7 +28,11 @@
 
 <div id="right-form">
 	<p>
-		<%= f.submit '  Update Location  ' %>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="  Cancel  " onclick="window.location.href='<%= location_path(@location) %>'"/>
+		<input id="location_submit" name="commit" type="image" src="/images/location_map_controls/submit_unselected_button.png" width="137" height="38" border=0  alt="Submit">
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<a onclick="window.location.href='<%= locations_path %>'">
+			<img name="cancel_button" src="/images/location_map_controls/cancel_unselected_button.png" width="136" height="37" alt="Cancel"/>
+		</a>
 	</p>
 	<br />
 	<script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
@@ -74,7 +80,7 @@
 										&nbsp;&nbsp;
 										<%= check_box_tag "location[product_ids][]", 
 										product.id, product.locations.include?(@location),
-										{ :id => "product_ids_"+ product.id.to_s, :disabled => "disabled"} %> 
+										{ :id => "product_ids_"+ product.id.to_s} %> 
 										<b><%=h product.name %></b>
 										&nbsp;&nbsp;
 									</td>
@@ -86,7 +92,7 @@
 											&nbsp;&nbsp;
 											<%= check_box_tag "location[product_ids][]", 
 											product.id, product.locations.include?(@location),
-											{ :id => "product_ids_"+ product.id.to_s, :disabled => "disabled"} %> 
+											{ :id => "product_ids_"+ product.id.to_s} %> 
 											<b><%=h product.name %></b>
 											&nbsp;&nbsp;
 										</td>

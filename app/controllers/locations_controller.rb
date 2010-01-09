@@ -115,7 +115,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       if @location.update_attributes(params[:location])
         flash[:notice] = 'Location was successfully updated.'
-        format.html { redirect_to(@location) }
+        format.html { redirect_to(locations_path) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

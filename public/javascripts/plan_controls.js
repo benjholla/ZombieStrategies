@@ -15,7 +15,7 @@ function setAddButtonSelected()
 	//update the hidden location form
 	document.getElementById("location_lat").value = "";
 	document.getElementById("location_lng").value = "";
-	// hide other forms
+	// don't need to hide other forms, because buttoms getting unselected will call these for us
 	return true;
 }
 
@@ -27,9 +27,9 @@ function setAddButtonUnselected()
 	//update the hidden location form
 	document.getElementById("location_lat").value = "";
 	document.getElementById("location_lng").value = "";
-	// hide other forms
+	// hide the add form
 	hideNewLocationForm();
-	window.location.href='#top';
+	// don't need to hide other forms, because buttoms getting unselected will call these for us
 	return true;
 }
 
@@ -40,6 +40,7 @@ function setModifyButtonSelected()
 	modifyButtonState = 1;
 	setAddButtonUnselected();
 	setRemoveButtonUnselected();
+	// don't need to hide other forms, because buttoms getting unselected will call these for us
 	return true;
 }
 
@@ -47,6 +48,7 @@ function setModifyButtonUnselected()
 {
 	document.images["modifyButton"].src = "/images/location_map_controls/modify_unselected_button.png";
 	modifyButtonState = 0;
+	// don't need to hide form, its on another page.... for now...
 	return true;
 }
 

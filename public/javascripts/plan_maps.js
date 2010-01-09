@@ -186,7 +186,6 @@ function init() {
   if (GBrowserIsCompatible()) {
 	
 	// first things first, lets hide some stuff
-	hideNewLocationForm();
 	
     map = new GMap2(document.getElementById("map"));
 
@@ -253,6 +252,45 @@ function init() {
   }
 }
 
+function updateLatLngInputFields(latlng){
+	document.getElementById("location_lat").value = latlng.lat();
+	document.getElementById("location_lng").value = latlng.lng();
+}
+
+function hideNewLocationForm() {
+	if (document.getElementById) { // DOM3 = IE5, NS6
+		document.getElementById('new-location').style.display = 'none';
+	}
+	// if theres an old marker, delete it
+	if(addLocationMarker)
+	{
+		map.removeOverlay(addLocationMarker);
+	}
+}
+
+function showNewLocationForm() {
+	if (document.getElementById) { // DOM3 = IE5, NS6
+		document.getElementById('new-location').style.display = 'inline';
+	}
+}
+
+function showModifyLocationForm(resource) {
+	window.location.href = "/locations/" + resource.location.id + "/edit";
+}
+
+function checkAddInput(){
+	if(document.getElementById("location_lat").value == "" || document.getElementById("location_lng").value == ""){
+		alert("Please set the new location's position on the map!");
+		return false;
+	}
+	if(document.getElementById("location_location_profile_name").value == ""){
+		alert("Please enter a location profile.  If a location profile does not exist for your new location, "
+		+ "you may enter the name of a new location profile which will be created for you automatically.");
+		return false;
+	}
+	return true;
+}
+
 // deletes the old marker and adds a new marker at the given locations
 // also updates form lat lng input fields
 function setAddLocationMarker(latlng){
@@ -277,36 +315,6 @@ function setAddLocationMarker(latlng){
 	map.addOverlay(addLocationMarker);
 	// update the input form 
 	updateLatLngInputFields(latlng);
-}
-
-function updateLatLngInputFields(latlng){
-	document.getElementById("location_lat").value = latlng.lat();
-	document.getElementById("location_lng").value = latlng.lng();
-}
-
-function hideNewLocationForm() {
-	if (document.getElementById) { // DOM3 = IE5, NS6
-		document.getElementById('new-location').style.display = 'none';
-	}
-}
-
-function showNewLocationForm() {
-	if (document.getElementById) { // DOM3 = IE5, NS6
-		document.getElementById('new-location').style.display = 'inline';
-	}
-}
-
-function checkAddInput(){
-	if(document.getElementById("location_lat").value == "" || document.getElementById("location_lng").value == ""){
-		alert("Please set the new location's position on the map!");
-		return false;
-	}
-	if(document.getElementById("location_location_profile_name").value == ""){
-		alert("Please enter a location profile.  If a location profile does not exist for your new location, "
-		+ "you may enter the name of a new location profile which will be created for you automatically.");
-		return false;
-	}
-	return true;
 }
 
 function addLocation(overlay, latlng){
@@ -406,12 +414,7 @@ function modifyLocation(id, marker){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
-			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>Modify Location</legend>'
-            + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br /><br />'
-			+ '<center><input type="button" value="    Modify Location    " onclick="window.location.href=\'/locations/' + resource.location.id + "/edit" + '\'"/></center>'
-			+ '</fieldset>';
-			suppressMoveEnd = true;
-			marker.openInfoWindowHtml(locationHTML);
+			showModifyLocationForm(resource);
 		}
 	}
 	request.send(null);

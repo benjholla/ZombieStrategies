@@ -14,6 +14,7 @@
 	</div>
 </div>
 
+
 <script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
 </script>
 <script type="text/javascript" src="/javascripts/plan_maps.js"></script>
@@ -28,6 +29,7 @@
 	<div id="map" class="view" style="width: 675px; height: 400px"><center><br /><br /><br /><h3>Loading Map...</h3><br /><img src="/images/ajax-loader.gif" alt="Please wait..."/></center></div>
 </td>
 <td>
+<div id="controls">
 <table style="text-align: left;" cellpadding="2" cellspacing="2">
 <tbody>
 <tr>
@@ -73,17 +75,17 @@
 </tr>
 </tbody>
 </table>
+</div>
 </td>
 </tr>
 </tbody>
 </table>
 
-
 <div id="new-location">
 	<div id="top-panel">
 		<div id="left-panel">
 			<br />
-			<a name="new"><h1>New Location Form</h1></a>
+			<a name="modify"><h1>New Location Form</h1></a>
 			<br />
 			<%= hidden_field_tag "location[category_ids][]", "" %>
 			<%= hidden_field_tag "location[product_ids][]", "" %>
@@ -149,9 +151,13 @@
 			<br />
 			<br />
 			<p>
-				<input type="button" value="  Cancel  " onclick="window.location.href='<%= locations_path %>'"/>
+				<a onclick="createLocation(); return false;">
+					<img name="submit_button" src="/images/location_map_controls/submit_unselected_button.png" width="137" height="38" alt="Submit"/>
+				</a>
 				<br />
-				<input type="button" value="  Submit  " onclick="createLocation(); return false;"/>
+				<a onclick="window.location.href='<%= locations_path %>'">
+					<img name="cancel_button" src="/images/location_map_controls/cancel_unselected_button.png" width="136" height="37" alt="Cancel"/>
+				</a>
 			</p>
 			<input id="location_lat" name="location[lat]" type="hidden" />
 			<input id="location_lng" name="location[lng]" type="hidden" />
@@ -160,7 +166,9 @@
 			<br />
 			<br />
 			<script type="text/javascript" src="/javascripts/load_location_profile.js"></script>
-			<input type="button" value="  Load Location Profile  " onclick="promptLoad(); return false;"/>
+			<a onclick="promptLoad(); return false;">
+				<img name="load_profile_button" src="/images/location_map_controls/load_profile_unselected_button.png" width="136" height="37" alt="Load Location Profile"/>
+			</a>
 			<br />
 			<b><%= label_tag 'location_profile_name', 'Location Type: ' %></b><br />
 			<%= text_field_with_auto_complete :location, :location_profile_name, {:size => 20}, 
@@ -169,4 +177,3 @@
 		</div>
 	</div>
 </div>
-
