@@ -21,12 +21,32 @@
 	text-align:left;
 }
 
-/* Right Side Content Container */
+#filler {
+	background:url(/images/location_map_controls/filler.png) repeat;
+}
+
+/* Search Results */
 #message {
 	width:auto;
 	text-align:left;
-	margin-top:0px;
-	margin-bottom:10px;
+	padding:0px;
+}
+
+/* Search Results Container */
+#message-container {
+	width:473px;
+	border-style:solid;
+	border-width:0px;
+}
+
+/* Hint Box */
+#hint-box {
+	width:120px;
+	text-align:left;
+	margin-left:2px;
+	padding:5px;
+	border-style:solid;
+	border-width:2px;
 }
 
 /* Autocomplete Popup Styling */

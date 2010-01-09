@@ -126,11 +126,11 @@ function showExactAddress(address) {
         if (result.Status.code == G_GEO_SUCCESS) {
 		 	// ===== If there was more than one result, "ask did you mean" on them all =====
 		 	if (result.Placemark.length > 1) { 
-				document.getElementById("message").innerHTML = "Did you mean:";
+				document.getElementById("message").innerHTML = "<h3>Did you mean:</h3>";
 				// Loop through the results
 				for (var i=0; i<result.Placemark.length; i++) {
 			   		var p = result.Placemark[i].Point.coordinates;
-			   		document.getElementById("message").innerHTML += "<br>"+(i+1)+": <a href='javascript:showExactAddress(\"" + result.Placemark[i].address + "\")'>" + result.Placemark[i].address + "<\/a>";
+			   		document.getElementById("message").innerHTML += "<b><br>"+(i+1)+": <a href='javascript:showExactAddress(\"" + result.Placemark[i].address + "\")'>" + result.Placemark[i].address + "<\/a></b>";
 		    	}
 		 	}
 		 	// ===== If there was a single marker, check if the returned address significantly different =====

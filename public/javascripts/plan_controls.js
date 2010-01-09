@@ -88,6 +88,7 @@ function setTrafficButtonUnselected()
 // Add button handers
 function handleAddButtonMouseOver()
 {
+	document.getElementById("hint-box").innerHTML = "<p><b>Hint: </b>To add a new supply location, click the Add button and then click the location on the map where you would like to add a new entry.</p>";
 	return true;
 }
 
@@ -115,6 +116,7 @@ function handleAddButtonMouseUp()
 // Modify button handers
 function handleModifyButtonMouseOver()
 {
+	document.getElementById("hint-box").innerHTML = "<p><b>Hint: </b>To modify a new supply location, click the Modify button and then click the location marker on the map which you would like to modify.</p>";
 	return true;
 }
 
@@ -142,6 +144,7 @@ function handleModifyButtonMouseUp()
 // Remove button handers
 function handleRemoveButtonMouseOver()
 {
+	document.getElementById("hint-box").innerHTML = "<p><b>Hint: </b>To delete a supply location, click the Delete button and then click the location marker on the map which you would like to remove.</p>";
 	return true;
 }
 
@@ -169,6 +172,7 @@ function handleRemoveButtonMouseUp()
 // Traffic button handers
 function handleTrafficButtonMouseOver()
 {
+	document.getElementById("hint-box").innerHTML = "<p><b>Hint: </b>Heavily populated areas equal more zombies in the event of a zombie outbreak!  The traffic view shows the density of traffic in real time.</p>";
 	return true;
 }
 
@@ -192,4 +196,20 @@ function handleTrafficButtonMouseDown()
 function handleTrafficButtonMouseUp()
 {
 	return true;
+}
+
+// special effects
+
+// special effects
+function redFadeIn(elemID) {
+  element = document.getElementById(elemID);
+  var b = 0;
+  function f() {
+    element.style.color = 'rgb('+b+',0,0)';
+    if (b < 255) {
+	  b+=5;
+      setTimeout(f, 20);
+    }
+  };
+  f();
 }
