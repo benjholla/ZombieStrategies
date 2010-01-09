@@ -393,9 +393,9 @@ function viewLocation(id, marker){
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
 			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>View Location</legend>'
-            + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br /><br />'
+            + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br />'
 			+ '<center><input type="button" value="    View Location    " onclick="window.location.href=\'/locations/' + resource.location.id  + '\'"/></center>'
-			+ '</fieldset>';
+			+ '<br /></fieldset>';
 			suppressMoveEnd = true;
 			marker.openInfoWindowHtml(locationHTML);
 		}
@@ -432,9 +432,9 @@ function deleteLocation(id, marker){
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
 			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>Delete Location</legend>'
-            + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br /><br />'
+            + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br />'
 			+ '<center><input type="button" value="    Delete Location    " onclick="window.location.href=\'/locations/' + "destroy/" + + resource.location.id + '\'"/></center>'
-			+ '</fieldset>';
+			+ '<br /></fieldset>';
 			suppressMoveEnd = true;
 			marker.openInfoWindowHtml(locationHTML);
 		}
