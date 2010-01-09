@@ -138,7 +138,7 @@ function showExactAddress(address) {
 		 	{
 		 		document.getElementById("message").innerHTML = "";
 				if (different(search, result.Placemark[0].address)) {
-					document.getElementById("message").innerHTML = "<h3>Did you mean: </h3>";
+					document.getElementById("message").innerHTML = "<b><font size=\"4\" face=\"sans-serif\">Did you mean:  </font></b>";
 			    	var p = result.Placemark[0].Point.coordinates;
 			    	document.getElementById("message").innerHTML += "<b><a href='javascript:showExactAddress(\"" + result.Placemark[0].address +"\")'>"+ result.Placemark[0].address+"<\/a></b>";
 				}
