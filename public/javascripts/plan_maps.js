@@ -288,6 +288,7 @@ function showModifyLocationForm(resource) {
 		document.getElementById('modify-location-submit').style.display = 'inline';
 		document.getElementById('forms').style.display = 'inline';
 		document.getElementById("location_location_profile_name").value = resource.location.location_profile.name;
+		document.getElementById("location_info").value = "";
 		if(resource.location.info){
 			document.getElementById("location_info").value = resource.location.info;
 		}
