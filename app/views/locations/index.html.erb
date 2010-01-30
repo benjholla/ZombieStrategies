@@ -1,3 +1,4 @@
+<div id="flash-message"></div>
 <%= stylesheet_link_tag 'locations/maps' %>
 <a name="top"><h1>Disaster Plan</h1></a>
 <br />
@@ -81,11 +82,12 @@
 </tbody>
 </table>
 
-<div id="new-location">
+<div id="forms">
 	<div id="top-panel">
 		<div id="left-panel">
 			<br />
-			<a name="modify"><h1>New Location Form</h1></a>
+			<div id="new-location-title"><a name="new"><h1>New Location</h1></a></div>
+			<div id="modify-location-title"><a name="modify"><h1>Modify Location</h1></a></div>
 			<br />
 			<%= hidden_field_tag "location[category_ids][]", "" %>
 			<%= hidden_field_tag "location[product_ids][]", "" %>
@@ -151,9 +153,16 @@
 			<br />
 			<br />
 			<p>
-				<a onclick="createLocation(); return false;">
-					<img name="submit_button" src="/images/location_map_controls/submit_unselected_button.png" width="137" height="38" alt="Submit"/>
-				</a>
+				<div id="new-location-submit">
+					<a onclick="createLocation(); return false;">
+						<img name="submit_new_button" src="/images/location_map_controls/submit_unselected_button.png" width="137" height="38" alt="Submit"/>
+					</a>
+				</div>
+				<div id="modify-location-submit">
+					<a onclick="updateLocation(); return false;">
+						<img name="submit_modify_button" src="/images/location_map_controls/submit_unselected_button.png" width="137" height="38" alt="Submit"/>
+					</a>
+				</div>
 				<br />
 				<a onclick="window.location.href='<%= locations_path %>'">
 					<img name="cancel_button" src="/images/location_map_controls/cancel_unselected_button.png" width="136" height="37" alt="Cancel"/>
@@ -161,6 +170,7 @@
 			</p>
 			<input id="location_lat" name="location[lat]" type="hidden" />
 			<input id="location_lng" name="location[lng]" type="hidden" />
+			<input id="selected_marker_id" type="hidden" />
 		</div>
 		<div id="right-panel">
 			<br />

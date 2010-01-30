@@ -29,7 +29,23 @@
 	background:url(/images/location_map_controls/filler.png) repeat;
 }
 
-#new-location {
+#new-location-title {
+	display: none;
+}
+
+#modify-location-title {
+	display: none;
+}
+
+#new-location-submit {
+	display: none;
+}
+
+#modify-location-submit {
+	display: none;
+}
+
+#forms {
 	display: none;
 }
 

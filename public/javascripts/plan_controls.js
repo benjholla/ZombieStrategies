@@ -15,6 +15,7 @@ function setAddButtonSelected()
 	//update the hidden location form
 	document.getElementById("location_lat").value = "";
 	document.getElementById("location_lng").value = "";
+	document.getElementById("flash-message").innerHTML = "";
 	// don't need to hide other forms, because buttoms getting unselected will call these for us
 	return true;
 }
@@ -27,8 +28,10 @@ function setAddButtonUnselected()
 	//update the hidden location form
 	document.getElementById("location_lat").value = "";
 	document.getElementById("location_lng").value = "";
+	document.getElementById("flash-message").innerHTML = "";
 	// hide the add form
 	hideNewLocationForm();
+	window.location.href='#';
 	// don't need to hide other forms, because buttoms getting unselected will call these for us
 	return true;
 }
@@ -36,6 +39,9 @@ function setAddButtonUnselected()
 // image setters for Modify button
 function setModifyButtonSelected()
 {
+	document.getElementById("location_lat").value = "";
+	document.getElementById("location_lng").value = "";
+	document.getElementById("flash-message").innerHTML = "";
 	document.images["modifyButton"].src= "/images/location_map_controls/modify_selected_button.png";
 	modifyButtonState = 1;
 	setAddButtonUnselected();
@@ -48,13 +54,16 @@ function setModifyButtonUnselected()
 {
 	document.images["modifyButton"].src = "/images/location_map_controls/modify_unselected_button.png";
 	modifyButtonState = 0;
-	// don't need to hide form, its on another page.... for now...
+	// hide the modify form
+	hideModifyLocationForm();
+	window.location.href='#';
 	return true;
 }
 
 // image setters for Remove button
 function setRemoveButtonSelected()
 {
+	document.getElementById("flash-message").innerHTML = "";
 	document.images["removeButton"].src= "/images/location_map_controls/remove_selected_button.png";
 	removeButtonState = 1;
 	setAddButtonUnselected();
@@ -64,6 +73,7 @@ function setRemoveButtonSelected()
 
 function setRemoveButtonUnselected()
 {
+	document.getElementById("flash-message").innerHTML = "";
 	document.images["removeButton"].src = "/images/location_map_controls/remove_unselected_button.png";
 	removeButtonState = 0;
 	return true;
@@ -72,6 +82,7 @@ function setRemoveButtonUnselected()
 // image setters for Traffic button
 function setTrafficButtonSelected()
 {
+	document.getElementById("flash-message").innerHTML = "";
 	document.images["trafficButton"].src= "/images/location_map_controls/traffic_selected_button.png";
 	trafficButtonState = 1;
 	return true;
@@ -79,6 +90,7 @@ function setTrafficButtonSelected()
 
 function setTrafficButtonUnselected()
 {
+	document.getElementById("flash-message").innerHTML = "";
 	document.images["trafficButton"].src = "/images/location_map_controls/traffic_unselected_button.png";
 	trafficButtonState = 0;
 	return true;

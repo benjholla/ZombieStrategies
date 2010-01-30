@@ -21,12 +21,9 @@ function promptLoad(){
 
 function loadProfile(){	
 	// clear all checkmarks
-	if(!clearCheckmarks()){
-		alert("Could not contact webserver!");
-		return false;
-	}
-	// give it a half sec to finish clearing checkboxes
-    setTimeout('setCheckboxes()', 500);
+	clearCheckmarks();
+	// add the checkbox marks
+    setCheckboxes();
 }
 
 function setCheckboxes(){
@@ -59,60 +56,26 @@ function setCheckboxes(){
 }
 
 function clearCheckmarks(){
-	if(clearCategoryCheckmarks() && clearProductCheckmarks()){
-		return true;
+	//clear categories
+	var cat_index = 1;
+	while(document.getElementById("category_ids_" + cat_index)){
+		document.getElementById("category_ids_" + cat_index).checked = false;
+		cat_index++;
 	}
-	return false;
-}
-
-function clearCategoryCheckmarks(){
-	var url = '/categories.js';
-	// create request
-  	var request = GXmlHttp.create();
-  	//tell the request where to retrieve data from.
-  	request.open('GET', url, true);
-  	//tell the request what to do when the state changes.
-  	request.onreadystatechange = function() {
-    	if (request.readyState == 4) {
-			//parse the result to JSON,by eval-ing it.
-      		categories=eval( "(" + request.responseText + ")" );
-			if(categories == null){
-				// uh o, something really bad if this happens
-				return false;
-			}
-			// clear all category checkmarks
-			for (var i = 0 ; i < categories.length ; i++) {
-				var category = categories[i].category;
-				document.getElementById("category_ids_" + category.id).checked = false;
-      		}
-    	}
-	} 
-	request.send(null);
+	
+	//clear products
+	var pro_index = 1;
+	while(document.getElementById("product_ids_" + pro_index)){
+		document.getElementById("product_ids_" + pro_index).checked = false;
+		pro_index++;
+	}
 	return true;
 }
 
-function clearProductCheckmarks(){
-	var url = '/products.js';
-	// create request
-  	var request = GXmlHttp.create();
-  	//tell the request where to retrieve data from.
-  	request.open('GET', url, true);
-  	//tell the request what to do when the state changes.
-  	request.onreadystatechange = function() {
-    	if (request.readyState == 4) {
-			//parse the result to JSON,by eval-ing it.
-      		products=eval( "(" + request.responseText + ")" );
-			if(products == null){
-				// uh o, something really bad if this happens
-				return false;
-			}
-			// clear all product checkmarks
-			for (var i = 0 ; i < products.length ; i++) {
-				var product = products[i].product;
-				document.getElementById("product_ids_" + product.id).checked = false;
-      		}
-    	}
-	}
-	request.send(null);
-	return true;
+function clearProfileForm(){
+	document.getElementById("location_location_profile_name").value = "";
+}
+
+function clearLocationInfoForm(){
+	document.getElementById("location_info").value = "";
 }

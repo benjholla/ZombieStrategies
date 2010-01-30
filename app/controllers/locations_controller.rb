@@ -59,7 +59,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @location }
-      format.js { render :json => @location.to_json(:include => {:location_profile => {}}) }
+      format.js { render :json => @location.to_json(:include => {:location_profile => {}, :categories => {}, :products => {}}) }
     end
   end
 
@@ -114,12 +114,17 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.update_attributes(params[:location])
-        flash[:notice] = 'Location was successfully updated.'
-        format.html { redirect_to(locations_path) }
-        format.xml  { head :ok }
-      else
+         format.html { redirect_to(locations_path) }
+         format.xml  { head :ok }
+         format.js {
+          render :json => {:success=>true,:id=>@location.id.to_s}
+         }
+       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @location.errors, :status => :unprocessable_entity }
+        format.js {
+          render :json => {:success=>false}
+        }
       end
     end
   end

@@ -259,23 +259,61 @@ function updateLatLngInputFields(latlng){
 
 function hideNewLocationForm() {
 	if (document.getElementById) { // DOM3 = IE5, NS6
-		document.getElementById('new-location').style.display = 'none';
+		document.getElementById('new-location-title').style.display = 'none';
+		document.getElementById('new-location-submit').style.display = 'none';
+		document.getElementById('forms').style.display = 'none';
 	}
 	// if theres an old marker, delete it
 	if(addLocationMarker)
 	{
 		map.removeOverlay(addLocationMarker);
 	}
+	clearCheckmarks();
+	clearProfileForm();
+	clearLocationInfoForm();
 }
 
 function showNewLocationForm() {
 	if (document.getElementById) { // DOM3 = IE5, NS6
-		document.getElementById('new-location').style.display = 'inline';
+		document.getElementById('new-location-title').style.display = 'inline';
+		document.getElementById('new-location-submit').style.display = 'inline';
+		document.getElementById('forms').style.display = 'inline';
 	}
 }
 
 function showModifyLocationForm(resource) {
-	window.location.href = "/locations/" + resource.location.id + "/edit";
+	if (document.getElementById) { // DOM3 = IE5, NS6
+		document.getElementById('modify-location-title').style.display = 'inline';
+		document.getElementById("modify-location-title").innerHTML = "<a name=\"modify\"><h1>Modify Location -> (" + resource.location.lat + ", " + resource.location.lng + ")</h1></a>";
+		document.getElementById('modify-location-submit').style.display = 'inline';
+		document.getElementById('forms').style.display = 'inline';
+		document.getElementById("location_location_profile_name").value = resource.location.location_profile.name;
+		if(resource.location.info){
+			document.getElementById("location_info").value = resource.location.info;
+		}
+		// clear the checkboxes
+		clearCheckmarks();
+		// add in the checkbox marks
+		for (var i = 0 ; i < resource.location.categories.length ; i++) {
+			var category = resource.location.categories[i];
+			document.getElementById("category_ids_" + category.id).checked = true;
+		} // end of categories for loop
+		for (var i = 0 ; i < resource.location.products.length ; i++) {
+			var product = resource.location.products[i];
+			document.getElementById("product_ids_" + product.id).checked = true;
+		} // end of products for loop
+	}
+}
+
+function hideModifyLocationForm() {
+	if (document.getElementById) { // DOM3 = IE5, NS6
+		document.getElementById('modify-location-title').style.display = 'none';
+		document.getElementById('modify-location-submit').style.display = 'none';
+		document.getElementById('forms').style.display = 'none';
+	}
+	clearCheckmarks();
+	clearProfileForm();
+	clearLocationInfoForm();
 }
 
 function checkAddInput(){
@@ -336,6 +374,24 @@ function createLocation(){
         + "&location[lng]=" + document.getElementById("location_lng").value
         + "&location[location_profile_name]=" + document.getElementById("location_location_profile_name").value
 		+ "&location[info]=" + document.getElementById("location_info").value;
+			
+	//add categories
+	var cat_count = 1;
+	while(document.getElementById("category_ids_" + cat_count)){
+		if(document.getElementById("category_ids_" + cat_count).checked == 1){
+	   		params += "&location[category_ids][]=" + document.getElementById("category_ids_" + cat_count).value;
+		}
+		cat_count++;
+	}
+	
+	//add products
+	var pro_count = 1;
+	while(document.getElementById("product_ids_" + pro_count)){
+		if(document.getElementById("product_ids_" + pro_count).checked == 1){
+	   		params += "&location[product_ids][]=" + document.getElementById("product_ids_" + pro_count).value;
+		}
+		pro_count++;
+	}
 
 	var url = 'locations/create.js' + params;
 	
@@ -348,6 +404,7 @@ function createLocation(){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
+	
 			if(resource.success == true){
 				
 				// success, add a new map marker
@@ -414,11 +471,65 @@ function modifyLocation(id, marker){
 	    	//parse the result to JSON,by eval-ing it.
 	    	//The response is an array of items in the DB
 	    	resource = eval( "(" + request.responseText + ")" );
+			updateLatLngInputFields(marker.getLatLng());
+			document.getElementById("selected_marker_id").value = resource.location.id;
 			showModifyLocationForm(resource);
+			window.location.href='#modify';
 		}
 	}
 	request.send(null);
 }
+
+function updateLocation(){
+	
+	// check the input fields, in it fails quit this operation
+	if(!checkAddInput()){
+		return false;
+	}
+	
+	var params = "?location[lat]=" + document.getElementById("location_lat").value
+        + "&location[lng]=" + document.getElementById("location_lng").value
+        + "&location[location_profile_name]=" + document.getElementById("location_location_profile_name").value
+		+ "&location[info]=" + document.getElementById("location_info").value;
+			
+	//add categories
+	var cat_count = 1;
+	while(document.getElementById("category_ids_" + cat_count)){
+		if(document.getElementById("category_ids_" + cat_count).checked == 1){
+	   		params += "&location[category_ids][]=" + document.getElementById("category_ids_" + cat_count).value;
+		}
+		cat_count++;
+	}
+	
+	//add products
+	var pro_count = 1;
+	while(document.getElementById("product_ids_" + pro_count)){
+		if(document.getElementById("product_ids_" + pro_count).checked == 1){
+	   		params += "&location[product_ids][]=" + document.getElementById("product_ids_" + pro_count).value;
+		}
+		pro_count++;
+	}
+
+	var url = 'locations/update/' + document.getElementById("selected_marker_id").value + ".js" + params;
+	
+	var request = GXmlHttp.create();
+	//tell the request where to retrieve data from.
+	request.open('GET', url, true);
+	//tell the request what to do when the state changes.
+ 	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+	    	//parse the result to JSON,by eval-ing it.
+	    	//The response is an array of items in the DB
+	    	resource = eval( "(" + request.responseText + ")" );
+			if(resource.success == true){
+				document.getElementById("flash-message").innerHTML = "<div class=\"error-container\"><div class=\"notification\"></div><div class=\"notification-message\"><h4>Location updated successfully</h4></div><br /><br /><br /><br /></div>";
+				setModifyButtonUnselected();
+			}
+		}
+	}
+	request.send(null);
+}
+
 
 function deleteLocation(id, marker){
 	var request = GXmlHttp.create();
@@ -468,7 +579,7 @@ function createMarker(latlng, id) {
     return marker;
 }
 
-// plots all of the markers, on the google map, that are returned from the stores.js controller
+// plots all of the markers, on the google map, that are returned from the locations.js controller
 function listMarkers(latlng) {
 	// clear screen and repopulate with new information
 	map.clearOverlays();
