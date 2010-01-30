@@ -15,6 +15,7 @@
 	<th>Date Created</th>
 	<th># Categories</th>
 	<th># Products</th>
+	<th># Locations</th>
 	<th></th>
 	<th></th>
   </tr>
@@ -25,6 +26,7 @@
 	<td><%=h location_profile.created_at %></td>
 	<td><center><%=h location_profile.categories.count %></center></td>
 	<td><center><%=h location_profile.products.count %></center></td>
+	<td><center><%=h location_profile.locations.count %></center></td>
     <td><%= link_to 'Show', location_profile %></td>
     <td><%= link_to 'Edit', edit_location_profile_path(location_profile) %></td>
   </tr>
