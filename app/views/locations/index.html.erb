@@ -88,6 +88,7 @@
 			<br />
 			<div id="new-location-title"><a name="new"><h1>New Location</h1></a></div>
 			<div id="modify-location-title"><a name="modify"><h1>Modify Location</h1></a></div>
+			<div id="view-location-title"><a name="view"><h1>View Location</h1></a></div>
 			<br />
 			<%= hidden_field_tag "location[category_ids][]", "" %>
 			<%= hidden_field_tag "location[product_ids][]", "" %>
@@ -163,6 +164,11 @@
 						<img name="submit_modify_button" src="/images/location_map_controls/submit_unselected_button.png" width="137" height="38" alt="Submit"/>
 					</a>
 				</div>
+				<div id="modify-location-button">
+					<a onclick="modifyThisLocation(); return false;">
+						<img name="submit_modify_button" src="/images/location_map_controls/modify_unselected_button.png" width="137" height="38" alt="Submit"/>
+					</a>
+				</div>
 				<br />
 				<a onclick="window.location.href='<%= locations_path %>'">
 					<img name="cancel_button" src="/images/location_map_controls/cancel_unselected_button.png" width="136" height="37" alt="Cancel"/>
@@ -176,9 +182,11 @@
 			<br />
 			<br />
 			<script type="text/javascript" src="/javascripts/load_location_profile.js"></script>
-			<a onclick="promptLoad(); return false;">
-				<img name="load_profile_button" src="/images/location_map_controls/load_profile_unselected_button.png" width="136" height="37" alt="Load Location Profile"/>
-			</a>
+			<div id="profile_button">
+				<a onclick="promptLoad(); return false;">
+					<img name="load_profile_button" src="/images/location_map_controls/load_profile_unselected_button.png" width="136" height="37" alt="Load Location Profile"/>
+				</a>
+			</div>
 			<br />
 			<b><%= label_tag 'location_profile_name', 'Location Type: ' %></b><br />
 			<%= text_field_with_auto_complete :location, :location_profile_name, {:size => 20}, 

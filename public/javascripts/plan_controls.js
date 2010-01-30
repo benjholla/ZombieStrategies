@@ -17,6 +17,7 @@ function setAddButtonSelected()
 	document.getElementById("location_lng").value = "";
 	document.getElementById("flash-message").innerHTML = "";
 	// don't need to hide other forms, because buttoms getting unselected will call these for us
+	hideViewLocationForm();
 	return true;
 }
 
@@ -45,7 +46,8 @@ function setModifyButtonSelected()
 	document.images["modifyButton"].src= "/images/location_map_controls/modify_selected_button.png";
 	modifyButtonState = 1;
 	setAddButtonUnselected();
-	setRemoveButtonUnselected();
+	setRemoveButtonUnselected();	
+	hideViewLocationForm();
 	// don't need to hide other forms, because buttoms getting unselected will call these for us
 	return true;
 }
@@ -68,6 +70,8 @@ function setRemoveButtonSelected()
 	removeButtonState = 1;
 	setAddButtonUnselected();
 	setModifyButtonUnselected();
+	hideViewLocationForm();
+	// don't need to hide other forms, because buttoms getting unselected will call these for us
 	return true;
 }
 

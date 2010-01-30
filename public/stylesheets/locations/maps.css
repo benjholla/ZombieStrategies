@@ -37,11 +37,19 @@
 	display: none;
 }
 
+#view-location-title {
+	display: none;
+}
+
 #new-location-submit {
 	display: none;
 }
 
 #modify-location-submit {
+	display: none;
+}
+
+#modify-location-button {
 	display: none;
 }
 

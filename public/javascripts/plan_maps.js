@@ -317,6 +317,75 @@ function hideModifyLocationForm() {
 	clearLocationInfoForm();
 }
 
+
+function showViewLocationForm(resource) {
+	if (document.getElementById) { // DOM3 = IE5, NS6
+		document.getElementById('view-location-title').style.display = 'inline';
+		document.getElementById("view-location-title").innerHTML = "<a name=\"view\"><h1>View Location -> (" + resource.location.lat + ", " + resource.location.lng + ")</h1></a>";
+		document.getElementById('modify-location-button').style.display = 'inline';
+		document.getElementById('forms').style.display = 'inline';
+		document.getElementById("location_location_profile_name").value = resource.location.location_profile.name;
+		document.getElementById("location_info").value = "";
+		if(resource.location.info){
+			document.getElementById("location_info").value = resource.location.info;
+		}
+		// clear the checkboxes
+		clearCheckmarks();
+		// add in the checkbox marks
+		for (var i = 0 ; i < resource.location.categories.length ; i++) {
+			var category = resource.location.categories[i];
+			document.getElementById("category_ids_" + category.id).checked = true;
+		} // end of categories for loop
+		for (var i = 0 ; i < resource.location.products.length ; i++) {
+			var product = resource.location.products[i];
+			document.getElementById("product_ids_" + product.id).checked = true;
+		} // end of products for loop
+		
+		// disable info and profile forms/buttons
+		document.getElementById("location_info").disabled = true;
+		document.getElementById("location_location_profile_name").disabled = true;
+		document.getElementById('profile_button').style.display = 'none';
+		
+		// set checkboxes not editable
+		var cat_index = 1;
+		while(document.getElementById("category_ids_" + cat_index)){
+			document.getElementById("category_ids_" + cat_index).disabled = true;
+			cat_index++;
+		}
+		var pro_index = 1;
+		while(document.getElementById("product_ids_" + pro_index)){
+			document.getElementById("product_ids_" + pro_index).disabled = true;
+			pro_index++;
+		}
+	}
+}
+
+function hideViewLocationForm() {
+	// hide view elements and restore functionality
+	if (document.getElementById) { // DOM3 = IE5, NS6
+		document.getElementById('view-location-title').style.display = 'none';
+		document.getElementById('modify-location-button').style.display = 'none';
+		document.getElementById('forms').style.display = 'none';
+	}
+	document.getElementById("location_info").disabled = false;
+	document.getElementById("location_location_profile_name").disabled = false;
+	document.getElementById('profile_button').style.display = 'inline';
+	var cat_index = 1;
+	while(document.getElementById("category_ids_" + cat_index)){
+		document.getElementById("category_ids_" + cat_index).disabled = false;
+		cat_index++;
+	}
+	var pro_index = 1;
+	while(document.getElementById("product_ids_" + pro_index)){
+		document.getElementById("product_ids_" + pro_index).disabled = false;
+		pro_index++;
+	}
+	clearCheckmarks();
+	clearProfileForm();
+	clearLocationInfoForm();
+}
+
+
 function checkAddInput(){
 	if(document.getElementById("location_lat").value == "" || document.getElementById("location_lng").value == ""){
 		alert("Please set the new location's position on the map!");
@@ -440,6 +509,10 @@ function createLocation(){
 }
 
 function viewLocation(id, marker){
+	setAddButtonUnselected();
+	setModifyButtonUnselected();
+	document.getElementById("selected_marker_id").value = id;
+	updateLatLngInputFields(marker.getLatLng());
 	var request = GXmlHttp.create();
 	//tell the request where to retrieve data from.
 	request.open('GET', 'locations/' + id + '.js', true);
@@ -452,10 +525,33 @@ function viewLocation(id, marker){
 	    	resource = eval( "(" + request.responseText + ")" );
 			var locationHTML = '<fieldset style="width:auto; padding-right:5px; padding-left:5px;"><legend>View Location</legend>'
             + '<br /><center><strong>' + resource.location.location_profile.name + '</strong></center><br />'
-			+ '<center><input type="button" value="    View Location    " onclick="window.location.href=\'/locations/' + resource.location.id  + '\'"/></center>'
+			+ '<center><input type="button" value="    View Location    " onclick="showViewLocationForm(resource); window.location.href=\'#view\'; return true;"/></center>'
 			+ '<br /></fieldset>';
 			suppressMoveEnd = true;
 			marker.openInfoWindowHtml(locationHTML);
+		}
+	}
+	request.send(null);
+}
+
+function modifyThisLocation(){
+	var id = document.getElementById("selected_marker_id").value;
+	var request = GXmlHttp.create();
+	//tell the request where to retrieve data from.
+	request.open('GET', 'locations/' + id + '.js', true);
+	//tell the request what to do when the state changes.
+	var locationHTML;
+ 	request.onreadystatechange = function() {
+		if (request.readyState == 4) {
+	    	//parse the result to JSON,by eval-ing it.
+	    	//The response is an array of items in the DB
+	    	resource = eval( "(" + request.responseText + ")" );
+			document.getElementById("selected_marker_id").value = resource.location.id;
+			hideViewLocationForm();
+			showModifyLocationForm(resource);
+			document.images["modifyButton"].src= "/images/location_map_controls/modify_selected_button.png";
+			modifyButtonState = 1;
+			window.location.href='#modify';
 		}
 	}
 	request.send(null);
