@@ -80,7 +80,7 @@ class LocationProfilesController < ApplicationController
   # PUT /location_profiles/1
   # PUT /location_profiles/1.xml
   def update
-    @location_profile = LocationProfile.find(params[:id])
+    @location_profile = LocationProfile.find_by_name(params[:id])
     
     respond_to do |format|
       if @location_profile.update_attributes(params[:location_profile])
