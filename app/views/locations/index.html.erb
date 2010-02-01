@@ -84,12 +84,23 @@
 
 <div id="forms">
 	<div id="top-panel">
+		<br />
+		<div id="new-location-title"><a name="new"><h1>New Location</h1></a></div>
+		<div id="modify-location-title"><a name="modify"><h1>Modify Location</h1></a></div>
+		<div id="view-location-title"><a name="view"><h1>View Location</h1></a></div>
+		<br />
+		<script type="text/javascript" src="/javascripts/load_location_profile.js"></script>
+		<div id="profile_button">
+			<a onclick="promptLoad(); return false;">
+				<img name="load_profile_button" src="/images/location_map_controls/load_profile_unselected_button.png" width="136" height="37" alt="Load Location Profile"/>
+			</a>
+		</div>
+		<br />
+		<b><%= label_tag 'location_profile_name', 'Location Type: ' %></b><br />
+		<%= text_field_with_auto_complete :location, :location_profile_name, {:size => 20}, 
+		{:skip_style => true, :url => location_profiles_path(:text), :method => :get, :param_name => 'search' } %>
+		<br />
 		<div id="left-panel">
-			<br />
-			<div id="new-location-title"><a name="new"><h1>New Location</h1></a></div>
-			<div id="modify-location-title"><a name="modify"><h1>Modify Location</h1></a></div>
-			<div id="view-location-title"><a name="view"><h1>View Location</h1></a></div>
-			<br />
 			<%= hidden_field_tag "location[category_ids][]", "" %>
 			<%= hidden_field_tag "location[product_ids][]", "" %>
 			<table border="1">
@@ -177,21 +188,6 @@
 			<input id="location_lat" name="location[lat]" type="hidden" />
 			<input id="location_lng" name="location[lng]" type="hidden" />
 			<input id="selected_marker_id" type="hidden" />
-		</div>
-		<div id="right-panel">
-			<br />
-			<br />
-			<script type="text/javascript" src="/javascripts/load_location_profile.js"></script>
-			<div id="profile_button">
-				<a onclick="promptLoad(); return false;">
-					<img name="load_profile_button" src="/images/location_map_controls/load_profile_unselected_button.png" width="136" height="37" alt="Load Location Profile"/>
-				</a>
-			</div>
-			<br />
-			<b><%= label_tag 'location_profile_name', 'Location Type: ' %></b><br />
-			<%= text_field_with_auto_complete :location, :location_profile_name, {:size => 20}, 
-			{:skip_style => true, :url => location_profiles_path(:text), :method => :get, :param_name => 'search' } %>
-			<br />
 		</div>
 	</div>
 </div>
