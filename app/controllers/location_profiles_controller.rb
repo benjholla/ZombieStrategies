@@ -87,9 +87,15 @@ class LocationProfilesController < ApplicationController
         flash[:notice] = @location_profile.name + ' profile updated.'
         format.html { redirect_to(@location_profile) }
         format.xml  { head :ok }
+        format.js {
+          render :json => {:success=>true}
+        }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @location_profile.errors, :status => :unprocessable_entity }
+        format.js {
+          render :json => {:success=>false}
+        }
       end
     end
   end
