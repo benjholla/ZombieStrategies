@@ -66,7 +66,7 @@ class ProductsController < ApplicationController
     respond_to do |format|
       if @product.update_attributes(params[:product])
         flash[:notice] = 'Product was successfully updated.'
-        format.html { redirect_to(@product) }
+        format.html { redirect_to(categories_url) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -15,13 +15,11 @@
 			<table>
 		  	<tr>
 		    	<th></th>
-				<th></th>
 		  	</tr>
 			<% category.products.each do |product| %>
 		  	<tr>
 		    	<td><%=h product.name %></td>
 		    	<td><%= link_to 'Edit', edit_product_path(product) %></td>
-		    	<td><%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></td>
 		  	</tr>
 			<% end %>
 			</table>
