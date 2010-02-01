@@ -55,7 +55,7 @@ class LocationProfilesController < ApplicationController
 
   # GET /location_profiles/1/edit
   def edit
-    @location_profile = LocationProfile.find_by_name(params[:id])
+    @location_profile = LocationProfile.find(params[:id])
   end
 
   # POST /location_profiles
