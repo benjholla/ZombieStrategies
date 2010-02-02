@@ -97,7 +97,7 @@
 		</div>
 		<br />
 		<b><%= label_tag 'location_profile_name', 'Location Type: ' %></b><br />
-		<%= text_field_with_auto_complete :location, :location_profile_name, {:size => 20}, 
+		<%= text_field_with_auto_complete :location, :location_profile_name, {:size => 30}, 
 		{:skip_style => true, :url => location_profiles_path(:text), :method => :get, :param_name => 'search' } %>
 		<br />
 		<div id="left-panel">
