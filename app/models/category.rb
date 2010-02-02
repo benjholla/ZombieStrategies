@@ -7,6 +7,9 @@ class Category < ActiveRecord::Base
   has_many :category_location_memberships
   has_many :locations, :through => :category_location_memberships
   
+  validates_uniqueness_of   :name,    :message => ": There is already a category with this name."
+  validates_format_of :name, :with => /\A[a-zA-Z0-9 ]+\z/
+  
   def category_ids=(category_ids)
     categories.each do |category|
       category.destroy unless category_ids.include? category.category_id

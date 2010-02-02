@@ -7,6 +7,9 @@ class Product < ActiveRecord::Base
   has_many :product_location_memberships
   has_many :locations, :through => :product_location_memberships
   
+  validates_uniqueness_of   :name,    :message => ": There is already a product with this name."
+  validates_format_of :name, :with => /\A[a-zA-Z0-9 ]+\z/
+  
   # virtual attribute, more info in railscast #16
   def category_name
     category.name if category

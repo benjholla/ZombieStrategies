@@ -7,7 +7,8 @@ class LocationProfile < ActiveRecord::Base
   
   has_many :locations
   
-  validates_uniqueness_of   :name,    :message => ": There is already a location profile with this name." 
+  validates_uniqueness_of   :name,    :message => ": There is already a location profile with this name."
+  validates_format_of :name, :with => /\A[a-zA-Z0-9 ]+\z/
   
   # overrice the to_param method so that we can change the way we access location_profiles
   # example /location_profiles/id -> /location_profiles/name
