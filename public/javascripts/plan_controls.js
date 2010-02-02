@@ -32,7 +32,7 @@ function setAddButtonUnselected()
 	document.getElementById("flash-message").innerHTML = "";
 	// hide the add form
 	hideNewLocationForm();
-	window.location.href='#';
+	window.location.href='#top';
 	// don't need to hide other forms, because buttoms getting unselected will call these for us
 	return true;
 }
@@ -58,7 +58,7 @@ function setModifyButtonUnselected()
 	modifyButtonState = 0;
 	// hide the modify form
 	hideModifyLocationForm();
-	window.location.href='#';
+	window.location.href='#top';
 	return true;
 }
 
