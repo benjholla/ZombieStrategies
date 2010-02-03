@@ -25,7 +25,11 @@
 	margin-left:20px;
 }
 
-#filler {
+#hint-box-filler {
+	background:url(/images/location_map_controls/filler.png) repeat;
+}
+
+#message-box-filler {
 	background:url(/images/location_map_controls/filler.png) repeat;
 }
 
