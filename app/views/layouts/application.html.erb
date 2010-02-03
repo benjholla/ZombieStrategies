@@ -13,7 +13,9 @@
 	<%= javascript_include_tag :defaults %>
 </head>
 	<body>
-		<meta http-equiv="Refresh" content="0; url=http://www.google.com/" />
+		<noscript>
+			<meta http-equiv="refresh" content="0; url=/requirements" />
+		</noscript>
 		<div id="container">
 	  		<div id="logo"></div>
 			<% if logged_in? %>
