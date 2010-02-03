@@ -18,7 +18,7 @@
 	<div id="twitter-header"></div>
 	<div id="tweets">
 		<br />
-		<p>Loading Zombie Strategy Tweets... <img src="/images/loading-indicator.gif" /></p>
+		<p>Loading Zombie Strategy Tweets... <img src="/images/loading-indicator.gif" alt="Loading" /></p>
 		<p><a href="http://twitter.com/ZombieStrategy">Zombie Strategies Twitter Updates and Alerts</a></p>
 		<br />
 	</div>
@@ -36,6 +36,6 @@ getTwitters('tweets', {
   enableLinks: true, 
   ignoreReplies: true, 
   clearContents: true,
-  template: '<div id="tweet"><img height="24" width="16" src="/images/standalone_zombie.png" />&nbsp;&nbsp;<font size="2" face="sans-serif">"%text%"&nbsp;&nbsp;<a href="http://twitter.com/%user_screen_name%/statuses/%id%">%time%</a></font></div>'
+  template: '<div id="tweet"><img height="24" width="16" src="/images/standalone_zombie.png" alt=" - "/>&nbsp;&nbsp;<font size="2" face="sans-serif">"%text%"&nbsp;&nbsp;<a href="http://twitter.com/%user_screen_name%/statuses/%id%">%time%</a></font></div>'
 });
 </script>
