@@ -432,7 +432,7 @@ function addLocation(overlay, latlng){
 	
 	// show hidden form for new location
 	showNewLocationForm();
-	window.location.href='#new';
+	//window.location.href='#new';
 }
 
 function createLocation(){
