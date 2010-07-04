@@ -7,7 +7,7 @@ var trafficButtonState = 0;
 // image setters for Add button
 function setAddButtonSelected()
 {
-	document.images["addButton"].src= "/images/location_map_controls/add_selected_button.png";
+	document.images["addButton"].src= "https://s3.amazonaws.com/zs-images/images/location_map_controls/add_selected_button.png";
 	addButtonState = 1;
 	setModifyButtonUnselected();
 	setRemoveButtonUnselected();
@@ -23,7 +23,7 @@ function setAddButtonSelected()
 
 function setAddButtonUnselected()
 {
-	document.images["addButton"].src = "/images/location_map_controls/add_unselected_button.png";
+	document.images["addButton"].src = "https://s3.amazonaws.com/zs-images/images/location_map_controls/add_unselected_button.png";
 	addButtonState = 0;
 	document.getElementById("map").className = "view";
 	//update the hidden location form
@@ -43,7 +43,7 @@ function setModifyButtonSelected()
 	document.getElementById("location_lat").value = "";
 	document.getElementById("location_lng").value = "";
 	document.getElementById("flash-message").innerHTML = "";
-	document.images["modifyButton"].src= "/images/location_map_controls/modify_selected_button.png";
+	document.images["modifyButton"].src= "https://s3.amazonaws.com/zs-images/images/location_map_controls/modify_selected_button.png";
 	modifyButtonState = 1;
 	setAddButtonUnselected();
 	setRemoveButtonUnselected();	
@@ -54,7 +54,7 @@ function setModifyButtonSelected()
 
 function setModifyButtonUnselected()
 {
-	document.images["modifyButton"].src = "/images/location_map_controls/modify_unselected_button.png";
+	document.images["modifyButton"].src = "https://s3.amazonaws.com/zs-images/images/location_map_controls/modify_unselected_button.png";
 	modifyButtonState = 0;
 	// hide the modify form
 	hideModifyLocationForm();
@@ -66,7 +66,7 @@ function setModifyButtonUnselected()
 function setRemoveButtonSelected()
 {
 	document.getElementById("flash-message").innerHTML = "";
-	document.images["removeButton"].src= "/images/location_map_controls/remove_selected_button.png";
+	document.images["removeButton"].src= "https://s3.amazonaws.com/zs-images/images/location_map_controls/remove_selected_button.png";
 	removeButtonState = 1;
 	setAddButtonUnselected();
 	setModifyButtonUnselected();
@@ -78,7 +78,7 @@ function setRemoveButtonSelected()
 function setRemoveButtonUnselected()
 {
 	document.getElementById("flash-message").innerHTML = "";
-	document.images["removeButton"].src = "/images/location_map_controls/remove_unselected_button.png";
+	document.images["removeButton"].src = "https://s3.amazonaws.com/zs-images/images/location_map_controls/remove_unselected_button.png";
 	removeButtonState = 0;
 	return true;
 }
@@ -87,7 +87,7 @@ function setRemoveButtonUnselected()
 function setTrafficButtonSelected()
 {
 	document.getElementById("flash-message").innerHTML = "";
-	document.images["trafficButton"].src= "/images/location_map_controls/traffic_selected_button.png";
+	document.images["trafficButton"].src= "https://s3.amazonaws.com/zs-images/images/location_map_controls/traffic_selected_button.png";
 	trafficButtonState = 1;
 	return true;
 }
@@ -95,7 +95,7 @@ function setTrafficButtonSelected()
 function setTrafficButtonUnselected()
 {
 	document.getElementById("flash-message").innerHTML = "";
-	document.images["trafficButton"].src = "/images/location_map_controls/traffic_unselected_button.png";
+	document.images["trafficButton"].src = "https://s3.amazonaws.com/zs-images/images/location_map_controls/traffic_unselected_button.png";
 	trafficButtonState = 0;
 	return true;
 }
