@@ -46,7 +46,7 @@ class LocationsController < ApplicationController
       respond_to do |format|
         format.html # index.html.erb
         format.xml  { render :xml => @locations }
-        format.js { render :json => @locations.to_json() } 
+        format.js { render :json => @locations.to_json(:include => {:location_profile => {:only => :name}}) } 
       end
     end
   end
