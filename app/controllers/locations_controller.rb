@@ -38,17 +38,16 @@ class LocationsController < ApplicationController
 
       # change the :limit => x to be the number of closest locations to return per query 
       @locations = Location.find(:all,
-            :select=>"id, lat, lng, #{distance_sql} as distance",
+            :select=>"*, #{distance_sql} as distance",
             :conditions=>['lng > ? AND lng < ? AND lat <= ? AND lat >= ?',sw[1],ne[1],ne[0],sw[0]],
             :order => 'distance asc',
             :limit => 35)
     
-render :json => @locations.to_json(:include => {:location_profile => {:only => :name}})
-#      respond_to do |format|
-#        format.html # index.html.erb
-#        format.xml  { render :xml => @locations }
-#        format.js { render :json => @locations.to_json(:include => {:location_profile => {:only => :name}}) } 
-#      end
+       respond_to do |format|
+         format.html # index.html.erb
+         format.xml  { render :xml => @locations }
+         format.js { render :json => @locations.to_json(:only => {:id => {}, :lat => {}, :lng => {}, :distance => {}}, :include => {:location_profile => {:only => :name}}) } 
+       end
     end
   end
 
