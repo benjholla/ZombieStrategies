@@ -43,11 +43,12 @@ class LocationsController < ApplicationController
             :order => 'distance asc',
             :limit => 35)
     
-      respond_to do |format|
-        format.html # index.html.erb
-        format.xml  { render :xml => @locations }
-        format.js { render :json => @locations.to_json(:include => {:location_profile => {:only => :name}}) } 
-      end
+render :json => @locations.to_json(:include => {:location_profile => {:only => :name}})
+#      respond_to do |format|
+#        format.html # index.html.erb
+#        format.xml  { render :xml => @locations }
+#        format.js { render :json => @locations.to_json(:include => {:location_profile => {:only => :name}}) } 
+#      end
     end
   end
 
