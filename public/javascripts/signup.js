@@ -18,16 +18,16 @@ var searchHomeHintGiven = false;
 // Sample custom marker code created with Google Map Custom Marker Maker
 // http://www.powerhut.co.uk/googlemaps/custom_markers.php
 var houseIcon = new GIcon();
-houseIcon.image = 'https://s3.amazonaws.com/zs-images/images/house_icon_marker/image.png';
-houseIcon.shadow = 'https://s3.amazonaws.com/zs-images/images/house_icon_marker/shadow.png';
+houseIcon.image = '../images/house_icon_marker/image.png';
+houseIcon.shadow = '../images/house_icon_marker/shadow.png';
 houseIcon.iconSize = new GSize(43,44);
 houseIcon.shadowSize = new GSize(65,44);
 houseIcon.iconAnchor = new GPoint(22,44);
 houseIcon.infoWindowAnchor = new GPoint(22,0);
-houseIcon.printImage = 'https://s3.amazonaws.com/zs-images/images/house_icon_marker/printImage.gif';
-houseIcon.mozPrintImage = 'https://s3.amazonaws.com/zs-images/images/house_icon_marker/mozPrintImage.gif';
-houseIcon.printShadow = 'https://s3.amazonaws.com/zs-images/images/house_icon_marker/printShadow.gif';
-houseIcon.transparent = 'https://s3.amazonaws.com/zs-images/images/house_icon_marker/transparent.png';
+houseIcon.printImage = '../images/house_icon_marker/printImage.gif';
+houseIcon.mozPrintImage = '../images/house_icon_marker/mozPrintImage.gif';
+houseIcon.printShadow = '../images/house_icon_marker/printShadow.gif';
+houseIcon.transparent = '../images/house_icon_marker/transparent.png';
 houseIcon.imageMap = [23,0,24,1,25,2,27,3,28,4,29,5,31,6,32,7,33,8,34,9,36,10,37,11,38,12,40,13,41,14,41,15,41,16,41,17,41,18,41,19,41,20,41,21,41,22,41,23,41,24,41,25,41,26,41,27,41,28,41,29,41,30,39,31,38,32,36,33,34,34,33,35,31,36,30,37,28,38,26,39,25,40,23,41,21,42,20,43,17,43,16,42,15,41,14,40,13,39,11,38,10,37,8,36,7,35,6,34,4,33,3,32,2,31,2,30,2,29,2,28,2,27,2,26,2,25,2,24,2,23,2,22,2,21,2,20,2,19,2,18,2,17,2,16,1,15,0,14,0,13,0,12,1,11,2,10,3,9,3,8,4,7,5,6,6,5,7,4,7,3,8,2,9,1,10,0];
 
 var marker; // stores the single marker that is maninpulated in this map
