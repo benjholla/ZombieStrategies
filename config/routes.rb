@@ -5,8 +5,8 @@ ActionController::Routing::Routes.draw do |map|
   # See how all your routes lay out with "rake routes"
   
   # resources
-  map.resources :users
-  map.resource :session
+  map.resources :users, :requirements => { :id => /.*/ }
+  map.resource  :session
   map.resources :location_profiles, :has_many => :categories
   map.resources :categories, :has_many => :products
   map.resources :products
