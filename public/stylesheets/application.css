@@ -35,7 +35,7 @@ input[type=text] {
 }
 
 body {
-	background:#f6f6f6 url(https://s3.amazonaws.com/zs-images/images/bg.gif) no-repeat left top;
+	background:#f6f6f6 url(../images/bg.gif) no-repeat left top;
 	text-align:justify;
 }
 
@@ -52,7 +52,7 @@ body {
 	float:left;
 	height:133px;
 	width:511px;
-	background: url(https://s3.amazonaws.com/zs-images/images/title.png) no-repeat left top;
+	background: url(../images/title.png) no-repeat left top;
 	z-index:1;
 }
 
@@ -63,7 +63,7 @@ body {
 	width: 1000px;
 	margin-top:25px;
 	margin-bottom:25px;
-	background: url(https://s3.amazonaws.com/zs-images/images/divider.png) no-repeat;
+	background: url(../images/divider.png) no-repeat;
 }
 
 /* Positions the username that gets displayed near the logout button when logged in */
@@ -88,7 +88,7 @@ div.error
   top:120px;
   height:376px;
   width:536px;
-  background: url(https://s3.amazonaws.com/zs-images/images/blood_smear_1.png) no-repeat;
+  background: url(../images/blood_smear_1.png) no-repeat;
   z-index:2;
 }
 
@@ -109,7 +109,7 @@ div.notification
   top:35px;
   height:376px;
   width:563px;
-  background: url(https://s3.amazonaws.com/zs-images/images/blood_smear_2.png) no-repeat;
+  background: url(../images/blood_smear_2.png) no-repeat;
   z-index:2;
 }
 
@@ -150,7 +150,7 @@ table.sortable thead {
 	width:1000px;
 	margin-top:5px;
 	margin-bottom:5px;
-	background: url(https://s3.amazonaws.com/zs-images/images/divider.png) no-repeat;
+	background: url(../images/divider.png) no-repeat;
 }
 
 /* Main Navigation Menu */
@@ -188,7 +188,7 @@ ul#navigation  li a span {
 
 ul#navigation li#navigation-1 a {
 	width:73px;
-	background:url(https://s3.amazonaws.com/zs-images/images/navigation.png) no-repeat 0px 0
+	background:url(../images/navigation.png) no-repeat 0px 0
 }
 
 ul#navigation li#navigation-1 a:active,
@@ -201,7 +201,7 @@ ul#navigation li#navigation-1 a.current {
 
 ul#navigation li#navigation-2 a {
 	width:118px;
-	background:url(https://s3.amazonaws.com/zs-images/images/navigation.png) no-repeat -73px 0
+	background:url(../images/navigation.png) no-repeat -73px 0
 }
 
 ul#navigation li#navigation-2 a:active,
@@ -214,7 +214,7 @@ ul#navigation li#navigation-2 a.current {
 
 ul#navigation li#navigation-3 a {
 	width:86px;
-	background:url(https://s3.amazonaws.com/zs-images/images/navigation.png) no-repeat -191px 0
+	background:url(../images/navigation.png) no-repeat -191px 0
 }
 
 ul#navigation li#navigation-3 a:active,
@@ -227,7 +227,7 @@ ul#navigation li#navigation-3 a.current {
 
 ul#navigation li#navigation-4 a {
 	width:90px;
-	background:url(https://s3.amazonaws.com/zs-images/images/navigation.png) no-repeat -277px 0
+	background:url(../images/navigation.png) no-repeat -277px 0
 }
 
 ul#navigation li#navigation-4 a:active,
@@ -240,7 +240,7 @@ ul#navigation li#navigation-4 a.current {
 
 ul#navigation li#navigation-5 a {
 	width:75px;
-	background:url(https://s3.amazonaws.com/zs-images/images/navigation.png) no-repeat -367px 0
+	background:url(../images/navigation.png) no-repeat -367px 0
 }
 
 ul#navigation li#navigation-5 a:active,
@@ -286,7 +286,7 @@ ul#unauthenticated-menu  li a span {
 
 ul#unauthenticated-menu li#unauthenticated-menu-1 a {
 	width:56px;
-	background:url(https://s3.amazonaws.com/zs-images/images/unauthenticated-menu.png) no-repeat 0px 0
+	background:url(../images/unauthenticated-menu.png) no-repeat 0px 0
 }
 
 ul#unauthenticated-menu li#unauthenticated-menu-1 a:active,
@@ -299,7 +299,7 @@ ul#unauthenticated-menu li#unauthenticated-menu-1 a.current {
 
 ul#unauthenticated-menu li#unauthenticated-menu-2 a {
 	width:72px;
-	background:url(https://s3.amazonaws.com/zs-images/images/unauthenticated-menu.png) no-repeat -56px 0
+	background:url(../images/unauthenticated-menu.png) no-repeat -56px 0
 }
 
 ul#unauthenticated-menu li#unauthenticated-menu-2 a:active,
@@ -345,7 +345,7 @@ ul#authenticated-menu  li a span {
 
 ul#authenticated-menu li#authenticated-menu-1 a {
 	width:69px;
-	background:url(https://s3.amazonaws.com/zs-images/images/authenticated-menu.png) no-repeat 0px 0
+	background:url(../images/authenticated-menu.png) no-repeat 0px 0
 }
 
 ul#authenticated-menu li#authenticated-menu-1 a:active,
@@ -358,7 +358,7 @@ ul#authenticated-menu li#authenticated-menu-1 a.current {
 
 ul#authenticated-menu li#authenticated-menu-2 a {
 	width:64px;
-	background:url(https://s3.amazonaws.com/zs-images/images/authenticated-menu.png) no-repeat -69px 0
+	background:url(../images/authenticated-menu.png) no-repeat -69px 0
 }
 
 ul#authenticated-menu li#authenticated-menu-2 a:active,
