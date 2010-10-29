@@ -46,8 +46,14 @@ class LocationsController < ApplicationController
        respond_to do |format|
          format.html # index.html.erb
          format.xml  { render :xml => @locations }
+         format.count  { render :text => @locations.count }
          format.js { render :json => @locations.to_json(:only => {:id => {}, :lat => {}, :lng => {}, :distance => {}}, :include => {:location_profile => {:only => :name}}) } 
        end
+    elsif
+      respond_to do |format|
+        format.html # index.html.erb
+        format.count  { render :text => Location.all.count }
+      end
     end
   end
 

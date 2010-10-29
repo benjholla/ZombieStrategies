@@ -38,6 +38,9 @@ ActionController::Routing::Routes.draw do |map|
   
   # profile page
   map.profile '/profile', :controller => 'users', :action => 'profile'
+  
+  # count for locations controller
+  #map.locationsstats '/locations/count', :controller => 'locations', :action => 'count'
 
   # Install the default routes as the lowest priority.
   # Note: These default routes make all actions in every controller accessible via GET requests. You should
