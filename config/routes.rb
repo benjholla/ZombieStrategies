@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   # resources
   map.resources :users, :requirements => { :id => /.*/ }
   map.resource  :session
-  map.resources :location_profiles, :has_many => :categories
+  map.resources :location_profiles, :requirements => { :id => /.*/ }, :has_many => :categories
   map.resources :categories, :has_many => :products
   map.resources :products
   map.resources :twitter_trends, :has_many => :twitter_computations
