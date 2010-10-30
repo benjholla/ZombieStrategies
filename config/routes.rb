@@ -31,7 +31,7 @@ ActionController::Routing::Routes.draw do |map|
   map.admin '/zs-admin', :controller => 'admin', :action => 'index'
   
   # plan page
-  map.plan '/plan', :controller => 'locations', :action => 'index'
+  map.plan '/prepare', :controller => 'locations', :action => 'index'
   
   # monitor page
   map.monitor '/monitor', :controller => 'twitter_trends', :action => 'index'
