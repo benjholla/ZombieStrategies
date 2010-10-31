@@ -1,0 +1,29 @@
+/* Pamphlet Content Container */
+#pamphlet-images {
+   width: 376px;
+   float: left;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:0px;
+}
+
+/* Pamphlet Content Container */
+#slip-cover {
+   width: 50px;
+   float: left;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:0px;
+}
+
+/* Pamphlet Content Container */
+#poster {
+   width: 450px;
+   float: right;
+   margin-top:0px;
+   margin-bottom:0px;
+   margin-right:0px;
+   margin-left:0px;
+}
