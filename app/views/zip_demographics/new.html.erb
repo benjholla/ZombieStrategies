@@ -1,0 +1,46 @@
+<h1>New Zip Demographic</h1>
+
+<% form_for(@zip_demographic) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :zip %><br />
+    <%= f.text_field :zip %>
+  </p>
+  <p>
+    <%= f.label :total_population %><br />
+    <%= f.text_field :total_population %>
+  </p>
+  <p>
+    <%= f.label :total_housing_units %><br />
+    <%= f.text_field :total_housing_units %>
+  </p>
+  <p>
+    <%= f.label :land_area_square_miles %><br />
+    <%= f.text_field :land_area_square_miles %>
+  </p>
+  <p>
+    <%= f.label :population_density_square_miles %><br />
+    <%= f.text_field :population_density_square_miles %>
+  </p>
+  <p>
+    <%= f.label :water_area_square_miles %><br />
+    <%= f.text_field :water_area_square_miles %>
+  </p>
+  <p>
+    <%= f.label :lat %><br />
+    <%= f.text_field :lat %>
+  </p>
+  <p>
+    <%= f.label :lng %><br />
+    <%= f.text_field :lng %>
+  </p>
+  <p>
+    <%= f.label :source %><br />
+    <%= f.text_field :source %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', zip_demographics_path %>

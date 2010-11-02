@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100705154138) do
+ActiveRecord::Schema.define(:version => 20101101102505) do
 
   create_table "categories", :force => true do |t|
     t.integer  "location_profile_id"
@@ -43,20 +43,6 @@ ActiveRecord::Schema.define(:version => 20100705154138) do
     t.decimal  "lat",                 :precision => 15, :scale => 10
     t.decimal  "lng",                 :precision => 15, :scale => 10
     t.text     "info"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "predictions", :force => true do |t|
-    t.decimal  "lat",                :precision => 15, :scale => 10
-    t.decimal  "lng",                :precision => 15, :scale => 10
-    t.string   "zip"
-    t.integer  "population"
-    t.string   "city"
-    t.string   "state"
-    t.string   "state_abbreviation"
-    t.string   "survivors"
-    t.string   "zombies"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -121,5 +107,21 @@ ActiveRecord::Schema.define(:version => 20100705154138) do
   end
 
   add_index "users", ["login"], :name => "index_users_on_login", :unique => true
+
+  create_table "zip_demographics", :force => true do |t|
+    t.string   "source"
+    t.string   "zip"
+    t.string   "state_name"
+    t.string   "state_abbreviation"
+    t.integer  "total_population"
+    t.integer  "total_housing_units"
+    t.decimal  "land_area_square_miles",          :precision => 15, :scale => 10
+    t.decimal  "water_area_square_miles",         :precision => 15, :scale => 10
+    t.decimal  "population_density_square_miles", :precision => 15, :scale => 10
+    t.decimal  "lat",                             :precision => 15, :scale => 10
+    t.decimal  "lng",                             :precision => 15, :scale => 10
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

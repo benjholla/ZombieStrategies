@@ -1,0 +1,38 @@
+<p>
+  <b>Zip:</b>
+  <%=h @zip.zip %>
+</p>
+
+<p>
+  <b>Total population:</b>
+  <%=h @zip.total_population %>
+</p>
+
+<p>
+  <b>Total housing units:</b>
+  <%=h @zip.total_housing_units %>
+</p>
+
+<p>
+  <b>Land area square miles:</b>
+  <%=h @zip.land_area_square_miles %>
+</p>
+
+<p>
+  <b>Water area square miles:</b>
+  <%=h @zip.water_area_square_miles %>
+</p>
+
+<p>
+  <b>Lat:</b>
+  <%=h @zip.lat %>
+</p>
+
+<p>
+  <b>Lng:</b>
+  <%=h @zip.lng %>
+</p>
+
+
+<%= link_to 'Edit', edit_zip_path(@zip) %> |
+<%= link_to 'Back', zips_path %>

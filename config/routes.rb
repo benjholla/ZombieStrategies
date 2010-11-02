@@ -17,6 +17,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :locations, :collection => {:create => :get, :update => :get}
   map.resources :category_location_profile_memberships
   map.resources :product_location_profile_memberships
+  map.resources :zip_demographics
 
   # home page and root path of the app
   map.root :controller => "information", :action => "home" 
