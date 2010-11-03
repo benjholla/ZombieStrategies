@@ -182,9 +182,15 @@ class ZipDemographicsController < ApplicationController
         flash[:notice] = 'Demographic was successfully created.'
         format.html { redirect_to(@zip_demographic) }
         format.xml  { render :xml => @zip_demographic, :status => :created, :location => @zip_demographic }
+        format.js {
+          render :json => {:success=>true,:id=>@zip_demographic.id.to_s}
+        }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @zip_demographic.errors, :status => :unprocessable_entity }
+        format.js do
+          render :json => {:success=>false}
+        end
       end
     end
   end
