@@ -115,9 +115,9 @@ ActiveRecord::Schema.define(:version => 20101101102505) do
     t.string   "state_abbreviation"
     t.integer  "total_population"
     t.integer  "total_housing_units"
-    t.decimal  "land_area_square_miles",          :precision => 15, :scale => 10
-    t.decimal  "water_area_square_miles",         :precision => 15, :scale => 10
-    t.decimal  "population_density_square_miles", :precision => 15, :scale => 10
+    t.decimal  "land_area_square_miles",          :precision => 20, :scale => 10
+    t.decimal  "water_area_square_miles",         :precision => 20, :scale => 10
+    t.decimal  "population_density_square_miles", :precision => 20, :scale => 10
     t.decimal  "lat",                             :precision => 15, :scale => 10
     t.decimal  "lng",                             :precision => 15, :scale => 10
     t.datetime "created_at"
