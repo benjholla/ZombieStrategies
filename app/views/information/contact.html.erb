@@ -1,0 +1,21 @@
+<%=error_messages_for "contact" %>
+
+<% form_tag('/notifications/create', :method=>'get') do %>
+ <p>
+   <h1>Name:</h1>
+   <%= text_field("contact", "name") %>
+ </p>
+ <p>
+   <h1>Email:</h1>
+   <%= text_field("contact", "email_address") %>
+ </p>
+ <p>
+   <h1>Message:</h1>
+   <%= text_area("contact", "message", :size => "55x20") %>
+ </p>
+ <p>
+   <br />
+   <%= submit_tag 'Send Message' %>
+ </p>
+<% end %>
+
