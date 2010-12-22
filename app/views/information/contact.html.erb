@@ -1,7 +1,7 @@
 <% content_for :title, "Zombie Strategies | Contact" %>
 <% content_for :meta, "Contact Zombie Strategies. Drop us a line, we want to hear from you!" %>
 <%= stylesheet_link_tag 'information/contact' %>
-<div id="done-message"></div>
+<div id="done-message" style="display:none;"><center><h1>Please wait while your message is being sent.</h1><br /><img src="/images/ajax-loader-long.gif" alt="" /></center></div>
 <div id="left-side">
 	<div id="message"></div>
 	<div id="form">
@@ -36,7 +36,6 @@
 function validate() {
    // clear old messages
    document.getElementById("message").innerHTML = '';
-	
    // check a name exists
    if (document.contact_form.contact_name.value == "")
    {
@@ -66,7 +65,7 @@ function validate() {
    // looks good enough
    document.getElementById('left-side').style.display = 'none';
    document.getElementById('right-side').style.display = 'none';
-   document.getElementById("done-message").innerHTML = '<center><h1>Please wait while your message is being sent.</h1><br /><img src="/images/ajax-loader-long.gif" alt="" /></center>';
+   document.getElementById('done-message').style.display = 'block';
    return true;
 }
 </script>
