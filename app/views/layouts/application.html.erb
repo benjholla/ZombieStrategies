@@ -8,7 +8,7 @@
 	<link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
 	<title><%=h yield(:title) %></title>
 	<meta name="keywords" content="zombie, zombies, living dead, defense, protection, preparation, civil defense, strategies, strategy, google map mashup" />
-	<meta name="description" content="A civil defense system against the living dead." />
+	<meta name="description" content="<%=h yield(:meta) %>" />
 	<%= stylesheet_link_tag 'application' %>
 	<%= javascript_include_tag :defaults %>
 </head>
