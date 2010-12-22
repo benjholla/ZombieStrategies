@@ -4,6 +4,8 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
 <url>
   <loc>http://www.zombiestrategies.com/</loc>
   <changefreq>weekly</changefreq>
@@ -50,6 +52,11 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>http://www.zombiestrategies.com/contact</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>http://www.zombiestrategies.com/privacy_policy</loc>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
@@ -61,7 +68,7 @@
 </url>
 <url>
   <loc>http://www.zombiestrategies.com/requirements</loc>
-  <lastmod>2010-10-31T01:09:30+00:00</lastmod>
+  <lastmod>2010-12-22T05:25:54+00:00</lastmod>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>
 </url>
