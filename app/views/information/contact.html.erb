@@ -1,6 +1,7 @@
-<%=error_messages_for "contact" %>
+<div id="message"></div>
 
-<% form_tag('/notifications/create', :method=>'get') do %>
+<div id="form">
+<% form_tag('/notifications/create',:name => 'contact_form', :method=>'post', :onsubmit => 'javascript:return validate();') do %>
  <p>
    <h1>Name:</h1>
    <%= text_field("contact", "name") %>
@@ -18,4 +19,42 @@
    <%= submit_tag 'Send Message' %>
  </p>
 <% end %>
+</div>
 
+<script type="text/javascript">
+function validate() {
+   // clear old messages
+   document.getElementById("message").innerHTML = '';
+	
+   // check a name exists
+   if (document.contact_form.contact_name.value == "")
+   {
+       document.getElementById("message").innerHTML = '<div class="error-container"><div class="notification"></div><div class="notification-message"><h4>Please enter your name.</h4></div><br /><br /><br /><br /></div>';
+       return false;
+   }
+   // check an email exists
+   if (document.contact_form.contact_email_address.value == "")
+   {
+       document.getElementById("message").innerHTML = '<div class="error-container"><div class="notification"></div><div class="notification-message"><h4>Please enter your email address.</h4></div><br /><br /><br /><br /></div>';
+       return false;
+   }
+   // check email is valid
+   var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+   var address = document.contact_form.contact_email_address.value;
+   if(reg.test(address) == false) 
+   {
+      document.getElementById("message").innerHTML = '<div class="error-container"><div class="notification"></div><div class="notification-message"><h4>Invalid email address.</h4></div><br /><br /><br /><br /></div>';
+      return false;
+   }
+   // check there is a message
+   if (document.contact_form.contact_message.value == "")
+   {
+       document.getElementById("message").innerHTML = '<div class="error-container"><div class="notification"></div><div class="notification-message"><h4>Please enter your message.</h4></div><br /><br /><br /><br /></div>';
+       return false;
+   }
+   // looks good enough
+   document.getElementById('form').style.display = 'none';
+   document.getElementById("message").innerHTML = '<center><h4>Your message is being sent.</h4><br /><img src="/images/ajax-loader-long.gif" alt="" /></center>';
+   return true;
+}
+</script>
