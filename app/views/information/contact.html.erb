@@ -1,24 +1,33 @@
-<div id="message"></div>
+<%= stylesheet_link_tag 'information/contact' %>
+<div id="done-message"></div>
+<div id="left-side">
+	<div id="message"></div>
+	<div id="form">
+		<% form_tag('/notifications/create',:name => 'contact_form', :method=>'post', :onsubmit => 'javascript:return validate();') do %>
+	 	<p>
+	   		<h1>Name:</h1>
+	   		<%= text_field("contact", "name") %>
+	 	</p>
+	 	<p>
+  			<h1>Email:</h1>
+   			<%= text_field("contact", "email_address") %>
+	 	</p>
+	 	<p>
+	   		<h1>Message:</h1>
+	   		<%= text_area("contact", "message", :size => "55x10") %>
+	 	</p>
+	 	<p>
+	   		<br />
+	   		<%= submit_tag 'Send Message' %>
+	 	</p>
+		<% end %>
+	</div>
+</div>
 
-<div id="form">
-<% form_tag('/notifications/create',:name => 'contact_form', :method=>'post', :onsubmit => 'javascript:return validate();') do %>
- <p>
-   <h1>Name:</h1>
-   <%= text_field("contact", "name") %>
- </p>
- <p>
-   <h1>Email:</h1>
-   <%= text_field("contact", "email_address") %>
- </p>
- <p>
-   <h1>Message:</h1>
-   <%= text_area("contact", "message", :size => "55x20") %>
- </p>
- <p>
-   <br />
-   <%= submit_tag 'Send Message' %>
- </p>
-<% end %>
+<div id="right-side">
+	<h2>Drop us a line, we want to hear from you!</h2>
+	<br /><br />
+	<img src="/images/last-stand.png" width="400" height="237" border="0" alt="The Last Stand" />
 </div>
 
 <script type="text/javascript">
@@ -53,8 +62,9 @@ function validate() {
        return false;
    }
    // looks good enough
-   document.getElementById('form').style.display = 'none';
-   document.getElementById("message").innerHTML = '<center><h4>Your message is being sent.</h4><br /><img src="/images/ajax-loader-long.gif" alt="" /></center>';
+   document.getElementById('left-side').style.display = 'none';
+   document.getElementById('right-side').style.display = 'none';
+   document.getElementById("done-message").innerHTML = '<center><h1>Please wait while your message is being sent.</h1><br /><img src="/images/ajax-loader-long.gif" alt="" /></center>';
    return true;
 }
 </script>
