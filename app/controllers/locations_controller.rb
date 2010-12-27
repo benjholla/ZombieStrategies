@@ -51,7 +51,7 @@ class LocationsController < ApplicationController
       # Encode '|' as %7C
       @map = 'http://maps.google.com/maps/api/staticmap?sensor=false'
       @map += '&format=png'
-      @map += '&size=550x300'
+      @map += '&size=500x300'
       @map += '&center=' + lat.to_s + ',' + lng.to_s
       @map += '&maptype=terrain'
 

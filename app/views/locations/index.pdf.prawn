@@ -2,11 +2,14 @@ pdf.image("#{RAILS_ROOT}/public/images/title.png")
 pdf.move_down(60)
 
 pdf.text "#{@map}"
-pdf.move_down(10)
+pdf.move_down(30)
 
 stream = Hash.new
 stream[:pic_google_map]="#{@map}"
-pdf.image open(stream[:pic_google_map]), :width => 550, :height => 300, :position => :center
+pdf.image open(stream[:pic_google_map]), :width => 500, :height => 300, :position => :center
+pdf.move_up(320)
+pdf.image("#{RAILS_ROOT}/public/images/pdf/map-guide-markers-with-grid.png", :width => 540, :height => 320, :position => :center)
+
 pdf.move_down(20)
 
 table_content = @locations.map do |location|
