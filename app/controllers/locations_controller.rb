@@ -54,9 +54,10 @@ class LocationsController < ApplicationController
       @map += '&size=500x300'
       @map += '&center=' + lat.to_s + ',' + lng.to_s
       @map += '&maptype=terrain'
+      @map += '&markers=color:blue%7Csize:small'
 
       for marker in @locations
-        @map += '&markers=color:red%7Clabel:A%7C' + marker.lat.to_s + ',' + marker.lng.to_s
+        @map += '%7C' + marker.lat.to_s + ',' + marker.lng.to_s
       end
     
        respond_to do |format|
