@@ -1,4 +1,6 @@
 mattetti-googlecharts --version '>= 1.3.4' --source http://gems.github.com/
 will_paginate --version '>= 2.3.11' --source http://gemcutter.org
+prawn
+prawn-layout
 rails --version 2.3.10
 gchart --version 1.0.0

@@ -23,9 +23,13 @@ class LocationsController < ApplicationController
     
     # server side filtering within bounds and x closest points to the given lat/lng point
     if(params[:ne]!=nil && params[:sw]!=nil && params[:ll]!=nil)
-      lat,lng=params[:ll].split(',').collect{|e|e.to_f}
+      lat,lng = params[:ll].split(',').collect{|e|e.to_f}
       ne = params[:ne].split(',').collect{|e|e.to_f}  
       sw = params[:sw].split(',').collect{|e|e.to_f}
+      
+      # parse out parameters individually, for intance variables in the view
+      @map_center_lat = lat
+      @map_center_lng = lng
 
       #convert to radians
       lat_radians=(lat / 180) * Math::PI
@@ -42,9 +46,22 @@ class LocationsController < ApplicationController
             :conditions=>['lng > ? AND lng < ? AND lat <= ? AND lat >= ?',sw[1],ne[1],ne[0],sw[0]],
             :order => 'distance asc',
             :limit => 35)
+            
+      # see map params http://code.google.com/apis/maps/documentation/staticmaps/#URL_Parameters
+      # Encode '|' as %7C
+      @map = 'http://maps.google.com/maps/api/staticmap?sensor=false'
+      @map += '&format=png'
+      @map += '&size=550x300'
+      @map += '&center=' + lat.to_s + ',' + lng.to_s
+      @map += '&maptype=terrain'
+
+      for marker in @locations
+        @map += '&markers=color:red%7Clabel:A%7C' + marker.lat.to_s + ',' + marker.lng.to_s
+      end
     
        respond_to do |format|
          format.html # index.html.erb
+         format.pdf {render :layout => false} # index.pdf.prawn
          format.xml  { render :xml => @locations }
          format.count  { render :text => @locations.count }
          format.js { render :json => @locations.to_json(:only => {:id => {}, :lat => {}, :lng => {}, :distance => {}}, :include => {:location_profile => {:only => :name}}) } 
@@ -52,6 +69,7 @@ class LocationsController < ApplicationController
     elsif
       respond_to do |format|
         format.html # index.html.erb
+        format.pdf  {render :layout => false} # index.pdf.prawn
         format.count  { render :text => Location.all.count }
       end
     end
