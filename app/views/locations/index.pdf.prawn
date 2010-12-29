@@ -242,23 +242,33 @@ center_y = lat_to_world_y(@home_lat)
 center_offset_x = (@map_width / 2).round
 center_offset_y = (@map_height / 2).round
 
+# encode the url for the google maps static map api
+# see map params http://code.google.com/apis/maps/documentation/staticmaps/#URL_Parameters
+# encode "|" as "%7C"
+map = "http://maps.google.com/maps/api/staticmap?sensor=false"
+map += "&format=png"
+map += "&size=#{@map_width}x#{@map_height}"
+map += "&center=#{@home_lat},#{@home_lng}"
+# add a home base icon to where the center of the data revolves
+map += "&markers=icon:http://bit.ly/hlXyiP%7C#{@home_lat},#{@home_lng}"
+map += "&maptype=terrain"
+map += "&zoom=#{zoom}"
+map += "&markers=color:blue%7Csize:small"
+@locations.map do |location|
+  map += "%7C#{location.lat},#{location.lng}"
+end
+
 ############################  Begin PDF Generation ############################
 
 pdf.text "zoom = #{zoom}\n"
-#pdf.text "#{@map}"
+pdf.text "#{map}"
 pdf.move_down(30)
 
 stream = Hash.new
-stream[:pic_google_map]="#{@map}"
-pdf.image open(stream[:pic_google_map]), :width => 500, :height => 300, :position => :center
+stream[:pic_google_map]="#{map}"
+pdf.image open(stream[:pic_google_map]), :width => @map_width, :height => @map_height, :position => :center
 pdf.move_up(320)
-pdf.image("#{RAILS_ROOT}/public/images/pdf/map-guide-markers-with-grid.png", :width => 540, :height => 320, :position => :center)
-pdf.move_down(20)
-
-stream[:pic_google_map]="#{@map}&zoom=#{zoom}"
-pdf.image open(stream[:pic_google_map]), :width => 500, :height => 300, :position => :center
-pdf.move_up(320)
-pdf.image("#{RAILS_ROOT}/public/images/pdf/map-guide-markers-with-grid.png", :width => 540, :height => 320, :position => :center)
+pdf.image("#{RAILS_ROOT}/public/images/pdf/map-guide-markers-with-grid.png", :width => (@map_width + 40), :height => (@map_height + 20), :position => :center)
 pdf.move_down(20)
 
 table_content = @locations.map do |location|
@@ -276,4 +286,3 @@ pdf.table table_content, :border_style => :grid,
 	:row_colors => ["FFFFFF", "DDDDDD"],
 	:headers => ["Location Type", "Distance Miles", "Latitude", "Longitude", "Pixel Index", "Map Index"],
 	:align => {0 => :left, 1 => :right, 2 => :right, 3 => :right, 4 => :center, 5 => :center}
-	

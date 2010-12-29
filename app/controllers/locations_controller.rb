@@ -46,22 +46,6 @@ class LocationsController < ApplicationController
             :conditions=>['lng > ? AND lng < ? AND lat <= ? AND lat >= ?',sw[1],ne[1],ne[0],sw[0]],
             :order => 'distance asc',
             :limit => 35)
-            
-      # see map params http://code.google.com/apis/maps/documentation/staticmaps/#URL_Parameters
-      # Encode '|' as %7C
-      @map = 'http://maps.google.com/maps/api/staticmap?sensor=false'
-      @map += '&format=png'
-      @map += '&size=500x300'
-      @map += '&center=' + lat.to_s + ',' + lng.to_s
-      # add a home base icon to where the center of the data revolves
-      #@map += '&markers=icon:http://bit.ly/hlXyiP%7C' + lat.to_s + ',' + lng.to_s
-      @map += '&markers=color:red%7Csize:small%7C' + lat.to_s + ',' + lng.to_s
-      @map += '&maptype=terrain'
-      @map += '&markers=color:blue%7Csize:small'
-
-      for marker in @locations
-        @map += '%7C' + marker.lat.to_s + ',' + marker.lng.to_s
-      end
     
        respond_to do |format|
          format.html # index.html.erb
