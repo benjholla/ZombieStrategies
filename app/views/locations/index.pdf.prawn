@@ -142,7 +142,7 @@ end
 # References
 # https://github.com/tuupola/php_google_maps/blob/master/Google/Maps/Static.php
 
-@bounds = Hash.new
+@marker_bounds = Hash.new
 # This will find the smallest latitude/longitude for the top left 
 # point and the largest latitude/longitude for the bottom right point.
 def define_bounds
@@ -165,24 +165,59 @@ def define_bounds
 			maxLng = location.lng
 		end
 	end
-	@bounds["n"] = maxLat
-	@bounds["s"] = minLat
-	@bounds["e"] = maxLng
-	@bounds["w"] = minLng
+	@marker_bounds["n"] = maxLat
+	@marker_bounds["s"] = minLat
+	@marker_bounds["e"] = maxLng
+	@marker_bounds["w"] = minLng
+	@marker_bounds["maxLat"] = maxLat
+	@marker_bounds["minLat"] = minLat
+	@marker_bounds["maxLng"] = maxLng
+	@marker_bounds["minLng"] = minLng
 end
 
-# References
-# http://blog.whatclinic.com/2008/10/how-to-make-google-static-maps-interactive.html
-# http://blog.whatclinic.com/2008/10/how-to-make-google-static-maps-interactive-part-2.html
-
-def atanh(rad)
-	return (Math::log(((1 + rad) / (1 - rad))) / Math::log(Math::E) / 2)
+def adjustLngByPixels(lng, delta, zoom)
+	return world_x_to_lng(self::lng_to_world_x(lng) + (delta << (21 - zoom)))
 end
 
-def get_zoom(span)
-	zoomlevel = (180.00 / span) * (@map_width / 256.00)
-	zoomlevel = Math::log(zoomlevel) / Math::log(2)
-	return zoomlevel.floor
+def adjustLatByPixels(lat, delta, zoom)
+    return world_y_to_lat(lat_to_world_y(lat) + (delta << (21 - zoom)))
+end
+
+@map_bounds = Hash.new
+# return the bounds of a map defined by the zoom level
+def getBounds(zoom)
+	delta_x = (@map_width / 2).round
+    delta_y = (@map_height / 2).round
+	north = adjustLatByPixels(@home_lat, delta_y * -1, zoom)
+	south = adjustLatByPixels(@home_lat, delta_y, zoom)
+	east = adjustLngByPixels(@home_lng, delta_x, zoom)
+	west = adjustLngByPixels(@home_lng, delta_x * -1, zoom)
+	@map_bounds["n"] = north
+	@map_bounds["s"] = south
+	@map_bounds["e"] = east
+	@map_bounds["w"] = west
+	@map_bounds["maxLat"] = north
+	@map_bounds["minLat"] = south
+	@map_bounds["maxLng"] = east
+	@map_bounds["minLng"] = west
+end
+
+# returns true if the map bounds contain the point
+def mapContainsPoint(lat, lng)
+	result = false
+	if lng < @map_bounds["maxLng"] && lng > @map_bounds["minLng"] && lat < @map_bounds["maxLat"] && lat > @map_bounds["minLat"]
+		result = true
+	end
+	return result
+end
+
+# returns true if map bounds contain the bounds of all markers
+def map_bounds_contain_marker_bounds
+ 	result = false
+	if mapContainsPoint(@marker_bounds["n"], @marker_bounds["e"]) && mapContainsPoint(@marker_bounds["s"], @marker_bounds["w"])
+		result = true
+	end
+	return result
 end
 
 ############################  Initialization Code  ###########################
@@ -190,16 +225,14 @@ end
 # calculate the bounds
 define_bounds
 
-# zoom is decided by the max span of longitude and an adjusted latitude span
-# the relationship between the latitude span and the longitude span is divided by cos
-# Note: logx(y) = log(y)/log(x) 
-atanhsinO = atanh(Math::sin(@bounds["n"] * Math::PI / 180.00))
-atanhsinD = atanh(Math::sin(@bounds["s"] * Math::PI / 180.00))
-atanhCenter = (atanhsinD + atanhsinO) / 2
-radianOfCenterLatitude = Math::atan(Math::sinh(atanhCenter))
-latitude_span = (@bounds["n"]-@bounds["s"]) / Math::cos(radianOfCenterLatitude)
-longitude_span = @bounds["e"]-@bounds["w"]
-zoom = get_zoom([latitude_span, longitude_span].max) + 1
+zoom = 21
+found = false
+	while found == false
+	getBounds(zoom)
+	found = map_bounds_contain_marker_bounds
+	zoom = zoom - 1
+end
+zoom = zoom + 1
 
 # calculate center as pixel coordinates in world map
 center_x = lng_to_world_x(@home_lng) 
