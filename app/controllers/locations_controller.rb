@@ -28,8 +28,8 @@ class LocationsController < ApplicationController
       sw = params[:sw].split(',').collect{|e|e.to_f}
       
       # parse out parameters individually, for intance variables in the view
-      @map_center_lat = lat
-      @map_center_lng = lng
+      @home_lat = lat
+      @home_lng = lng
 
       #convert to radians
       lat_radians=(lat / 180) * Math::PI
@@ -53,6 +53,9 @@ class LocationsController < ApplicationController
       @map += '&format=png'
       @map += '&size=500x300'
       @map += '&center=' + lat.to_s + ',' + lng.to_s
+      # add a home base icon to where the center of the data revolves
+      #@map += '&markers=icon:http://bit.ly/hlXyiP%7C' + lat.to_s + ',' + lng.to_s
+      @map += '&markers=color:red%7Csize:small%7C' + lat.to_s + ',' + lng.to_s
       @map += '&maptype=terrain'
       @map += '&markers=color:blue%7Csize:small'
 

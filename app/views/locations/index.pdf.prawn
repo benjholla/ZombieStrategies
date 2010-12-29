@@ -1,8 +1,60 @@
+############################    Constants     ###########################
+
+@map_width = 500
+@map_height = 300
+
+############################  Helper Methods  ###########################
+
+# classifies x pixel value by column letter
+def get_map_letter_index(x_value)
+	if x_value >= 0 && x_value <= 50
+		return 'A'
+	elsif x_value >= 50 && x_value <= 100
+		return 'B'
+	elsif x_value >= 100 && x_value <= 150
+		return 'C'
+	elsif x_value >= 150 && x_value <= 200
+		return 'D'
+	elsif x_value >= 200 && x_value <= 250
+		return 'E'
+	elsif x_value >= 250 && x_value <= 300
+		return 'F'
+	elsif x_value >= 300 && x_value <= 350
+		return 'G'
+	elsif x_value >= 350 && x_value <= 400
+		return 'H'
+	elsif x_value >= 400 && x_value <= 450
+		return 'I'
+	elsif x_value >= 450 && x_value <= 500
+		return 'J'		
+	else
+		return '?'
+	end
+end
+
+# classifies y pixel value by row number
+def get_map_number_index(y_value)
+	if y_value >= 0 && y_value <= 50
+		return '1'
+	elsif y_value >= 50 && y_value <= 100
+		return '2'
+	elsif y_value >= 100 && y_value <= 150
+		return '3'
+	elsif y_value >= 150 && y_value <= 200
+		return '4'
+	elsif y_value >= 200 && y_value <= 250
+		return '5'
+	elsif y_value >= 250 && y_value <= 300
+		return '6'		
+	else
+		return '?'
+	end
+end
+
 # calculates the distance between two points
 # change the return type to change units
 def haversine_distance(lat1, lon1, lat2, lon2)
-    # PI = 3.1415926535
-    rad_per_degree = 0.017453293  #  PI/180
+    rad_per_degree = 0.017453293  #  Math::PI/180
 	 
     # the great circle distance d will be in whatever units R is in
 	 
@@ -36,6 +88,60 @@ def haversine_distance(lat1, lon1, lat2, lon2)
 	return dMi
 end
 
+# References 
+# http://www.appelsiini.net/2008/6/clickable-markers-with-google-static-maps
+# http://svn.appelsiini.net/svn/javascript/trunk/google_maps_nojs/Google/Maps.php
+
+def world_x_to_lng(x)
+	offset = 268435456 
+	radius = offset / Math::PI
+	return ((x.round - offset) / radius) * 180/ Math::PI  
+end
+
+def world_y_to_lat(y)
+	offset = 268435456
+	radius = offset / Math::PI       
+	return (Math::PI / 2 - 2 * Math::atan(Math::exp((y.round - offset) / radius))) * 180 / Math::PI 
+end
+
+
+def lng_to_world_x(lng_value)
+	offset = 268435456
+	radius = offset / Math::PI
+	return (offset + radius * lng_value * Math::PI / 180).round
+end
+
+def lat_to_world_y(lat_value)
+	offset = 268435456 
+	radius = offset / Math::PI 
+	return (offset - radius * Math::log((1 + Math::sin(lat_value * Math::PI / 180)) / (1 - Math::sin(lat_value * Math::PI / 180))) / 2).round
+end
+
+def lng_to_x(lng_value, center_x, center_offset_x, zoom)
+	# convert longitude to world pixel x coordinate
+	target_x = lng_to_world_x(lng_value)
+	# calculate difference between target_x and map center x
+	# coordinates and convert difference to match current zoom level
+	delta_x  = (target_x - center_x) >> (21 - zoom)
+	# add above difference to center pixel coordinates in image
+	marker_x = center_offset_x + delta_x
+	return marker_x
+end
+
+def lat_to_y(lat_value, center_y, center_offset_y, zoom)
+	# convert latitude and longitude to world pixel y coordinate
+	target_y = lat_to_world_y(lat_value)
+	# calculate difference between target_y and map center y
+	# coordinates and convert difference to match current zoom level
+	delta_y  = (target_y - center_y) >> (21 - zoom)
+	# add above difference to center pixel coordinates in image
+	marker_y = center_offset_y + delta_y
+	return marker_y
+end
+
+# References
+# https://github.com/tuupola/php_google_maps/blob/master/Google/Maps/Static.php
+
 @bounds = Hash.new
 # This will find the smallest latitude/longitude for the top left 
 # point and the largest latitude/longitude for the bottom right point.
@@ -59,47 +165,24 @@ def define_bounds
 			maxLng = location.lng
 		end
 	end
-	@bounds["n"] = minLng
-	@bounds["e"] = minLat
-	@bounds["s"] = maxLng
-	@bounds["w"] = maxLat
+	@bounds["n"] = maxLat
+	@bounds["s"] = minLat
+	@bounds["e"] = maxLng
+	@bounds["w"] = minLng
 end
 
-@map_size_width = 256
-def get_zoom(span)
-	zoom = (180.00 / span) * (@map_size_width / 256.00)
-	zoom = Math::log(zoom) / Math::log(2)
-	return zoom.floor
-end
+# References
+# http://blog.whatclinic.com/2008/10/how-to-make-google-static-maps-interactive.html
+# http://blog.whatclinic.com/2008/10/how-to-make-google-static-maps-interactive-part-2.html
 
 def atanh(rad)
 	return (Math::log(((1 + rad) / (1 - rad))) / Math::log(Math::E) / 2)
 end
 
-def get_x_pixel_value(currentLatitude, currentLongitude, oneDegree, radianLength, centreY)
-	pixelLongitude = (currentLongitude - @map_center_lng) * oneDegree
-	pixelLatitudeRadians = @map_center_lng * Math::PI / 180.00
-	localAtanh = atanh(Math::sin(pixelLatitudeRadians))
-	realPixelLatitude = radianLength * localAtanh
-	pixelLatitude = centreY - realPixelLatitude # convert from our virtual map to the displayed portion
-	pixelLongitude = pixelLongitude + (@map_size_width / 2)
-	pixelLatitude = pixelLatitude + (@map_size_width / 2)
-	x = pixelLongitude.floor
-	y = pixelLatitude.floor
-	return x
-end
-
-def get_y_pixel_value(currentLatitude, currentLongitude, oneDegree, radianLength, centreY)
-	pixelLongitude = (currentLongitude - @map_center_lng) * oneDegree
-	pixelLatitudeRadians = @map_center_lng * Math::PI / 180.00
-	localAtanh = atanh(Math::sin(pixelLatitudeRadians))
-	realPixelLatitude = radianLength * localAtanh
-	pixelLatitude = centreY - realPixelLatitude # convert from our virtual map to the displayed portion
-	pixelLongitude = pixelLongitude + (@map_size_width / 2)
-	pixelLatitude = pixelLatitude + (@map_size_width / 2)
-	x = pixelLongitude.floor
-	y = pixelLatitude.floor
-	return y
+def get_zoom(span)
+	zoomlevel = (180.00 / span) * (@map_width / 256.00)
+	zoomlevel = Math::log(zoomlevel) / Math::log(2)
+	return zoomlevel.floor
 end
 
 ############################  Initialization Code  ###########################
@@ -108,42 +191,28 @@ end
 define_bounds
 
 # zoom is decided by the max span of longitude and an adjusted latitude span
-# the relationship between the latitude span and the longitude span is /cos
+# the relationship between the latitude span and the longitude span is divided by cos
 # Note: logx(y) = log(y)/log(x) 
-atanhsinO = atanh(Math::sin(@bounds["w"] * Math::PI / 180.00))
-atanhsinD = atanh(Math::sin(@bounds["e"] * Math::PI / 180.00))
-atanhCentre = (atanhsinD + atanhsinO) / 2
-radianOfCentreLatitude = Math::atan(Math::sinh(atanhCentre))
-
-latitude_span = (@bounds["w"]-@bounds["e"]) / Math::cos(radianOfCentreLatitude)
-longitude_span = @bounds["s"]-@bounds["n"]
-
+atanhsinO = atanh(Math::sin(@bounds["n"] * Math::PI / 180.00))
+atanhsinD = atanh(Math::sin(@bounds["s"] * Math::PI / 180.00))
+atanhCenter = (atanhsinD + atanhsinO) / 2
+radianOfCenterLatitude = Math::atan(Math::sinh(atanhCenter))
+latitude_span = (@bounds["n"]-@bounds["s"]) / Math::cos(radianOfCenterLatitude)
+longitude_span = @bounds["e"]-@bounds["w"]
 zoom = get_zoom([latitude_span, longitude_span].max) + 1
 
-# create the x,y co-ordinates for the centre as they would appear on a map of the earth
-power = 2 ** zoom
-realWidth = 256 * power
+# calculate center as pixel coordinates in world map
+center_x = lng_to_world_x(@home_lng) 
+center_y = lat_to_world_y(@home_lat)
 
-# determine pixel size of one degree
-oneDegree = realWidth / 360.00
-radianLength = realWidth / (2.00 * Math::PI)
-
-# determine the centre on our virtual map
-centreY = radianLength * atanhCentre
+# calculate center as pixel coordinates in image
+center_offset_x = (@map_width / 2).round
+center_offset_y = (@map_height / 2).round
 
 ############################  Begin PDF Generation ############################
 
-pdf.image("#{RAILS_ROOT}/public/images/title.png")
-pdf.move_down(60)
-
-#pdf.text "#{@map}\n\n"
-#pdf.text "north = #{@bounds['n']}\n"
-#pdf.text "east = #{@bounds['e']}\n"
-#pdf.text "south = #{@bounds['s']}\n"
-#pdf.text "west = #{@bounds['w']}\n"
-#pdf.text "latitude span = #{latitude_span}\n"
-#pdf.text "longitude span = #{longitude_span}\n"
 pdf.text "zoom = #{zoom}\n"
+#pdf.text "#{@map}"
 pdf.move_down(30)
 
 stream = Hash.new
@@ -151,32 +220,27 @@ stream[:pic_google_map]="#{@map}"
 pdf.image open(stream[:pic_google_map]), :width => 500, :height => 300, :position => :center
 pdf.move_up(320)
 pdf.image("#{RAILS_ROOT}/public/images/pdf/map-guide-markers-with-grid.png", :width => 540, :height => 320, :position => :center)
+pdf.move_down(20)
 
+stream[:pic_google_map]="#{@map}&zoom=#{zoom}"
+pdf.image open(stream[:pic_google_map]), :width => 500, :height => 300, :position => :center
+pdf.move_up(320)
+pdf.image("#{RAILS_ROOT}/public/images/pdf/map-guide-markers-with-grid.png", :width => 540, :height => 320, :position => :center)
 pdf.move_down(20)
 
 table_content = @locations.map do |location|
 	[
 		location.location_profile.name,
-		format("%0.6f", haversine_distance(@map_center_lat, @map_center_lng, location.lat, location.lng)),
+		format("%0.6f", haversine_distance(@home_lat, @home_lng, location.lat, location.lng)),
 		location.lat,
 		location.lng,
-		get_x_pixel_value(location.lat, location.lng, oneDegree, radianLength, centreY),
-		get_y_pixel_value(location.lat, location.lng, oneDegree, radianLength, centreY)
+		"(#{lng_to_x(location.lng, center_x, center_offset_x, zoom)}, #{lat_to_y(location.lat, center_y, center_offset_y, zoom)})",
+		"#{get_map_letter_index(lng_to_x(location.lng, center_x, center_offset_x, zoom))}#{get_map_number_index(lat_to_y(location.lat, center_y, center_offset_y, zoom))}"
 	]
 end
 
 pdf.table table_content, :border_style => :grid,
 	:row_colors => ["FFFFFF", "DDDDDD"],
-	:headers => ["Location Type", "Distance Miles", "Latitude", "Longitude", "X", "Y"],
+	:headers => ["Location Type", "Distance Miles", "Latitude", "Longitude", "Pixel Index", "Map Index"],
 	:align => {0 => :left, 1 => :right, 2 => :right, 3 => :right, 4 => :center, 5 => :center}
-
-pdf.font_size 12
-pdf.bounding_box([pdf.bounds.left, pdf.bounds.bottom], :width => 200, :height => 20) do
-pdf.text "Generated by ZombieStrategies.com"
-end
-
-pdf.font_size 14
-pdf.bounding_box([pdf.bounds.right - 50, pdf.bounds.bottom], :width => 60, :height => 20) do
-pagecount = pdf.page_count
-pdf.text "Page #{pagecount}"
-end
+	
