@@ -310,6 +310,8 @@ function setMarker(latlng){
 function updateLatLngInputFields(latlng){
 	document.getElementById("lat").innerHTML = '<b>Latitude:&nbsp;</b>' + latlng.lat();
 	document.getElementById("lng").innerHTML = '<b>Longitude:&nbsp;</b>' + latlng.lng();
+	centerLatitude = latlng.lat();
+	centerLongitude = latlng.lng();
 }
 
 function clearMarkers(){
@@ -331,6 +333,12 @@ function submitEnter(myfield,e)
     }
     else
         return true;
+}
+
+function generatePDF()
+{
+	window.location.href = '/locations.pdf?ll=' + centerLatitude + ',' + centerLongitude + '&results=50';
+	return false;
 }
 
 // special effects

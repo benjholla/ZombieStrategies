@@ -54,10 +54,46 @@ class LocationsController < ApplicationController
          format.count  { render :text => @locations.count }
          format.js { render :json => @locations.to_json(:only => {:id => {}, :lat => {}, :lng => {}, :distance => {}}, :include => {:location_profile => {:only => :name}}) } 
        end
-    elsif
+    elsif(params[:ll]!=nil && params[:results]!=nil)
+      lat,lng=params[:ll].split(',').collect{|e|e.to_f}
+      results = params[:results].to_i
+      
+      if(results > 50)
+        results = 50
+      end
+      
+      if(results < 1)
+        results = 1
+      end
+      
+      # parse out parameters individually, for intance variables in the view
+      @home_lat = lat
+      @home_lng = lng
+
+      #convert to radians
+      lat_radians=(lat / 180) * Math::PI
+      lng_radians=(lng / 180) * Math::PI
+      distance_sql=<<-SQL_END
+      (acos(cos(#{lat_radians})*cos(#{lng_radians})*cos(radians(lat))*cos(radians(lng)) +
+    cos(#{lat_radians})*sin(#{lng_radians})*cos(radians(lat))*sin(radians(lng)) +
+    sin(#{lat_radians})*sin(radians(lat))) * 3693)
+      SQL_END
+
+      # change the :limit => x to be the number of closest locations to return per query 
+      @locations = Location.find(:all,
+            :select=>"*, #{distance_sql} as distance",
+            :order => 'distance asc',
+            :limit => results)
+    
+      respond_to do |format|
+        format.html { render :text => "Request Denied" }
+        format.pdf {render :layout => false} # index.pdf.prawn
+        format.xml  { render :xml => @locations }
+        format.js { render :json => @locations.to_json(:only => {:id => {}, :lat => {}, :lng => {}, :distance => {}}, :include => {:location_profile => {:only => :name}}) } 
+      end
+    else
       respond_to do |format|
         format.html # index.html.erb
-        format.pdf  {render :layout => false} # index.pdf.prawn
         format.count  { render :text => Location.all.count }
       end
     end
