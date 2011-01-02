@@ -7,8 +7,39 @@
 <br />
 
 <div id="left-content">
+	<h3>Search: Address / City / Zip / Etc.</h3>
+	<form onsubmit="showAddress(); return false" action="#">
+		<input id="search" size="30" type="text" value="" />
+		<input type="submit" value="Go!" />
+	</form>
+	<div id="message-container">
+		<div id="message-box-filler">
+			<div id="searchresults">
+			</div>
+		</div>
+	</div>
 	<br />
+	<h3>Home Location Details</h3>
+	(used to personalize your zombie preparation guide)
 	<br />
+
+	<br />
+    <div id="lat"></div>
+    <div id="lng"></div>
+	<br />
+	<div id="message-container">
+		<div id="message-box-filler">
+			<div id="message">
+				<b>Determining Location...</b>
+			</div>
+		</div>
+	</div>
+	<br />
+	<h2>Generate</h2>
+	<br />
+</div>
+
+<div id="right-content">
 	<script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
 	</script>
 	<script type="text/javascript" src="/javascripts/guide.js"></script>
@@ -22,4 +53,5 @@
 			<img src="/images/ajax-loader.gif" alt="Please wait..."/>
 		</center>
 	</div>
+	<center><br />Note: We protect your privacy!  Please read our <a href="/privacy_policy" title="Privacy Policy">privacy policy</a>.</center>
 </div>
