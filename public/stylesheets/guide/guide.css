@@ -1,0 +1,18 @@
+/* Left Side Content Container */
+#left-content {
+	width:auto;
+	float:left;
+	margin:0px;
+}
+
+/* Right Side Content Container */
+#right-content {
+	width:450px;
+	margin-left:380px;
+	text-align:left;
+}
+
+/* Styling for the map prompts */
+#message {
+	width: 350px;
+}

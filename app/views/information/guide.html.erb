@@ -1,0 +1,25 @@
+<% content_for :title, "Zombie Strategies | Guide" %>
+<% content_for :meta, "Generate your free personalized zombie preparation guide today." %>
+<%= stylesheet_link_tag 'guide/guide' %>
+<h1>Personalized Zombie Preparation Guide</h1>
+<br />
+<h2>Enter your location to get started</h2>
+<br />
+
+<div id="left-content">
+	<br />
+	<br />
+	<script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
+	</script>
+	<script type="text/javascript" src="/javascripts/guide.js"></script>
+	<div id="map" style="width: 450px; height: 300px">
+		<center>
+			<br />
+			<br />
+			<br />
+			<h3>Loading Map...</h3>
+			<br />
+			<img src="/images/ajax-loader.gif" alt="Please wait..."/>
+		</center>
+	</div>
+</div>
