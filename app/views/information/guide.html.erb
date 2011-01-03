@@ -3,55 +3,75 @@
 <%= stylesheet_link_tag 'guide/guide' %>
 <h1>Personalized Zombie Preparation Guide</h1>
 <br />
-<h2>Enter your location to get started</h2>
-<br />
 
-<div id="left-content">
-	<h3>Search: Address / City / Zip / Etc.</h3>
-	<form onsubmit="showAddress(); return false" action="#">
-		<input id="search" size="30" type="text" value="" />
-		<input type="submit" value="Go!" />
-	</form>
-	<div id="message-container">
-		<div id="message-box-filler">
-			<div id="searchresults">
+<div id="url-generator">
+	<h2>Enter your location to get started</h2>
+	<br />
+	<div id="left-content">
+		<h3>Search: Address / City / Zip / Etc.</h3>
+		<form onsubmit="showAddress(); return false" action="#">
+			<input id="search" size="30" type="text" value="" />
+			<input type="submit" value="Go!" />
+		</form>
+		<div id="message-container">
+			<div id="message-box-filler">
+				<div id="searchresults">
+				</div>
 			</div>
 		</div>
-	</div>
-	<br />
-	<h3>Home Location Details</h3>
-	(used to personalize your zombie preparation guide)
-	<br />
+		<br />
+		<h3>Home Location Details</h3>
+		(used to personalize your zombie preparation guide)
+		<br />
 
-	<br />
-    <div id="lat"></div>
-    <div id="lng"></div>
-	<br />
-	<div id="message-container">
-		<div id="message-box-filler">
-			<div id="message">
-				<b>Determining Location...</b>
+		<br />
+	    <div id="lat"></div>
+	    <div id="lng"></div>
+		<br />
+		<div id="message-container">
+			<div id="message-box-filler">
+				<div id="message">
+					<b>Determining Location...</b>
+				</div>
 			</div>
 		</div>
+		<br />
+		<input type="button" name="button" value="Continue" onclick="showOptions();">
+		<br />
 	</div>
-	<br />
-	<input type="button" name="button" value="Generate PDF" onclick="generatePDF();">
-	<br />
+
+	<div id="right-content">
+		<script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
+		</script>
+		<script type="text/javascript" src="/javascripts/guide.js"></script>
+		<div id="map" style="width: 450px; height: 300px">
+			<center>
+				<br />
+				<br />
+				<br />
+				<h3>Loading Map...</h3>
+				<br />
+				<img src="/images/ajax-loader.gif" alt="Please wait..."/>
+			</center>
+		</div>
+		<center><br />Note: We protect your privacy!  Please read our <a href="/privacy_policy" title="Privacy Policy">privacy policy</a>.</center>
+	</div>
 </div>
-
-<div id="right-content">
-	<script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
-	</script>
-	<script type="text/javascript" src="/javascripts/guide.js"></script>
-	<div id="map" style="width: 450px; height: 300px">
-		<center>
-			<br />
-			<br />
-			<br />
-			<h3>Loading Map...</h3>
-			<br />
-			<img src="/images/ajax-loader.gif" alt="Please wait..."/>
-		</center>
-	</div>
-	<center><br />Note: We protect your privacy!  Please read our <a href="/privacy_policy" title="Privacy Policy">privacy policy</a>.</center>
+<div id="generator-options" style="display:none;">
+	<center>
+		<h2>Almost done!</h2>
+		<div id="options-container">
+			<div id="options-container-filler">
+				<div id="options-container-buffer">
+					<p>Copy and paste link in <b>Email</b> or <b>Instant Message</b>:</p>
+					<input id="link" size="50" type="text" value="" readonly="readonly"/>
+					<br />
+					<input type="button" name="download-button" value="Download Zombie Preperation Guide" onclick="downloadPDF();">
+					<br />
+					<br />
+					<input type="button" name="done-button" value="Done" onclick="done();">
+				</div>
+			</div>
+		</div>
+	</center>
 </div>

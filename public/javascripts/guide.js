@@ -335,9 +335,24 @@ function submitEnter(myfield,e)
         return true;
 }
 
-function generatePDF()
+function showOptions()
+{
+	document.getElementById('url-generator').style.display = 'none';
+	document.getElementById('generator-options').style.display = 'block';
+	document.getElementById('link').value = 'http://www.zombiestrategies.com/locations.pdf?ll=' + centerLatitude + ',' + centerLongitude + '&results=50';
+	//window.location.href = '/locations.pdf?ll=' + centerLatitude + ',' + centerLongitude + '&results=50';
+	return false;
+}
+
+function downloadPDF()
 {
 	window.location.href = '/locations.pdf?ll=' + centerLatitude + ',' + centerLongitude + '&results=50';
+	return false;
+}
+
+function done()
+{
+	window.location.href = '/guide';
 	return false;
 }
 

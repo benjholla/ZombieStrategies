@@ -29,3 +29,21 @@
 	border-style:solid;
 	border-width:0px;
 }
+
+/* Yellow Options Container Filler */
+#options-container-filler {
+	background:url(/images/location_map_controls/filler.png) repeat;
+}
+
+/* Options Container */
+#options-container {
+	width:600px;
+	border-style:solid;
+	border-width:2px;
+	margin:10px;
+}
+
+/* Options Container */
+#options-container-buffer {
+	padding:10px;
+}
