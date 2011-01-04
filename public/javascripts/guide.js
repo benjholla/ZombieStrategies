@@ -3,6 +3,7 @@ var centerLatitude = 37.0625;
 var centerLongitude = -95.677068;
 var startZoom = 4;
 var map;
+var resultsToDisplay = 25;
 
 // used to give the user a hint for setting the home location, this is a one time only event
 var dragHomeHintGiven = false;
@@ -141,6 +142,10 @@ function showExactAddress(address) {
         if (result.Status.code == G_GEO_SUCCESS) {
 		 	// ===== If there was more than one result, "ask did you mean" on them all =====
 		 	if (result.Placemark.length > 1) { 
+				document.getElementById("continue-button").innerHTML = '';
+				document.getElementById("message").innerHTML = '';
+				document.getElementById("lat").innerHTML = '<b>Latitude:&nbsp;</b>?';
+				document.getElementById("lng").innerHTML = '<b>Longitude:&nbsp;</b>?';
 				document.getElementById("searchresults").innerHTML = "Did you mean:";
 				// Loop through the results
 				for (var i=0; i<result.Placemark.length; i++) {
@@ -153,6 +158,10 @@ function showExactAddress(address) {
 		 	{
 		 		document.getElementById("searchresults").innerHTML = "";
 				if (different(search, result.Placemark[0].address)) {
+					document.getElementById("continue-button").innerHTML = '';
+					document.getElementById("message").innerHTML = '';
+					document.getElementById("lat").innerHTML = '<b>Latitude:&nbsp;</b>?';
+					document.getElementById("lng").innerHTML = '<b>Longitude:&nbsp;</b>?';
 					document.getElementById("searchresults").innerHTML = "Did you mean: ";
 			    	var p = result.Placemark[0].Point.coordinates;
 			    	document.getElementById("searchresults").innerHTML += "<a href='javascript:showExactAddress(\"" + result.Placemark[0].address +"\")'>"+ result.Placemark[0].address+"<\/a>";
@@ -180,7 +189,11 @@ function showExactAddress(address) {
           	if (reasons[result.Status.code]) {
             	reason = reasons[result.Status.code]
           	}
- 			document.getElementById("message").innerHTML = 'Could not find "' + search + '"<br />' + '<font color="red">' + reason + '</font>';
+ 			document.getElementById("searchresults").innerHTML = 'Could not find "' + search + '"<br />' + '<font color="red">' + reason + '</font>';
+			document.getElementById("message").innerHTML = '';
+			document.getElementById("continue-button").innerHTML = '';
+			document.getElementById("lat").innerHTML = '<b>Latitude:&nbsp;</b>?';
+			document.getElementById("lng").innerHTML = '<b>Longitude:&nbsp;</b>?';
         }
       }
     );
@@ -312,6 +325,7 @@ function updateLatLngInputFields(latlng){
 	document.getElementById("lng").innerHTML = '<b>Longitude:&nbsp;</b>' + latlng.lng();
 	centerLatitude = latlng.lat();
 	centerLongitude = latlng.lng();
+	document.getElementById("continue-button").innerHTML = '<a onmouseover="return handleContinueMouseOver();" onmouseout= "return handleContinueMouseOut();" onmousedown="" onmouseup="showOptions();"><img name="continueButton" src="../images/location_map_controls/continue_unselected_button.png" width="136" height="37" alt="Click to continue"/></a>';
 }
 
 function clearMarkers(){
@@ -339,20 +353,56 @@ function showOptions()
 {
 	document.getElementById('url-generator').style.display = 'none';
 	document.getElementById('generator-options').style.display = 'block';
-	document.getElementById('link').value = 'http://www.zombiestrategies.com/locations.pdf?ll=' + centerLatitude + ',' + centerLongitude + '&results=50';
-	//window.location.href = '/locations.pdf?ll=' + centerLatitude + ',' + centerLongitude + '&results=50';
+	document.getElementById('link').value = 'http://www.zombiestrategies.com/locations.pdf?ll=' + centerLatitude + ',' + centerLongitude + '&results=' + resultsToDisplay;
+	//window.location.href = '/locations.pdf?ll=' + centerLatitude + ',' + centerLongitude + '&results=' + resultsToDisplay;
 	return false;
 }
 
 function downloadPDF()
 {
-	window.location.href = '/locations.pdf?ll=' + centerLatitude + ',' + centerLongitude + '&results=50';
+	window.location.href = '/locations.pdf?ll=' + centerLatitude + ',' + centerLongitude + '&results=' + resultsToDisplay;
 	return false;
 }
 
 function done()
 {
 	window.location.href = '/guide';
+	return false;
+}
+
+function handleDoneMouseOver()
+{
+	document.images["doneButton"].src= "../images/location_map_controls/done_selected_button.png";
+	return false;
+}
+
+function handleDoneMouseOut()
+{
+	document.images["doneButton"].src= "../images/location_map_controls/done_unselected_button.png";
+	return false;
+}
+
+function handleDownloadMouseOver()
+{
+	document.images["downloadButton"].src= "../images/location_map_controls/download_selected_button.png";
+	return false;
+}
+
+function handleDownloadMouseOut()
+{
+	document.images["downloadButton"].src= "../images/location_map_controls/download_unselected_button.png";
+	return false;
+}
+
+function handleContinueMouseOver()
+{
+	document.images["continueButton"].src= "../images/location_map_controls/continue_selected_button.png";
+	return false;
+}
+
+function handleContinueMouseOut()
+{
+	document.images["continueButton"].src= "../images/location_map_controls/continue_unselected_button.png";
 	return false;
 }
 

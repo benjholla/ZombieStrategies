@@ -36,10 +36,9 @@
 			</div>
 		</div>
 		<br />
-		<input type="button" name="show-button" value="Continue" onclick="showOptions();">
-		<br />
+		<div id="continue-button"></div>
 	</div>
-
+	<br />
 	<div id="right-content">
 		<script type="text/javascript" src="http://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22maps%22%2C%22version%22%3A%222%22%7D%5D%7D&amp;key=***REMOVED***">
 		</script>
@@ -66,15 +65,15 @@
 					<p>Copy and paste link in <b>Email</b> or <b>Instant Message</b>:</p>
 					<input id="link" size="50" type="text" value="" readonly="readonly"/>
 					<br />
+					<br />
 					<p><b>Download</b> your personalized zombie preparation guide</p>
-					<input type="button" name="download-button" value="Download Zombie Preperation Guide" onclick="downloadPDF();">
+					<a onmouseover="return handleDownloadMouseOver();" onmouseout= "return handleDownloadMouseOut();" onmousedown="" onmouseup="downloadPDF();">
+						<img name="downloadButton" src="../images/location_map_controls/download_unselected_button.png" width="136" height="37" alt="Download Zombie Preperation Guide"/>
+					</a>
 					<br />
-					<br />
-					<input type="button" name="done-button" value="Done" onclick="done();">
 					<br />
 					<br />
 					<p><b>Help us spread the word!</b></p>
-					<br />
 					<div id="counters">
 						<script type="text/javascript">
 						tweetmeme_url = 'http://www.zombiestrategies.com/guide';
@@ -83,6 +82,10 @@
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.zombiestrategies.com%2Fguide&amp;layout=box_count&amp;show_faces=false&amp;width=55&amp;action=like&amp;colorscheme=light&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:55px; height:65px;" allowTransparency="true"></iframe>
 					</div>
+					<br />
+					<a onmouseover="return handleDoneMouseOver();" onmouseout= "return handleDoneMouseOut();" onmousedown="" onmouseup="done();">
+						<img name="doneButton" src="../images/location_map_controls/done_unselected_button.png" width="136" height="37" alt="Done Button"/>
+					</a>
 				</div>
 			</div>
 		</div>

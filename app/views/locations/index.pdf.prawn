@@ -250,7 +250,7 @@ map += "&format=png"
 map += "&size=#{@map_width}x#{@map_height}"
 map += "&center=#{@home_lat},#{@home_lng}"
 # add a home base icon to where the center of the data revolves
-map += "&markers=icon:http://bit.ly/hlXyiP%7C#{@home_lat},#{@home_lng}"
+#map += "&markers=icon:http://bit.ly/hlXyiP%7C#{@home_lat},#{@home_lng}"
 map += "&maptype=terrain"
 map += "&zoom=#{zoom}"
 map += "&markers=color:blue%7Csize:small"
