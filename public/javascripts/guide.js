@@ -327,6 +327,7 @@ function updateLatLngInputFields(latlng){
 	centerLatitude = latlng.lat();
 	centerLongitude = latlng.lng();
 	document.getElementById('continue-button').style.display = 'block';
+	document.getElementById("searchresults").innerHTML = "";
 }
 
 function clearMarkers(){
