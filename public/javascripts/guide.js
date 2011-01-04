@@ -216,6 +216,7 @@ function init() {
 			centerLongitude = google.loader.ClientLocation.longitude;
 			setMarker(new google.maps.LatLng(centerLatitude, centerLongitude));
 	    	location = "Showing IP-based location: <b>" + getFormattedLocation() + "</b>";
+			document.getElementById('continue-button').style.display = 'block';
 	    }
 	
 		// sets the map to the default position listed above, or the IP geocododed location if found
