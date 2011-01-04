@@ -142,7 +142,7 @@ function showExactAddress(address) {
         if (result.Status.code == G_GEO_SUCCESS) {
 		 	// ===== If there was more than one result, "ask did you mean" on them all =====
 		 	if (result.Placemark.length > 1) { 
-				document.getElementById("continue-button").innerHTML = '';
+				document.getElementById('continue-button').style.display = 'none';
 				document.getElementById("message").innerHTML = '';
 				document.getElementById("lat").innerHTML = '<b>Latitude:&nbsp;</b>?';
 				document.getElementById("lng").innerHTML = '<b>Longitude:&nbsp;</b>?';
@@ -158,7 +158,7 @@ function showExactAddress(address) {
 		 	{
 		 		document.getElementById("searchresults").innerHTML = "";
 				if (different(search, result.Placemark[0].address)) {
-					document.getElementById("continue-button").innerHTML = '';
+					document.getElementById('continue-button').style.display = 'none';
 					document.getElementById("message").innerHTML = '';
 					document.getElementById("lat").innerHTML = '<b>Latitude:&nbsp;</b>?';
 					document.getElementById("lng").innerHTML = '<b>Longitude:&nbsp;</b>?';
@@ -191,7 +191,7 @@ function showExactAddress(address) {
           	}
  			document.getElementById("searchresults").innerHTML = 'Could not find "' + search + '"<br />' + '<font color="red">' + reason + '</font>';
 			document.getElementById("message").innerHTML = '';
-			document.getElementById("continue-button").innerHTML = '';
+			document.getElementById('continue-button').style.display = 'none';
 			document.getElementById("lat").innerHTML = '<b>Latitude:&nbsp;</b>?';
 			document.getElementById("lng").innerHTML = '<b>Longitude:&nbsp;</b>?';
         }
@@ -325,7 +325,7 @@ function updateLatLngInputFields(latlng){
 	document.getElementById("lng").innerHTML = '<b>Longitude:&nbsp;</b>' + latlng.lng();
 	centerLatitude = latlng.lat();
 	centerLongitude = latlng.lng();
-	document.getElementById("continue-button").innerHTML = '<a onmouseover="return handleContinueMouseOver();" onmouseout= "return handleContinueMouseOut();" onmousedown="" onmouseup="showOptions();"><img name="continueButton" src="../images/location_map_controls/continue_unselected_button.png" width="136" height="37" alt="Click to continue"/></a>';
+	document.getElementById('continue-button').style.display = 'block';
 }
 
 function clearMarkers(){
