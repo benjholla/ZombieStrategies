@@ -1,4 +1,9 @@
 class LocationsController < ApplicationController
+  
+  # before_filter :admin_login_required, :only => [:flagged, :unflag]
+  
+  before_filter :admin_login_required, :except => [:index, :show]
+  
   # GET /locations
   # GET /locations.xml
   def index
@@ -107,7 +112,7 @@ class LocationsController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @location }
-      format.js { render :json => @location.to_json(:include => {:location_profile => {}, :categories => {}, :products => {}}) }
+      format.js { render :json => @location.to_json(:include => {:location_profile => {}, :categories => {}, :items => {}}) }
     end
   end
 
@@ -135,7 +140,29 @@ class LocationsController < ApplicationController
   # POST /locations
   # POST /locations.xml
   def create
+    
+    if(params[:authentication]!=nil && params[:authentication][:username]!=nil && params[:authentication][:password]!=nil)
+      user = User.authenticate(params[:authentication][:username], params[:authentication][:password])
+      if user
+        self.current_user = user
+      end
+    end
+    
     @location = Location.new(params[:location])
+    
+    if authorized?
+      @location.created_by = self.current_user.login
+      @location.modified_by = self.current_user.login
+      @location.validated_by = self.current_user.login
+    else
+      @location.created_by = 'anonymous'
+      @location.modified_by = 'anonymous'
+      @location.validated_by = 'anonymous'
+    end
+    
+    @location.validated = Time.now
+    @location.created = Time.now
+    @location.modified = Time.now
 
     respond_to do |format|
       if @location.save
@@ -160,6 +187,41 @@ class LocationsController < ApplicationController
   def update
     @location = Location.find(params[:id])
 
+    if(params[:location] && params[:location][:validated])
+      params[:location][:validated] = @location.validated
+    end
+    
+    if(params[:location] && params[:location][:validated_by])
+      params[:location][:validated_by] = @location.validated_by
+    end
+    
+    if(params[:location] && params[:location][:created])
+      params[:location][:created] = @location.created
+    end
+    
+    if(params[:location] && params[:location][:created_by])
+      params[:location][:created_by] = @location.created_by
+    end
+    
+    if(params[:authentication]!=nil && params[:authentication][:username]!=nil && params[:authentication][:password]!=nil)
+      user = User.authenticate(params[:authentication][:username], params[:authentication][:password])
+      if user
+        self.current_user = user
+      end
+    end
+    
+    if(params[:location] && params[:location][:modified])
+      params[:location][:modified] = Time.now
+    else
+      @location.modified = Time.now
+    end
+    
+    if authorized?
+      @location.modified_by = self.current_user.login
+    else
+      @location.modified_by = 'anonymous'
+    end
+
     respond_to do |format|
       if @location.update_attributes(params[:location])
          format.html { redirect_to(locations_path) }
@@ -174,6 +236,117 @@ class LocationsController < ApplicationController
           render :json => {:success=>false}
         }
       end
+    end
+  end
+  
+  # GET /locations/1/validate
+  def validate
+    @location = Location.find(params[:id])
+
+    @location.validated = Time.now
+    
+    if(params[:authentication]!=nil && params[:authentication][:username]!=nil && params[:authentication][:password]!=nil)
+      user = User.authenticate(params[:authentication][:username], params[:authentication][:password])
+      if user
+        self.current_user = user
+      end
+    end
+    
+    if authorized?
+      @location.validated_by = self.current_user.login
+    else
+      @location.validated_by = 'anonymous'
+    end
+
+    respond_to do |format|
+      if @location.save
+        format.js {
+          render :json => {:success=>true, :validated => @location.validated, :updated => @location.modified}
+        }
+        format.xml {
+          render :xml => {:success=>true, :validated => @location.validated, :updated => @location.modified}
+        }
+       else
+        format.js {
+          render :json => {:success=>false, :validated => @location.validated, :updated => @location.modified}
+        }
+        format.xml {
+          render :xml => {:success=>false, :validated => @location.validated, :updated => @location.modified}
+        }
+      end
+    end
+  end
+
+  # GET /locations/1/flag
+  def flag
+    @location = Location.find(params[:id])
+
+    @location.flagged = true
+    
+    if(params[:authentication]!=nil && params[:authentication][:username]!=nil && params[:authentication][:password]!=nil)
+      user = User.authenticate(params[:authentication][:username], params[:authentication][:password])
+      if user
+        self.current_user = user
+      end
+    end
+    
+    if authorized?
+      @location.flagged_by = self.current_user.login
+    else
+      @location.flagged_by = 'anonymous'
+    end
+
+    respond_to do |format|
+      if @location.save
+         format.js {
+           render :json => {:success=>true, :flagged => @location.flagged}
+         }
+         format.xml {
+            render :xml => {:success=>true, :flagged => @location.flagged}
+          }
+       else
+        format.js {
+          render :json => {:success=>false, :flagged => @location.flagged}
+        }
+        format.xml {
+          render :xml => {:success=>false, :flagged => @location.flagged}
+        }
+      end
+    end
+  end
+  
+  # GET /locations/1/flag
+  def unflag
+    @location = Location.find(params[:id])
+
+    @location.flagged = false
+    @location.flagged_by = nil
+
+    respond_to do |format|
+      if @location.save
+        format.js {
+          render :json => {:success=>true, :flagged => @location.flagged}
+        }
+        format.xml {
+          render :xml => {:success=>true, :flagged => @location.flagged}
+        }
+      else
+        format.js {
+          render :json => {:success=>false, :flagged => @location.flagged}
+        }
+        format.xml {
+          render :xml => {:success=>false, :flagged => @location.flagged}
+        }
+      end
+    end
+  end
+  
+  def flagged
+    @locations = Location.find(:all, :select=>"id, name, flagged_by", :conditions => "flagged = true")
+
+    respond_to do |format|
+      format.xml  { render :xml => @locations }
+      format.js { render :json => @locations } 
     end
   end
 

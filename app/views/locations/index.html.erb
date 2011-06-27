@@ -104,11 +104,11 @@
 		<br />
 		<div id="left-panel">
 			<%= hidden_field_tag "location[category_ids][]", "" %>
-			<%= hidden_field_tag "location[product_ids][]", "" %>
+			<%= hidden_field_tag "location[item_ids][]", "" %>
 			<table border="1">
 				<tr>
 					<th><h2>Categories</h2></th>
-					<th><h2>Products</h2></th>
+					<th><h2>Items</h2></th>
 				</tr>
 				<% for category in Category.all %>
 					<tr>
@@ -129,14 +129,14 @@
 								</tr>
 								<tr>
 								<% counter = 0 %>
-								<% for product in category.products %>
+								<% for item in category.items %>
 									<% if counter < 4 %>
 										<td>
 											&nbsp;&nbsp;
-											<%= check_box_tag "location[product_ids][]", 
-											product.id, product.locations.include?(@location), 
-											{ :id => "product_ids_"+ product.id.to_s} %> 
-											<b><%=h product.name %></b>
+											<%= check_box_tag "location[item_ids][]", 
+											item.id, item.locations.include?(@location), 
+											{ :id => "item_ids_"+ item.id.to_s} %> 
+											<b><%=h item.name %></b>
 											&nbsp;&nbsp;
 										</td>
 									<% else %>
@@ -145,10 +145,10 @@
 										<tr>
 											<td>
 												&nbsp;&nbsp;
-												<%= check_box_tag "location[product_ids][]", 
-												product.id, product.locations.include?(@location), 
-												{ :id => "product_ids_"+ product.id.to_s} %> 
-												<b><%=h product.name %></b>
+												<%= check_box_tag "location[item_ids][]", 
+												item.id, item.locations.include?(@location), 
+												{ :id => "item_ids_"+ item.id.to_s} %> 
+												<b><%=h item.name %></b>
 												&nbsp;&nbsp;
 											</td>
 									<% end %>
@@ -159,6 +159,51 @@
 						</td>
 					</tr>
 				<% end %>
+			</table>
+			<br />
+			<br />
+			<b><label for="name">Name:</label></b><br />
+			<input id="location_name" name="location[name]" size="50" type="text" />
+			<br />
+			<b><label for="address">Address:</label></b><br />
+			<input id="location_address" name="location[address]" size="50" type="text" />
+			<br />
+			<b><label for="city">City:</label></b><br />
+			<input id="location_city" name="location[city]" size="50" type="text" />
+			<br />
+			<b><label for="state_providence">State/Providence:</label></b><br />
+			<input id="location_state_providence" name="location[state_providence]" size="50" type="text" />
+			<br />
+			<b><label for="zip">Zip:</label></b><br />
+			<input id="location_zip" name="location[zip]" size="50" type="text" />
+			<br />
+			<b><label for="country">Country:</label></b><br />
+			<input id="location_country" name="location[country]" size="50" type="text" />
+			<br />
+			<br />
+			<h3>Please classify this location.  Choose the classification that best fits this location.</h3>
+			<table border="1">
+				<tr align="center">
+					<% for classification in LocationClassification.all %>
+						<th>&nbsp;<%=h classification.name %>&nbsp;</th>
+					<% end %>
+				</tr>
+				<tr align="center">
+					<% for classification in LocationClassification.all %>
+						<td><img src="<%=h classification.icon %>" alt="<%=h classification.name %> Icon" width="60" heigth="60"/></td>
+					<% end %>
+				</tr>
+				<tr align="center">
+					<form name="classifications">
+						<% for classification in LocationClassification.all %>
+							<% if classification.id == 1%>
+								<td><input type="radio" name="location_classification_id" value="<%=h classification.id %>" checked></td>
+								<% else %>
+								<td><input type="radio" name="location_classification_id" value="<%=h classification.id %>"></td>
+							<% end %>
+						<% end %>
+					</form>
+				</tr>
 			</table>
 			<br />
 			<br />

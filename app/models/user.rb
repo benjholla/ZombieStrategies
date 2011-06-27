@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
   validates_numericality_of :lat, :message => "must be a number", :allow_blank => true
   validates_numericality_of :lng, :message => "must be a number", :allow_blank => true
  
-  # overrice the to_param method so that we can change the way we access users
+  # override the to_param method so that we can change the way we access users
   # example /users/id -> /users/login
   def to_param
     login

@@ -9,7 +9,7 @@
 	<table border="1">
 		<tr>
 			<th><b>Categories</b></th>
-			<th><b>Products</b></th>
+			<th><b>Items</b></th>
 		</tr>
 		<% for category in Category.all %>
 			<tr>
@@ -28,14 +28,14 @@
 						</tr>
 						<tr>
 						<% counter = 0 %>
-						<% for product in category.products %>
+						<% for item in category.items %>
 							<% if counter < 4 %>
 								<td>
 									&nbsp;&nbsp;
-									<%= check_box_tag "location[product_ids][]", 
-									product.id, product.locations.include?(@location),
-									{ :id => "product_ids_"+ product.id.to_s, :disabled => "disabled"} %> 
-									<b><%=h product.name %></b>
+									<%= check_box_tag "location[item_ids][]", 
+									item.id, item.locations.include?(@location),
+									{ :id => "item_ids_"+ item.id.to_s, :disabled => "disabled"} %> 
+									<b><%=h item.name %></b>
 									&nbsp;&nbsp;
 								</td>
 							<% else %>
@@ -44,10 +44,10 @@
 								<tr>
 									<td>
 										&nbsp;&nbsp;
-										<%= check_box_tag "location[product_ids][]", 
-										product.id, product.locations.include?(@location),
-										{ :id => "product_ids_"+ product.id.to_s, :disabled => "disabled"} %> 
-										<b><%=h product.name %></b>
+										<%= check_box_tag "location[item_ids][]", 
+										item.id, item.locations.include?(@location),
+										{ :id => "item_ids_"+ item.id.to_s, :disabled => "disabled"} %> 
+										<b><%=h item.name %></b>
 										&nbsp;&nbsp;
 									</td>
 							<% end %>
@@ -59,6 +59,50 @@
 			</tr>
 		<% end %>
 	</table>
+	<br />
+	<br />
+	<% for classification in LocationClassification.all %>
+		<% if classification.id == @location.location_classification.id %>
+			<h3><%= classification.name.to_s %></h3>
+			<img src="<%= classification.icon.to_s %>" alt="<%= classification.name.to_s %> Icon" width="60" heigth="60"/>
+		<% end %>
+	<% end %>
+	<br />
+	<br />
+	<h3>Name:</h3>
+	<style type="text/css">
+		#address {
+			width:500px;
+			float:left;
+			margin:0px;
+			padding:5px;
+			border-style:solid;
+			border-width:1px;
+			background-color:white;
+		}
+	</style>
+	<div id="address">
+		<%= @location.name.to_s %>, <%= @location.location_classification.name %>
+	</div>
+	<br />
+	<br />
+	<h3>Address:</h3>
+	<style type="text/css">
+		#address {
+			width:500px;
+			float:left;
+			margin:0px;
+			padding:5px;
+			border-style:solid;
+			border-width:1px;
+			background-color:white;
+		}
+	</style>
+	<div id="address">
+		<%= @location.address.to_s %>, <%= @location.city.to_s %> <br />
+		<%= @location.state_providence.to_s %>, <%= @location.zip.to_s %>, <%= @location.country.to_s %>
+	</div>
+	<br />
 	<br />
 	<br />
 	<h3>Additional Information:</h3>
@@ -78,6 +122,48 @@
 			<%= simple_format h(@location.info) %>
 		<% else %>
 			This location does not have any additional information.
+		<% end %>
+	</div>
+	<br />
+	<br />
+	<h3>Modification Log:</h3>
+	<style type="text/css">
+		#modlog {
+			width:500px;
+			float:left;
+			margin:0px;
+			padding:5px;
+			border-style:solid;
+			border-width:1px;
+			background-color:white;
+		}
+	</style>
+	<div id="modlog">
+		<% if @location.modification_log != "" %>
+			<%= simple_format h(@location.modification_log) %>
+		<% else %>
+			This location does not have any entries in its modification log.
+		<% end %>
+	</div>
+	<br />
+	<br />
+	<h3>Audit Log:</h3>
+	<style type="text/css">
+		#auditlog {
+			width:500px;
+			float:left;
+			margin:0px;
+			padding:5px;
+			border-style:solid;
+			border-width:1px;
+			background-color:white;
+		}
+	</style>
+	<div id="auditlog">
+		<% if @location.audit_log != "" %>
+			<%= simple_format h(@location.audit_log) %>
+		<% else %>
+			This location does not have any entries in its audit log.
 		<% end %>
 	</div>
 </p>

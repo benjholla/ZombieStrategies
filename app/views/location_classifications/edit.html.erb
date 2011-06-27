@@ -1,0 +1,22 @@
+<% content_for :title, "Zombie Strategies | Edit Location Classification" %>
+<% content_for :meta, "Location classifications help to classify locations in the database." %>
+<h1>Editing Location Classification</h1>
+
+<% form_for(@location_classification) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :icon %><br />
+    <%= f.text_field :icon %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @location_classification %> |
+<%= link_to 'Back', location_classifications_path %>

@@ -4,7 +4,6 @@ class CreateCategoryLocationProfileMemberships < ActiveRecord::Migration
       t.integer :category_id
       t.integer :location_profile_id
       t.datetime :created_at
-
       t.timestamps
     end
   end

@@ -6,7 +6,7 @@
 	<table border="1">
 		<tr>
 			<th><b>Categories</b></th>
-			<th><b>Products</b></th>
+			<th><b>Items</b></th>
 		</tr>
 		<% for category in Category.all %>
 			<tr>
@@ -19,11 +19,11 @@
 						<tr>
 							<th></th>
 						</tr>
-						<% for product in category.products %>
+						<% for item in category.items %>
 							<tr>
-								<td><%= check_box_tag "location_profile[product_ids][]", product.id,
-								 product.location_profiles.include?(@location_profile), :disabled => "disabled" %> 
-								<b><%=h product.name %></b></td>
+								<td><%= check_box_tag "location_profile[item_ids][]", item.id,
+								 item.location_profiles.include?(@location_profile), :disabled => "disabled" %> 
+								<b><%=h item.name %></b></td>
 							</tr>
 						<% end %>
 					</table>

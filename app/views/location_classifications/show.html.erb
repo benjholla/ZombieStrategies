@@ -1,0 +1,15 @@
+<% content_for :title, "Zombie Strategies | Show Location Classification" %>
+<% content_for :meta, "Location classifications help to classify locations in the database." %>
+<p>
+  <b>Name:</b>
+  <%=h @location_classification.name %>
+</p>
+
+<p>
+  <b>Icon:</b>
+  <%=h @location_classification.icon %>
+</p>
+
+
+<%= link_to 'Edit', edit_location_classification_path(@location_classification) %> |
+<%= link_to 'Back', location_classifications_path %>

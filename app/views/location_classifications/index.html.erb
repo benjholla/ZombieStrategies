@@ -1,0 +1,37 @@
+<% content_for :title, "Zombie Strategies | List Location Classification" %>
+<% content_for :meta, "Location classifications help to classify locations in the database." %>
+<h1>Listing Location Classifications</h1>
+<br />
+<table class="sortable" border="1">
+  <tr align="center">
+	<th><h1>&nbsp;&nbsp;ID&nbsp;&nbsp;</h1></th>
+    <th><h1>Name</h1></th>
+    <th><h1>Icon</h1></th>
+	<th><h1>Icon URL</h1></th>
+	<% if authorized? %>
+    <th></th>
+    <th></th>
+    <th></th>
+	<% end %>
+  </tr>
+
+<% @location_classifications.each do |location_classification| %>
+  <tr align="center">
+	<td><h3><%=h location_classification.id %></h3></td>
+    <td><h3><%=h location_classification.name %></h3></td>
+	<td><img src="<%=h location_classification.icon %>" alt="<%=h location_classification.name %> Icon" width="60" heigth="60"/></td>
+    <td><%=h location_classification.icon %></td>
+	<% if authorized? %>
+    <td><%= link_to 'Show', location_classification %></td>
+    <td><%= link_to 'Edit', edit_location_classification_path(location_classification) %></td>
+    <td><%= link_to 'Destroy', location_classification, :confirm => 'Are you sure?', :method => :delete %></td>
+	<% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if authorized? %>
+<%= link_to 'New Location Classification', new_location_classification_path %>
+<% end %>

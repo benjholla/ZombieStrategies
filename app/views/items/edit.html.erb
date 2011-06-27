@@ -1,20 +1,20 @@
-<% content_for :title, "Zombie Strategies | Add Product" %>
+<% content_for :title, "Zombie Strategies | Edit Item" %>
 <% content_for :meta, "A civil defense system against the living dead." %>
-<%= stylesheet_link_tag 'products/products' %>
+<%= stylesheet_link_tag 'items/items' %>
 <div id="left-content">
-	<h1>New Product</h1>
+	<h1>Editing Item</h1>
 	<br />
-	<% form_for(@product) do |f| %>
+	<% form_for(@item) do |f| %>
 		<%= f.error_messages %>
 		<h2><%= label_tag 'name', 'Item Name: ' %></h2>
 		<%= f.text_field :name %>
 		<br />
 		<h2><%= label_tag 'category_name', 'Category: ' %></h2>
-		<h5><%= text_field_with_auto_complete :product, :category_name, {:size => 30}, {:skip_style => true, :url => categories_path(:text), :method => :get, :param_name => 'search' } %></h5>
+		<h5><%= text_field_with_auto_complete :item, :category_name, {:size => 30}, {:skip_style => true, :url => formatted_categories_path(:text), :method => :get, :param_name => 'search' } %></h5>
 	</div>
 	<div id="right-content">
 		<p>
-			<%= f.submit 'Create Product' %>
+			<%= f.submit 'Update Item' %>
 			<br />
 			<input type="button" value="Cancel" onclick="window.location.href='<%= categories_path %>'"/>
 		</p>

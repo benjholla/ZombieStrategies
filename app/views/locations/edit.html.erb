@@ -55,11 +55,11 @@
 	<br />
 	<p>
 		<%= hidden_field_tag "location[category_ids][]", "" %>
-		<%= hidden_field_tag "location[product_ids][]", "" %>
+		<%= hidden_field_tag "location[item_ids][]", "" %>
 		<table border="1">
 			<tr>
 				<th><b>Categories</b></th>
-				<th><b>Products</b></th>
+				<th><b>Items</b></th>
 			</tr>
 			<% for category in Category.all %>
 				<tr>
@@ -76,14 +76,14 @@
 							</tr>
 							<tr>
 							<% counter = 0 %>
-							<% for product in category.products %>
+							<% for item in category.items %>
 								<% if counter < 4 %>
 									<td>
 										&nbsp;&nbsp;
-										<%= check_box_tag "location[product_ids][]", 
-										product.id, product.locations.include?(@location),
-										{ :id => "product_ids_"+ product.id.to_s} %> 
-										<b><%=h product.name %></b>
+										<%= check_box_tag "location[item_ids][]", 
+										item.id, item.locations.include?(@location),
+										{ :id => "item_ids_"+ item.id.to_s} %> 
+										<b><%=h item.name %></b>
 										&nbsp;&nbsp;
 									</td>
 								<% else %>
@@ -92,10 +92,10 @@
 									<tr>
 										<td>
 											&nbsp;&nbsp;
-											<%= check_box_tag "location[product_ids][]", 
-											product.id, product.locations.include?(@location),
-											{ :id => "product_ids_"+ product.id.to_s} %> 
-											<b><%=h product.name %></b>
+											<%= check_box_tag "location[item_ids][]", 
+											item.id, item.locations.include?(@location),
+											{ :id => "item_ids_"+ item.id.to_s} %> 
+											<b><%=h item.name %></b>
 											&nbsp;&nbsp;
 										</td>
 								<% end %>

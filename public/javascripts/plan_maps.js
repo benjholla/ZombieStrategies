@@ -272,6 +272,8 @@ function hideNewLocationForm() {
 	clearCheckmarks();
 	clearProfileForm();
 	clearLocationInfoForm();
+	clearLocationAddressFields();
+	resetLocationClassificationField();
 }
 
 function showNewLocationForm() {
@@ -293,6 +295,34 @@ function showModifyLocationForm(resource) {
 		if(resource.location.info){
 			document.getElementById("location_info").value = resource.location.info;
 		}
+		document.getElementById("location_name").value = "";
+		if(resource.location.name){
+			document.getElementById("location_name").value = resource.location.name;
+		}
+		document.getElementById("location_address").value = "";
+		if(resource.location.address){
+			document.getElementById("location_address").value = resource.location.address;
+		}
+		document.getElementById("location_city").value = "";
+		if(resource.location.city){
+			document.getElementById("location_city").value = resource.location.city;
+		}
+		document.getElementById("location_state_providence").value = "";
+		if(resource.location.state_providence){
+			document.getElementById("location_state_providence").value = resource.location.state_providence;
+		}
+		document.getElementById("location_zip").value = "";
+		if(resource.location.zip){
+			document.getElementById("location_zip").value = resource.location.zip;
+		}
+		document.getElementById("location_country").value = "";
+		if(resource.location.country){
+			document.getElementById("location_country").value = resource.location.country;
+		}
+		var selection = document.classifications.location_classification_id;
+		if(selection[resource.location.location_classification_id-1]){
+			selection[resource.location.location_classification_id-1].checked = true;
+		}
 		// clear the checkboxes
 		clearCheckmarks();
 		// add in the checkbox marks
@@ -300,10 +330,10 @@ function showModifyLocationForm(resource) {
 			var category = resource.location.categories[i];
 			document.getElementById("category_ids_" + category.id).checked = true;
 		} // end of categories for loop
-		for (var i = 0 ; i < resource.location.products.length ; i++) {
-			var product = resource.location.products[i];
-			document.getElementById("product_ids_" + product.id).checked = true;
-		} // end of products for loop
+		for (var i = 0 ; i < resource.location.items.length ; i++) {
+			var item = resource.location.items[i];
+			document.getElementById("item_ids_" + item.id).checked = true;
+		} // end of items for loop
 	}
 }
 
@@ -316,6 +346,8 @@ function hideModifyLocationForm() {
 	clearCheckmarks();
 	clearProfileForm();
 	clearLocationInfoForm();
+	clearLocationAddressFields();
+	resetLocationClassificationField();
 }
 
 
@@ -327,9 +359,39 @@ function showViewLocationForm(resource) {
 		document.getElementById('forms').style.display = 'inline';
 		document.getElementById("location_location_profile_name").value = resource.location.location_profile.name;
 		document.getElementById("location_info").value = "";
+		
 		if(resource.location.info){
 			document.getElementById("location_info").value = resource.location.info;
 		}
+		document.getElementById("location_name").value = "";
+		if(resource.location.name){
+			document.getElementById("location_name").value = resource.location.name;
+		}
+		document.getElementById("location_address").value = "";
+		if(resource.location.address){
+			document.getElementById("location_address").value = resource.location.address;
+		}
+		document.getElementById("location_city").value = "";
+		if(resource.location.city){
+			document.getElementById("location_city").value = resource.location.city;
+		}
+		document.getElementById("location_state_providence").value = "";
+		if(resource.location.state_providence){
+			document.getElementById("location_state_providence").value = resource.location.state_providence;
+		}
+		document.getElementById("location_zip").value = "";
+		if(resource.location.zip){
+			document.getElementById("location_zip").value = resource.location.zip;
+		}
+		document.getElementById("location_country").value = "";
+		if(resource.location.country){
+			document.getElementById("location_country").value = resource.location.country;
+		}
+		var selection = document.classifications.location_classification_id;
+		if(selection[resource.location.location_classification_id-1]){
+			selection[resource.location.location_classification_id-1].checked = true;
+		}
+		
 		// clear the checkboxes
 		clearCheckmarks();
 		// add in the checkbox marks
@@ -337,14 +399,25 @@ function showViewLocationForm(resource) {
 			var category = resource.location.categories[i];
 			document.getElementById("category_ids_" + category.id).checked = true;
 		} // end of categories for loop
-		for (var i = 0 ; i < resource.location.products.length ; i++) {
-			var product = resource.location.products[i];
-			document.getElementById("product_ids_" + product.id).checked = true;
-		} // end of products for loop
+		for (var i = 0 ; i < resource.location.items.length ; i++) {
+			var item = resource.location.items[i];
+			document.getElementById("item_ids_" + item.id).checked = true;
+		} // end of items for loop
 		
 		// disable info and profile forms/buttons
 		document.getElementById("location_info").disabled = true;
 		document.getElementById("location_location_profile_name").disabled = true;
+		document.getElementById("location_name").disabled = true;
+		document.getElementById("location_address").disabled = true;
+		document.getElementById("location_city").disabled = true;
+		document.getElementById("location_state_providence").disabled = true;
+		document.getElementById("location_zip").disabled = true;
+		document.getElementById("location_country").disabled = true;
+		
+		var selection = document.classifications.location_classification_id;
+		for(var i=0; i<selection.length; i++){
+			selection[i].disabled = true;
+		}
 		document.getElementById('profile_button').style.display = 'none';
 		
 		// set checkboxes not editable
@@ -354,8 +427,8 @@ function showViewLocationForm(resource) {
 			cat_index++;
 		}
 		var pro_index = 1;
-		while(document.getElementById("product_ids_" + pro_index)){
-			document.getElementById("product_ids_" + pro_index).disabled = true;
+		while(document.getElementById("item_ids_" + pro_index)){
+			document.getElementById("item_ids_" + pro_index).disabled = true;
 			pro_index++;
 		}
 	}
@@ -370,6 +443,18 @@ function hideViewLocationForm() {
 	}
 	document.getElementById("location_info").disabled = false;
 	document.getElementById("location_location_profile_name").disabled = false;
+	document.getElementById("location_name").disabled = false;
+	document.getElementById("location_address").disabled = false;
+	document.getElementById("location_city").disabled = false;
+	document.getElementById("location_state_providence").disabled = false;
+	document.getElementById("location_zip").disabled = false;
+	document.getElementById("location_country").disabled = false;
+	
+	var selection = document.classifications.location_classification_id;
+	for(var i=0; i<selection.length; i++){
+		selection[i].disabled = false;
+	}
+	
 	document.getElementById('profile_button').style.display = 'inline';
 	var cat_index = 1;
 	while(document.getElementById("category_ids_" + cat_index)){
@@ -377,13 +462,15 @@ function hideViewLocationForm() {
 		cat_index++;
 	}
 	var pro_index = 1;
-	while(document.getElementById("product_ids_" + pro_index)){
-		document.getElementById("product_ids_" + pro_index).disabled = false;
+	while(document.getElementById("item_ids_" + pro_index)){
+		document.getElementById("item_ids_" + pro_index).disabled = false;
 		pro_index++;
 	}
 	clearCheckmarks();
 	clearProfileForm();
 	clearLocationInfoForm();
+	clearLocationAddressFields();
+	resetLocationClassificationField();
 }
 
 
@@ -444,7 +531,22 @@ function createLocation(){
 	var params = "?location[lat]=" + document.getElementById("location_lat").value
         + "&location[lng]=" + document.getElementById("location_lng").value
         + "&location[location_profile_name]=" + document.getElementById("location_location_profile_name").value
+
+		+ "&location[name]=" + document.getElementById("location_name").value
+		+ "&location[address]=" + document.getElementById("location_address").value
+		+ "&location[city]=" + document.getElementById("location_city").value
+		+ "&location[state_providence]=" + document.getElementById("location_state_providence").value
+		+ "&location[zip]=" + document.getElementById("location_zip").value
+		+ "&location[country]=" + document.getElementById("location_country").value
 		+ "&location[info]=" + document.getElementById("location_info").value;
+		
+	// add location classification
+	var selection = document.classifications.location_classification_id;
+	for(var i=0; i<selection.length; i++){
+		if (selection[i].checked == true) {
+			params += "&location[location_classification_id]=" + (i + 1);
+		}
+	}
 			
 	//add categories
 	var cat_count = 1;
@@ -455,17 +557,17 @@ function createLocation(){
 		cat_count++;
 	}
 	
-	//add products
-	var pro_count = 1;
-	while(document.getElementById("product_ids_" + pro_count)){
-		if(document.getElementById("product_ids_" + pro_count).checked == 1){
-	   		params += "&location[product_ids][]=" + document.getElementById("product_ids_" + pro_count).value;
+	//add items
+	var item_count = 1;
+	while(document.getElementById("item_ids_" + item_count)){
+		if(document.getElementById("item_ids_" + item_count).checked == 1){
+	   		params += "&location[item_ids][]=" + document.getElementById("item_ids_" + item_count).value;
 		}
-		pro_count++;
+		item_count++;
 	}
-
-	var url = 'locations/create.js' + params;
 	
+	var url = 'locations/create.js' + params;
+
 	var request = GXmlHttp.create();
 	//tell the request where to retrieve data from.
 	request.open('GET', url, true);
@@ -588,7 +690,21 @@ function updateLocation(){
 	var params = "?location[lat]=" + document.getElementById("location_lat").value
         + "&location[lng]=" + document.getElementById("location_lng").value
         + "&location[location_profile_name]=" + document.getElementById("location_location_profile_name").value
+		+ "&location[name]=" + document.getElementById("location_name").value
+		+ "&location[address]=" + document.getElementById("location_address").value
+		+ "&location[city]=" + document.getElementById("location_city").value
+		+ "&location[state_providence]=" + document.getElementById("location_state_providence").value
+		+ "&location[zip]=" + document.getElementById("location_zip").value
+		+ "&location[country]=" + document.getElementById("location_country").value
 		+ "&location[info]=" + document.getElementById("location_info").value;
+
+	// add location classification
+	var selection = document.classifications.location_classification_id;
+	for(var i=0; i<selection.length; i++){
+		if (selection[i].checked == true) {
+			params += "&location[location_classification_id]=" + (i + 1);
+		}
+	}
 			
 	//add categories
 	var cat_count = 1;
@@ -599,15 +715,15 @@ function updateLocation(){
 		cat_count++;
 	}
 	
-	//add products
-	var pro_count = 1;
-	while(document.getElementById("product_ids_" + pro_count)){
-		if(document.getElementById("product_ids_" + pro_count).checked == 1){
-	   		params += "&location[product_ids][]=" + document.getElementById("product_ids_" + pro_count).value;
+	//add items
+	var item_count = 1;
+	while(document.getElementById("item_ids_" + item_count)){
+		if(document.getElementById("item_ids_" + item_count).checked == 1){
+	   		params += "&location[item_ids][]=" + document.getElementById("item_ids_" + item_count).value;
 		}
-		pro_count++;
+		item_count++;
 	}
-
+	
 	var url = 'locations/update/' + document.getElementById("selected_marker_id").value + ".js" + params;
 	
 	var request = GXmlHttp.create();

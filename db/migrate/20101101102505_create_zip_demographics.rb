@@ -8,9 +8,9 @@ class CreateZipDemographics < ActiveRecord::Migration
       t.string  :state_abbreviation
       t.integer :total_population
       t.integer :total_housing_units
-      t.column  :land_area_square_miles, :decimal, :precision => 20, :scale => 10
-      t.column  :water_area_square_miles, :decimal, :precision => 20, :scale => 10
-      t.column  :population_density_square_miles, :decimal, :precision => 20, :scale => 10
+      t.column  :land_area_square_miles, :decimal, :precision => 25, :scale => 10
+      t.column  :water_area_square_miles, :decimal, :precision => 25, :scale => 10
+      t.column  :population_density_square_miles, :decimal, :precision => 25, :scale => 10
       t.column  :lat, :decimal, :precision => 15, :scale => 10
       t.column  :lng, :decimal, :precision => 15, :scale => 10
       t.timestamps

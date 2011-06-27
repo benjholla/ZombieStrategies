@@ -36,7 +36,7 @@ function setCheckboxes(){
   	request.onreadystatechange = function() {
     	if (request.readyState == 4) {
 			//parse the result to JSON,by eval-ing it.
-      		//The response is an array of two arrays [[categories][products]]
+      		//The response is an array of two arrays [[categories][items]]
       		resource=eval( "(" + request.responseText + ")" );
 			if(resource == null){
 				alert("Profile does not exist! If you create a new location with this profile name, a new profile will be created for you automatically.");
@@ -46,10 +46,10 @@ function setCheckboxes(){
 				var category = resource.location_profile.categories[i];
 				document.getElementById("category_ids_" + category.id).checked = true;
       		} // end of categories for loop
-			for (var i = 0 ; i < resource.location_profile.products.length ; i++) {
-				var product = resource.location_profile.products[i];
-				document.getElementById("product_ids_" + product.id).checked = true;
-      		} // end of products for loop
+			for (var i = 0 ; i < resource.location_profile.items.length ; i++) {
+				var item = resource.location_profile.items[i];
+				document.getElementById("item_ids_" + item.id).checked = true;
+      		} // end of items for loop
     	} //if
 	} //function
 	request.send(null);	
@@ -63,10 +63,10 @@ function clearCheckmarks(){
 		cat_index++;
 	}
 	
-	//clear products
+	//clear items
 	var pro_index = 1;
-	while(document.getElementById("product_ids_" + pro_index)){
-		document.getElementById("product_ids_" + pro_index).checked = false;
+	while(document.getElementById("item_ids_" + pro_index)){
+		document.getElementById("item_ids_" + pro_index).checked = false;
 		pro_index++;
 	}
 	return true;
@@ -78,4 +78,20 @@ function clearProfileForm(){
 
 function clearLocationInfoForm(){
 	document.getElementById("location_info").value = "";
+}
+
+function clearLocationAddressFields(){
+	document.getElementById("location_name").value = "";
+	document.getElementById("location_address").value = "";
+	document.getElementById("location_city").value = "";
+	document.getElementById("location_state_providence").value = "";
+	document.getElementById("location_zip").value = "";
+	document.getElementById("location_country").value = "";
+}
+
+function resetLocationClassificationField(){
+	var selection = document.classifications.location_classification_id;
+	if(selection[0]){
+		selection[0].checked = true;
+	}
 }

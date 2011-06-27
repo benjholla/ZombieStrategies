@@ -25,9 +25,7 @@
 			<br />
 			<br />
 			<br />
-			<p>
-			<%= f.submit '  Add Location  ' %>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="  Cancel  " onclick="window.location.href='<%= locations_path %>'"/>
-		</p>
+			<br />
 		<p>
 			<b><%= label_tag 'lat', 'Latitude:' %></b><br />
 			<%= f.text_field :lat, {:onkeypress => " return clearMarkersOnTyping(this,event);", "size" => 20} %>
@@ -48,13 +46,14 @@
 </div>
 	<div id="message"></div>
 	<br />
+	<br />
 	<p>
 	<%= hidden_field_tag "location[category_ids][]", "" %>
-	<%= hidden_field_tag "location[product_ids][]", "" %>
+	<%= hidden_field_tag "location[item_ids][]", "" %>
 	<table border="1">
 		<tr>
 			<th><b>Categories</b></th>
-			<th><b>Products</b></th>
+			<th><b>Items</b></th>
 		</tr>
 		<% for category in Category.all %>
 			<tr>
@@ -71,14 +70,14 @@
 						</tr>
 						<tr>
 						<% counter = 0 %>
-						<% for product in category.products %>
+						<% for item in category.items %>
 							<% if counter < 4 %>
 								<td>
 									&nbsp;&nbsp;
-									<%= check_box_tag "location[product_ids][]", 
-									product.id, product.locations.include?(@location), 
-									{ :id => "product_ids_"+ product.id.to_s} %> 
-									<b><%=h product.name %></b>
+									<%= check_box_tag "location[item_ids][]", 
+									item.id, item.locations.include?(@location), 
+									{ :id => "item_ids_"+ item.id.to_s} %> 
+									<b><%=h item.name %></b>
 									&nbsp;&nbsp;
 								</td>
 							<% else %>
@@ -87,10 +86,10 @@
 								<tr>
 									<td>
 										&nbsp;&nbsp;
-										<%= check_box_tag "location[product_ids][]", 
-										product.id, product.locations.include?(@location), 
-										{ :id => "product_ids_"+ product.id.to_s} %> 
-										<b><%=h product.name %></b>
+										<%= check_box_tag "location[item_ids][]", 
+										item.id, item.locations.include?(@location), 
+										{ :id => "item_ids_"+ item.id.to_s} %> 
+										<b><%=h item.name %></b>
 										&nbsp;&nbsp;
 									</td>
 							<% end %>
@@ -104,9 +103,58 @@
 	</table>
 	<br />
 	<br />
+	<b><%= label_tag 'name', 'Name:' %></b><br />
+	<%= f.text_field :name, {"size" => 50} %>
+	<br />
+	<b><%= label_tag 'address', 'Address:' %></b><br />
+	<%= f.text_field :address, {"size" => 50} %>
+	<br />
+	<b><%= label_tag 'city', 'City:' %></b><br />
+	<%= f.text_field :city, {"size" => 50} %>
+	<br />
+	<b><%= label_tag 'state_providence', 'State/Providence:' %></b><br />
+	<%= f.text_field :state_providence, {"size" => 50} %>
+	<br />
+	<b><%= label_tag 'zip', 'Zip:' %></b><br />
+	<%= f.text_field :zip, {"size" => 50} %>
+	<br />
+	<b><%= label_tag 'country', 'Country:' %></b><br />
+	<%= f.text_field :country, {"size" => 50} %>
+	<br />
+	<br />
+	
+	<h3>Please classify this location.  Choose the classification that best fits this location.</h3>
+	<table border="1">
+		<tr align="center">
+			<% for classification in LocationClassification.all %>
+				<th>&nbsp;<%=h classification.name %>&nbsp;</th>
+			<% end %>
+		</tr>
+		<tr align="center">
+			<% for classification in LocationClassification.all %>
+				<td><img src="<%=h classification.icon %>" alt="<%=h classification.name %> Icon" width="60" heigth="60"/></td>
+			<% end %>
+		</tr>
+		<tr align="center">
+			<% for classification in LocationClassification.all %>
+				<% if classification.id == 1%>
+					<td><input type="radio" name="location[location_classification_id]" value="<%=h classification.id %>" checked></td>
+				<% else %>
+					<td><input type="radio" name="location[location_classification_id]" value="<%=h classification.id %>"></td>
+				<% end %>
+			<% end %>
+		</tr>
+	</table>
+	
+	<br />
+	<br />
 	<h3><%= label_tag 'info', 'Additional Information:' %></h3>
 	<%= f.text_area :info, {"rows" => 5, "cols" => 60} %>
-	
+	<br />
+	<br />
+	<p>
+		<%= f.submit '  Add Location  ' %>&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="  Cancel  " onclick="window.location.href='<%= locations_path %>'"/>
+	</p>
 </p>
 
 <% end %>

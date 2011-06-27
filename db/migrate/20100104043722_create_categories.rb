@@ -3,7 +3,6 @@ class CreateCategories < ActiveRecord::Migration
     create_table :categories do |t|
       t.integer :location_profile_id
       t.string :name
-
       t.timestamps
     end
   end

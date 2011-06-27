@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101101102505) do
+ActiveRecord::Schema.define(:version => 20110626104624) do
 
   create_table "categories", :force => true do |t|
     t.integer  "location_profile_id"
@@ -32,40 +32,63 @@ ActiveRecord::Schema.define(:version => 20101101102505) do
     t.datetime "updated_at"
   end
 
-  create_table "location_profiles", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "locations", :force => true do |t|
-    t.integer  "location_profile_id"
-    t.decimal  "lat",                 :precision => 15, :scale => 10
-    t.decimal  "lng",                 :precision => 15, :scale => 10
-    t.text     "info"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "product_location_memberships", :force => true do |t|
-    t.integer  "product_id"
+  create_table "item_location_memberships", :force => true do |t|
+    t.integer  "item_id"
     t.integer  "location_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "product_location_profile_memberships", :force => true do |t|
-    t.integer  "product_id"
+  create_table "item_location_profile_memberships", :force => true do |t|
+    t.integer  "item_id"
     t.integer  "location_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "products", :force => true do |t|
+  create_table "items", :force => true do |t|
     t.integer  "category_id"
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "location_classifications", :force => true do |t|
+    t.string   "name"
+    t.string   "icon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "location_profiles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "location_classification_id"
+  end
+
+  create_table "locations", :force => true do |t|
+    t.integer  "location_profile_id"
+    t.integer  "location_classification_id"
+    t.decimal  "lat",                        :precision => 15, :scale => 10
+    t.decimal  "lng",                        :precision => 15, :scale => 10
+    t.string   "name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state_providence"
+    t.string   "zip"
+    t.string   "country"
+    t.text     "info"
+    t.text     "modification_log"
+    t.text     "audit_log"
+    t.boolean  "flagged",                                                    :default => false
+    t.string   "flagged_by"
+    t.datetime "validated"
+    t.string   "validated_by"
+    t.datetime "created"
+    t.string   "created_by"
+    t.datetime "modified"
+    t.string   "modified_by"
   end
 
   create_table "twitter_computations", :force => true do |t|
@@ -115,9 +138,9 @@ ActiveRecord::Schema.define(:version => 20101101102505) do
     t.string   "state_abbreviation"
     t.integer  "total_population"
     t.integer  "total_housing_units"
-    t.decimal  "land_area_square_miles",          :precision => 20, :scale => 10
-    t.decimal  "water_area_square_miles",         :precision => 20, :scale => 10
-    t.decimal  "population_density_square_miles", :precision => 20, :scale => 10
+    t.decimal  "land_area_square_miles",          :precision => 25, :scale => 10
+    t.decimal  "water_area_square_miles",         :precision => 25, :scale => 10
+    t.decimal  "population_density_square_miles", :precision => 25, :scale => 10
     t.decimal  "lat",                             :precision => 15, :scale => 10
     t.decimal  "lng",                             :precision => 15, :scale => 10
     t.datetime "created_at"

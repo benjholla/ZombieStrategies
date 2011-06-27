@@ -4,7 +4,7 @@
 <table border="1">
   <tr>
     <th>Category Name</th>
-	<th>Products</th>
+	<th>Items</th>
 	<th></th>
   </tr>
 
@@ -12,15 +12,15 @@
   <tr>
     <td><%=h category.name %></td>
 	<td>
-		<% if category.products.last %>
+		<% if category.items.last %>
 			<table>
 		  	<tr>
 		    	<th></th>
 		  	</tr>
-			<% category.products.each do |product| %>
+			<% category.items.each do |item| %>
 		  	<tr>
-		    	<td><%=h product.name %></td>
-		    	<td><%= link_to 'Edit', edit_product_path(product) %></td>
+		    	<td><%=h item.name %></td>
+		    	<td><%= link_to 'Edit', edit_item_path(item) %></td>
 		  	</tr>
 			<% end %>
 			</table>
@@ -35,7 +35,7 @@
 <% if authorized? %>
 <input type="button" value="New Category" onclick="window.location.href='<%= new_category_path %>'"/>
 <br />
-<input type="button" value="New Product" onclick="window.location.href='<%= new_product_path %>'"/>
+<input type="button" value="New Item" onclick="window.location.href='<%= new_item_path %>'"/>
 <br />
 <% end %>
 <input type="button" value="Location Map" onclick="window.location.href='<%= locations_path %>'"/>

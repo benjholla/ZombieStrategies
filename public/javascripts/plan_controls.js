@@ -7,6 +7,9 @@ var trafficButtonState = 0;
 // image setters for Add button
 function setAddButtonSelected()
 {
+	alert("Sorry, the database is currently locked while we push out some exciting new changes.  Check back soon!");
+	return;
+	
 	document.images["addButton"].src= "../images/location_map_controls/add_selected_button.png";
 	addButtonState = 1;
 	setModifyButtonUnselected();
@@ -40,6 +43,9 @@ function setAddButtonUnselected()
 // image setters for Modify button
 function setModifyButtonSelected()
 {
+	alert("Sorry, the database is currently locked while we push out some exciting new changes.  Check back soon!");
+	return;
+	
 	document.getElementById("location_lat").value = "";
 	document.getElementById("location_lng").value = "";
 	document.getElementById("flash-message").innerHTML = "";
@@ -65,6 +71,9 @@ function setModifyButtonUnselected()
 // image setters for Remove button
 function setRemoveButtonSelected()
 {
+	alert("Sorry, the database is currently locked while we push out some exciting new changes.  Check back soon!");
+	return;
+	
 	document.getElementById("flash-message").innerHTML = "";
 	document.images["removeButton"].src= "../images/location_map_controls/remove_selected_button.png";
 	removeButtonState = 1;

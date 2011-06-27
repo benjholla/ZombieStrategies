@@ -1,6 +1,6 @@
 class LocationProfilesController < ApplicationController
   
-  before_filter :admin_login_required, :only => :destroy
+  #before_filter :admin_login_required, :except => [:show, :index]
   
   # GET /location_profiles
   # GET /location_profiles.xml
@@ -35,10 +35,19 @@ class LocationProfilesController < ApplicationController
   def show
     @location_profile = LocationProfile.find_by_name(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.xml { render :xml => @location_profile }
-      format.js { render :json => @location_profile.to_json(:include => {:categories => {}, :products => {}}) }
+    if(@location_profile != nil)
+      respond_to do |format|
+        format.html # show.html.erb
+        format.xml { render :xml => @location_profile }
+        format.js { render :json => @location_profile.to_json(:include => {:categories => {}, :items => {}}) }
+      end
+    else
+      respond_to do |format|
+        flash[:notice] = 'Profile does not exist.'
+        format.html { redirect_to(location_profiles_url) }
+        format.xml { render :xml => {:exists=>false} }
+        format.js { render :json => {:exists=>false} }
+      end
     end
   end
 
@@ -62,7 +71,7 @@ class LocationProfilesController < ApplicationController
   # POST /location_profiles.xml
   def create
     params[:location_profile][:category_ids] ||= []
-    params[:location_profile][:product_ids] ||= []
+    params[:location_profile][:item_ids] ||= []
     @location_profile = LocationProfile.new(params[:location_profile])
 
     respond_to do |format|

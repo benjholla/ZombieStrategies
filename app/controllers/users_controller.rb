@@ -75,20 +75,26 @@ class UsersController < ApplicationController
   def create
     logout_keeping_session!
     @user = User.new(params[:user])
-    # reset the is_admin property for new users to false just incase someone crafts a form
-    @user.is_admin = false
-    success = @user && @user.save
-    if success && @user.errors.empty?
-      # Protects against session fixation attacks, causes request forgery
-      # protection if visitor resubmits an earlier form using back
-      # button. Uncomment if you understand the tradeoffs.
-      # reset session
-      self.current_user = @user # !! now logged in
-      redirect_back_or_default('/')
-      flash[:notice] = "Thanks for signing up!"
-    else
-      flash[:error]  = "This information is not valid, please try again."
+    
+    if(params[:user][:login] == 'anonymous' || params[:user][:login] == 'zombiestrategies')
+      flash[:error]  = "This username is reserved, please try again."
       render :action => 'new'
+    else
+      # reset the is_admin property for new users to false just incase someone crafts a form
+      @user.is_admin = false
+      success = @user && @user.save
+      if success && @user.errors.empty?
+        # Protects against session fixation attacks, causes request forgery
+        # protection if visitor resubmits an earlier form using back
+        # button. Uncomment if you understand the tradeoffs.
+        # reset session
+        self.current_user = @user # !! now logged in
+        redirect_back_or_default('/')
+        flash[:notice] = "Thanks for signing up!"
+      else
+        flash[:error]  = "This information is not valid, please try again."
+        render :action => 'new'
+      end
     end
   end
   
