@@ -1,24 +1,23 @@
 ActionController::Routing::Routes.draw do |map|
 
-
-  
   # See how all your routes lay out with "rake routes"
   
   # resources
   map.resources :users, :requirements => { :id => /.*/ }
   map.resource  :session
-  map.resources :location_profiles, :requirements => { :id => /.*/ }, :has_many => :categories
-  map.resources :categories, :has_many => :products
-  map.resources :products
+  map.resources :location_profiles, :requirements => { :id => /[^.]*/ }, :has_many => :categories
+  map.resources :categories, :has_many => :items
+  map.resources :items
   map.resources :twitter_trends, :has_many => :twitter_computations
   map.resources :twitter_computations
   map.resources :category_location_memberships
-  map.resources :product_location_memberships
-  map.resources :locations, :collection => {:create => :get, :update => :get}
+  map.resources :item_location_memberships
+  map.resources :locations, :collection => {:create => :get, :update => :get, :flagged => :get}, :member => {:validate => :get, :flag => :get, :unflag => :get}
   map.resources :category_location_profile_memberships
-  map.resources :product_location_profile_memberships
+  map.resources :item_location_profile_memberships
   map.resources :zip_demographics, :collection => {:create => :get, :update => :get}
   map.resources :notifications
+  map.resources :location_classifications
 
   # home page and root path of the app
   map.root :controller => "information", :action => "home" 
