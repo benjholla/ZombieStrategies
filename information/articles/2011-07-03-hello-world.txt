@@ -1,0 +1,7 @@
+--- 
+title: Hello World!
+author: Ben Holland
+date: 03/07/2011
+
+Once upon a time...
+
