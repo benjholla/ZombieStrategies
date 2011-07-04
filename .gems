@@ -4,3 +4,6 @@ prawn
 prawn-layout
 rails --version 2.3.10
 gchart --version 1.0.0
+builder
+rdiscount
+toto
