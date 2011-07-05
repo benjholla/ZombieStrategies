@@ -69,7 +69,7 @@ body {
 /* Positions the username that gets displayed near the logout button when logged in */
 .username {
 	position:absolute;
-	left:887px;
+	left:912px;
 	top:88px;
 }
 
@@ -165,7 +165,7 @@ table.sortable thead {
 }
 
 ul#navigation {	
-	width:442px;
+	width:465px;
 	list-style:none;
 	height:35px
 }
@@ -200,7 +200,7 @@ ul#navigation li#navigation-1 a.current {
 }
 
 ul#navigation li#navigation-2 a {
-	width:118px;
+	width:86px;
 	background:url(../images/navigation.png) no-repeat -73px 0
 }
 
@@ -213,48 +213,49 @@ ul#navigation li#navigation-2 a.current {
 }
 
 ul#navigation li#navigation-3 a {
-	width:86px;
-	background:url(../images/navigation.png) no-repeat -191px 0
+	width:150px;
+	background:url(../images/navigation.png) no-repeat -159px 0
 }
 
 ul#navigation li#navigation-3 a:active,
 ul#navigation li#navigation-3 a:hover {
-	background-position:-191px -35px
+	background-position:-159px -35px
 }
 ul#navigation li#navigation-3 a.current {
-	background-position:-191px -70px
+	background-position:-159px -70px
 }
 
 ul#navigation li#navigation-4 a {
-	width:90px;
-	background:url(../images/navigation.png) no-repeat -277px 0
+	width:82px;
+	background:url(../images/navigation.png) no-repeat -309px 0
 }
 
 ul#navigation li#navigation-4 a:active,
 ul#navigation li#navigation-4 a:hover {
-	background-position:-277px -35px
+	background-position:-309px -35px
 }
 ul#navigation li#navigation-4 a.current {
-	background-position:-277px -70px
+	background-position:-309px -70px
 }
 
 ul#navigation li#navigation-5 a {
-	width:75px;
-	background:url(../images/navigation.png) no-repeat -367px 0
+	width:74px;
+	background:url(../images/navigation.png) no-repeat -391px 0
 }
 
 ul#navigation li#navigation-5 a:active,
 ul#navigation li#navigation-5 a:hover {
-	background-position:-367px -35px
+	background-position:-391px -35px
 }
 ul#navigation li#navigation-5 a.current {
-	background-position:-367px -70px
+	background-position:-391px -70px
 }
+
 
 /* Unauthenticated Menu Bar */
 .unauthenticated-menu-box {
 	position:absolute;
-	left:900px;
+	left:925px;
 	top:50px;
 	margin-top:50px;
 	margin-bottom:0px;
@@ -313,7 +314,7 @@ ul#unauthenticated-menu li#unauthenticated-menu-2 a.current {
 /* Authenticated Menu Bar */
 .authenticated-menu-box {
 	position:absolute;
-	left:887px;
+	left:912px;
 	top:50px;
 	margin-top:50px;
 	margin-bottom:0px;
