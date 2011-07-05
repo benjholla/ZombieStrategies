@@ -30,7 +30,7 @@ toto = Toto::Server.new do
 	if RAILS_ENV != 'production'
 		set :url, "http://127.0.0.1:3000/information/"
 	else
-		set :url, "http://zombiestrategies.com/information/"
+		set :url, "http://www.zombiestrategies.com/information/"
 	end
 	
 end
