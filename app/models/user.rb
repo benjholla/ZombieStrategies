@@ -10,9 +10,6 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login,    :message => "is already taken."  
   validates_format_of       :login,    :with => Authentication.login_regex, :message => Authentication.bad_login_message
 
-  validates_format_of       :name,     :with => Authentication.name_regex,  :message => Authentication.bad_name_message, :allow_nil => true
-  validates_length_of       :name,     :maximum => 100
-
   validates_presence_of     :first_name
   validates_length_of       :first_name,    :within => 1..40
   
@@ -21,11 +18,11 @@ class User < ActiveRecord::Base
 
   validates_presence_of     :email
   validates_length_of       :email,    :within => 6..100 
-  validates_uniqueness_of   :email, :message => "is already taken."
+  validates_uniqueness_of   :email,    :message => "is already taken."
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
   
   validates_uniqueness_of   :phone, :allow_blank => true
-  validates_length_of :phone, :is => 10, :message => "must be in the format xxxxxxxxxx.", :allow_blank => true
+  validates_length_of       :phone, :is => 10, :message => "must be in the format xxxxxxxxxx.", :allow_blank => true
   validates_numericality_of :phone, :message => "must be all numerical.", :allow_blank => true
   
   validates_numericality_of :lat, :message => "must be a number", :allow_blank => true
@@ -40,7 +37,7 @@ class User < ActiveRecord::Base
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :first_name, :last_name, :phone, :twitter, :lat, :lng, :is_admin
+  attr_accessible :login, :email, :password, :password_confirmation, :first_name, :last_name, :phone, :twitter, :lat, :lng, :is_admin
 
   # overide the render options so that certain attributes are not displayed
   def to_xml
