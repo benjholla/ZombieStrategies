@@ -3,7 +3,7 @@ title: Zombie Lore
 author: Zombie Strategies
 date: 17/08/2011
 
-<div style="position:relative; left:-25px; background-image:url(/images/backgrounds/paper_2.png); width:900px; height:1165px;">
+<div style="position:relative; left:-25px; background-image:url(/images/backgrounds/paper_1.png); width:900px; height:1165px;">
 	<div style="margin-left:25px; margin-right:25px;">
 		<br />
 		<center>
