@@ -1,0 +1,21 @@
+--- 
+title: Zombie Anatomy
+author: Zombie Strategies
+date: 17/08/2011
+
+<div style="position:relative; left:-25px; background-image:url(/images/backgrounds/paper_2.png); width:900px; height:1165px;">
+	<div style="margin-left:25px; margin-right:25px;">
+		<br />
+		<center>
+			<h2>
+				<a href="/information/2011/08/17/zombie-lore">&lt;&nbsp;&nbsp;Previous</a>
+				&nbsp;&nbsp;----------&nbsp;&nbsp;
+				Next&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+			</h2>
+		</center>
+		<br />
+		<br />
+		<h2 style="margin-bottom:10px;">Zombie Anatomy</h2>
+		<p>This page is under construction.</p>
+	</div>
+</div>
