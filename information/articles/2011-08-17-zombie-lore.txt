@@ -16,6 +16,18 @@ date: 17/08/2011
 		<br />
 		<br />
 		<h2 style="margin-bottom:10px;">Zombie Lore</h2>
-		<p>This page is under construction.</p>
+		<p>Movies, video games, comics, and fan fiction have popularized Zombies, also known as the Living Dead, the Undead, Ghouls, Z’s, Zed’s, Zack, Roamers, Infected, Geeks, and Walkers, as well as other names.</p>
+		<br />
+		<p>Zombies have an anthropological history tracing back to Haitian voodoo where it was believed that a sorcerer could reanimate a human corpse through mystical means to control the “zombi” since a zombi has no will of its own.</p>
+		<br />
+		<p>The origins of the modern notion of a zombie trace back to Richard Matheson’s 1954 book <i>I Am Legend</i> that portrayed a worldwide epidemic of a vampiric disease (an adapted version of the novel changed vampires to zombies in the recent 2007 blockbuster movie).  George Romero was later inspired by Matheson’s story to produce <i>The Night of the Living Dead</i> (1968), which has grown to define the genre by outlining the notion of a phenomenon which cause’s the dead to return to life to haunt the living.  Romero movies are famous for explaining, “when there is no more room in Hell, the dead will walk the earth”.  Since the release of <i>Night of the Living Dead</i>, vast numbers of zombie themed media have proliferated.</p>
+		<br />
+		<p>Zombies are typically characterized by their insatiable desire for human flesh or brains.  They are drawn to the living in which they indirectly spread their condition to survivors by infecting or mauling the living through primitive mob like means.  It’s the vast numbers, mindless drive, infectious nature, and sheer terror of zombies that presents a threat to humans.</p>
+		<br />
+		<p>There are many variations on zombies portrayed in pop culture, but what remains common between variations is the mental drive, which remains a zombie’s single motivation, their appetite.  The pandemic nature of zombies is another common theme that runs deep in the genre.  While a small percentage of the populous may be immune to the infected, the vast majority is not.  The remaining survivors are then presented with a challenge of continuing to survive in a post apocalyptic world where the dead feed on the living and the living do whatever it takes to survive.</p>
+		<br />
+		<p>Zombies are often a social commentary on how far the human spirit can be pushed and how far people will go to survive.  Could you kill your mother or spouse if you had to defend yourself from them?  How about a child?</p>
+		<br />
+		<p>Today zombies have mainlined into the spotlight of media and public awareness everywhere.  All over the world “zombie walks” are organized where participants crowd together dressed as reanimated corpses.  Movies and advertising constantly reference zombies, while fan groups continue to grow.</p>
 	</div>
 </div>
