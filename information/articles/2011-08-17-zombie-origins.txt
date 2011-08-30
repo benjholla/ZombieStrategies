@@ -1,21 +1,22 @@
 --- 
-title: Zombie Lore
+title: Zombie Origins
 author: Zombie Strategies
 date: 17/08/2011
 
 <div style="position:relative; left:-25px; background-image:url(/images/backgrounds/paper_1.png); width:900px; height:1165px;">
 	<div style="margin-left:25px; margin-right:25px;">
 		<br />
-		<center>
+		<div style="float:right;"><img src="/images/blue-rss-grunge/feedme.png" alt="Feed Me" /><a href="/information/index.xml"><img src="/images/blue-rss-grunge/feed-blue-grunge-48x48.png" alt="RSS" style="margin-left:5px;" /></a></div>
+		<div style="margin-left:272px;">
 			<h2>
 				<a href="/information/">&lt;&nbsp;&nbsp;Previous</a>
 				&nbsp;&nbsp;----------&nbsp;&nbsp;
-				<a href="/information/2011/08/17/zombie-anatomy">Next&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				<a href="/information/2011/08/17/zombie-variations">Next&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;</a>
 			</h2>
-		</center>
+		</div>
 		<br />
 		<br />
-		<h2 style="margin-bottom:10px;">Zombie Lore</h2>
+		<h2 style="margin-bottom:10px;">Zombie Origins</h2>
 		<p>Movies, video games, comics, and fan fiction have popularized Zombies, also known as the Living Dead, the Undead, Ghouls, Z’s, Zed’s, Zack, Roamers, Infected, Geeks, and Walkers, as well as other names.</p>
 		<br />
 		<p>Zombies have an anthropological history tracing back to Haitian voodoo where it was believed that a sorcerer could reanimate a human corpse through mystical means to control the “zombi” since a zombi has no will of its own.</p>

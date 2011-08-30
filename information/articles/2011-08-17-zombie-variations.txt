@@ -1,0 +1,38 @@
+--- 
+title: Zombie Variations
+author: Zombie Strategies
+date: 17/08/2011
+
+<div style="position:relative; left:-25px; background-image:url(/images/backgrounds/paper_2.png); width:900px; height:1165px;">
+	<div style="margin-left:25px; margin-right:25px;">
+		<br />
+		<div style="float:right;"><img src="/images/blue-rss-grunge/feedme.png" alt="Feed Me" /><a href="/information/index.xml"><img src="/images/blue-rss-grunge/feed-blue-grunge-48x48.png" alt="RSS" style="margin-left:5px;" /></a></div>
+		<div style="margin-left:272px;">
+			<h2>
+				<a href="/information/2011/08/17/zombie-origins">&lt;&nbsp;&nbsp;Previous</a>
+				&nbsp;&nbsp;----------&nbsp;&nbsp;
+				Next&nbsp;&nbsp;&gt;&nbsp;&nbsp;&nbsp;&nbsp;
+			</h2>
+		</div>
+		<br />
+		<br />
+		<h2 style="margin-bottom:10px;">Zombie Variations</h2>
+		<p>We can now begin a systematic decomposition of the many zombie variations portrayed in the genre.  Throughout this section we will discuss the most popular scenarios which spawn zombies as well as the many takes on zombie characteristics and their respective behaviors.</p>
+		<br />
+		<h2 style="margin-bottom:10px;">Scenarios</h2>
+		<h3 style="margin-left:25px; margin-bottom:10px;">1. <a href="#">Military or Science Experiment</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">2. <a href="#">Terrorist Attack</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">3. <a href="#">Natural</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">4. <a href="#">Supernatural</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">5. <a href="#">Unknown</a></h3>
+		<h2 style="margin-bottom:10px;">Causes</h2>
+		<h3 style="margin-left:25px; margin-bottom:10px;">1. <a href="#">Cosmic Interference</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">2. <a href="#">Voodoo, Witchcraft, or Possession</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">3. <a href="#">Supernatural or Unknown Phenomena</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">4. <a href="#">Genetic Mutation</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">5. <a href="#">Parasitic Infection</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">6. <a href="#">Drug or Chemical Contamination</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">7. <a href="#">Nanobot Replication</a></h3>
+		<h3 style="margin-left:25px; margin-bottom:10px;">8. <a href="#">Biological</a></h3>
+	</div>
+</div>

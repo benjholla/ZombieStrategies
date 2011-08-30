@@ -1,6 +1,6 @@
-xml.instruct!
+  xml.instruct!
 xml.feed "xmlns" => "http://www.w3.org/2005/Atom" do
-  xml.title @config[:title]
+  xml.title "Zombie Strategies | Information"
   xml.id @config[:url]
   xml.updated articles.first[:date].iso8601 unless articles.empty?
   xml.author { xml.name @config[:author] }

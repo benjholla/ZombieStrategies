@@ -33,6 +33,10 @@ toto = Toto::Server.new do
 		set :url, "http://www.zombiestrategies.com/information/"
 	end
 	
+	set :error     do |code|                                    # The HTML for your error page
+	  File.read("public/#{code}.html")
+	end
+	
 end
 
 #create a rack app
