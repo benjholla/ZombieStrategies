@@ -1,6 +1,6 @@
 class LocationProfilesController < ApplicationController
   
-  #before_filter :admin_login_required, :except => [:show, :index]
+  before_filter :admin_login_required, :except => [:show, :index]
   
   # GET /location_profiles
   # GET /location_profiles.xml
