@@ -18,7 +18,7 @@ toto = Toto::Server.new do
 	}
 
 	#set your config variables here
-	set :title,     'Zombie Strategies | ' + Dir.pwd.split('/').last
+	set :title,     Dir.pwd.split('/').last + ' | Zombie Strategies'
 	set :author,    'Zombie Strategies'
 	set :date,      lambda {|now| now.strftime("%B #{now.day.ordinal} %Y") }
 	set :disqus,    false                                     # disqus id, or false

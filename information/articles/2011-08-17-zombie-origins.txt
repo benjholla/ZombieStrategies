@@ -2,6 +2,8 @@
 title: Zombie Origins
 author: Zombie Strategies
 date: 17/08/2011
+meta_keywords: zombie strategies, origins, zombie, zombies, living dead, defense, protection, preparation, civil defense, strategies, strategy, information, george romero, zombi, ghouls, z, zed, zack, roamers, infected, geeks, walkers, hordes, fan fiction, social commentary, human, human spirit, richard matheson, zombie origins, survival
+meta_description: A brief overview of the origins of zombies in movies, literature, comics, video games, and the social consciousness.  
 
 <div style="position:relative; left:-25px; background-image:url(/images/backgrounds/paper_1.png); width:900px; height:1165px;">
 	<div style="margin-left:25px; margin-right:25px;">

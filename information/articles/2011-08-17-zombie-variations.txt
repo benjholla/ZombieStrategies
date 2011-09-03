@@ -2,6 +2,8 @@
 title: Zombie Variations
 author: Zombie Strategies
 date: 17/08/2011
+meta_keywords: zombie strategies, variations, zombie, zombies, living dead, defense, protection, preparation, civil defense, strategies, strategy, information, survival, scenarios, causes, characteristics, settings
+meta_description: A systematic decomposition of the various takes on the causes of zombies, the scenarios leading up to a zombie outbreak, and the characteristics and behaviors of zombies as defined in popular media.
 
 <div style="position:relative; left:-25px; background-image:url(/images/backgrounds/paper_2.png); width:900px; height:1165px;">
 	<div style="margin-left:25px; margin-right:25px;">
