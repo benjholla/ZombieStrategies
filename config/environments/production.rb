@@ -32,8 +32,8 @@ config.action_mailer.smtp_settings = {
   :port => 587,
   :authentication => :plain,
   :domain => 'zombiestrategies.com',
-  :user_name => '***REMOVED***',
-  :password => '***REMOVED***'
+  :user_name => 'YOUR_EMAIL',
+  :password => 'YOUR_PASSWORD'
 }
 
 # Enable threaded mode

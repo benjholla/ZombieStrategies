@@ -20,11 +20,11 @@ class CreateUsers < ActiveRecord::Migration
       t.timestamps 
     end
     add_index :users, :login, :unique => true
-    @user = User.create(:login=>"admin", :password=>"***REMOVED***", :password_confirmation=>"***REMOVED***", :first_name=>"Ben", :last_name=>"Holland", :email=>"***REMOVED***@gmail.com", :phone=>"***REMOVED***", :twitter=>"***REMOVED***", :lat=>"***REMOVED***", :lng=>"***REMOVED***")
+    @user = User.create(:login=>"admin", :password=>"YOUR_PASSWORD", :password_confirmation=>"YOUR_PASSWORD", :first_name=>"YOUR_FIRST_NAME", :last_name=>"YOUR_LAST_NAME", :email=>"YOUR_EMAIL", :phone=>"YOUR_PHONE", :twitter=>"YOUR_TWITTER", :lat=>"YOUR_LAT", :lng=>"YOUR_LON")
     # set this user to admin
     @user.is_admin = true
     if @user && @user.save
-      puts "Success: created new admin user with default password = ***REMOVED***, remember to change the password!"
+      puts "Success: created new admin user with default password = YOUR_PASSWORD, remember to change the password!"
     else
       puts "Error: could not create default user!"
     end

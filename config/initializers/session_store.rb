@@ -6,7 +6,7 @@
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
   :key         => '_zombiestrategies_session',
-  :secret      => '***REMOVED***'
+  :secret      => 'YOUR_API_KEY'
 }
 
 # Use the database for sessions instead of the cookie-based default,
