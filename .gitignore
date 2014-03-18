@@ -1,4 +1,10 @@
+*~
+*.lock
 *.DS_Store
+*.swp
+*.out
+*.cache
+Thumbs.db
 
 *.rbc
 capybara-*.html
