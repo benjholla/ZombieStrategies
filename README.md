@@ -1,5 +1,5 @@
-ZombieStrategies
-================
+Zombie Strategies
+=================
 
 The source code for the original zombiestrategies.com website
 
